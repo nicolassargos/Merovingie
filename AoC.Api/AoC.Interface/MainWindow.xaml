@@ -1,0 +1,49 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AoC.Interface"
+        xmlns:UseCases="clr-namespace:AoC.Api.UseCases;assembly=AoC.Api" x:Name="Window" x:Class="AoC.Interface.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="586" Width="880">
+    <Grid x:Name="GridView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="391*"/>
+            <ColumnDefinition Width="340*"/>
+            <ColumnDefinition Width="61*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Margin="10,0,10,41" VerticalScrollBarVisibility="Auto" Grid.RowSpan="3" Height="545">
+            <TextBlock x:Name="LogBox" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="3"/>
+        </ScrollViewer>
+        <Button x:Name="CreateNewWorkerBtn" Content="Create Worker" Margin="345,41,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80" Click="CreateNewWorkerBtn_Click" 
+                Height="80" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Label Content="Population: " HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="72" Grid.Column="1"/>
+        <Label Content="Stone:" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="44" Grid.Column="1"/>
+        <Label Content="Gold:" HorizontalAlignment="Left" Margin="246,10,0,0" VerticalAlignment="Top" Width="38" Grid.Column="1"/>
+        <Label Content="Wood:" HorizontalAlignment="Left" Margin="326,10,0,0" VerticalAlignment="Top" Width="46" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="MaxPopulation" Content="{Binding MaxPopulation, Mode=OneWay}" HorizontalAlignment="Left" Height="26" Margin="114,10,0,0" VerticalAlignment="Top" Width="32" Grid.Column="1">
+        </Label>
+        <Label x:Name="TotalPopulationCount" Content="{Binding TotalPopulation, Mode=OneWay}" HorizontalAlignment="Left" Height="26" Margin="82,10,0,0" VerticalAlignment="Top" Width="24" Grid.Column="1"/>
+        <Label HorizontalAlignment="Left" Height="26" Margin="102,10,0,0" VerticalAlignment="Top" Width="16" Content="/" Grid.Column="1"/>
+        <Label x:Name="StoneStock" Content="{Binding QtyStone, Mode=OneWay}" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="38" Grid.Column="1"/>
+        <Label x:Name="GoldStock" Content="{Binding QtyOr, Mode=OneWay}" HorizontalAlignment="Left" Margin="284,10,0,0" VerticalAlignment="Top" Width="42" Grid.Column="1"/>
+        <Label x:Name="WoodStock" Content="{Binding QtyWood, Mode=OneWay}" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Width="44" Grid.Column="2"/>
+        <StackPanel x:Name="ProductionPanel" HorizontalAlignment="Center" Height="199" Margin="116,210,10,0" VerticalAlignment="Top" Width="275" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" Visibility="Visible" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="207" Margin="10,179.667,0,0" VerticalAlignment="Top" Width="415" Panel.ZIndex="5" Background="#FF7E878D" Grid.ColumnSpan="2" Grid.Row="2">
+            <Label x:Name="ProductionListLabel" Content="Label" HorizontalAlignment="Center" Margin="10,0,10,177" Width="395" HorizontalContentAlignment="Center" Foreground="#FF020202" Background="#FFC6DBEE" FontWeight="Bold" FontSize="18"/>
+            <Button x:Name="FetchWoodBtn" Content="Fetch Wood" Height="80" Margin="10,35,0,0" Width="80" Panel.ZIndex="1" MinWidth="17" HorizontalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Click="FetchWoodBtn_Click"/>
+            <Button x:Name="CancelBtn" Content="Cancel task" Click="CancelBtn_Click" Margin="325,122,10,5" Width="80" Height="80" Foreground="White" Background="#FFF55555"/>
+            <Button x:Name="CreateNewFarmBtn" Content="Create House" VerticalAlignment="Top" Width="80" Click="CreateNewFarmBtn_Click" Height="80" HorizontalAlignment="Left" Margin="10,122,0,0"/>
+            <Button x:Name="FetchStoneBtn" Content="Fetch Stone" Height="80" Margin="95,35,0,0" Width="80" Panel.ZIndex="1" MinWidth="17" HorizontalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Click="FetchStoneBtn_Click"/>
+            <Button x:Name="FetchGoldBtn" Content="Fetch Gold" Height="80" Margin="180,35,0,0" Width="80" Panel.ZIndex="1" MinWidth="17" HorizontalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Click="FetchGoldBtn_Click"/>
+        </Grid>
+        <StackPanel x:Name="ActionPanel" HorizontalAlignment="Left" Height="290" Margin="10,43,0,0" VerticalAlignment="Top" Width="324" Grid.RowSpan="3" Grid.Column="1"/>
+
+    </Grid>
+</Window>
