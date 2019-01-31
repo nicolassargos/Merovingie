@@ -6,7 +6,6 @@ C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\Common\obj\D
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\Common\obj\Debug\Common.pdb
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.pdb
-C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csprojAssemblyReference.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CoreCompileInputs.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.pdb

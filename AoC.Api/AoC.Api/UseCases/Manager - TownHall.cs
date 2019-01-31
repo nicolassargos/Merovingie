@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AoC.Api.UseCases
 {
-    public partial class Manager
+    public partial class GameManager
     {
         // Town Hall
         #region TownHall

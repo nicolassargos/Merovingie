@@ -19,7 +19,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AoC.Api.UseCases
 {
-    public partial class Manager
+    public partial class GameManager
     {
         // Events
         #region Events
@@ -59,7 +59,7 @@ namespace AoC.Api.UseCases
         // Contructor
         #region Constructor
 
-        public Manager()
+        public GameManager()
         {
             Resources = new SerializableDictionary<ResourcesType, int>();
             PopulationList = new List<IUnit>();
@@ -67,7 +67,7 @@ namespace AoC.Api.UseCases
             MaxPopulation = 0;
         }
 
-        public Manager(GameDescriptor game)
+        public GameManager(GameDescriptor game)
         {
             Resources = game.Resources;
             PopulationList = new List<IUnit>();

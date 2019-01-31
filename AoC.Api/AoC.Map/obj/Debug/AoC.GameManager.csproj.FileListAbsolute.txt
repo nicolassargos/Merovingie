@@ -10,6 +10,7 @@ C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Map\obj\
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CopyComplete
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Map\obj\Debug\AoC.Map.exe
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Map\obj\Debug\AoC.Map.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.pdb
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.exe.config
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.exe
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.pdb
@@ -21,4 +22,3 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.cs
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CoreCompileInputs.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CopyComplete
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.exe
-C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.pdb

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AoC.Api.UseCases
 {
-    public partial class Manager
+    public partial class GameManager
     {
         // Worker
         #region Worker

@@ -25,7 +25,7 @@ namespace AoC.Interface
         const string NOT_ENOUGH_RESOURCES = "Not enough resources!\n";
         const string NOT_ENOUGH_SLOTS = "Not enough place... Build some farms!\n";
 
-        Manager manager;
+        GameManager manager;
         int SelectedItemId;
         GameDescriptor game;
 
@@ -91,7 +91,7 @@ namespace AoC.Interface
             // Lit le fichier
             game = GameFileManager.ReadGame("game1");
 
-            manager = new Manager(game);
+            manager = new GameManager(game);
 
             manager.PopulationChanged += OnPopulationChanged;
             //manager.ResourcesChanged += OnResourcesChanged;
