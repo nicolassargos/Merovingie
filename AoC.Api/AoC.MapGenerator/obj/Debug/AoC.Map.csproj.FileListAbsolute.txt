@@ -4,3 +4,9 @@ C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.MapGener
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csproj.CoreCompileInputs.cache
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.dll
 C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.dll
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csprojAssemblyReference.cache
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csproj.CoreCompileInputs.cache
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.dll
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.pdb
