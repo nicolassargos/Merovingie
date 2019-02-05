@@ -27,7 +27,7 @@ namespace AoC.Interface
 
         GameManager manager;
         int SelectedItemId;
-        GameDescriptor game;
+        IGameDescriptor game;
 
         #region Events
 
@@ -116,7 +116,7 @@ namespace AoC.Interface
         /// Initialise l'interface à partir d'un GameDescriptor
         /// </summary>
         /// <param name="game"></param>
-        private void InitializeUIFromGame(GameDescriptor game)
+        private void InitializeUIFromGame(IGameDescriptor game)
         {
             foreach (var townhall in game.TownHalls)
             {

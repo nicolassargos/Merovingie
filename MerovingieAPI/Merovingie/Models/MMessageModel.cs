@@ -8,8 +8,8 @@ namespace Merovingie.Models
 
     public class MMessageModel
     {
-        public string Message;
-        public string Type;
+        public string Message { get; set; }
+        public string Type { get; set; }
 
         public MMessageModel(string type, string message)
         {

@@ -13,7 +13,7 @@ namespace AoC.Map
 {
     public static class GameGenerator
     {
-        public static GameDescriptor GenerateMap()
+        public static IGameDescriptor GenerateMap()
         {
             TownHall townHall = new TownHall("TownHall", 100, 100, false, null);
             Carry carry = new Carry("Carry1", new Coordinates { x = 50, y = 50 });
@@ -26,7 +26,7 @@ namespace AoC.Map
 
             var Resources = new SerializableDictionary<ResourcesType, int> { { ResourcesType.Gold, 1000 }, { ResourcesType.Stone, 1000 }, { ResourcesType.Wood, 1000 } };
 
-            GameDescriptor game = new GameDescriptor();
+            IGameDescriptor game = new GameDescriptor();
 
             game.TownHalls.Add(townHall);
             game.Carries.Add(carry);

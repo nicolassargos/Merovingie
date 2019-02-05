@@ -14,21 +14,21 @@ namespace Domain
 {
     [Serializable]
     [XmlRoot]
-    public class GameDescriptor
+    public class GameDescriptor : IGameDescriptor
     {
         #region Properties
 
         [XmlArrayItem]
-        public List<Carry> Carries;
-        public List<Tree> Trees;
-        public List<GoldMine> GoldMines;
+        public List<Carry> Carries { get; set; }
+        public List<Tree> Trees { get; set; }
+        public List<GoldMine> GoldMines { get; set; }
 
-        public List<TownHall> TownHalls;
-        public List<Farm> Farms;
+        public List<TownHall> TownHalls { get; set; }
+        public List<Farm> Farms { get; set; }
 
-        public List<Worker> Workers;
+        public List<Worker> Workers { get; set; }
 
-        public SerializableDictionary<ResourcesType, int> Resources;
+        public SerializableDictionary<ResourcesType, int> Resources { get; set; }
 
         #endregion
 
@@ -45,5 +45,6 @@ namespace Domain
 
             Resources = new SerializableDictionary<ResourcesType, int>();
         }
+
     }
 }

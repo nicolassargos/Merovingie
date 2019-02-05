@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AoC.Api.UseCases;
 using AoC.Map;
+using AutoMapper;
 using Domain;
 using Merovingie.Helpers;
 using Merovingie.Models;
+using Merovingie.Models.Game;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,7 +18,7 @@ namespace Merovingie.Controllers
     public class GameController : Controller
     {
         GameManager manager;
-        GameDescriptor game;
+        IGameDescriptor game;
         UIMessages uiMessages;
 
 
@@ -43,16 +45,24 @@ namespace Merovingie.Controllers
         {
             var filesDetected = GameFileManager.GetGames();
 
-            IList<GameDetailModel> gameFiles = new List<GameDetailModel>();
+            IList<GameFileDetailModel> gameFiles = new List<GameFileDetailModel>();
             foreach (var item in filesDetected)
             {
-                gameFiles.Add(new GameDetailModel() { CreationDate = item.CreationDate, Name = item.Name, Path = item.Path });
+                gameFiles.Add(new GameFileDetailModel() { CreationDate = item.CreationDate, Name = item.Name, Path = item.Path });
             }
 
-            if (gameFiles.Count() == 0) return new EmptyResult();
+            //if (gameFiles.Count() == 0) return new EmptyResult();
             return View(gameFiles);
         }
 
-        
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var newGameDescriptor = GameGenerator.GenerateMap();
+
+            GameDescriptorModel gamedescriptorModel = Mapper.Map<IGameDescriptor, GameDescriptorModel>(newGameDescriptor);
+            return View(gamedescriptorModel);
+        }
+
     }
 }

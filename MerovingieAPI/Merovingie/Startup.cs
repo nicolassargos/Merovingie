@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using Domain;
+using Merovingie.Models.Game;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +48,12 @@ namespace Merovingie
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // Config AutoMapper
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<IGameDescriptor, GameDescriptorModel>();
+            });
+
 
             loggerFactory.AddConsole(LogLevel.Debug);
             loggerFactory.AddDebug(LogLevel.Debug);

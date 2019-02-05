@@ -29,10 +29,10 @@ namespace AoC.Map
         /// </summary>
         /// <param name="game"></param>
         /// <param name="fileName"></param>
-        public static void SaveGame(GameDescriptor game, string fileName)
+        public static void SaveGame(IGameDescriptor game, string fileName)
         {
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
+                new System.Xml.Serialization.XmlSerializer(typeof(IGameDescriptor));
 
             var path = System.IO.Path.Combine(GameFolder, fileName,".xml");
             System.IO.FileStream file = System.IO.File.Create(path);
@@ -46,15 +46,15 @@ namespace AoC.Map
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static GameDescriptor ReadGame(string fileName)
+        public static IGameDescriptor ReadGame(string fileName)
         {
             var path = System.IO.Path.Combine(GameFolder, fileName, ".xml");
 
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
+                new System.Xml.Serialization.XmlSerializer(typeof(IGameDescriptor));
 
 
-            var game = (GameDescriptor)writer.Deserialize(new FileStream(path, FileMode.Open));
+            var game = (IGameDescriptor)writer.Deserialize(new FileStream(path, FileMode.Open));
 
             return game;
         }

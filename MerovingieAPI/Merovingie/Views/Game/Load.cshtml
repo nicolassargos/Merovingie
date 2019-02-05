@@ -1,4 +1,4 @@
-﻿@model IList<Merovingie.Models.GameDetailModel>
+﻿@model IList<Merovingie.Models.GameFileDetailModel>
 
 @{
     ViewData["Title"] = "View";
@@ -22,9 +22,6 @@
                 @item.CreationDate
                 @item.Name
                 @item.Path
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }

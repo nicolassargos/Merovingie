@@ -9,3 +9,9 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.pdb
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CoreCompileInputs.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\bin\Debug\Common.dll
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\bin\Debug\Common.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csprojAssemblyReference.cache
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CoreCompileInputs.cache
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\Common.dll
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\Common.pdb

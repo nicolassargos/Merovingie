@@ -67,7 +67,7 @@ namespace AoC.Api.UseCases
             MaxPopulation = 0;
         }
 
-        public GameManager(GameDescriptor game)
+        public GameManager(IGameDescriptor game)
         {
             Resources = game.Resources;
             PopulationList = new List<IUnit>();

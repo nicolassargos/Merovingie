@@ -14,7 +14,7 @@ namespace AoC.Map
         // Reçoit en paramètre les options de création d'une partie
         static void Main(string[] gameOptions)
         {
-            GameDescriptor game;
+            IGameDescriptor game;
             if (gameOptions.Count() == 0) game = GameGenerator.GenerateMap();
             else
             {
