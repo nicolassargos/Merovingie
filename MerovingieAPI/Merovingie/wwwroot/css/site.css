@@ -2,7 +2,6 @@
 for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-bottom: 20px;
-    z-index: 0;
 }
 
 /* Wrapping element */
@@ -14,67 +13,4 @@ body {
 
 nav {
     margin-bottom: 30px;
-}
-
-
-.m-anim-top-container {
-    position:relative;
-    min-height: 3em;
-    font-size:2rem;
-    z-index: 10;
-}
-
-    .m-anim-top-container > .m-anim-text {
-        position: relative;
-        font-size: 1em;
-        top: 1em;
-        z-index: 100;
-    }
-        .m-anim-top-container > .m-anim-text > .m-anim-label {
-            line-height: 0;
-            font-size: 1em;
-            font-weight:500;
-            display: inherit;
-        }
-
-        .m-anim-top-container > .m-anim-text > small {
-            font-size: 0.4em;
-        }
-
-    .m-anim-top-container > .m-anim-hovertext {
-        font-size: 1em;
-        position: relative;
-        visibility: hidden;
-        top: 4.8em;
-    }
-
-    .m-anim-top-container:hover > .m-anim-text {
-        animation: anim-top-text 0.3s forwards ease;
-        -webkit-animation: anim-top-text 0.3s forwards ease;
-    }
-
-    .m-anim-top-container:hover > .m-anim-hovertext {
-        visibility: visible;
-        animation: anim-top-hovertext 0.3s forwards ease-out 0.1s;
-        -webkit-animation: anim-top-hovertext 0.3s forwards ease-out 0.1s;
-    }
-
-    .m-anim-top-container:active > .m-anim-hovertext {
-        visibility: visible;
-        animation: anim-top-hovertext 0.3s forwards ease-out 0.1s;
-        -webkit-animation: anim-top-hovertext 0.3s forwards ease-out 0.1s;
-    }
-
-@keyframes anim-top-text {
-    0% {top:1em;}
-    8% {top:0.9em}
-    20% {top:1.3em;}
-    100% {top:-2em;z-index:-1;}
-}
-
-@keyframes anim-top-hovertext {
-    0% {top:3em;}
-    80% {top:-1.3em;}
-    92% {top:-0.9em;}
-    100% {top:-1em;}
 }

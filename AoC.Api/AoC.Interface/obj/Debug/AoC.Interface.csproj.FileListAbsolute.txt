@@ -1,0 +1,104 @@
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe.config
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.pdb
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\Common.dll
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\Domain.dll
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.pdb
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll.config
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.pdb
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe.config
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\Common.pdb
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\bin\Debug\Domain.pdb
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csprojAssemblyReference.cache
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\MainWindow.g.cs
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\App.g.cs
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.cache
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.lref
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\MainWindow.baml
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.g.resources
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.Properties.Resources.resources
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.GenerateResource.cache
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CoreCompileInputs.cache
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
+C:\Users\sargos.n\Documents\GitHub\Merovingie\MerovingieAPI\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe.config
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.dll
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.dll
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll.config
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe.config
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.pdb
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csprojAssemblyReference.cache
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.g.cs
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\App.g.cs
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.cache
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.lref
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.baml
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.g.resources
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.Properties.Resources.resources
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.GenerateResource.cache
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CoreCompileInputs.cache
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
+C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe.config
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.dll
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.dll
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll.config
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe.config
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.pdb
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csprojAssemblyReference.cache
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.g.cs
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\App.g.cs
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.cache
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.lref
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.baml
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.g.resources
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.Properties.Resources.resources
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.GenerateResource.cache
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CoreCompileInputs.cache
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe.config
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll.config
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe.config
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csprojAssemblyReference.cache
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.g.cs
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\App.g.cs
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.cache
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.lref
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.baml
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.g.resources
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.Properties.Resources.resources
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.GenerateResource.cache
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CoreCompileInputs.cache
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb

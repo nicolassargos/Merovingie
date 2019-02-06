@@ -26,17 +26,15 @@
                 {
                     <tr>
                         <td>
-                            <div class="btn-group" role="group" style="width:100%">
-                                <a asp-action="Create" asp-route-fileName="@item.Name" class="btn btn-primary m-anim-top-container" style="width:80%">
-                                    <section class="m-anim-text">
-                                        <span class="m-anim-label">@item.Name</span>
-                                        <small>@item.CreationDate</small>
-                                        <small><i>@item.Path</i></small>
-                                    </section>
-                                    <span class="h2 m-anim-hovertext">Jouer!</span>
+                            <span class="btn-group" role="group" style="width:100%">
+                                <a asp-action="Game" asp-route-fileName="@item.Name" class="btn btn-primary" style="width:80%">
+                                    <h2>@item.Name</h2>
+                                    <small>@item.CreationDate</small>
+                                    <small><i>@item.Path</i></small>
                                 </a>
                                 @Html.ActionLink("Delete", "Delete", new { fileName = item.Name }, new { @class = "btn btn-danger" } )
-                            </div>
+                            </span>
+                            
                         </td>
                     </tr>
                 }
@@ -45,5 +43,3 @@
 
     </tbody>
 </table>
-
-
