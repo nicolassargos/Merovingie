@@ -83,7 +83,7 @@ namespace AoC.Interface
         public MainWindow()
         {
             // Génère la carte
-            game = GameGenerator.GenerateMap();
+            game = GameGenerator.GenerateDefaultMap();
 
             // Sauvegarde la nouvelle partie dans un fichier
             GameFileManager.SaveGame(game, "game1");

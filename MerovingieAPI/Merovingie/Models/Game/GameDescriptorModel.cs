@@ -9,16 +9,11 @@ using System.Threading.Tasks;
 
 namespace Merovingie.Models.Game
 {
-    public class GameDescriptorModel: IGameDescriptor
+    public class GameDescriptorModel
     {
-        public List<Carry> Carries { get; set; }
-        public List<Tree> Trees { get; set; }
-        public List<GoldMine> GoldMines { get; set; }
+        public int Farms { get; set; }
 
-        public List<TownHall> TownHalls { get; set; }
-        public List<Farm> Farms { get; set; }
-
-        public List<Worker> Workers { get; set; }
+        public int Workers { get; set; }
 
         public SerializableDictionary<ResourcesType, int> Resources { get; set; }
     }
