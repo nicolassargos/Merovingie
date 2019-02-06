@@ -31,11 +31,23 @@ namespace AoC.Map
         /// <param name="fileName"></param>
         public static void SaveGame(IGameDescriptor game, string fileName)
         {
-            System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(IGameDescriptor));
+            if (game == null) throw new ArgumentNullException();
 
-            var path = System.IO.Path.Combine(GameFolder, fileName,".xml");
-            System.IO.FileStream file = System.IO.File.Create(path);
+            // Initialise le Serializer
+            System.Xml.Serialization.XmlSerializer writer =
+                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
+
+            // Créé le chemin du fichier de sauvegarde
+            var path = System.IO.Path.Combine(GameFolder, fileName+".xml");
+
+            // Vérifie qu'un fichier portant le même nom n'existe pas déjà
+            if (File.Exists(path))
+            {
+                var nbFileOccurences = Directory.GetFiles(GameFolder, "*"+fileName+"*").Count();
+                path = path.Insert(path.Length - 4, nbFileOccurences.ToString());
+            }
+
+            FileStream file = File.Create(path);
 
             writer.Serialize(file, game);
             file.Close();
@@ -48,14 +60,23 @@ namespace AoC.Map
         /// <returns></returns>
         public static IGameDescriptor ReadGame(string fileName)
         {
-            var path = System.IO.Path.Combine(GameFolder, fileName, ".xml");
+            if (fileName == null) throw new ArgumentNullException("File name is empty");
+
+            if (fileName.Substring(fileName.Length-4) != ".xml") throw new ArgumentException("File name has no valid extension");
+
+            IGameDescriptor game = null;
+
+            var path = System.IO.Path.Combine(GameFolder, fileName);
 
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(IGameDescriptor));
+                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
+            using (var fileStream = new FileStream(path, FileMode.Open))
+            {
+                game = (IGameDescriptor)writer.Deserialize(fileStream);
+            }
 
-            var game = (IGameDescriptor)writer.Deserialize(new FileStream(path, FileMode.Open));
-
+            
             return game;
         }
 
@@ -74,6 +95,19 @@ namespace AoC.Map
             }
 
             return gameList;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void DeleteGame(string fileName)
+        {
+            var path = System.IO.Path.Combine(GameFolder, fileName);
+
+            if (!File.Exists(path)) throw new ArgumentOutOfRangeException();
+
+            File.Delete(path);
         }
     }
 }

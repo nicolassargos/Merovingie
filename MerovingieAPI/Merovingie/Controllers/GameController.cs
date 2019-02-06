@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AoC.Api.UseCases;
 using AoC.Map;
 using AutoMapper;
+using Common.Enums;
+using Common.Helpers;
 using Domain;
 using Merovingie.Helpers;
 using Merovingie.Models;
@@ -23,24 +25,23 @@ namespace Merovingie.Controllers
 
 
         // GET: /<controller>/
-        public IActionResult Game()
+        public IActionResult Game(string fileName)
         {
             // initialise la classe qui contient tous le messages de l'UI
             uiMessages = new UIMessages();
-            // Génère la carte
-            game = GameGenerator.GenerateMap();
-
-            // Sauvegarde la nouvelle partie dans un fichier
-            GameFileManager.SaveGame(game, "game1");
 
             // Lit le fichier
-            game = GameFileManager.ReadGame("game1");
+            game = GameFileManager.ReadGame(fileName);
 
             manager = new GameManager(game);
 
             return View(manager);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Load()
         {
             var filesDetected = GameFileManager.GetGames();
@@ -51,17 +52,60 @@ namespace Merovingie.Controllers
                 gameFiles.Add(new GameFileDetailModel() { CreationDate = item.CreationDate, Name = item.Name, Path = item.Path });
             }
 
-            //if (gameFiles.Count() == 0) return new EmptyResult();
             return View(gameFiles);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Create()
         {
-            var newGameDescriptor = GameGenerator.GenerateMap();
+            var newGameDescriptor = GameGenerator.GenerateDefaultMap();
 
-            GameDescriptorModel gamedescriptorModel = Mapper.Map<IGameDescriptor, GameDescriptorModel>(newGameDescriptor);
+            // TODO: créer un mapper
+
+            // Mapping de GameDescriptor vers GameDescriptorModel
+            GameDescriptorModel gamedescriptorModel = new GameDescriptorModel
+            {
+                Farms = newGameDescriptor.Farms.Count,
+                Workers = newGameDescriptor.Workers.Count,
+            };
+
+            if (newGameDescriptor.Resources != null)
+            {
+                gamedescriptorModel.Resources = new SerializableDictionary<ResourcesType, int>();
+                foreach (var resource in newGameDescriptor.Resources)
+                {
+                    gamedescriptorModel.Resources[resource.Key] = resource.Value;
+                }
+            }
+            
             return View(gamedescriptorModel);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public RedirectToActionResult Create(GameDescriptorModel gameModel)
+        {
+            IGameDescriptor newGameDescriptor = GameGenerator.GenerateMapFromOptions(gameModel.Workers, gameModel.Farms, gameModel.Resources);
+
+            GameFileManager.SaveGame(newGameDescriptor, "newGame");
+
+            return RedirectToAction("Load");
+        }
+
+
+        public RedirectToActionResult Delete(string fileName)
+        {
+            GameFileManager.DeleteGame(fileName);
+
+            return RedirectToAction("Load");
         }
 
     }

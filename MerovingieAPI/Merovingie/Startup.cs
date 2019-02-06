@@ -49,10 +49,10 @@ namespace Merovingie
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             // Config AutoMapper
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<IGameDescriptor, GameDescriptorModel>();
-            });
+            //Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<IGameDescriptor, GameDescriptorModel>();
+            //});
 
 
             loggerFactory.AddConsole(LogLevel.Debug);

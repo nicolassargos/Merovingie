@@ -1,7 +1,7 @@
 ﻿@model Merovingie.Models.Game.GameDescriptorModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,31 +13,42 @@
 </head>
 <body>
 
-<h4>GameDescriptorModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                @for (int i = 0; i < Model.Resources.Count; i++)
+    <h4>Create a new game</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Resources</h2>
+                @foreach (var resource in Model.Resources)
                 {
-                    @Model.Resources.ElementAt(i).Key.ToString();
-                    @Html.TextBox(Model.Resources.ElementAt(i).Key.ToString(), "^[0-9]+$", Model.Resources.ElementAt(i).Value.ToString(), new { @class = "form-control" });
-
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Resources[resource.Key])
+                        @Html.TextBoxFor(m => m.Resources[resource.Key], new { @class = "form-control" })
+                    </div>
                 }
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+                <h2>Workers</h2>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Workers)
+                    @Html.TextBoxFor(m => m.Workers, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Farms)
+                    @Html.TextBoxFor(m => m.Farms, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Load" asp-controller="Game">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Load" asp-controller="Game">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 </body>
 </html>

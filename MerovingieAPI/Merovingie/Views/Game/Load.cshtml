@@ -1,29 +1,49 @@
 ﻿@model IList<Merovingie.Models.GameFileDetailModel>
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "My Games";
 }
 
-<h2>View</h2>
+<h2>My games</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-warning">New game</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.CreationDate
-                @item.Name
-                @item.Path
-            </td>
-        </tr>
-}
+        @{
+            if (Model == null || Model.Count == 0)
+            {
+                <tr>
+                    <td>
+                        You have created no games yet
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="btn-group" role="group" style="width:100%">
+                                <a asp-action="Create" asp-route-fileName="@item.Name" class="btn btn-primary m-anim-top-container" style="width:80%">
+                                    <section class="m-anim-text">
+                                        <span class="m-anim-label">@item.Name</span>
+                                        <small>@item.CreationDate</small>
+                                        <small><i>@item.Path</i></small>
+                                    </section>
+                                    <span class="h2 m-anim-hovertext">Jouer!</span>
+                                </a>
+                                @Html.ActionLink("Delete", "Delete", new { fileName = item.Name }, new { @class = "btn btn-danger" } )
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
     </tbody>
 </table>
+
+

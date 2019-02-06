@@ -15,7 +15,7 @@ namespace AoC.Map
         static void Main(string[] gameOptions)
         {
             IGameDescriptor game;
-            if (gameOptions.Count() == 0) game = GameGenerator.GenerateMap();
+            if (gameOptions.Count() == 0) game = GameGenerator.GenerateDefaultMap();
             else
             {
                 // TODO: implémenter les options de création

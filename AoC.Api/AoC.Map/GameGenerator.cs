@@ -13,7 +13,7 @@ namespace AoC.Map
 {
     public static class GameGenerator
     {
-        public static IGameDescriptor GenerateMap()
+        public static IGameDescriptor GenerateDefaultMap()
         {
             TownHall townHall = new TownHall("TownHall", 100, 100, false, null);
             Carry carry = new Carry("Carry1", new Coordinates { x = 50, y = 50 });
@@ -39,6 +39,38 @@ namespace AoC.Map
             game.Resources = Resources;
 
             return game;
+        }
+
+        public static IGameDescriptor GenerateMapFromOptions(int workers, int farms, SerializableDictionary<ResourcesType, int> resources)
+        {
+            var gameDescriptor = GenerateDefaultMap();
+
+            if (resources == null) throw new ArgumentNullException();
+
+            if (gameDescriptor.Workers.Count != workers)
+            {
+                gameDescriptor.Workers = new List<Worker>();
+                for (int i = 0; i < workers; i++)
+                {
+                    gameDescriptor.Workers.Add(new Worker(i));
+                }
+            }
+
+            if (gameDescriptor.Farms.Count != farms)
+            {
+                gameDescriptor.Farms = new List<Farm>();
+                for (int i = 0; i < farms; i++)
+                {
+                    gameDescriptor.Farms.Add(new Farm (i, ($"Farm{i}"), new Coordinates { x = 10, y = 5 }));
+                }
+            }
+
+            foreach(var resource in resources)
+            {
+                gameDescriptor.Resources[resource.Key] = resource.Value;
+            }
+
+            return gameDescriptor;
         }
     }
 }
