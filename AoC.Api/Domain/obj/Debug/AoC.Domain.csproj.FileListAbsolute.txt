@@ -16,15 +16,6 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.csproj.C
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.csproj.CopyComplete
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Domain\obj\Debug\Domain.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Domain\obj\Debug\Domain.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\bin\Debug\Domain.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\bin\Debug\Domain.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\bin\Debug\Common.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\bin\Debug\Common.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.csprojAssemblyReference.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.csproj.CoreCompileInputs.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.csproj.CopyComplete
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\obj\Debug\Domain.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Domain\obj\Debug\Domain.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\bin\Debug\Domain.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\bin\Debug\Domain.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\bin\Debug\Common.dll

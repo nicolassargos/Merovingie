@@ -9,12 +9,6 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGe
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csproj.CoreCompileInputs.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csprojAssemblyReference.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csproj.CoreCompileInputs.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csprojAssemblyReference.cache

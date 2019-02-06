@@ -22,18 +22,6 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.BLL.csproj.Cor
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.BLL.csproj.CopyComplete
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.Api.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.Api.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\AoC.Api.dll.config
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\AoC.Api.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\AoC.Api.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\Common.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\Domain.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\Common.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\bin\Debug\Domain.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.BLL.csprojAssemblyReference.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.BLL.csproj.CoreCompileInputs.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.BLL.csproj.CopyComplete
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.Api.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Api\obj\Debug\AoC.Api.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Api\bin\Debug\AoC.Api.dll.config
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Api\bin\Debug\AoC.Api.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Api\bin\Debug\AoC.Api.pdb

@@ -22,18 +22,6 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.cs
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CoreCompileInputs.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CopyComplete
 C:\Users\sargo\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.exe
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.exe.config
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.exe
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\Common.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\Domain.dll
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\Common.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\bin\Debug\Domain.pdb
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csprojAssemblyReference.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CoreCompileInputs.cache
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CopyComplete
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.exe
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.exe.config
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.exe
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Map.pdb
