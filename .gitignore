@@ -7,6 +7,9 @@
 *.o
 *.so
 *.cache
+Debug
+bin
+obj
 
 # Packages #
 ############
