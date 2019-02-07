@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<h1>Web Sockets Tests</h1>
+<span id="stateLabel">Ready</span>
+<div id="connectionForm">
+    <label for="connectionUrl">Websocket connection URL:</label>
+    <input id="connectionUrl" name="connectionUrl" type="text" />
+    <button id="connectButton" type="submit">Connect</button>
+
+    <label for="sendMessage">Enter your message:</label>
+    <input id="sendMessage" name="sendMessage" type="text" />
+    <button id="sendButton" type="submit">Send</button>
+    <button id="closeButton" disabled>Close Socket</button>
+</div>
+
+<div>
+    <button type="button" id="loadbutton">
+        Load Game
+    </button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody id="commsLog"></tbody>
+</table>

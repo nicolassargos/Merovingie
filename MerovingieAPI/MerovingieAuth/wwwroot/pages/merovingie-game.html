@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            overflow: hidden;
+        }
+
+        #canvasArea {
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+    </style>
+    <!-- Libs and GDJS core files : -->
+    <script src="../gdevelop/libs\jshashtable.js"></script>
+    <script src="../gdevelop/gd.js"></script>
+    <script src="../gdevelop/gd-splash-image.js"></script>
+    <script src="../gdevelop/libs\hshg.js"></script>
+    <script src="../gdevelop/libs\rbush.js"></script>
+    <script src="../gdevelop/inputmanager.js"></script>
+    <script src="../gdevelop/timemanager.js"></script>
+    <script src="../gdevelop/runtimeobject.js"></script>
+    <script src="../gdevelop/profiler.js"></script>
+    <script src="../gdevelop/runtimescene.js"></script>
+    <script src="../gdevelop/scenestack.js"></script>
+    <script src="../gdevelop/polygon.js"></script>
+    <script src="../gdevelop/force.js"></script>
+    <script src="../gdevelop/layer.js"></script>
+    <script src="../gdevelop/timer.js"></script>
+    <script src="../gdevelop/runtimegame.js"></script>
+    <script src="../gdevelop/variable.js"></script>
+    <script src="../gdevelop/variablescontainer.js"></script>
+    <script src="../gdevelop/oncetriggers.js"></script>
+    <script src="../gdevelop/runtimebehavior.js"></script>
+    <script src="../gdevelop/spriteruntimeobject.js"></script>
+    <script src="../gdevelop/events-tools\commontools.js"></script>
+    <script src="../gdevelop/events-tools\runtimescenetools.js"></script>
+    <script src="../gdevelop/events-tools\inputtools.js"></script>
+    <script src="../gdevelop/events-tools\objecttools.js"></script>
+    <script src="../gdevelop/events-tools\cameratools.js"></script>
+    <script src="../gdevelop/events-tools\soundtools.js"></script>
+    <script src="../gdevelop/events-tools\storagetools.js"></script>
+    <script src="../gdevelop/events-tools\stringtools.js"></script>
+    <script src="../gdevelop/events-tools\windowtools.js"></script>
+    <script src="../gdevelop/events-tools\networktools.js"></script>
+    <script src="../gdevelop/pixi-renderers\pixi.js"></script>
+    <script src="../gdevelop/pixi-renderers\pixi-filters-tools.js"></script>
+    <script src="../gdevelop/pixi-renderers\runtimegame-pixi-renderer.js"></script>
+    <script src="../gdevelop/pixi-renderers\runtimescene-pixi-renderer.js"></script>
+    <script src="../gdevelop/pixi-renderers\layer-pixi-renderer.js"></script>
+    <script src="../gdevelop/pixi-renderers\pixi-image-manager.js"></script>
+    <script src="../gdevelop/pixi-renderers\spriteruntimeobject-pixi-renderer.js"></script>
+    <script src="../gdevelop/pixi-renderers\loadingscreen-pixi-renderer.js"></script>
+    <script src="../gdevelop/howler-sound-manager\howler.min.js"></script>
+    <script src="../gdevelop/howler-sound-manager\howler-sound-manager.js"></script>
+    <script src="../gdevelop/fontfaceobserver-font-manager\fontfaceobserver.js"></script>
+    <script src="../gdevelop/fontfaceobserver-font-manager\fontfaceobserver-font-manager.js"></script>
+    <script src="../gdevelop/Extensions\PathfindingBehavior\pathfindingobstacleruntimebehavior.js"></script>
+    <script src="../gdevelop/Extensions\PathfindingBehavior\pathfindingruntimebehavior.js"></script>
+    <script src="../gdevelop/Extensions\TextObject\textruntimeobject-pixi-renderer.js"></script>
+    <script src="../gdevelop/Extensions\TextObject\textruntimeobject.js"></script>
+    <script src="../gdevelop/Extensions\TiledSpriteObject\tiledspriteruntimeobject-pixi-renderer.js"></script>
+    <script src="../gdevelop/Extensions\TiledSpriteObject\tiledspriteruntimeobject.js"></script>
+    <script src="../gdevelop/code0.js"></script>
+    <script src="../gdevelop/data.js"></script>
+
+</head>
+<body>
+
+    <script>
+
+        (function () {
+            //Initialization
+            gdjs.registerObjects();
+            gdjs.registerBehaviors();
+            gdjs.registerGlobalCallbacks();
+
+            var game = new gdjs.RuntimeGame(gdjs.projectData, {});
+
+            //Create a renderer
+            game.getRenderer().createStandardCanvas(document.body);
+
+            //Bind keyboards/mouse/touch events
+            game.getRenderer().bindStandardEvents(game.getInputManager(), window, document);
+
+            //Load all assets and start the game
+            game.loadAllAssets(function () {
+                game.startGameLoop();
+            });
+        })();
+
+    </script>
+</body>
+</html>
