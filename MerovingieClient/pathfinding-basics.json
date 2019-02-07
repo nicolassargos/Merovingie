@@ -24,7 +24,7 @@
     "author": "Nicolas Sargos",
     "windowWidth": 1280,
     "windowHeight": 1024,
-    "latestCompilationDirectory": "D:\\travail Perso\\Formation .NET\\repos\\TutoGdevelop2",
+    "latestCompilationDirectory": "D:\\travail Perso\\Formation .NET\\repos\\Merovingie\\MerovingieClient\\Export",
     "maxFPS": 60,
     "minFPS": 10,
     "verticalSync": false,
@@ -244,6 +244,15 @@
         "kind": "image",
         "metadata": "",
         "name": "images\\wooden-board-1-3.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/Map.jpg",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\Map.jpg",
         "smoothed": true,
         "userAdded": true
       }
@@ -1950,6 +1959,23 @@
                     {
                       "hasCustomCollisionMask": false,
                       "image": "images\\map-test.jpg",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    },
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\Map.jpg",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
