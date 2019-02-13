@@ -10,6 +10,7 @@ using Domain;
 using Merovingie.Helpers;
 using Merovingie.Models;
 using Merovingie.Models.Game;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -41,6 +42,7 @@ namespace Merovingie.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public IActionResult Load()
         {
             var filesDetected = GameFileManager.GetGames();
@@ -58,6 +60,7 @@ namespace Merovingie.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -89,6 +92,7 @@ namespace Merovingie.Controllers
         /// </summary>
         /// <param name="gameModel"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public RedirectToActionResult Create(GameDescriptorModel gameModel)
         {
@@ -99,7 +103,12 @@ namespace Merovingie.Controllers
             return RedirectToAction("Load");
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        [Authorize]
         public RedirectToActionResult Delete(string fileName)
         {
             GameFileManager.DeleteGame(fileName);

@@ -1,35 +1,58 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 
-<h1>Web Sockets Tests</h1>
-<span id="stateLabel">Ready</span>
-<div id="connectionForm">
-    <label for="connectionUrl">Websocket connection URL:</label>
-    <input id="connectionUrl" name="connectionUrl" type="text" />
-    <button id="connectButton" type="submit">Connect</button>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Web Sockets Tests</h1>
+    <span id="stateLabel">Ready</span>
+    <div id="connectionForm">
+        <label for="connectionUrl">Websocket connection URL:</label>
+        <input id="connectionUrl" name="connectionUrl" type="text" />
+        <button id="connectButton" type="submit">Connect</button>
 
-    <label for="sendMessage">Enter your message:</label>
-    <input id="sendMessage" name="sendMessage" type="text" />
-    <button id="sendButton" type="submit">Send</button>
-    <button id="closeButton" disabled>Close Socket</button>
-</div>
+        <label for="sendMessage">Enter your message:</label>
+        <input id="sendMessage" name="sendMessage" type="text" />
+        <button id="sendButton" type="submit">Send</button>
+        <button id="closeButton" disabled>Close Socket</button>
+    </div>
 
-<div>
-    <button type="button" id="loadbutton">
-        Load Game
-    </button>
-</div>
+    <div>
+        <button type="button" id="loadbutton">
+            Load Game
+        </button>
+    </div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>From</th>
-            <th>To</th>
-            <th>Data</th>
-        </tr>
-    </thead>
-    <tbody id="commsLog"></tbody>
-</table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody id="commsLog"></tbody>
+    </table>
+}
+else
+{
+    <div class="jumbotron">
+        <h1 class="display-4"></h1>
+        <p class="lead">This is a simple text about promoting the game</p>
+        <hr class="my-4">
+        <p>Here are details about the game experience</p>
+        <p class="lead">
+            Not registered yet? It's free and takes a few seconds:
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-warning">Register</a>
+        </p>
+        <p class="lead">
+            Already have an account? Log in to load or create a new game:
+            <a asp-area="Identity" class="btn btn-primary btn-lg" asp-page="/Account/Login">Login</a>
+        </p>
+    </div>
+}

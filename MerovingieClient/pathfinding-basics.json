@@ -1,7 +1,7 @@
 {
   "firstLayout": "",
   "gdVersion": {
-    "build": 97,
+    "build": 98,
     "major": 4,
     "minor": 0,
     "revision": 0
@@ -24,7 +24,7 @@
     "author": "Nicolas Sargos",
     "windowWidth": 1280,
     "windowHeight": 1024,
-    "latestCompilationDirectory": "D:\\travail Perso\\Formation .NET\\repos\\Merovingie\\MerovingieClient\\Export",
+    "latestCompilationDirectory": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
     "maxFPS": 60,
     "minFPS": 10,
     "verticalSync": false,
@@ -287,7 +287,7 @@
         "gridWidth": 32,
         "snap": true,
         "windowMask": false,
-        "zoomFactor": 1
+        "zoomFactor": 0.4
       },
       "objectsGroups": [],
       "variables": [],
@@ -2303,7 +2303,15 @@
               "subInstructions": []
             }
           ],
-          "events": []
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "\nclass MMessage {\n    constructor(type, message) {\n        this.type = type;\n        this.message = message;\n    }\n\n    toString() {\n        return message.toString();\n    }\n}\n\nconst MessageTypes = Object.freeze({\n    GAMECONNECT: Symbol(0),\n    GAMEINFO: Symbol(1),\n    GAMECOMMAND: Symbol(2)\n});\n\n\nlet scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\nlet port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n// Variable de connexion qui contient l'adresse du serveur\nlet connectionUrl = scheme + \"://\" + document.location.hostname + port + \"/ws\";\n\n// Connecte le websocket au serveur\nlet socket = new WebSocket(connectionUrl);\n\n// Ouverture du socket\nsocket.onopen = function() {\n        if (!socket || socket.readyState !== WebSocket.OPEN) {\n            alert(\"socket not connected\");\n            return;\n        }\n\n        let connectMessage = new MMessage(MessageTypes.GAMECONNECT, 'playerName')\n\n        socket.send(JSON.stringify(connectMessage));\n    }\n\n\nsocket.onmessage = function (event) {\n    var messageReceived = JSON.stringify(JSON.parse(event.data));\n    alert(messageReceived);\n}\n",
+              "parameterObjects": "peasant"
+            }
+          ]
         },
         {
           "disabled": false,
@@ -2361,31 +2369,7 @@
               "subInstructions": []
             }
           ],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Comment",
-              "color": {
-                "b": 109,
-                "g": 230,
-                "r": 255,
-                "textB": 0,
-                "textG": 0,
-                "textR": 0
-              },
-              "comment": "deactivate draggable behavior for obstacle while the player is moving",
-              "comment2": ""
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [],
-              "events": []
-            }
-          ]
+          "events": []
         },
         {
           "disabled": false,
@@ -2443,31 +2427,7 @@
               "subInstructions": []
             }
           ],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Comment",
-              "color": {
-                "b": 109,
-                "g": 230,
-                "r": 255,
-                "textB": 0,
-                "textG": 0,
-                "textR": 0
-              },
-              "comment": "activate draggable behaviour for obstacles if the player does not move",
-              "comment2": ""
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [],
-              "events": []
-            }
-          ]
+          "events": []
         },
         {
           "disabled": false,
@@ -3310,14 +3270,6 @@
                   "subInstructions": []
                 }
               ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [],
               "events": []
             }
           ]
