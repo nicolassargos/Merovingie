@@ -48,51 +48,11 @@ gdjs.NewSceneCode.condition4IsTrue_1 = {val:false};
 
 
 gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDpeasantObjects1Objects = Hashtable.newFrom({"peasant": gdjs.NewSceneCode.GDpeasantObjects1});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDpeasantObjects1Objects = Hashtable.newFrom({"peasant": gdjs.NewSceneCode.GDpeasantObjects1});gdjs.NewSceneCode.userFunc0x6d6230 = function(runtimeScene, objects) {
-
-class MMessage {
-    constructor(type, message) {
-        this.type = type;
-        this.message = message;
-    }
-
-    toString() {
-        return message.toString();
-    }
-}
-
-const MessageTypes = Object.freeze({
-    GAMECONNECT: Symbol(0),
-    GAMEINFO: Symbol(1),
-    GAMECOMMAND: Symbol(2)
-});
-
-
-let scheme = document.location.protocol === "https:" ? "wss" : "ws";
-let port = document.location.port ? (":" + document.location.port) : "";
-
-// Variable de connexion qui contient l'adresse du serveur
-let connectionUrl = scheme + "://" + document.location.hostname + port + "/ws";
-
-// Connecte le websocket au serveur
-let socket = new WebSocket(connectionUrl);
-
-// Ouverture du socket
-socket.onopen = function() {
-        if (!socket || socket.readyState !== WebSocket.OPEN) {
-            alert("socket not connected");
-            return;
-        }
-
-        let connectMessage = new MMessage(MessageTypes.GAMECONNECT, 'playerName')
-
-        socket.send(JSON.stringify(connectMessage));
-    }
-
-
-socket.onmessage = function (event) {
-    var messageReceived = JSON.stringify(JSON.parse(event.data));
-    alert(messageReceived);
-}
+    runtimeScene.createObject("peasant");
+    let peasants = runtimeScene.getObjects("peasant");
+    peasants[2].setPosition(850, 500);
+    peasants[2].setZOrder(1);
+    console.log(peasants);
 
 };
 gdjs.NewSceneCode.eventsList0x6d5780 = function(runtimeScene) {

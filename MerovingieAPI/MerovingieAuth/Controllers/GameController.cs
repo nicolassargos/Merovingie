@@ -12,6 +12,7 @@ using Merovingie.Models;
 using Merovingie.Models.Game;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +23,12 @@ namespace Merovingie.Controllers
         GameManager manager;
         IGameDescriptor game;
         UIMessages uiMessages;
+        private readonly IConfiguration configuration;
+
+        public GameController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
 
 
         // GET: /<controller>/
@@ -43,17 +50,28 @@ namespace Merovingie.Controllers
         /// </summary>
         /// <returns></returns>
         [Authorize]
-        public IActionResult Load()
+        [HttpGet]
+        public IActionResult GameListing()
         {
             var filesDetected = GameFileManager.GetGames();
 
             IList<GameFileDetailModel> gameFiles = new List<GameFileDetailModel>();
             foreach (var item in filesDetected)
             {
-                gameFiles.Add(new GameFileDetailModel() { CreationDate = item.CreationDate, Name = item.Name, Path = item.Path });
+                gameFiles.Add(new GameFileDetailModel() { creationDate = item.CreationDate, name = item.Name, path = item.Path });
             }
 
             return View(gameFiles);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("Load/{gamePathToLoad}")]
+        public IActionResult Load(string gamePathToLoad)
+        {
+
+            return Redirect($"~/{configuration.GetValue<string>("GameEngine")}");
         }
 
         /// <summary>

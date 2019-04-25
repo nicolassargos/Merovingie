@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Merovingie;
+using MerovingieAuth.Hubs;
 
 namespace MerovingieAuth
 {
@@ -38,11 +39,14 @@ namespace MerovingieAuth
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSignalR();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -68,34 +72,6 @@ namespace MerovingieAuth
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            // Websockets Options
-            var webSocketsOptions = new WebSocketOptions
-            {
-                KeepAliveInterval = TimeSpan.FromSeconds(300),
-                ReceiveBufferSize = 4 * 1024
-            };
-            app.UseWebSockets(webSocketsOptions);
-
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Path == "/ws")
-                {
-                    if (context.WebSockets.IsWebSocketRequest)
-                    {
-                        var socket = await context.WebSockets.AcceptWebSocketAsync();
-                        await msocketHandler.Listen(context, socket);
-                    }
-                    else
-                    {
-                        context.Response.StatusCode = 400;
-                    }
-
-                }
-                else
-                {
-                    await next();
-                }
-            });
 
             app.UseAuthentication();
 
@@ -104,6 +80,12 @@ namespace MerovingieAuth
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            //// Use - SignalR & let it know to intercept and map any request having gameHub.
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<GameHub>("/gameHub");
             });
         }
     }

@@ -46,19 +46,5 @@ namespace Domain
             Resources = new SerializableDictionary<ResourcesType, int>();
         }
 
-        //public GameDescriptor(int farms, int workers, SerializableDictionary<ResourcesType, int> resources)
-        //{
-        //    Carries = new List<Carry>();
-        //    Trees = new List<Tree>();
-        //    GoldMines = new List<GoldMine>();
-
-        //    TownHalls = new List<TownHall>();
-        //    Farms = new List<Farm>();
-
-        //    Workers = new List<Worker>();
-
-        //    Resources = new SerializableDictionary<ResourcesType, int>();
-        //}
-
     }
 }

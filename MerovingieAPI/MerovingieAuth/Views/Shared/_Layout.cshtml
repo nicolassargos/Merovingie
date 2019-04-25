@@ -33,7 +33,7 @@
                 <li class="nav-item active"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Game" asp-action="Load">My Games</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Game" asp-action="GameListing">My Games</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Game" asp-action="Create">New Game</a></li>
                 }
             </ul>
