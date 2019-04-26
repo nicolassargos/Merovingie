@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace AoC.Map
+namespace AoC.MerovingieFileManager
 {
-    public class GameFileManager
+    public static class GameFileManager
     {
+        const string FOLDER_NAME = "MerovingieGames";
         private static string GameFolder { get { 
                 var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                var _gameFolder = System.IO.Path.Combine(myDocs, "MerovingieGames");
+                var _gameFolder = System.IO.Path.Combine(myDocs, FOLDER_NAME);
                 if (!Directory.Exists(_gameFolder))
                 {
                     Directory.CreateDirectory(_gameFolder);
@@ -29,28 +30,32 @@ namespace AoC.Map
         /// </summary>
         /// <param name="game"></param>
         /// <param name="fileName"></param>
-        public static void SaveGame(IGameDescriptor game, string fileName)
+        public static string SaveGame(IGameDescriptor game, string fileName)
         {
-            if (game == null) throw new ArgumentNullException();
+            if (game == null) throw new ArgumentNullException("GameDescriptor cannot be null");
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("File name cannot be null");
 
             // Initialise le Serializer
             System.Xml.Serialization.XmlSerializer writer =
                 new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
             // Créé le chemin du fichier de sauvegarde
-            var path = System.IO.Path.Combine(GameFolder, fileName+".xml");
+            string path = GetNewVersionOfFile(fileName);
 
-            // Vérifie qu'un fichier portant le même nom n'existe pas déjà
-            if (File.Exists(path))
+            try
             {
-                var nbFileOccurences = Directory.GetFiles(GameFolder, "*"+fileName+"*").Count();
-                path = path.Insert(path.Length - 4, nbFileOccurences.ToString());
+                using (FileStream file = File.Create(path))
+                {
+                    writer.Serialize(file, game);
+                    file.Close();
+                }
+            }
+            catch
+            {
+                throw;
             }
 
-            FileStream file = File.Create(path);
-
-            writer.Serialize(file, game);
-            file.Close();
+            return path;
         }
 
         /// <summary>
@@ -60,22 +65,29 @@ namespace AoC.Map
         /// <returns></returns>
         public static IGameDescriptor ReadGame(string fileName)
         {
-            if (fileName == null) throw new ArgumentNullException("File name is empty");
-
-            if (fileName.Substring(fileName.Length-4) != ".xml") throw new ArgumentException("File name has no valid extension");
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("ReadGame: File name is empty");
+            if (fileName.Substring(fileName.Length-4) != ".xml") throw new FormatException("ReadGame: File name has no valid extension");
 
             IGameDescriptor game = null;
+            string path = GetFullPath(fileName);
 
-            var path = System.IO.Path.Combine(GameFolder, fileName);
+            if (!File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
 
             System.Xml.Serialization.XmlSerializer writer =
                 new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
-            using (var fileStream = new FileStream(path, FileMode.Open))
+            try
             {
-                game = (IGameDescriptor)writer.Deserialize(fileStream);
+                using (var fileStream = new FileStream(path, FileMode.Open))
+                {
+                    game = (IGameDescriptor)writer.Deserialize(fileStream);
+                }
             }
+            catch
+            {
 
+                throw;
+            }
             
             return game;
         }
@@ -108,6 +120,50 @@ namespace AoC.Map
             if (!File.Exists(path)) throw new ArgumentOutOfRangeException();
 
             File.Delete(path);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetFullPath(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("GetFullPath: File name is empty");
+
+            return System.IO.Path.Combine(GameFolder, fileName + ".xml");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetNewVersionOfFile(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("GetNewVersionOfFile: File name is empty");
+
+            var path = GetFullPath(fileName);
+
+            if (string.IsNullOrWhiteSpace(path)) throw new  NullReferenceException("GetNewVersionOfFile: GetFullPath returned a null value");
+
+            // Vérifie qu'un fichier portant le même nom n'existe pas déjà
+            // Si oui, incrémente la version du fichier
+            if (File.Exists(path))
+            {
+                var nbFileOccurences = Directory.GetFiles(GameFolder, fileName + "*.xml").Count();
+                path = path.Insert(path.Length - 4, nbFileOccurences.ToString());
+            }
+
+            return path;
+        }
+
+
+        public static int GetNumberOfFileIterations(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("GetNumberOfFileIterations: File name is empty");
+
+            return Directory.GetFiles(GameFolder, fileName + "*.xml").Count();
         }
     }
 }

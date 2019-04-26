@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AoC.Map
+namespace AoC.MerovingieFileManager
 {
     public static class GameGenerator
     {
