@@ -11,6 +11,7 @@ namespace Merovingie.Models.Game
 {
     public class GameDescriptorModel
     {
+        public string Name { get; set; }
         public int Farms { get; set; }
 
         public int Workers { get; set; }

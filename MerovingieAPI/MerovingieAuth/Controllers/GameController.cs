@@ -54,7 +54,7 @@ namespace Merovingie.Controllers
         [HttpGet]
         public IActionResult GameListing()
         {
-            var filesDetected = GameFileManager.GetGames();
+            var filesDetected = GameFileManager.GetGameFiles();
 
             IList<GameFileDetailModel> gameFiles = new List<GameFileDetailModel>();
             foreach (var item in filesDetected)

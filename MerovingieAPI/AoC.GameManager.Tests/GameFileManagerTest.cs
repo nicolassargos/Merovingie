@@ -3,6 +3,10 @@ using AoC.MerovingieFileManager;
 using Domain;
 using System;
 using System.IO;
+using Moq;
+using SystemInterface.IO;
+using System.IO.Abstractions.TestingHelpers;
+using System.Linq;
 
 namespace AoC.MerovingieFileManager.Tests
 {
@@ -176,6 +180,9 @@ namespace AoC.MerovingieFileManager.Tests
             IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "qsdfghjklm123456789";
 
+            var mockFileSystem = new MockFileSystem();
+            GameFileManager.FileSystemDI = mockFileSystem;
+
             // Renvoie ~/qsdfghjklm123456789.xml
             string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
 
@@ -187,9 +194,117 @@ namespace AoC.MerovingieFileManager.Tests
 
         #endregion
 
-        #region MyRegion
+        #region GetFiles
+
+        [TestMethod]
+        public void GetFiles_ReturnsListOfFiles_FromGameDirectory()
+        {
+
+            var mockFileSystem = new MockFileSystem();
+
+            var mockInputFile = new MockFileData("line1\nline2\nline3");
+
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in1.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in2.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in3.xml"), mockInputFile);
+
+            GameFileManager.FileSystemDI = mockFileSystem;
+
+            var fileInfo = GameFileManager.GetFiles("*.xml");
+
+            Assert.IsNotNull(fileInfo);
+            Assert.AreEqual(3, fileInfo.Length);
+        }
 
         #endregion
+
+        #region GetGameFiles
+
+        [TestMethod]
+        public void GetGameFiles_ReturnsListOfFiles_Ok()
+        {
+
+            var mockFileSystem = new MockFileSystem();
+
+            var mockInputFile = new MockFileData("line1\nline2\nline3");
+
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in1.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in2.xml"), mockInputFile);
+
+            GameFileManager.FileSystemDI = mockFileSystem;
+
+            var gameDetails = GameFileManager.GetGameFiles().ToList();
+
+            Assert.IsNotNull(gameDetails);
+            Assert.AreEqual(2, gameDetails.Count);
+        }
+
+        #endregion
+
+        #region DeleteGame
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteGame_ThrowArgumentNullException_IfFilenameIsNull()
+        {
+            string fileName = null;
+
+            GameFileManager.DeleteGame(fileName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void DeleteGame_ThrowsFormatException_IfFileNameDoesntExists()
+        {
+            string fileName = "opiuytreza";
+
+            GameFileManager.DeleteGame(fileName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void DeleteGame_ThrowsFileNotFoundException_IfFileNameDoesntExists()
+        {
+            string fileName = "opiuytreza.xml";
+
+            GameFileManager.DeleteGame(fileName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void DeleteGame_DeletesFile_Ok()
+        {
+            string fileName = "in1.xml";
+
+            var mockFileSystem = new MockFileSystem();
+            GameFileManager.FileSystemDI = mockFileSystem;
+            var mockInputFile = new MockFileData("line1\nline2\nline3");
+
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, fileName), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in2.xml"), mockInputFile);
+
+            GameFileManager.DeleteGame(fileName);
+
+            var gameDetails = GameFileManager.GetGameFiles().ToList();
+
+            Assert.IsNotNull(gameDetails);
+            Assert.AreEqual(1, gameDetails.Count);
+        }
+
+        #endregion
+
+
 
         private void CleanDirectory(string newFileName)
         {

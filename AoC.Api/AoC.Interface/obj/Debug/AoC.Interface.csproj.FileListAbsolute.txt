@@ -102,3 +102,5 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Inter
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\System.IO.Abstractions.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\System.IO.Abstractions.xml

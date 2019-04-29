@@ -3,6 +3,7 @@ using Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,24 @@ namespace AoC.MerovingieFileManager
     public static class GameFileManager
     {
         const string FOLDER_NAME = "MerovingieGames";
-        private static string GameFolder { get { 
+        const string GAMEFILE_EXTENSION = ".xml";
+        const string GAMEFILE_EXTENSION_PATTERN = "*.xml";
+
+        public static IFileSystem FileSystemDI = new FileSystem();
+
+        public static string GameFolder { get { 
                 var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 var _gameFolder = System.IO.Path.Combine(myDocs, FOLDER_NAME);
-                if (!Directory.Exists(_gameFolder))
+                if (!FileSystemDI.Directory.Exists(_gameFolder))
                 {
-                    Directory.CreateDirectory(_gameFolder);
+                    try
+                    {
+                        FileSystemDI.Directory.CreateDirectory(_gameFolder);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new IOException("GameFolder: Unable to create the directory of game files. Check your write access?", ex);
+                    }
                 }
                 return _gameFolder;
             }
@@ -44,15 +57,15 @@ namespace AoC.MerovingieFileManager
 
             try
             {
-                using (FileStream file = File.Create(path))
+                using (Stream file = FileSystemDI.FileStream.Create(path, FileMode.CreateNew))
                 {
                     writer.Serialize(file, game);
                     file.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                throw new IOException("SaveGame: Unable to save the game file. Check your write access?", ex);
             }
 
             return path;
@@ -71,7 +84,7 @@ namespace AoC.MerovingieFileManager
             IGameDescriptor game = null;
             string path = GetFullPath(fileName);
 
-            if (!File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
+            if (FileSystemDI.File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
 
             System.Xml.Serialization.XmlSerializer writer =
                 new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
@@ -96,12 +109,12 @@ namespace AoC.MerovingieFileManager
         /// Get the list of all games
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<GameDetailsDto> GetGames()
+        public static IEnumerable<GameDetailsDto> GetGameFiles()
         {
             var gameList = new List<GameDetailsDto>();
-            var directoryInfos = new DirectoryInfo(GameFolder);
+            var filesInfos = GetFiles(GAMEFILE_EXTENSION_PATTERN);
 
-            foreach (var gamefile in directoryInfos.GetFiles("*.xml"))
+            foreach (var gamefile in filesInfos)
             {
                 gameList.Add(new GameDetailsDto(){ Name = gamefile.Name, Path = gamefile.Directory.ToString(), CreationDate = gamefile.CreationTime });
             }
@@ -115,11 +128,14 @@ namespace AoC.MerovingieFileManager
         /// <param name="fileName"></param>
         public static void DeleteGame(string fileName)
         {
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException($"DeleteGame: File name {fileName} is empty");
+            if (fileName.Substring(fileName.Length - 4) != ".xml") throw new FormatException($"DeleteGame: File name {fileName} has no valid extension");
+
             var path = System.IO.Path.Combine(GameFolder, fileName);
 
-            if (!File.Exists(path)) throw new ArgumentOutOfRangeException();
+            if (!FileSystemDI.File.Exists(path)) throw new FileNotFoundException($"DeleteGame: File {fileName} not found");
 
-            File.Delete(path);
+            FileSystemDI.File.Delete(path);
         }
 
         /// <summary>
@@ -129,9 +145,9 @@ namespace AoC.MerovingieFileManager
         /// <returns></returns>
         public static string GetFullPath(string fileName)
         {
-            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("GetFullPath: File name is empty");
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException($"GetFullPath: File name {fileName} is empty");
 
-            return System.IO.Path.Combine(GameFolder, fileName + ".xml");
+            return System.IO.Path.Combine(GameFolder, fileName + GAMEFILE_EXTENSION);
         }
 
         /// <summary>
@@ -149,7 +165,7 @@ namespace AoC.MerovingieFileManager
 
             // Vérifie qu'un fichier portant le même nom n'existe pas déjà
             // Si oui, incrémente la version du fichier
-            if (File.Exists(path))
+            if (FileSystemDI.File.Exists(path))
             {
                 var nbFileOccurences = Directory.GetFiles(GameFolder, fileName + "*.xml").Count();
                 path = path.Insert(path.Length - 4, nbFileOccurences.ToString());
@@ -158,12 +174,28 @@ namespace AoC.MerovingieFileManager
             return path;
         }
 
-
+        /// <summary> 
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static int GetNumberOfFileIterations(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("GetNumberOfFileIterations: File name is empty");
 
-            return Directory.GetFiles(GameFolder, fileName + "*.xml").Count();
+            return Directory.GetFiles(GameFolder, fileName + GAMEFILE_EXTENSION_PATTERN).Count();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static IFileInfo[] GetFiles(string pattern)
+        {
+            if (string.IsNullOrWhiteSpace(pattern)) throw new ArgumentNullException("GetFiles: Pattern is null or empty");
+
+            return FileSystemDI.DirectoryInfo.FromDirectoryName(GameFolder).GetFiles(pattern);
         }
     }
 }
