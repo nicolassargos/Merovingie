@@ -34,3 +34,6 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.cspro
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\obj\Debug\AoC.Domain.csproj.CopyComplete
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\obj\Debug\Domain.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\obj\Debug\Domain.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\bin\Debug\AoC.Services.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\bin\Debug\AoC.Services.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Domain\bin\Debug\AoC.Services.dll.config

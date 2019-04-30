@@ -1,4 +1,5 @@
 ﻿using AoC.Api.EventArgs;
+using AoC.Api.Services;
 using Common.Interfaces;
 using System;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace AoC.Api.Domain.UseCases
 
                 var farm = new Farm("NewFarm", new Common.Struct.Coordinates { x = 0, y = 0 });
                 RemoveResourcesFromStock(farm);
-                //Generator.CreateEntity(worker, farm, ValidateFarmCreation);
+                Generator.CreateEntity(worker, farm, ValidateFarmCreation);
                 return true;
             }
             catch (Exception ex)

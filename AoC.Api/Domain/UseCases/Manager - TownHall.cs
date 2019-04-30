@@ -1,4 +1,5 @@
 ﻿using AoC.Api.Domain;
+using AoC.Api.Services;
 using AoC.Api.EventArgs;
 using Common.Exceptions;
 using Common.Interfaces;
@@ -25,7 +26,7 @@ namespace AoC.Api.Domain.UseCases
                 var worker = new Worker();
                 CheckFreeSlotInPopulation(worker);
                 RemoveResourcesFromStock(worker);
-                //Generator.CreateEntity(creator, worker, ValidateWorkerCreation);
+                Generator.CreateEntity(creator, worker, ValidateWorkerCreation);
             }
             catch (Exception)
             {

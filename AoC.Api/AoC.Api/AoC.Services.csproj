@@ -58,10 +58,6 @@
       <Project>{8B1E1EF0-FB02-4297-B8AA-12EF4C4CA354}</Project>
       <Name>AoC.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\AoC.Domain.csproj">
-      <Project>{6a833ce9-bc0d-4e45-83fb-1bcd12b8b9b7}</Project>
-      <Name>AoC.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

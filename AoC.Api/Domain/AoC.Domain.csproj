@@ -59,6 +59,10 @@
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AoC.Api\AoC.Services.csproj">
+      <Project>{e41e2d6c-146e-4087-afbc-bbd48acc0fcd}</Project>
+      <Name>AoC.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\AoC.Common.csproj">
       <Project>{8B1E1EF0-FB02-4297-B8AA-12EF4C4CA354}</Project>
       <Name>AoC.Common</Name>

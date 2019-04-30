@@ -48,3 +48,6 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.GameManager.csproj.CopyComplete
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.exe
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\obj\Debug\AoC.Map.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Services.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Services.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Map\bin\Debug\AoC.Services.dll.config
