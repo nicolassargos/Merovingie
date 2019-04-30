@@ -2,12 +2,8 @@
 using Common.Enums;
 using Common.Helpers;
 using Common.Struct;
-using Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AoC.MerovingieFileManager
 {
@@ -61,11 +57,11 @@ namespace AoC.MerovingieFileManager
                 gameDescriptor.Farms = new List<Farm>();
                 for (int i = 0; i < farms; i++)
                 {
-                    gameDescriptor.Farms.Add(new Farm (i, ($"Farm{i}"), new Coordinates { x = 10, y = 5 }));
+                    gameDescriptor.Farms.Add(new Farm(i, ($"Farm{i}"), new Coordinates { x = 10, y = 5 }));
                 }
             }
 
-            foreach(var resource in resources)
+            foreach (var resource in resources)
             {
                 gameDescriptor.Resources[resource.Key] = resource.Value;
             }

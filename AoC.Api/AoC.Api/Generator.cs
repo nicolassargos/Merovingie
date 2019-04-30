@@ -1,13 +1,9 @@
-﻿using AoC.Api.Domain;
+﻿using Common.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Interfaces;
 using System.Threading;
+using System.Threading.Tasks;
 
-namespace AoC.Api.UseCases
+namespace AoC.Api.Services
 {
     public static class Generator
     {

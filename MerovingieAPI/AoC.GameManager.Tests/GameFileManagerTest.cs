@@ -1,12 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AoC.MerovingieFileManager;
-using Domain;
 using System;
 using System.IO;
-using Moq;
-using SystemInterface.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using AoC.Api.Domain;
 
 namespace AoC.MerovingieFileManager.Tests
 {
@@ -106,7 +103,7 @@ namespace AoC.MerovingieFileManager.Tests
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ReadGame_ThrowArgumentNullException_IfFilenameIsNull ()
+        public void ReadGame_ThrowArgumentNullException_IfFilenameIsNull()
         {
             string fileName = null;
 
@@ -149,8 +146,8 @@ namespace AoC.MerovingieFileManager.Tests
             //
             string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
 
-            Assert.ThrowsException<FormatException>( () => GameFileManager.ReadGame("qsdfghjklm123456789.vcx"));
-            
+            Assert.ThrowsException<FormatException>(() => GameFileManager.ReadGame("qsdfghjklm123456789.vcx"));
+
             CleanDirectory(newFilePath);
         }
 

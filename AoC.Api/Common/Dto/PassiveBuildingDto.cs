@@ -1,12 +1,6 @@
-﻿using Common.Enums;
-using Common.Helpers;
+﻿using Common.Helpers;
 using Common.Struct;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Dto
 {

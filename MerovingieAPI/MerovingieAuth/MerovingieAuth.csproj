@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AoC.Api\AoC.Api\AoC.BLL.csproj" />
+    <ProjectReference Include="..\..\AoC.Api\AoC.Api\AoC.Services.csproj" />
     <ProjectReference Include="..\..\AoC.Api\AoC.MapGenerator\AoC.Map.csproj" />
     <ProjectReference Include="..\..\AoC.Api\AoC.Map\AoC.GameManager.csproj" />
     <ProjectReference Include="..\..\AoC.Api\Common\AoC.Common.csproj" />

@@ -1,13 +1,10 @@
-﻿using Common.Dto;
-using Domain;
+﻿using AoC.Api.Domain;
+using Common.Dto;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace AoC.MerovingieFileManager
 {

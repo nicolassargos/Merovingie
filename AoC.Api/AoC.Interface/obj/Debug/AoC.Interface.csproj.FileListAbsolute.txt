@@ -76,24 +76,26 @@ D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug
 D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
 D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
 D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe.config
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.dll
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.dll
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Api.dll.config
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe.config
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csprojAssemblyReference.cache
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.g.cs
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\App.g.cs
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.cache
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface_MarkupCompile.lref
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe.config
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.exe
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Interface.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Services.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\System.IO.Abstractions.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Services.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Services.dll.config
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\AoC.Map.exe.config
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Common.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\Domain.pdb
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\System.IO.Abstractions.xml
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\MainWindow.baml
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.g.resources
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.Properties.Resources.resources
@@ -102,5 +104,3 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Inter
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.csproj.CopyComplete
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.exe
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\obj\Debug\AoC.Interface.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\System.IO.Abstractions.dll
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.Interface\bin\Debug\System.IO.Abstractions.xml

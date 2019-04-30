@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Enums;
 
-namespace AoC.BLL
+namespace AoC.Api.Domain
 {
 
 

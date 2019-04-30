@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Domain
+namespace AoC.Api.Domain
 
 {
     [Serializable]

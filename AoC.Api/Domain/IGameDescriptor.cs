@@ -1,9 +1,8 @@
-﻿using AoC.Api.Domain;
-using Common.Enums;
+﻿using Common.Enums;
 using Common.Helpers;
 using System.Collections.Generic;
 
-namespace Domain
+namespace AoC.Api.Domain
 {
     public interface IGameDescriptor
     {

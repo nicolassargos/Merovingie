@@ -1,23 +1,14 @@
-﻿using AoC.Api.Domain;
-using AoC.Api.EventArgs;
-using Common.Dto;
+﻿using AoC.Api.EventArgs;
 using Common.Enums;
 using Common.Exceptions;
 using Common.Helpers;
 using Common.Interfaces;
-using Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Threading;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace AoC.Api.UseCases
+namespace AoC.Api.Domain.UseCases
 {
     public partial class GameManager
     {

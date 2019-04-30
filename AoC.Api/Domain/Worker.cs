@@ -1,12 +1,10 @@
 ﻿using AoC.Api.EventArgs;
-using AoC.BLL;
 using Common.Enums;
 using Common.Helpers;
 using Common.Interfaces;
 using Common.Struct;
 using System;
 using System.Collections.Concurrent;
-using System.Runtime.Serialization;
 using System.Timers;
 using System.Xml.Serialization;
 

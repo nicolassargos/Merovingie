@@ -53,6 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TownHall.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="UseCases\Manager - Ctor.cs" />
+    <Compile Include="UseCases\Manager - TownHall.cs" />
+    <Compile Include="UseCases\Manager - Worker.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>

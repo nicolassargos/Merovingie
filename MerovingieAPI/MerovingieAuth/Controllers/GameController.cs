@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AoC.Api.UseCases;
+﻿using System.Collections.Generic;
+using AoC.Api.Domain;
+using AoC.Api.Domain.UseCases;
 using AoC.MerovingieFileManager;
-using AoC.Map;
 using Common.Enums;
 using Common.Helpers;
-using Domain;
 using Merovingie.Helpers;
 using Merovingie.Models;
 using Merovingie.Models.Game;

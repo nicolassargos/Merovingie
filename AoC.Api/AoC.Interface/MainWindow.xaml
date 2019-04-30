@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AoC.Interface"
-        xmlns:UseCases="clr-namespace:AoC.Api.UseCases;assembly=AoC.Api" x:Name="Window" x:Class="AoC.Interface.MainWindow"
+        xmlns:UseCases="clr-namespace:AoC.Api.Domain.UseCases;assembly=AoC.Api" x:Name="Window" x:Class="AoC.Interface.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="586" Width="880">
     <Grid x:Name="GridView">

@@ -1,6 +1,6 @@
 ﻿using Common.Enums;
 using Common.Helpers;
-using Domain;
+using AoC.Api.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -56,13 +56,13 @@ namespace AoC.MerovingieFileManager.Tests
         [TestMethod]
         public void GenerateMapFromOptions_Creates_Ok()
         {
-            var gameGenerated = GameGenerator.GenerateMapFromOptions(1, 1, 
+            var gameGenerated = GameGenerator.GenerateMapFromOptions(1, 1,
                 new SerializableDictionary<ResourcesType, int>()
                 {
                     { ResourcesType.Gold, 5 },
                     { ResourcesType.Stone, 5 },
                     { ResourcesType.Wood, 5 }
-                } );
+                });
 
             // Assert no null values
             Assert.IsTrue(gameGenerated is GameDescriptor);

@@ -1,13 +1,11 @@
 ﻿using AoC.Api.Domain;
+using AoC.Api.Domain.UseCases;
 using AoC.Api.EventArgs;
-using AoC.Api.UseCases;
 using AoC.MerovingieFileManager;
 using Common.Enums;
 using Common.Exceptions;
 using Common.Interfaces;
-using Domain;
 using System;
-using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -243,11 +241,11 @@ namespace AoC.Interface
             {
                 manager.CreateWorker(game.TownHalls.Find( t => t.Id == SelectedItemId));
             }
-            catch (NotEnoughResourcesException rex)
+            catch (NotEnoughResourcesException)
             {
                 LogBox.Text += NOT_ENOUGH_RESOURCES;
             }
-            catch (NotEnoughUnitSlotsAvailableException uex)
+            catch (NotEnoughUnitSlotsAvailableException)
             {
                 LogBox.Text += NOT_ENOUGH_SLOTS;
             }
@@ -264,11 +262,11 @@ namespace AoC.Interface
             {
                 manager.CreateFarm(SelectedItemId);
             }
-            catch(NoWorkerAvailableException ex)
+            catch(NoWorkerAvailableException)
             {
                 LogBox.Text += NO_WORKER_AVAILABLE;
             }
-            catch (NotEnoughResourcesException ex)
+            catch (NotEnoughResourcesException)
             {
                 LogBox.Text += NOT_ENOUGH_RESOURCES;
             }

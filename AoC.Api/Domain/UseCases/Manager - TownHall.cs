@@ -3,12 +3,10 @@ using AoC.Api.EventArgs;
 using Common.Exceptions;
 using Common.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AoC.Api.UseCases
+
+namespace AoC.Api.Domain.UseCases
 {
     public partial class GameManager
     {
@@ -27,9 +25,9 @@ namespace AoC.Api.UseCases
                 var worker = new Worker();
                 CheckFreeSlotInPopulation(worker);
                 RemoveResourcesFromStock(worker);
-                Generator.CreateEntity(creator, worker, ValidateWorkerCreation);
+                //Generator.CreateEntity(creator, worker, ValidateWorkerCreation);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -64,7 +62,7 @@ namespace AoC.Api.UseCases
                 }
             }
             
-            catch (NotEnoughUnitSlotsAvailableException ex)
+            catch (NotEnoughUnitSlotsAvailableException)
             {
                 throw;
             }
