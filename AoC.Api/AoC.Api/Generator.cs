@@ -12,6 +12,7 @@ namespace AoC.Api.Services
 
         public Generator(ICreator creator)
         {
+            if (creator == null) throw new ArgumentNullException("GeneratorConstructor: Creator is null");
             _creator = creator;
         }
 
@@ -49,6 +50,7 @@ namespace AoC.Api.Services
         public void AddToProductionQueue(IProductable productable, Action<IProductable> callBack)
         {
             if (_creator == null) throw new ArgumentNullException("AddToProductionQueue: Creator is null");
+            if (_creator.ProductionQueue == null) throw new ArgumentNullException("AddToProductionQueue: Creator production queue is null");
             if (productable == null) throw new ArgumentNullException("AddToProductionQueue: Productable is null");
 
 

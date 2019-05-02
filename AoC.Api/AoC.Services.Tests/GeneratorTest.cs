@@ -13,11 +13,32 @@ namespace AoC.Services.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_ThrowsArgumentNullException_IfCreatorIsNull()
+        {
+            var generator = new Generator(null);
+        }
+
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddToProductionQueue_ThrowsArgumentNullException_IfProductableIsNull()
         {
             var worker = new Worker();
             worker.LaunchProduction(null, ((f) => { }));
         }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "AddToProductionQueue: Creator production queue is null")]
+        public void AddToProductionQueue_ThrowsArgumentNullException_IfProductionQueueIsNull()
+        {
+            var worker = new Worker();
+            var farm = new Farm();
+            worker.ProductionQueue = null;
+            worker.LaunchProduction(farm, ((f) => { }));
+        }
+
 
         [TestMethod]
         public void AddToProductionQueue_ExecutesCallback_Ok()
@@ -37,6 +58,7 @@ namespace AoC.Services.Tests
 
             Assert.IsTrue(hasBeenCalled);
         }
+
 
         /// <summary>
         /// 

@@ -30,7 +30,7 @@ namespace AoC.Api.Domain
             Resources = resources;
         }
 
-        public TownHall()
+        public TownHall() : base()
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
             _generator = new Generator(this);

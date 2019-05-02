@@ -39,6 +39,9 @@ namespace AoC.Api.Domain
         public int PopulationSlots { get; set; }
         public bool IsWorking { get; set; }
 
+        [XmlIgnore]
+        public int FetchTimeEllapse { get => 3000; }
+
         #endregion
 
         private static System.Timers.Timer _timer;
@@ -51,18 +54,26 @@ namespace AoC.Api.Domain
         /// <summary>
         /// Constructor
         /// </summary>
-        public Worker()
+        public Worker() : base()
         {
-            ProductionQueue = new ConcurrentQueue<IProductable>();
-
-            Cost = new SerializableDictionary<ResourcesType, int>() { { ResourcesType.Gold, 50 } };
             AttackPower = 1;
             LifePoints = 50;
             LifePointsMax = 50;
             PopulationSlots = 1;
             IsWorking = false;
-            HoldedResources = new SerializableDictionary<ResourcesType, int>();
             FetchingBuilding = null;
+
+            ProductionQueue = new ConcurrentQueue<IProductable>();
+
+            // TODO: remplacer la valeur statique du cout de production par une valeur cherchée en configuration
+            Cost = new SerializableDictionary<ResourcesType, int>() { { ResourcesType.Gold, 50 } };
+
+            HoldedResources = new SerializableDictionary<ResourcesType, int>
+            {
+                { ResourcesType.Gold, 0 },
+                { ResourcesType.Stone, 0 },
+                { ResourcesType.Wood, 0 }
+            };
 
             _timer = new System.Timers.Timer();
 
@@ -70,7 +81,6 @@ namespace AoC.Api.Domain
 
             Position = new Coordinates { x = 10, y = 10 };
         }
-
 
         /// <summary>
         /// 
@@ -80,6 +90,21 @@ namespace AoC.Api.Domain
             : this()
         {
             this.Id = Id;
+        }
+
+        public Worker(int lifePoints, bool isWorking, SerializableDictionary<ResourcesType, int> holdedResources, Coordinates position)
+            : this()
+        {
+            if (lifePoints == 0) throw new ArgumentException("WorkerConstructor: Life points cannot be 0");
+            LifePoints = lifePoints;
+
+            IsWorking = isWorking;
+
+            HoldedResources = holdedResources ?? new SerializableDictionary<ResourcesType, int>();
+
+            if (position.x <= 0 || position.y <= 0)
+                position = new Coordinates() { x = 50, y = 50 };
+            Position = position;
         }
 
         #endregion
@@ -99,7 +124,7 @@ namespace AoC.Api.Domain
             // lancer une task de durée infinie 
             // qui rapporte la resource en question
             // (3000ms simule le trajet)
-            _timer.Interval = 3000;
+            _timer.Interval = FetchTimeEllapse;
             // Attache l'événement à lancer lorsque le ramassage est prêt
             _timer.Elapsed += DoFetch;
 
@@ -161,6 +186,7 @@ namespace AoC.Api.Domain
         public void LaunchProduction (IProductable productable, Action<IProductable> callBack)
         {
             if (productable == null) throw new ArgumentNullException("LaunchProduction: productable is null");
+            IsWorking = true;
             _generator.CreateEntity(productable, callBack);
         }
 

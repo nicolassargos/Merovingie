@@ -47,13 +47,24 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="WorkerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AoC.Api\Common\AoC.Common.csproj">
+      <Project>{8b1e1ef0-fb02-4297-b8aa-12ef4c4ca354}</Project>
+      <Name>AoC.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AoC.Api\Domain\AoC.Domain.csproj">
+      <Project>{6a833ce9-bc0d-4e45-83fb-1bcd12b8b9b7}</Project>
+      <Name>AoC.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
