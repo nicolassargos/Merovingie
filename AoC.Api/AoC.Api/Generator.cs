@@ -12,7 +12,11 @@ namespace AoC.Api.Services
 
         public Generator(ICreator creator)
         {
-            if (creator == null) throw new ArgumentNullException("GeneratorConstructor: Creator is null");
+            if (creator == null)
+            {
+                throw new ArgumentNullException("GeneratorConstructor: Creator is null");
+            }
+
             _creator = creator;
         }
 
@@ -49,9 +53,20 @@ namespace AoC.Api.Services
         /// <param name="callBack"></param>
         public void AddToProductionQueue(IProductable productable, Action<IProductable> callBack)
         {
-            if (_creator == null) throw new ArgumentNullException("AddToProductionQueue: Creator is null");
-            if (_creator.ProductionQueue == null) throw new ArgumentNullException("AddToProductionQueue: Creator production queue is null");
-            if (productable == null) throw new ArgumentNullException("AddToProductionQueue: Productable is null");
+            if (_creator == null)
+            {
+                throw new ArgumentNullException("AddToProductionQueue: Creator is null");
+            }
+
+            if (_creator.ProductionQueue == null)
+            {
+                throw new ArgumentNullException("AddToProductionQueue: Creator production queue is null");
+            }
+
+            if (productable == null)
+            {
+                throw new ArgumentNullException("AddToProductionQueue: Productable is null");
+            }
 
 
             bool taskStarted = _creator.ProductionQueue.Count > 0;
@@ -67,15 +82,16 @@ namespace AoC.Api.Services
         {
             IProductable productable;
 
-            Task.Run(() =>
-            {
-                while (Queue.Count > 0)
+            Task.Run(
+                () =>
                 {
-                    Queue.TryDequeue(out productable);
-                    Thread.Sleep(productable.Time);
-                    callBack(productable);
-                }
-            });
+                    while (Queue.Count > 0)
+                    {
+                        Queue.TryDequeue(out productable);
+                        Thread.Sleep(productable.Time);
+                        callBack(productable);
+                    }
+                });
         }
     }
 }

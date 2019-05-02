@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 
 namespace Common.Helpers
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [XmlRoot("dictionary")]
     public class SerializableDictionary<TKey, TValue>
     : Dictionary<TKey, TValue>, IXmlSerializable

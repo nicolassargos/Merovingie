@@ -12,16 +12,24 @@ namespace AoC.Services.Tests
     {
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException), "GeneratorConstructor: Creator is null")]
         public void Constructor_ThrowsArgumentNullException_IfCreatorIsNull()
         {
             var generator = new Generator(null);
         }
 
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "AddToProductionQueue: Creator is null")]
+        public void AddToProductionQueue_ThrowsArgumentNullException_IfCreatorIsNull()
+        {
+            var worker = new Worker();
+            worker.LaunchProduction(null, ((f) => { }));
+        }
+
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException), "AddToProductionQueue: Productable is null")]
         public void AddToProductionQueue_ThrowsArgumentNullException_IfProductableIsNull()
         {
             var worker = new Worker();
@@ -37,6 +45,21 @@ namespace AoC.Services.Tests
             var farm = new Farm();
             worker.ProductionQueue = null;
             worker.LaunchProduction(farm, ((f) => { }));
+        }
+
+
+        [TestMethod]
+        public void AddToProductionQueue_EnqueueProduction_Ok()
+        {
+            //
+            var worker = new Worker();
+            var farm = new Farm();
+
+            //
+            worker.LaunchProduction(farm, ((f) => { }));
+
+            //
+            Assert.AreEqual(1, worker.ProductionQueue.Count);
         }
 
 

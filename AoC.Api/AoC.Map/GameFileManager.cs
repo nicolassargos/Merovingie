@@ -164,7 +164,7 @@ namespace AoC.MerovingieFileManager
             // Si oui, incrémente la version du fichier
             if (FileSystemDI.File.Exists(path))
             {
-                var nbFileOccurences = Directory.GetFiles(GameFolder, fileName + "*.xml").Count();
+                var nbFileOccurences = FileSystemDI.Directory.GetFiles(GameFolder, fileName + "*.xml").Count();
                 path = path.Insert(path.Length - 4, nbFileOccurences.ToString());
             }
 
@@ -180,7 +180,7 @@ namespace AoC.MerovingieFileManager
         {
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("GetNumberOfFileIterations: File name is empty");
 
-            return Directory.GetFiles(GameFolder, fileName + GAMEFILE_EXTENSION_PATTERN).Count();
+            return FileSystemDI.Directory.GetFiles(GameFolder, fileName + GAMEFILE_EXTENSION_PATTERN).Count();
         }
 
         /// <summary>

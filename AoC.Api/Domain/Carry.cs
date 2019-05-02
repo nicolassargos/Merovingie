@@ -28,7 +28,7 @@ namespace AoC.Api.Domain
             StoneStock = stockQty;
         }
 
-        public Carry() { }
+        public Carry() : base() { }
 
         /// <summary>
         /// Retire de la mine une quantitée collectée par un worker

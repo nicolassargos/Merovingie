@@ -64,7 +64,12 @@ namespace AoC.MerovingieFileManager.Tests
             IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "qsdfghjklm123456789";
 
-            // Checks if "newGame.xml" already exists
+            var mockFileSystem = new MockFileSystem();
+            GameFileManager.FileSystemDI = mockFileSystem;
+            var mockInputFile = new MockFileData("line1\nline2\nline3");
+
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, fileName), mockInputFile);
+
             int nbFileOccurences_beforeSave = GameFileManager.GetNumberOfFileIterations(fileName);
 
             string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
@@ -73,14 +78,20 @@ namespace AoC.MerovingieFileManager.Tests
 
             Assert.AreEqual(nbFileOccurences_beforeSave + 1, nbFileOccurences_afterSave);
 
-            CleanDirectory(newFilePath);
         }
 
         [TestMethod]
-        public void SaveGame_CreatesNewFile_IfFilenameAlreadyExists()
+        public void SaveGame_CreatesFile_IfFilenameAlreadyExists()
         {
             IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "newGame";
+
+            var mockFileSystem = new MockFileSystem();
+            GameFileManager.FileSystemDI = mockFileSystem;
+            var mockInputFile = new MockFileData("line1\nline2\nline3");
+
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, fileName + ".xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, fileName + "1.xml"), mockInputFile);
 
             // Checks if "newGame.xml" already exists
             int nbFileOccurences_beforeSave = GameFileManager.GetNumberOfFileIterations(fileName);
@@ -91,8 +102,6 @@ namespace AoC.MerovingieFileManager.Tests
 
             //
             Assert.AreEqual(nbFileOccurences_beforeSave + 1, nbFileOccurences_afterSave);
-
-            CleanDirectory(newFilePath);
         }
 
         #endregion

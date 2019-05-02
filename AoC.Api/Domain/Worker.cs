@@ -38,9 +38,24 @@ namespace AoC.Api.Domain
         public int Id { get; set; }
         public int PopulationSlots { get; set; }
         public bool IsWorking { get; set; }
+        public bool IsHoldingResource
+        {
+            get
+            {
+                return HoldedResources[ResourcesType.Gold] > 0 ||
+                HoldedResources[ResourcesType.Stone] > 0 ||
+                HoldedResources[ResourcesType.Wood] > 0;
+            }
+        }
 
         [XmlIgnore]
-        public int FetchTimeEllapse { get => 3000; }
+        public int FetchTimeEllapse
+        {
+            get
+            {
+                return 3000;
+            }
+        }
 
         #endregion
 
@@ -100,11 +115,15 @@ namespace AoC.Api.Domain
 
             IsWorking = isWorking;
 
-            HoldedResources = holdedResources ?? new SerializableDictionary<ResourcesType, int>();
+            if (holdedResources != null && holdedResources.Count > 0)
+            {
+                HoldedResources = holdedResources;
+            }
 
-            if (position.x <= 0 || position.y <= 0)
-                position = new Coordinates() { x = 50, y = 50 };
-            Position = position;
+            if (position.x > 0 && position.y > 0)
+            {
+                Position = position;
+            }
         }
 
         #endregion
@@ -140,19 +159,18 @@ namespace AoC.Api.Domain
         /// <param name="qty"></param>
         private void DoFetch(Object sender, ElapsedEventArgs e)
         {
-            // Cas où le worker ramasse la ressource
-            if (HoldedResources.Count == 0)
+            // Cas où le worker ramasse la ressource et que son sac est vide
+            if (!IsHoldingResource)
             {
-                var qtyCollected = FetchingBuilding.Remove(FetchingBuilding.CollectQty);
-                HoldedResources.Add(qtyCollected.Key, qtyCollected.Value);
+                var resourceCollected = FetchingBuilding.Remove(FetchingBuilding.CollectQty);
+                HoldedResources[resourceCollected.Key] =  resourceCollected.Value;
             }
-            // Cas où le worker revient à la base
+            // Cas où le worker revient à la base, le sac contenant qq chose
             else
             {
                 OnResourceFetched(new ResourcesFetchedArgs { ResourcesFetched = HoldedResources });
-                HoldedResources.Clear();
+                ReleaseResources();
             }
-
         }
 
 
@@ -164,6 +182,16 @@ namespace AoC.Api.Domain
         protected void OnResourceFetched(ResourcesFetchedArgs e)
         {
             ResourceFetched?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Réinitialise à 0 les ressources portées par un worker
+        /// </summary>
+        public void ReleaseResources()
+        {
+            HoldedResources[ResourcesType.Gold] = 0;
+            HoldedResources[ResourcesType.Stone] = 0;
+            HoldedResources[ResourcesType.Wood] = 0;
         }
 
 
