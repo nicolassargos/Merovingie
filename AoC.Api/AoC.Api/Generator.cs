@@ -6,20 +6,34 @@ using System.Collections.Concurrent;
 
 namespace AoC.Api.Services
 {
-    public static class Generator
+    public class Generator
     {
+        private ICreator _creator;
 
-        public delegate void MyDel(Action<IProductable> callback);
-
-        public static bool CreateEntity(ICreator creator, IProductable productable, Action<IProductable> callBack)
+        public Generator(ICreator creator)
         {
+            _creator = creator;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="creator"></param>
+        /// <param name="productable"></param>
+        /// <param name="callBack"></param>
+        /// <returns></returns>
+        public bool CreateEntity(IProductable productable, Action<IProductable> callBack)
+        {
+            if (productable == null) throw new ArgumentNullException("CreateEntity: productable is null");
+
             // Récupérer les ressources necessaires à la production
             var productionResources = productable.Cost;
 
             //Todo : Calculer la somme totale des ressources.
 
             // Si OK => Créer l'entité
-            AddToProductionQueue(creator, productable, callBack);
+            AddToProductionQueue(productable, callBack);
 
             // Ajouter au fil de production
             return true;
@@ -32,18 +46,18 @@ namespace AoC.Api.Services
         /// <param name="creator"></param>
         /// <param name="productable"></param>
         /// <param name="callBack"></param>
-        public static void AddToProductionQueue(ICreator creator, IProductable productable, Action<IProductable> callBack)
+        public void AddToProductionQueue(IProductable productable, Action<IProductable> callBack)
         {
-            if (creator == null) throw new ArgumentNullException("AddToProductionQueue: Creator is null");
+            if (_creator == null) throw new ArgumentNullException("AddToProductionQueue: Creator is null");
             if (productable == null) throw new ArgumentNullException("AddToProductionQueue: Productable is null");
 
 
-            bool taskStarted = creator.ProductionQueue.Count > 0;
-            creator.ProductionQueue.Enqueue(productable);
+            bool taskStarted = _creator.ProductionQueue.Count > 0;
+            _creator.ProductionQueue.Enqueue(productable);
 
             if (taskStarted == false)
             {
-                ProductQueueLauncher(creator.ProductionQueue, callBack);
+                ProductQueueLauncher(_creator.ProductionQueue, callBack);
             }
         }
 

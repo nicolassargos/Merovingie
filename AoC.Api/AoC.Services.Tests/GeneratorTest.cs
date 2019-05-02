@@ -10,22 +10,13 @@ namespace AoC.Services.Tests
     [TestClass]
     public class GeneratorTest
     {
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void AddToProductionQueue_ThrowsArgumentNullException_IfCreatorIsNull()
-        {
-            var worker = new Worker();
-            var farm = new Farm();
-            Generator.AddToProductionQueue(null, farm, ((f) => { }));
-        }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddToProductionQueue_ThrowsArgumentNullException_IfProductableIsNull()
         {
             var worker = new Worker();
-            var farm = new Farm();
-            Generator.AddToProductionQueue(worker, null, ((f) => { }));
+            worker.LaunchProduction(null, ((f) => { }));
         }
 
         [TestMethod]
@@ -37,7 +28,7 @@ namespace AoC.Services.Tests
 
             var thread = new Thread(() =>
             {
-                Generator.AddToProductionQueue(worker, farm, ((f) => { hasBeenCalled = true; }));
+                worker.LaunchProduction(farm, ((f) => { hasBeenCalled = true; }));
             });
             thread.Start();
             thread.Join();

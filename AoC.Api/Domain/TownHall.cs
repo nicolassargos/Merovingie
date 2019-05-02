@@ -9,25 +9,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using AoC.Api.Services;
 
 namespace AoC.Api.Domain
 {
     public class TownHall : ActiveBuilding, IBuilding, ICreator
     {
-        public TownHall(string name, int lifepoints, int maxLifePoints, bool attack, SerializableDictionary<ResourcesType, int> resources) : 
+        [XmlIgnoreAttribute]
+        public ConcurrentQueue<IProductable> ProductionQueue { get; set; }
+
+        private Generator _generator;
+
+
+        #region Constructor
+        // TODO: initialiser les propriétés
+        public TownHall(string name, int lifepoints, int maxLifePoints, bool attack, SerializableDictionary<ResourcesType, int> resources) :
             base(name, lifepoints, maxLifePoints, attack)
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
             Resources = resources;
         }
 
-        public TownHall() : base()
+        public TownHall()
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
+            _generator = new Generator(this);
         }
 
-        [XmlIgnoreAttribute]
-        public ConcurrentQueue<IProductable> ProductionQueue { get; set; }
+        #endregion
 
+        public void LaunchProduction(IProductable productable, Action<IProductable> callBack)
+        {
+            _generator.CreateEntity(productable, callBack);
+        }
     }
 }

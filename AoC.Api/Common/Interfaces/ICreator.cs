@@ -9,6 +9,7 @@ namespace Common.Interfaces
 {
     public interface ICreator
     {
+        void LaunchProduction(IProductable productable, Action<IProductable> callBack);
         ConcurrentQueue<IProductable> ProductionQueue { get; set;}
     }
 }

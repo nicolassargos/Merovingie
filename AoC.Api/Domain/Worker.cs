@@ -7,11 +7,16 @@ using System;
 using System.Collections.Concurrent;
 using System.Timers;
 using System.Xml.Serialization;
+using AoC.Api.Services;
+
 
 namespace AoC.Api.Domain
 {
     public class Worker : ICreator, IProductable, IUnit
     {
+
+        #region Properties
+
         [XmlIgnore]
         public ConcurrentQueue<IProductable> ProductionQueue
         {
@@ -33,8 +38,19 @@ namespace AoC.Api.Domain
         public int Id { get; set; }
         public int PopulationSlots { get; set; }
         public bool IsWorking { get; set; }
+
+        #endregion
+
         private static System.Timers.Timer _timer;
 
+        private Generator _generator;
+
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Worker()
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
@@ -47,42 +63,53 @@ namespace AoC.Api.Domain
             IsWorking = false;
             HoldedResources = new SerializableDictionary<ResourcesType, int>();
             FetchingBuilding = null;
-            
+
             _timer = new System.Timers.Timer();
+
+            _generator = new Generator(this);
 
             Position = new Coordinates { x = 10, y = 10 };
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
         public Worker(int Id)
             : this()
         {
             this.Id = Id;
         }
 
+        #endregion
+
+
+        #region FetchRessoure
+
         /// <summary>
-        /// Méthode appelée par le Manager pour re
+        /// Créée l'action de ramassage de ressource
         /// </summary>
         /// <param name="resource"></param>
         public void FetchResource(PassiveBuilding passiveBuilding)
         {
-            //CancelAllActions();
             FetchingBuilding = passiveBuilding;
             IsWorking = true;
 
-
             // lancer une task de durée infinie 
             // qui rapporte la resource en question
-            // Create a timer with a two second interval.
+            // (3000ms simule le trajet)
             _timer.Interval = 3000;
-            // Hook up the Elapsed event for the timer.
+            // Attache l'événement à lancer lorsque le ramassage est prêt
             _timer.Elapsed += DoFetch;
 
             _timer.AutoReset = true;
             _timer.Enabled = true;
         }
 
+
         /// <summary>
-        /// 
+        /// Lance les actions qui découlent du ramassage de ressource
         /// </summary>
         /// <param name="resource"></param>
         /// <param name="qty"></param>
@@ -103,11 +130,21 @@ namespace AoC.Api.Domain
 
         }
 
+
+        /// <summary>
+        /// Evenement déclenché en cas de retour à un bâtiment de stockage
+        /// avec des ressources
+        /// </summary>
+        /// <param name="e"></param>
         protected void OnResourceFetched(ResourcesFetchedArgs e)
         {
             ResourceFetched?.Invoke(this, e);
         }
 
+
+        /// <summary>
+        /// Annule l'action d'aller chercher une ressource
+        /// </summary>
         public void CancelFetch()
         {
             _timer.Elapsed -= DoFetch;
@@ -116,6 +153,20 @@ namespace AoC.Api.Domain
             ResourceFetched = null;
         }
 
+        #endregion
+
+
+        #region ProductionQueue
+
+        public void LaunchProduction (IProductable productable, Action<IProductable> callBack)
+        {
+            if (productable == null) throw new ArgumentNullException("LaunchProduction: productable is null");
+            _generator.CreateEntity(productable, callBack);
+        }
+
+        /// <summary>
+        /// Annule toutes las actions
+        /// </summary>
         public void CancelAllActions()
         {
             EmptyProductionQueue();
@@ -123,11 +174,18 @@ namespace AoC.Api.Domain
             IsWorking = false;
         }
 
+
+        /// <summary>
+        /// Vide la queue de production
+        /// </summary>
         private void EmptyProductionQueue()
         {
             // vider la production queue
             ProductionQueue.TryDequeue(out var productable);
         }
+
+        #endregion
+
 
         // Evénement déclenché lorsque qu'une resource a été récoltée
         public event EventHandler<ResourcesFetchedArgs> ResourceFetched;

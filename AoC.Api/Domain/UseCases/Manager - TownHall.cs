@@ -26,7 +26,7 @@ namespace AoC.Api.Domain.UseCases
                 var worker = new Worker();
                 CheckFreeSlotInPopulation(worker);
                 RemoveResourcesFromStock(worker);
-                Generator.CreateEntity(creator, worker, ValidateWorkerCreation);
+                creator.LaunchProduction(worker, ValidateWorkerCreation);
             }
             catch (Exception)
             {
