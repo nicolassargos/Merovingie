@@ -13,7 +13,7 @@
     "macExecutableFilename": "",
     "orientation": "default",
     "packageName": "com.example.gamename",
-    "projectFile": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
+    "projectFile": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
     "scaleMode": "linear",
     "sizeOnStartupMode": "adaptWidth",
     "useExternalSourceFiles": false,
@@ -24,7 +24,7 @@
     "author": "Nicolas Sargos",
     "windowWidth": 1280,
     "windowHeight": 1024,
-    "latestCompilationDirectory": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
+    "latestCompilationDirectory": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieClient\\Export",
     "maxFPS": 60,
     "minFPS": 10,
     "verticalSync": false,
@@ -255,6 +255,15 @@
         "name": "images\\Map.jpg",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/town-hall-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\town-hall-1.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -287,7 +296,7 @@
         "gridWidth": 32,
         "snap": true,
         "windowMask": false,
-        "zoomFactor": 0.4
+        "zoomFactor": 0.568
       },
       "objectsGroups": [],
       "variables": [],
@@ -1750,21 +1759,6 @@
         {
           "angle": 0,
           "customSize": true,
-          "height": 369,
-          "layer": "",
-          "locked": false,
-          "name": "TownHall",
-          "width": 361,
-          "x": 18,
-          "y": 523,
-          "zOrder": 1,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": true,
           "height": 100,
           "layer": "ButtonPanel layer",
           "locked": true,
@@ -2075,7 +2069,7 @@
           ],
           "animations": [
             {
-              "name": "",
+              "name": "town-hall",
               "useMultipleDirections": false,
               "directions": [
                 {
@@ -2084,7 +2078,7 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
-                      "image": "images\\town-hall.png",
+                      "image": "images\\town-hall-1.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
@@ -2100,44 +2094,24 @@
                       "customCollisionMask": [
                         [
                           {
-                            "x": 368.5,
-                            "y": 2
+                            "x": 50.5,
+                            "y": 340.5
                           },
                           {
-                            "x": 442.5,
-                            "y": 140
+                            "x": 306.5,
+                            "y": 356.5
                           },
                           {
-                            "x": 446,
-                            "y": 202
+                            "x": 258.5,
+                            "y": 4
                           },
                           {
-                            "x": 438,
-                            "y": 425
+                            "x": 174.5,
+                            "y": 121.5
                           },
                           {
-                            "x": 409,
-                            "y": 500
-                          },
-                          {
-                            "x": 341,
-                            "y": 529
-                          },
-                          {
-                            "x": 168,
-                            "y": 510
-                          },
-                          {
-                            "x": 37,
-                            "y": 381
-                          },
-                          {
-                            "x": 54,
-                            "y": 257
-                          },
-                          {
-                            "x": 201,
-                            "y": 113
+                            "x": 46.5,
+                            "y": 180.5
                           }
                         ]
                       ]
@@ -2255,34 +2229,6 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Create"
-              },
-              "parameters": [
-                "",
-                "peasant",
-                "570",
-                "500",
-                ""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Create"
-              },
-              "parameters": [
-                "",
-                "peasant",
-                "800",
-                "550",
-                ""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
                 "value": "ChangePlan"
               },
               "parameters": [
@@ -2308,7 +2254,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\nclass MMessage {\n    constructor(type, message) {\n        this.type = type;\n        this.message = message;\n    }\n\n    toString() {\n        return message.toString();\n    }\n}\n\nconst MessageTypes = Object.freeze({\n    GAMECONNECT: Symbol(0),\n    GAMEINFO: Symbol(1),\n    GAMECOMMAND: Symbol(2)\n});\n\n\nlet scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\nlet port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n// Variable de connexion qui contient l'adresse du serveur\nlet connectionUrl = scheme + \"://\" + document.location.hostname + port + \"/ws\";\n\n// Connecte le websocket au serveur\nlet socket = new WebSocket(connectionUrl);\n\n// Ouverture du socket\nsocket.onopen = function() {\n        if (!socket || socket.readyState !== WebSocket.OPEN) {\n            alert(\"socket not connected\");\n            return;\n        }\n\n        let connectMessage = new MMessage(MessageTypes.GAMECONNECT, 'playerName')\n\n        socket.send(JSON.stringify(connectMessage));\n    }\n\n\nsocket.onmessage = function (event) {\n    var messageReceived = JSON.stringify(JSON.parse(event.data));\n    alert(messageReceived);\n}\n",
+              "inlineCode": "\nclass MMessage {\n    constructor(type, message) {\n        this.type = type;\n        this.message = message;\n    }\n\n    toString() {\n        return message.toString();\n    }\n}\n\nconst MessageTypes = Object.freeze({\n    GAMECONNECT: Symbol(0),\n    GAMEINFO: Symbol(1),\n    GAMECOMMAND: Symbol(2)\n});\n\n\nlet scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\nlet port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n// Variable de connexion qui contient l'adresse du serveur\nlet connectionUrl = scheme + \"://\" + document.location.hostname + port + \"/gameHub\";\n\n// Connecte le websocket au serveur\nlet socket = new WebSocket(connectionUrl);\n\n// Ouverture du socket\nsocket.onopen = function() {\n        if (!socket || socket.readyState !== WebSocket.OPEN) {\n            alert(\"socket not connected\");\n            return;\n        }\n\n        let connectMessage = new MMessage(MessageTypes.GAMECONNECT, 'playerName')\n\n        socket.send(JSON.stringify(connectMessage));\n    }\n\n\nsocket.onmessage = function (event) {\n    var messageReceived = JSON.stringify(JSON.parse(event.data));\n    alert(messageReceived);\n}\n",
               "parameterObjects": "peasant"
             }
           ]
@@ -2832,8 +2778,8 @@
               "parameters": [
                 "",
                 "peasant",
-                "TownHall.X(Center)",
-                "TownHall.Y(Center)-60",
+                "TownHall.X(\"Center\")+200",
+                "TownHall.Y(\"Center\")",
                 ""
               ],
               "subInstructions": []
@@ -3345,6 +3291,21 @@
             }
           ],
           "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "runtimeScene.setBackgroundColor(100,100,240);\nruntimeScene.createObject(\"peasant\");",
+          "parameterObjects": ""
         }
       ],
       "layers": [

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Identity.UI">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.identity.ui\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Identity.UI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +48,7 @@
     <Compile Include="Dto\GameDetailsDto.cs" />
     <Compile Include="Dto\PassiveBuildingDto.cs" />
     <Compile Include="Dto\PeonDto.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="EventArgs\BuildingCreatedEventArgs.cs" />
     <Compile Include="EventArgs\MaxPopulationChangedArgs.cs" />
     <Compile Include="EventArgs\PopulationChanged.cs" />

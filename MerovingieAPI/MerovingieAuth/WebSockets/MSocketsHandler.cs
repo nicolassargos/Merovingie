@@ -30,6 +30,7 @@ namespace Merovingie
             {
                 var receivedObject = GetMessageFromBytes(buffer);
 
+
                 var sentObject = SetBytesFromMessage(receivedObject);
 
                 await socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,

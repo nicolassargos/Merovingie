@@ -1,15 +1,14 @@
-﻿export class MMessage {
-    constructor(type, message) {
-        this.type = type;
-        this.message = message;
-    }
+﻿var MMessage = function (type, message) {
 
-    toString() {
+    function toString() {
         return message.toString();
     }
-}
 
-export const MessageTypes = Object.freeze({
+    return { "type": type, "message": message };
+};
+
+var MessageTypes = Object.freeze({
     GAMEINFO: Symbol(0),
-    GAMECOMMAND: Symbol(1)
+    GAMECOMMAND: Symbol(1),
+    GAMECONNECT: Symbol(2)
 });

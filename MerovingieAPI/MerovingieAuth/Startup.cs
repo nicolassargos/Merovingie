@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Merovingie;
 using MerovingieAuth.Hubs;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Common;
 
 namespace MerovingieAuth
 {
@@ -43,9 +45,11 @@ namespace MerovingieAuth
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddTransient<IEmailSender, EmailSender>();
+            
             services.AddSignalR();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -71,8 +75,6 @@ namespace MerovingieAuth
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-
             app.UseAuthentication();
 
             app.UseMvc(routes =>
@@ -82,11 +84,35 @@ namespace MerovingieAuth
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //// Use - SignalR & let it know to intercept and map any request having gameHub.
-            app.UseSignalR(routes =>
+            // Websockets Options
+            var webSocketsOptions = new WebSocketOptions
             {
-                routes.MapHub<GameHub>("/gameHub");
+                KeepAliveInterval = TimeSpan.FromSeconds(300),
+                ReceiveBufferSize = 4 * 1024
+            };
+            app.UseWebSockets(webSocketsOptions);
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path == "/ws")
+                {
+                    if (context.WebSockets.IsWebSocketRequest)
+                    {
+                        var socket = await context.WebSockets.AcceptWebSocketAsync();
+                        await msocketHandler.Listen(context, socket);
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = 400;
+                    }
+
+                }
+                else
+                {
+                    await next();
+                }
             });
+
         }
     }
 }
