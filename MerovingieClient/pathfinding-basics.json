@@ -13,7 +13,7 @@
     "macExecutableFilename": "",
     "orientation": "default",
     "packageName": "com.example.gamename",
-    "projectFile": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
+    "projectFile": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
     "scaleMode": "linear",
     "sizeOnStartupMode": "adaptWidth",
     "useExternalSourceFiles": false,
@@ -1770,6 +1770,21 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "TownHall",
+          "width": 0,
+          "x": 29,
+          "y": 524,
+          "zOrder": 27,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -2254,7 +2269,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\nclass MMessage {\n    constructor(type, message) {\n        this.type = type;\n        this.message = message;\n    }\n\n    toString() {\n        return message.toString();\n    }\n}\n\nconst MessageTypes = Object.freeze({\n    GAMECONNECT: Symbol(0),\n    GAMEINFO: Symbol(1),\n    GAMECOMMAND: Symbol(2)\n});\n\n\nlet scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\nlet port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n// Variable de connexion qui contient l'adresse du serveur\nlet connectionUrl = scheme + \"://\" + document.location.hostname + port + \"/gameHub\";\n\n// Connecte le websocket au serveur\nlet socket = new WebSocket(connectionUrl);\n\n// Ouverture du socket\nsocket.onopen = function() {\n        if (!socket || socket.readyState !== WebSocket.OPEN) {\n            alert(\"socket not connected\");\n            return;\n        }\n\n        let connectMessage = new MMessage(MessageTypes.GAMECONNECT, 'playerName')\n\n        socket.send(JSON.stringify(connectMessage));\n    }\n\n\nsocket.onmessage = function (event) {\n    var messageReceived = JSON.stringify(JSON.parse(event.data));\n    alert(messageReceived);\n}\n",
+              "inlineCode": "\n    var scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n    var port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n    // Variable de connexion qui contient l'adresse du serveur\n    var connectionUrl = scheme + \"://\" + document.location.hostname + port + \"/ws\";\n\n    // Connecte le websocket au serveur\n    var socket = new WebSocket(connectionUrl);\n\n    // Ouverture du socket\n    socket.onopen = function () {\n        if (!socket || socket.readyState !== WebSocket.OPEN) {\n            alert(\"socket not connected\");\n            return;\n        }\n\n        var connectMessage = MMessage(MessageTypes.GAMECONNECT, 'playerName')\n\n        socket.send(JSON.stringify(connectMessage));\n    }\n\n\n    socket.onmessage = function (event) {\n        var messageReceived = JSON.stringify(JSON.parse(event.data));\n        alert(messageReceived);\n    }\n\n\n\n\n    //runtimeScene.createObject(\"peasant\");\n    //let peasants = runtimeScene.getObjects(\"peasant\");\n    //peasants[2].setPosition(850, 500);\n    //peasants[2].setZOrder(1);\n    //console.log(peasants);\n",
               "parameterObjects": "peasant"
             }
           ]
@@ -3377,7 +3392,8 @@
               "supplementaryInformation": "",
               "type": "objectList"
             }
-          ]
+          ],
+          "objectGroups": []
         }
       ]
     }

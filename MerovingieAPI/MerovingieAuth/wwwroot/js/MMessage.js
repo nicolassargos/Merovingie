@@ -8,7 +8,7 @@
 };
 
 var MessageTypes = Object.freeze({
-    GAMEINFO: Symbol(0),
-    GAMECOMMAND: Symbol(1),
-    GAMECONNECT: Symbol(2)
+    "GAMEINFO": 0,
+    "GAMECOMMAND": 1,
+    "GAMECONNECT": 2
 });
