@@ -24,7 +24,7 @@
     "author": "Nicolas Sargos",
     "windowWidth": 1280,
     "windowHeight": 1024,
-    "latestCompilationDirectory": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieClient\\Export",
+    "latestCompilationDirectory": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
     "maxFPS": 60,
     "minFPS": 10,
     "verticalSync": false,
@@ -2269,7 +2269,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\n    var scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n    var port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n    // Variable de connexion qui contient l'adresse du serveur\n    var connectionUrl = scheme + \"://\" + document.location.hostname + port + \"/ws\";\n\n    // Connecte le websocket au serveur\n    var socket = new WebSocket(connectionUrl);\n\n    // Ouverture du socket\n    socket.onopen = function () {\n        if (!socket || socket.readyState !== WebSocket.OPEN) {\n            alert(\"socket not connected\");\n            return;\n        }\n\n        var connectMessage = MMessage(MessageTypes.GAMECONNECT, 'playerName')\n\n        socket.send(JSON.stringify(connectMessage));\n    }\n\n\n    socket.onmessage = function (event) {\n        var messageReceived = JSON.stringify(JSON.parse(event.data));\n        alert(messageReceived);\n    }\n\n\n\n\n    //runtimeScene.createObject(\"peasant\");\n    //let peasants = runtimeScene.getObjects(\"peasant\");\n    //peasants[2].setPosition(850, 500);\n    //peasants[2].setZOrder(1);\n    //console.log(peasants);\n",
+              "inlineCode": "\n    function MerovingieWebSocket() {\n        this.scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n        this.port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n        // Variable de connexion qui contient l'adresse du serveur\n        this.connectionUrl = this.scheme + \"://\" + document.location.hostname + this.port + \"/ws\";\n\n        // Connecte le websocket au serveur\n        this.socket = new WebSocket(this.connectionUrl);\n\n        // Ouverture du socket\n        this.socket.onopen = function () {\n            if (!this || this.readyState !== WebSocket.OPEN) {\n                alert(\"meroSocket is not connected\");\n                return;\n            }\n\n            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, 'playerName');\n\n            if (this.OPEN)\n            {\n                this.send(JSON.stringify(connectMessage));\n            }\n        }\n\n        this.socket.onmessage = function (event) {\n            var messageReceived = JSON.stringify(JSON.parse(event.data));\n            alert(messageReceived);\n        }\n\n        this.socket.onclose = function(event) {\n            console.log(JSON.stringify(JSON.parse(event.data)));\n            // this.socket = new WebSocket(this.connectionUrl);\n        }\n\n        \n    }\n\n    // Méthode d'envoi de données\n    MerovingieWebSocket.prototype.send = function(messageType, body) {\n\n        if (!messageType) {\n            alert('Message type is undefined of null');\n            return;\n        }\n\n        if (!body) {\n            alert('Body of message is undefined or null');\n        }\n\n        var message = new MMessage(messageType, body);\n\n        this.socket.send(JSON.stringify(message));\n    }\n\n    gdjs.meroSocket = new MerovingieWebSocket();\n    \n\n\n\n    //runtimeScene.createObject(\"peasant\");\n    //let peasants = runtimeScene.getObjects(\"peasant\");\n    //peasants[2].setPosition(850, 500);\n    //peasants[2].setZOrder(1);\n    //console.log(peasants);\n",
               "parameterObjects": "peasant"
             }
           ]
@@ -2483,26 +2483,14 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "If left mosue button is released and no path is found, set text \"I can't go there\"",
+          "comment": "If left mousue button is released and no path is found, set text \"I can't go there\"",
           "comment2": ""
         },
         {
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "MouseButtonReleased"
-              },
-              "parameters": [
-                "",
-                "Right"
-              ],
-              "subInstructions": []
-            }
-          ],
+          "conditions": [],
           "actions": [],
           "events": [
             {
@@ -2812,7 +2800,15 @@
               "subInstructions": []
             }
           ],
-          "events": []
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "\nvar townHallId = objects[0]._nameId;\n\nvar messageBody = new MCreationRequestBody(townHallId, \"worker\");\n\ngdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody );",
+              "parameterObjects": "TownHall"
+            }
+          ]
         },
         {
           "disabled": false,
@@ -3314,13 +3310,6 @@
           "conditions": [],
           "actions": [],
           "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::JsCode",
-          "inlineCode": "runtimeScene.setBackgroundColor(100,100,240);\nruntimeScene.createObject(\"peasant\");",
-          "parameterObjects": ""
         }
       ],
       "layers": [

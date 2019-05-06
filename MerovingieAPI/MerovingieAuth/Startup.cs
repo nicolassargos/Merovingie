@@ -50,7 +50,7 @@ namespace MerovingieAuth
 
             services.AddTransient<IEmailSender, EmailSender>();
             
-            services.AddSignalR();
+            //services.AddSignalR();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

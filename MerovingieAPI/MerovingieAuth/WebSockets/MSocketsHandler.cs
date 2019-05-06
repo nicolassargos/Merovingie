@@ -1,5 +1,6 @@
 ﻿using AoC.Api.Domain;
 using Merovingie.Models;
+using AoC.Api.Domain.UseCases;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -15,6 +16,13 @@ namespace Merovingie
 {
     public class MSocketHandler
     {
+        private readonly GameManager _gameManager;
+
+        public MSocketHandler()
+        {
+            _gameManager = new GameManager();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -28,10 +36,11 @@ namespace Merovingie
 
             while (!result.CloseStatus.HasValue)
             {
-                var receivedObject = GetMessageFromBytes(buffer);
+                var messageReceived = InterpretMessage(buffer);
 
+                Array.Clear(buffer, 0, buffer.Length);
 
-                var sentObject = SetBytesFromMessage(receivedObject);
+                var sentObject = SetBytesFromMessage(messageReceived);
 
                 await socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,
                     true, CancellationToken.None);
@@ -40,6 +49,27 @@ namespace Merovingie
             }
 
             await socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+        }
+
+        private MMessageModel InterpretMessage(byte[] buffer)
+        {
+            var messageReceived = GetMessageFromBytes(buffer);
+
+            MMessageModel result;
+
+            switch (messageReceived.Type)
+            {
+                // GAMECOMMAND
+                case MessageTypes.CREATION_REQUEST:
+                    result = new MMessageModel(MessageTypes.CREATION_ACCEPTED, "message de retour");
+                    break;
+                // DEFAULT
+                default:
+                    result = new MMessageModel(MessageTypes.INFO, "message incomprehensible");
+                    break;
+            }
+
+            return result;
         }
 
 
