@@ -33,6 +33,31 @@ namespace AoC.Api.Domain.UseCases
                 throw;
             }
         }
+
+        /// <summary>
+        /// Creates worker from a building Id
+        /// TODO: recupérer le building depuis la liste des buildings via son id
+        /// </summary>
+        /// <param name="creatorId"></param>
+        public void CreateWorker(int creatorId)
+        {
+            // TODO: remplacer par ce code
+            // this.BuildingList.FirstOrDefault(bld => bld.Id == creatorId);
+
+            var creator = this.BuildingList.OfType<TownHall>().FirstOrDefault();
+
+            try
+            {
+                var worker = new Worker();
+                CheckFreeSlotInPopulation(worker);
+                RemoveResourcesFromStock(worker);
+                creator.LaunchProduction(worker, ValidateWorkerCreation);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         
 
 

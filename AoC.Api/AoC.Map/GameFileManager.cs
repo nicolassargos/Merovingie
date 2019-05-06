@@ -76,12 +76,12 @@ namespace AoC.MerovingieFileManager
         public static IGameDescriptor ReadGame(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("ReadGame: File name is empty");
-            if (fileName.Substring(fileName.Length-4) != ".xml") throw new FormatException("ReadGame: File name has no valid extension");
+            if (System.IO.Path.GetExtension(fileName) != ".xml") throw new FormatException("ReadGame: File name has no valid extension");
 
             IGameDescriptor game = null;
             string path = GetFullPath(fileName);
 
-            if (FileSystemDI.File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
+            if (!FileSystemDI.File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
 
             System.Xml.Serialization.XmlSerializer writer =
                 new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
@@ -93,10 +93,10 @@ namespace AoC.MerovingieFileManager
                     game = (IGameDescriptor)writer.Deserialize(fileStream);
                 }
             }
-            catch
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             
             return game;
@@ -143,8 +143,9 @@ namespace AoC.MerovingieFileManager
         public static string GetFullPath(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException($"GetFullPath: File name {fileName} is empty");
+            if (string.IsNullOrEmpty(Path.GetExtension(fileName))) throw new ArgumentException($"GetFullPath: File name {fileName} does not have a valid extension");
 
-            return System.IO.Path.Combine(GameFolder, fileName + GAMEFILE_EXTENSION);
+            return System.IO.Path.Combine(GameFolder, fileName);
         }
 
         /// <summary>

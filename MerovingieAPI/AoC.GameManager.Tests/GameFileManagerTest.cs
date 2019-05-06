@@ -184,18 +184,16 @@ namespace AoC.MerovingieFileManager.Tests
         public void ReadGame_ThrowFileNotFoundException_IfFileDoesntExist()
         {
             IGameDescriptor gameDescriptor = new GameDescriptor();
-            string fileName = "qsdfghjklm123456789";
+            string fileName = "qsdfghjklm123456789.xml";
 
             var mockFileSystem = new MockFileSystem();
             GameFileManager.FileSystemDI = mockFileSystem;
 
             // Renvoie ~/qsdfghjklm123456789.xml
-            string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
+            //string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
 
-            // Vérifie le fichier de nom ~/qsdfghjklm123456789.xml.xml
-            Assert.ThrowsException<FileNotFoundException>(() => GameFileManager.ReadGame(newFilePath));
-
-            CleanDirectory(newFilePath);
+            // Vérifie le fichier de nom ~/qsdfghjklm123456789
+            Assert.ThrowsException<FileNotFoundException>(() => GameFileManager.ReadGame(fileName));
         }
 
         #endregion

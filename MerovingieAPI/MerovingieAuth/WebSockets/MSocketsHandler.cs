@@ -11,12 +11,13 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AoC.MerovingieFileManager;
 
 namespace Merovingie
 {
     public class MSocketHandler
     {
-        private readonly GameManager _gameManager;
+        private GameManager _gameManager;
 
         public MSocketHandler()
         {
@@ -59,8 +60,32 @@ namespace Merovingie
 
             switch (messageReceived.Type)
             {
+                // GAME_CONNECT
+                case MessageTypes.GAMECONNECT_DEMAND:
+                    try
+                    {
+                        var gameNameToLoad = messageReceived.Message.ToString();
+                        var gameDescriptor = GameFileManager.ReadGame(gameNameToLoad);
+                        _gameManager = new GameManager(gameDescriptor);
+                    }
+                    catch (Exception)
+                    {
+                        throw new ArgumentException("InterpretMessage: message of connection demand received is incorrectly formatted", messageReceived.Message.toString());
+                    }
+                    result = new MMessageModel(MessageTypes.GAMECONNECT_OK, "");
+                    break;
                 // GAMECOMMAND
                 case MessageTypes.CREATION_REQUEST:
+                    try
+                    {
+                        var data = JsonConvert.DeserializeObject<MCreationRequestBodyModel>(Convert.ToString(messageReceived.Message));
+                        _gameManager.CreateWorker(data.CreatorId);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw new ArgumentException("InterpretMessage: message of creation received is incorrectly formatted", messageReceived.Message.toString());
+                    }
                     result = new MMessageModel(MessageTypes.CREATION_ACCEPTED, "message de retour");
                     break;
                 // DEFAULT

@@ -1,15 +1,21 @@
 ﻿function MMessage(type, message) {
 
+    if (!type) console.log('McreationRequestBody: creator is null');
+    if (!message) console.log('McreationRequestBody: productable is null');
+
     this.type = type;
     this.message = message;
 
     return this;
 };
 
-function MCreationRequestBody(creator, productable) {
+function MCreationRequestBody(creatorId, productableName) {
 
-    this.creator = creator;
-    this.productable = productable;
+    if (!creatorId) console.log('McreationRequestBody: creatorId is null');
+    if (!productableName) console.log('McreationRequestBody: productableName is null');
+
+    this.creatorId = creatorId;
+    this.productableName = productableName;
 
     return this;
 }

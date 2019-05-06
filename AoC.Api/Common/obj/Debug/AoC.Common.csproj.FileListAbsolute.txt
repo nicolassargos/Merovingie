@@ -218,3 +218,4 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\System.Xml.XPath
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csprojAssemblyReference.cache
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CopyComplete
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CopyComplete

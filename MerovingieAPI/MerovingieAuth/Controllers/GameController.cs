@@ -67,8 +67,7 @@ namespace Merovingie.Controllers
         [Route("Load/{gamePathToLoad}")]
         public IActionResult Load(string gamePathToLoad)
         {
-
-            return Redirect($"~/{configuration.GetValue<string>("GameEngine")}");
+            return Redirect($"/{configuration.GetValue<string>("GameEngine")}?name={gamePathToLoad}");
         }
 
         /// <summary>

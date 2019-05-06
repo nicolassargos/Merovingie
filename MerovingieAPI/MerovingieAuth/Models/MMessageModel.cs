@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace Merovingie.Models
 {
 
     public class MMessageModel
     {
-        public string Message { get; set; }
+        public dynamic Message { get; set; }
         public MessageTypes Type { get; set; }
 
-        public MMessageModel(MessageTypes type, string message)
+        public MMessageModel(MessageTypes type, dynamic message)
         {
             Type = type;
             Message = message;
