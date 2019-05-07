@@ -93,7 +93,7 @@ namespace AoC.Api.Domain.UseCases
             
             catch (NotEnoughUnitSlotsAvailableException)
             {
-                throw;
+                throw new NotEnoughUnitSlotsAvailableException();
             }
         }
 

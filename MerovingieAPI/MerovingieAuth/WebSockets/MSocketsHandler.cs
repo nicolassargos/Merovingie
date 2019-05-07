@@ -1,4 +1,5 @@
-﻿using AoC.Api.Domain;
+﻿using Common.Exceptions;
+using AoC.Api.Domain;
 using Merovingie.Models;
 using AoC.Api.Domain.UseCases;
 using Microsoft.AspNetCore.Http;
@@ -47,15 +48,6 @@ namespace Merovingie
 
                 Array.Clear(buffer, 0, buffer.Length);
 
-                //if (messageReceived != null)
-                //{
-                //    var sentObject = SetBytesFromMessage(messageReceived);
-
-                //    await _socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,
-                //        true, CancellationToken.None);
-                //}
-                
-
                 result = await _socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             }
 
@@ -91,14 +83,16 @@ namespace Merovingie
                     {
                         var data = JsonConvert.DeserializeObject<MCreationRequestBodyModel>(Convert.ToString(messageReceived.Message));
                         _gameManager.CreateWorker(data.creatorId, data.positionX, data.positionY);
-
+                    }
+                    catch(NotEnoughUnitSlotsAvailableException slex)
+                    {
+                        SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDRESOURCES, ""));
                     }
                     catch (Exception ex)
                     {
 
                         throw new ArgumentException("InterpretMessage: message of creation received is incorrectly formatted", messageReceived.Message.toString());
                     }
-                    //result = new MMessageModel(MessageTypes.CREATION_ACCEPTED, "message de retour");
                     break;
                 // DEFAULT
                 default:

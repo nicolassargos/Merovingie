@@ -34,6 +34,8 @@ namespace Merovingie.Models
         CREATION_ACCEPTED,
         CREATION_ABORTED,
         CREATION_COMPLETED,
+        CREATION_REFUSEDRESOURCES,
+        CREATION_REFUSEDPOPULATION,
         CREATION_ERROR,
         INFO
     }
