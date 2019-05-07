@@ -308,13 +308,6 @@ gdjs.RuntimeGamePixiRenderer.prototype.bindStandardEvents = function(manager, wi
             gdjs.InputManager.MOUSE_LEFT_BUTTON);
         return false;
     };
-    renderer.view.onmouseout = function(e){
-        manager.onMouseButtonReleased(gdjs.InputManager.MOUSE_LEFT_BUTTON);
-        manager.onMouseButtonReleased(gdjs.InputManager.MOUSE_RIGHT_BUTTON);
-        manager.onMouseButtonReleased(gdjs.InputManager.MOUSE_MIDDLE_BUTTON);
-        manager.onMouseWheel(0);
-        return false;
-    };
     window.addEventListener('click', function(e) {
         if (window.focus !== undefined) window.focus();
         e.preventDefault();
@@ -372,7 +365,7 @@ gdjs.RuntimeGamePixiRenderer.prototype.getWindowTitle = function() {
 gdjs.RuntimeGamePixiRenderer.prototype.startGameLoop = function(fn) {
     requestAnimationFrame(gameLoop);
 
-    var oldTime = null;
+    var oldTime = 0;
     function gameLoop(time) {
         var dt = oldTime ? time - oldTime : 0;
         oldTime = time;

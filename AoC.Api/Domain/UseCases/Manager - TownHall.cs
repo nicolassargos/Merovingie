@@ -3,6 +3,7 @@ using AoC.Api.Services;
 using AoC.Api.EventArgs;
 using Common.Exceptions;
 using Common.Interfaces;
+using Common.Struct;
 using System;
 using System.Linq;
 
@@ -39,16 +40,18 @@ namespace AoC.Api.Domain.UseCases
         /// TODO: recupérer le building depuis la liste des buildings via son id
         /// </summary>
         /// <param name="creatorId"></param>
-        public void CreateWorker(int creatorId)
+        public void CreateWorker(int creatorId, int positionX, int positionY)
         {
-            // TODO: remplacer par ce code
+            // TODO: remplacer par ce code quand on charge 
+            // correctement la partie depuis un fichier XML
             // this.BuildingList.FirstOrDefault(bld => bld.Id == creatorId);
 
             var creator = this.BuildingList.OfType<TownHall>().FirstOrDefault();
 
             try
             {
-                var worker = new Worker();
+                var position = new Coordinates { x = positionX, y = positionY };
+                var worker = new Worker(position);
                 CheckFreeSlotInPopulation(worker);
                 RemoveResourcesFromStock(worker);
                 creator.LaunchProduction(worker, ValidateWorkerCreation);

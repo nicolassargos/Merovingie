@@ -12,12 +12,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AoC.MerovingieFileManager;
+using AoC.Api.EventArgs;
 
 namespace Merovingie
 {
     public class MSocketHandler
     {
         private GameManager _gameManager;
+        private WebSocket _socket;
 
         public MSocketHandler()
         {
@@ -31,32 +33,38 @@ namespace Merovingie
         /// <param name="socket"></param>
         /// <returns></returns>
         public async Task Listen(HttpContext context, WebSocket socket)
-        {  
+        {
+            _socket = socket;
             var buffer = new byte[6 * 1024];
-            WebSocketReceiveResult result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            if (_socket == null) throw new ArgumentNullException("Socket Listen: socket argument is null");
+
+            WebSocketReceiveResult result = await _socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
 
             while (!result.CloseStatus.HasValue)
             {
-                var messageReceived = InterpretMessage(buffer);
+                InterpretMessage(buffer);
 
                 Array.Clear(buffer, 0, buffer.Length);
 
-                var sentObject = SetBytesFromMessage(messageReceived);
+                //if (messageReceived != null)
+                //{
+                //    var sentObject = SetBytesFromMessage(messageReceived);
 
-                await socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,
-                    true, CancellationToken.None);
+                //    await _socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,
+                //        true, CancellationToken.None);
+                //}
+                
 
-                result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                result = await _socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             }
 
-            await socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            await _socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
         }
 
-        private MMessageModel InterpretMessage(byte[] buffer)
+        private void InterpretMessage(byte[] buffer)
         {
             var messageReceived = GetMessageFromBytes(buffer);
-
-            MMessageModel result;
 
             switch (messageReceived.Type)
             {
@@ -66,35 +74,63 @@ namespace Merovingie
                     {
                         var gameNameToLoad = messageReceived.Message.ToString();
                         var gameDescriptor = GameFileManager.ReadGame(gameNameToLoad);
+                        // TODO: extraire une méthode initializeGameManager
                         _gameManager = new GameManager(gameDescriptor);
+                        _gameManager.ResourcesChanged += SendResourcesChanged;
+                        _gameManager.PopulationChanged += SendPopulationChanged;
                     }
                     catch (Exception)
                     {
                         throw new ArgumentException("InterpretMessage: message of connection demand received is incorrectly formatted", messageReceived.Message.toString());
                     }
-                    result = new MMessageModel(MessageTypes.GAMECONNECT_OK, "");
+                    SendMessage(new MMessageModel(MessageTypes.GAMECONNECT_OK, ""));
                     break;
                 // GAMECOMMAND
                 case MessageTypes.CREATION_REQUEST:
                     try
                     {
                         var data = JsonConvert.DeserializeObject<MCreationRequestBodyModel>(Convert.ToString(messageReceived.Message));
-                        _gameManager.CreateWorker(data.CreatorId);
+                        _gameManager.CreateWorker(data.creatorId, data.positionX, data.positionY);
+
                     }
                     catch (Exception ex)
                     {
 
                         throw new ArgumentException("InterpretMessage: message of creation received is incorrectly formatted", messageReceived.Message.toString());
                     }
-                    result = new MMessageModel(MessageTypes.CREATION_ACCEPTED, "message de retour");
+                    //result = new MMessageModel(MessageTypes.CREATION_ACCEPTED, "message de retour");
                     break;
                 // DEFAULT
                 default:
-                    result = new MMessageModel(MessageTypes.INFO, "message incomprehensible");
+                    SendMessage(new MMessageModel(MessageTypes.INFO, "message incomprehensible"));
                     break;
             }
 
-            return result;
+            //return result;
+        }
+
+        private void SendPopulationChanged(object sender, PopulationChangedEventArgs e)
+        {
+            var messageBody = JsonConvert.SerializeObject(e.Unit);
+
+            MMessageModel messageToSend = new MMessageModel(MessageTypes.CREATION_COMPLETED, messageBody);
+            SendMessage(messageToSend);
+        }
+
+        private void SendResourcesChanged(object sender, ResourcesChangedArgs e)
+        {
+            var messageBody = JsonConvert.SerializeObject(e.CurrentResources);
+
+            MMessageModel messageToSend = new MMessageModel(MessageTypes.CREATION_ACCEPTED, messageBody);
+            SendMessage(messageToSend);
+        }
+
+        public async Task SendMessage(MMessageModel messageToSend)
+        {
+            var sentObject = SetBytesFromMessage(messageToSend);
+
+            await _socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,
+                    true, CancellationToken.None);
         }
 
 
@@ -114,11 +150,7 @@ namespace Merovingie
 
         private byte[] SetBytesFromMessage(MMessageModel message)
         {
-            message.Message = "toto";
-
             var jsonMessage = JsonConvert.SerializeObject(message);
-
-
 
             return Encoding.ASCII.GetBytes(jsonMessage);
         }

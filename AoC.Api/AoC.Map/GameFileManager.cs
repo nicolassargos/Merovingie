@@ -42,8 +42,15 @@ namespace AoC.MerovingieFileManager
         /// <param name="fileName"></param>
         public static string SaveGame(IGameDescriptor game, string fileName)
         {
-            if (game == null) throw new ArgumentNullException("GameDescriptor cannot be null");
-            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("File name cannot be null");
+            if (game == null) throw new ArgumentNullException("SaveGame: GameDescriptor cannot be null");
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("SaveGame: File name cannot be null");
+
+            var extension = FileSystemDI.Path.GetExtension(fileName);
+            if (extension != GAMEFILE_EXTENSION)
+            {
+                if (string.IsNullOrEmpty(extension)) fileName += GAMEFILE_EXTENSION;
+                else throw new FormatException($"SaveGame: file extension {extension} is incorrect. Use xml");
+            }
 
             // Initialise le Serializer
             System.Xml.Serialization.XmlSerializer writer =

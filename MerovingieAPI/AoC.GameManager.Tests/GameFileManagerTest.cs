@@ -96,7 +96,7 @@ namespace AoC.MerovingieFileManager.Tests
             // Checks if "newGame.xml" already exists
             int nbFileOccurences_beforeSave = GameFileManager.GetNumberOfFileIterations(fileName);
 
-            string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
+            string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName + ".xml");
 
             int nbFileOccurences_afterSave = GameFileManager.GetNumberOfFileIterations(fileName);
 
@@ -150,7 +150,10 @@ namespace AoC.MerovingieFileManager.Tests
         public void ReadGame_ThrowFormatException_IfFilenameIsNotXML()
         {
             IGameDescriptor gameDescriptor = new GameDescriptor();
-            string fileName = "qsdfghjklm123456789";
+            string fileName = "qsdfghjklm123456789.xml";
+
+            var mockFileSystem = new MockFileSystem();
+            GameFileManager.FileSystemDI = mockFileSystem;
 
             //
             string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
@@ -167,7 +170,10 @@ namespace AoC.MerovingieFileManager.Tests
         public void ReadGame_ThrowFormatException_IfFilenameIsMissingExtension()
         {
             IGameDescriptor gameDescriptor = new GameDescriptor();
-            string fileName = "qsdfghjklm123456789";
+            string fileName = "qsdfghjklm123456789.xml";
+
+            var mockFileSystem = new MockFileSystem();
+            GameFileManager.FileSystemDI = mockFileSystem;
 
             //
             string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);

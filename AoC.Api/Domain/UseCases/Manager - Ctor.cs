@@ -81,6 +81,8 @@ namespace AoC.Api.Domain.UseCases
 
             foreach (var carry in game.Carries)
                 BuildingList.Add(carry);
+
+            MaxPopulation = 4 * game.Farms.Count;
         }
 
         #endregion

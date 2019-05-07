@@ -126,6 +126,15 @@ namespace AoC.Api.Domain
             }
         }
 
+        public Worker(Coordinates position)
+            : this()
+        {
+            if (position.x > 0 && position.y > 0)
+            {
+                Position = position;
+            }
+        }
+
         #endregion
 
 
