@@ -19,6 +19,7 @@ namespace Merovingie
 {
     public class MSocketHandler
     {
+        private GameDescriptor _gameDescriptor;
         private GameManager _gameManager;
         private WebSocket _socket;
 
@@ -65,9 +66,9 @@ namespace Merovingie
                     try
                     {
                         var gameNameToLoad = messageReceived.Message.ToString();
-                        var gameDescriptor = GameFileManager.ReadGame(gameNameToLoad);
+                        _gameDescriptor = GameFileManager.ReadGame(gameNameToLoad);
                         // TODO: extraire une méthode initializeGameManager
-                        _gameManager = new GameManager(gameDescriptor);
+                        _gameManager = new GameManager(_gameDescriptor);
                         _gameManager.ResourcesChanged += SendResourcesChanged;
                         _gameManager.PopulationChanged += SendPopulationChanged;
                     }
@@ -77,8 +78,21 @@ namespace Merovingie
                     }
                     SendMessage(new MMessageModel(MessageTypes.GAMECONNECT_OK, ""));
                     break;
+                // FILELOAD
+                case MessageTypes.FILELOAD_REQUESTED:
+                    try
+                    {
+                        var data = JsonConvert.SerializeObject(_gameDescriptor);
+                        SendMessage(new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, data));
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                    break;
                 // GAMECOMMAND
-                case MessageTypes.CREATION_REQUEST:
+                case MessageTypes.CREATION_REQUESTED:
                     try
                     {
                         var data = JsonConvert.DeserializeObject<MCreationRequestBodyModel>(Convert.ToString(messageReceived.Message));
@@ -99,7 +113,7 @@ namespace Merovingie
                     break;
                 // DEFAULT
                 default:
-                    SendMessage(new MMessageModel(MessageTypes.INFO, "message incomprehensible"));
+                    SendMessage(new MMessageModel(MessageTypes.INFO, "unknown message type"));
                     break;
             }
 
