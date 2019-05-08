@@ -52,7 +52,7 @@ namespace AoC.Api.Domain.UseCases
         private void IncreasePopulationLimit(Farm farm)
         {
             MaxPopulation += farm.PopulationIncrement;
-            OnMaxPopulationChanged(this, new MaxPopulationChangedArgs { CurrentMaxPopulation = MaxPopulation });
+            MaxPopulationChanged(this, new MaxPopulationChangedArgs { CurrentMaxPopulation = MaxPopulation });
         }
 
 

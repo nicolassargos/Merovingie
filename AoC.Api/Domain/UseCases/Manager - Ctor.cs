@@ -18,8 +18,10 @@ namespace AoC.Api.Domain.UseCases
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler<PopulationChangedEventArgs> PopulationChanged;
         public event EventHandler<ResourcesChangedArgs> ResourcesChanged;
-        public event EventHandler<MaxPopulationChangedArgs> OnMaxPopulationChanged;
-        public event EventHandler<BuildingCreatedEventArgs> OnBuildingCreated;
+        public event EventHandler<MaxPopulationChangedArgs> MaxPopulationChanged;
+        //TODO: créer la classe des args et changer son nom
+        public event EventHandler<MaxPopulationChangedArgs> MaxPopulationReached;
+        public event EventHandler<BuildingCreatedEventArgs> BuildingCreated;
 
         #endregion
 

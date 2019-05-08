@@ -92,9 +92,8 @@ namespace AoC.Interface
             manager = new GameManager(game);
 
             manager.PopulationChanged += OnPopulationChanged;
-            //manager.ResourcesChanged += OnResourcesChanged;
-            manager.OnMaxPopulationChanged += OnMaxPopulationChanged;
-            manager.OnBuildingCreated += OnBuildingCreated;
+            manager.MaxPopulationChanged += OnMaxPopulationChanged;
+            manager.BuildingCreated += OnBuildingCreated;
 
             foreach (var carry in game.Carries)
             {

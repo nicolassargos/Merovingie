@@ -15,7 +15,7 @@
     "packageName": "com.example.gamename",
     "projectFile": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
     "scaleMode": "linear",
-    "sizeOnStartupMode": "adaptWidth",
+    "sizeOnStartupMode": "",
     "useExternalSourceFiles": false,
     "version": "1.0.0",
     "winExecutableFilename": "",
@@ -218,13 +218,6 @@
         "userAdded": true
       },
       {
-        "file": "D:/Zik/[Nipponsei] Ghost in the Shell Stand Alone Complex Original Soundtrack 2 - be human/03 patch me.mp3",
-        "kind": "audio",
-        "metadata": "",
-        "name": "D:\\Zik\\[Nipponsei] Ghost in the Shell Stand Alone Complex Original Soundtrack 2 - be human\\03 patch me.mp3",
-        "userAdded": true
-      },
-      {
         "file": "sounds/peasant-onclick01.mp3",
         "kind": "audio",
         "metadata": "",
@@ -264,13 +257,58 @@
         "name": "images\\town-hall-1.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/icons/gold-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\icons\\gold-icon.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/icons/stone-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\icons\\stone-icon.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/icons/wood-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\icons\\wood-icon.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
   },
   "objects": [],
   "objectsGroups": [],
-  "variables": [],
+  "variables": [
+    {
+      "name": "ResourcesStock",
+      "children": [
+        {
+          "name": "GoldStock",
+          "value": "0"
+        },
+        {
+          "name": "StoneStock",
+          "value": "0"
+        },
+        {
+          "name": "WoodStock",
+          "value": "0"
+        }
+      ]
+    }
+  ],
   "layouts": [
     {
       "b": 209,
@@ -294,9 +332,9 @@
         "gridOffsetY": 0,
         "gridR": 158,
         "gridWidth": 32,
-        "snap": true,
-        "windowMask": false,
-        "zoomFactor": 0.568
+        "snap": false,
+        "windowMask": true,
+        "zoomFactor": 0.688
       },
       "objectsGroups": [],
       "variables": [],
@@ -1734,8 +1772,8 @@
           "locked": false,
           "name": "SelectedMarker",
           "width": 0,
-          "x": 1164,
-          "y": 68,
+          "x": 1184,
+          "y": 160,
           "zOrder": 23,
           "numberProperties": [],
           "stringProperties": [],
@@ -1785,11 +1823,121 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "GoldStockLabel",
+          "width": 96,
+          "x": 704,
+          "y": 40,
+          "zOrder": 28,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": [
+            {
+              "name": "Variable",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "StoneStockLabel",
+          "width": 96,
+          "x": 896,
+          "y": 40,
+          "zOrder": 29,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "WoodStockLabel",
+          "width": 96,
+          "x": 1088,
+          "y": 40,
+          "zOrder": 30,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "GoldStockIcon",
+          "width": 64,
+          "x": 800,
+          "y": 32,
+          "zOrder": 31,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "StoneStockIcon",
+          "width": 64,
+          "x": 992,
+          "y": 32,
+          "zOrder": 32,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "WoodStockIcon",
+          "width": 64,
+          "x": 1184,
+          "y": 32,
+          "zOrder": 33,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "ErrorLabel",
+          "width": 544,
+          "x": 704,
+          "y": 224,
+          "zOrder": 34,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
         {
-          "name": "peasant",
+          "name": "worker",
           "type": "Sprite",
           "updateIfNotVisible": false,
           "variables": [
@@ -2190,6 +2338,192 @@
               ]
             }
           ]
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "GoldStockLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "goldStock",
+          "font": "",
+          "characterSize": 40,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "StoneStockLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "stoneStock",
+          "font": "",
+          "characterSize": 40,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "WoodStockLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "woodStock",
+          "font": "",
+          "characterSize": 40,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "name": "GoldStockIcon",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\icons\\gold-icon.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "StoneStockIcon",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\icons\\stone-icon.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "WoodStockIcon",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\icons\\wood-icon.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "ErrorLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "Text",
+          "font": "",
+          "characterSize": 40,
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 255
+          }
         }
       ],
       "events": [
@@ -2247,7 +2581,7 @@
                 "value": "ChangePlan"
               },
               "parameters": [
-                "peasant",
+                "worker",
                 "=",
                 "1"
               ],
@@ -2262,6 +2596,16 @@
                 "BuildButton"
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "ErrorLabel"
+              ],
+              "subInstructions": []
             }
           ],
           "events": [
@@ -2269,7 +2613,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\n    function MerovingieWebSocket() {\n        this.scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n        this.port = document.location.port ? (\":\" + document.location.port) : \"\";\n\n        // Variable de connexion qui contient l'adresse du serveur\n        this.connectionUrl = this.scheme + \"://\" + document.location.hostname + this.port + \"/ws\";\n\n        // Connecte le websocket au serveur\n        this.socket = new WebSocket(this.connectionUrl);\n\n        // Ouverture du socket\n        this.socket.onopen = function () {\n            if (!this || this.readyState !== WebSocket.OPEN) {\n                alert(\"meroSocket is not connected\");\n                return;\n            }\n\n            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, 'playerName');\n\n            if (this.OPEN)\n            {\n                this.send(JSON.stringify(connectMessage));\n            }\n        }\n\n        this.socket.onmessage = function (event) {\n            var messageReceived = JSON.stringify(JSON.parse(event.data));\n            alert(messageReceived);\n        }\n\n        this.socket.onclose = function(event) {\n            console.log(JSON.stringify(JSON.parse(event.data)));\n            // this.socket = new WebSocket(this.connectionUrl);\n        }\n\n        \n    }\n\n    // Méthode d'envoi de données\n    MerovingieWebSocket.prototype.send = function(messageType, body) {\n\n        if (!messageType) {\n            alert('Message type is undefined of null');\n            return;\n        }\n\n        if (!body) {\n            alert('Body of message is undefined or null');\n        }\n\n        var message = new MMessage(messageType, body);\n\n        this.socket.send(JSON.stringify(message));\n    }\n\n    gdjs.meroSocket = new MerovingieWebSocket();\n    \n\n\n\n    //runtimeScene.createObject(\"peasant\");\n    //let peasants = runtimeScene.getObjects(\"peasant\");\n    //peasants[2].setPosition(850, 500);\n    //peasants[2].setZOrder(1);\n    //console.log(peasants);\n",
+              "inlineCode": "\n    function MerovingieWebSocket() {\n        this.scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n        this.port = document.location.port ? (\":\" + document.location.port) : \"\";\n        const urlParams = new URLSearchParams(window.location.search);\n        var gameName = urlParams.get('name');\n\n        // Variable de connexion qui contient l'adresse du serveur\n        this.connectionUrl = this.scheme + \"://\" + document.location.hostname + this.port + \"/ws\";\n\n        // Connecte le websocket au serveur\n        this.socket = new WebSocket(this.connectionUrl);\n\n        // Ouverture du socket\n        this.socket.onopen = function () {\n            if (!this || this.readyState !== WebSocket.OPEN) {\n                alert(\"meroSocket is not connected\");\n                return;\n            }\n\n            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, gameName);\n\n            if (this.OPEN)\n            {\n                this.send(JSON.stringify(connectMessage));\n            }\n        }\n\n        this.socket.onmessage = function (event) {\n            var messageReceived = JSON.parse(event.data);\n            console.log(messageReceived);\n\n            var message = new MMessage(messageReceived.Type, messageReceived.Message);\n\n            if (!message)\n                console.error(\"Socket OnMessage: the format of the message is not correct :\" + JSON.stringify(messageReceived));\n            else\n                gdjs.ProcessMessage(message);\n\n        }\n\n        this.socket.onclose = function(event) {\n            console.log(JSON.parse(event.data));\n            // this.socket = new WebSocket(this.connectionUrl);\n        }\n    }\n\n    // Méthode d'envoi de données\n    MerovingieWebSocket.prototype.send = function(messageType, body) {\n\n        if (!messageType) {\n            alert('Message type is undefined of null');\n            return;\n        }\n\n        if (!body) {\n            alert('Body of message is undefined or null');\n        }\n\n        var message = new MMessage(messageType, body);\n\n        this.socket.send(JSON.stringify(message));\n    }\n\n    gdjs.meroSocket = new MerovingieWebSocket();\n    \n    gdjs.ProcessMessage = function(messageToInterpret)\n    {\n        console.log(messageToInterpret.message);\n\n        var messageBody = '';\n\n        if (messageToInterpret.message && messageToInterpret.message.length > 0)\n            messageBody = JSON.parse(messageToInterpret.message);\n\n        switch(messageToInterpret.type) {\n            \n            case MessageTypes.CREATION_REFUSEDPOPULATION:\n                gdjs.displayError(\"Not enough farms!\");\n                break;\n\n            case MessageTypes.CREATION_REFUSEDRESOURCES:\n                gdjs.displayError(\"Not enough resources!\");\n                break;\n\n            case MessageTypes.CREATION_ACCEPTED:\n                gdjs.updateStock(messageBody);\n                break;\n\n            case MessageTypes.CREATION_COMPLETED:\n                gdjs.createWorker(null, messageBody.Position.x, messageBody.Position.y);\n                break;\n            \n            default: break;\n        }\n    }\n\n    // Fonction de création d'un worker\n    gdjs.createWorker = function(unit, x, y) {\n        var newWorker = runtimeScene.createObject(\"worker\");\n        newWorker.setPosition(x, y);\n        newWorker.setZOrder(1);\n    }\n\n    // Fonction de mise à jour du stock\n    gdjs.updateStock = function(stock)\n    {\n        var goldStockLabel = runtimeScene.getObjects(\"GoldStockLabel\");\n        var stoneStockLabel = runtimeScene.getObjects(\"StoneStockLabel\");\n        var woodStockLabel = runtimeScene.getObjects(\"WoodStockLabel\");\n\n        if (goldStockLabel.length > 0) goldStockLabel[0].setString(stock.Gold);\n        if (stoneStockLabel.length > 0) stoneStockLabel[0].setString(stock.Stone);\n        if (woodStockLabel.length > 0) woodStockLabel[0].setString(stock.Wood);\n    }\n\n    // Fonction d'affichage d'erreur sur l'interface\n    gdjs.displayError = function(errorMessage)\n    {\n        var errorLabel = runtimeScene.getObjects(\"ErrorLabel\");\n        errorLabel[0].setString(errorMessage);\n        errorLabel[0].hide(false);\n        setTimeout(function() {\n            errorLabel[0].hide(true);\n        }, 2000);\n    }\n    \n    \n",
               "parameterObjects": "peasant"
             }
           ]
@@ -2300,7 +2644,7 @@
                 "value": "PathfindingBehavior::Speed"
               },
               "parameters": [
-                "peasant",
+                "worker",
                 "Pathfinding",
                 ">",
                 "0"
@@ -2358,7 +2702,7 @@
                 "value": "PathfindingBehavior::Speed"
               },
               "parameters": [
-                "peasant",
+                "worker",
                 "Pathfinding",
                 "=",
                 "0"
@@ -2435,7 +2779,7 @@
                     "value": "VarObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Selected",
                     "=",
                     "1"
@@ -2458,7 +2802,7 @@
                     "value": "PathfindingBehavior::SetDestination"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Pathfinding",
                     "",
                     "MouseX(\"\",0)",
@@ -2504,7 +2848,7 @@
                     "value": "PathfindingBehavior::PathFound"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Pathfinding"
                   ],
                   "subInstructions": []
@@ -2557,9 +2901,9 @@
               "parameters": [
                 "message",
                 "=",
-                "peasant.X() + 25",
+                "worker.X() + 25",
                 "=",
-                "peasant.Y() - 20"
+                "worker.Y() - 20"
               ],
               "subInstructions": []
             }
@@ -2772,40 +3116,13 @@
               "subInstructions": []
             }
           ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Create"
-              },
-              "parameters": [
-                "",
-                "peasant",
-                "TownHall.X(\"Center\")+200",
-                "TownHall.Y(\"Center\")",
-                ""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ChangePlan"
-              },
-              "parameters": [
-                "peasant",
-                "=",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
+          "actions": [],
           "events": [
             {
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\nvar townHallId = objects[0]._nameId;\n\nvar messageBody = new MCreationRequestBody(townHallId, \"worker\");\n\ngdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody );",
+              "inlineCode": "\nvar townHall = objects.find(x => x.getVariables().get(\"Selected\").getAsNumber() === 1);\nvar townHallId = townHall.getNameId();\n\nvar messageBody = new MCreationRequestBody(townHallId, \"worker\", townHall.getX()+townHall.getWidth()+50,  townHall.getY()+ townHall.getHeight()+50);\n\ngdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody);",
               "parameterObjects": "TownHall"
             }
           ]
@@ -2855,7 +3172,7 @@
                     "value": "SourisSurObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "",
                     "",
                     ""
@@ -2868,7 +3185,7 @@
                     "value": "VarObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Selected",
                     "=",
                     "1"
@@ -2891,7 +3208,7 @@
                     "value": "ModVarObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Selected",
                     "=",
                     "0"
@@ -3019,7 +3336,7 @@
                     "value": "VarObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Selected",
                     "=",
                     "0"
@@ -3032,7 +3349,7 @@
                     "value": "SourisSurObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "",
                     "yes",
                     ""
@@ -3055,7 +3372,7 @@
                     "value": "ModVarObjet"
                   },
                   "parameters": [
-                    "peasant",
+                    "worker",
                     "Selected",
                     "=",
                     "1"
@@ -3242,7 +3559,7 @@
                 "value": "VarObjet"
               },
               "parameters": [
-                "peasant",
+                "worker",
                 "Selected",
                 "=",
                 "1"
@@ -3258,7 +3575,7 @@
               },
               "parameters": [
                 "SelectedMarker",
-                "peasant",
+                "worker",
                 "0",
                 "0"
               ],

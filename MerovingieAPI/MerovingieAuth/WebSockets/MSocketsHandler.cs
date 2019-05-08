@@ -86,12 +86,15 @@ namespace Merovingie
                     }
                     catch(NotEnoughUnitSlotsAvailableException slex)
                     {
+                        SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDPOPULATION, ""));
+                    }
+                    catch(NotEnoughResourcesException rex)
+                    {
                         SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDRESOURCES, ""));
                     }
                     catch (Exception ex)
                     {
-
-                        throw new ArgumentException("InterpretMessage: message of creation received is incorrectly formatted", messageReceived.Message.toString());
+                        SendMessage(new MMessageModel(MessageTypes.INFO, "InterpretMessage: message of creation received is incorrectly formatted"));
                     }
                     break;
                 // DEFAULT
