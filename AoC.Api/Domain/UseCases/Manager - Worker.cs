@@ -107,7 +107,6 @@ namespace AoC.Api.Domain.UseCases
 
             if (worker.IsWorking) worker.CancelAllActions();
         }
-
         #endregion
     }
 }

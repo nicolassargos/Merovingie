@@ -58,6 +58,7 @@
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="Exceptions\NotEnoughUnitSlotsAvailableException.cs" />
     <Compile Include="Exceptions\NoWorkerAvailableException.cs" />
+    <Compile Include="Exceptions\TranscriptionToDescriptorException.cs" />
     <Compile Include="Helpers\ResourceConverter.cs" />
     <Compile Include="Helpers\SerializableDictionary.cs" />
     <Compile Include="Interfaces\IBuilding.cs" />

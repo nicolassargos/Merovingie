@@ -47,18 +47,4 @@ namespace AoC.Api.Domain
             Resources = new SerializableDictionary<ResourcesType, int>();
         }
     }
-
-
-    public class GameDescriptorConverter : JsonConverter<GameDescriptor>
-    {
-        public override GameDescriptor ReadJson(JsonReader reader, Type objectType, GameDescriptor existingValue, bool hasExistingValue, JsonSerializer serializer)
-        {
-            return new GameDescriptor();
-        }
-
-        public override void WriteJson(JsonWriter writer, GameDescriptor value, JsonSerializer serializer)
-        {
-            writer.WriteValue(value.Carries);
-        }
-    }
 }

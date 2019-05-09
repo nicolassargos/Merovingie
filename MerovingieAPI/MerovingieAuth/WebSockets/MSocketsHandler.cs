@@ -19,8 +19,10 @@ namespace Merovingie
 {
     public class MSocketHandler
     {
+        
         private GameDescriptor _gameDescriptor;
         private GameManager _gameManager;
+        private string _gameName;
         private WebSocket _socket;
 
         public MSocketHandler()
@@ -65,8 +67,8 @@ namespace Merovingie
                 case MessageTypes.GAMECONNECT_DEMAND:
                     try
                     {
-                        var gameNameToLoad = messageReceived.Message.ToString();
-                        _gameDescriptor = GameFileManager.ReadGame(gameNameToLoad);
+                        _gameName = messageReceived.Message.ToString();
+                        _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
                         // TODO: extraire une méthode initializeGameManager
                         _gameManager = new GameManager(_gameDescriptor);
                         _gameManager.ResourcesChanged += SendResourcesChanged;
@@ -88,6 +90,16 @@ namespace Merovingie
                     catch (Exception ex)
                     {
 
+                        throw ex;
+                    }
+                    break;
+                case MessageTypes.FILESAVE_REQUESTED:
+                    try
+                    {
+                        GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
+                    }
+                    catch(Exception ex)
+                    {
                         throw ex;
                     }
                     break;

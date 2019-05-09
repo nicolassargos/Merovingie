@@ -179,21 +179,51 @@ namespace AoC.Api.Domain.UseCases
 
         #endregion
 
-        
+        #region Utils
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IGameDescriptor ToGameDescriptor()
+        {
+            var gameDescriptor = new GameDescriptor();
+            try
+            {
+                // Carries
+                gameDescriptor.Carries.AddRange(BuildingList.OfType<Carry>());
 
-        // This method is called by the Set accessor of each property.
-        // The CallerMemberName attribute that is applied to the optional propertyName
-        // parameter causes the property name of the caller to be substituted as an argument.
-        //private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        //{
+                // Trees
+                gameDescriptor.Trees.AddRange(BuildingList.OfType<Tree>());
 
-        //        if (PropertyChanged != null)
-        //        {
-        //            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        //        }
-        //}
+                // Gold mines
+                gameDescriptor.GoldMines.AddRange(BuildingList.OfType<GoldMine>());
+
+                // Town Hall
+                gameDescriptor.TownHalls.AddRange(BuildingList.OfType<TownHall>());
+
+                // Farms
+                gameDescriptor.Farms.AddRange(BuildingList.OfType<Farm>());
+
+                // Workers
+                gameDescriptor.Workers.AddRange(PopulationList.OfType<Worker>());
+
+                // Resources
+                foreach (var res in Resources)
+                    gameDescriptor.Resources.Add(res.Key, res.Value);
+                    
+            }
+            catch (Exception)
+            {
+
+                throw new TranscriptionToDescriptorException();
+            }
+
+            return gameDescriptor;
+            
+        }
+
+        #endregion
     }
 
 }

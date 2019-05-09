@@ -42,6 +42,11 @@ namespace AoC.Api.Domain
         {
             get
             {
+                if (HoldedResources == null || HoldedResources.Count == 0)
+                {
+                    HoldedResources = ResourceHelper.CreateEmptyResourcesDictionary();
+                }
+
                 return HoldedResources[ResourcesType.Gold] > 0 ||
                 HoldedResources[ResourcesType.Stone] > 0 ||
                 HoldedResources[ResourcesType.Wood] > 0;
@@ -83,12 +88,7 @@ namespace AoC.Api.Domain
             // TODO: remplacer la valeur statique du cout de production par une valeur cherchée en configuration
             Cost = new SerializableDictionary<ResourcesType, int>() { { ResourcesType.Gold, 50 } };
 
-            HoldedResources = new SerializableDictionary<ResourcesType, int>
-            {
-                { ResourcesType.Gold, 0 },
-                { ResourcesType.Stone, 0 },
-                { ResourcesType.Wood, 0 }
-            };
+            HoldedResources = ResourceHelper.CreateEmptyResourcesDictionary();
 
             _timer = new System.Timers.Timer();
 

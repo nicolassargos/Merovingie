@@ -57,7 +57,7 @@ namespace AoC.Api.Domain
 
             // Signale à l'UI que le stock a changé
             OnCarryStockChanged(new ResourcesChangedArgs {
-                CurrentResources = ResourceConverter.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
+                CurrentResources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
 
             // Retourne la ressource associée à la quantité collectée
             return new KeyValuePair<ResourcesType, int>(ResourcesType.Stone, quantityCollected);

@@ -26,36 +26,36 @@ function MCreationRequestBody(creatorId, productableName, x, y) {
     return this;
 };
 
-function MFileLoadDescriptor(gameDescriptor) {
+function MGameFileDescriptor(gameDescriptor) {
     if (isNullOrUndefined(gameDescriptor.Carries)) {
-        console.log('MFileLoadDescriptor: carries are null or undefined');
+        console.log('MGameFileDescriptor: carries are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Farms)) {
-        console.log('MFileLoadDescriptor: farms are null or undefined');
+        console.log('MGameFileDescriptor: farms are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.GoldMines)) {
-        console.log('MFileLoadDescriptor: gold mines are null or undefined');
+        console.log('MGameFileDescriptor: gold mines are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Resources)
         || isNullOrUndefined(gameDescriptor.Resources.Gold)
         || isNullOrUndefined(gameDescriptor.Resources.Stone)
         || isNullOrUndefined(gameDescriptor.Resources.Wood)) {
-        console.log('MFileLoadDescriptor: at least one resource are null or undefined');
+        console.log('MGameFileDescriptor: at least one resource are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.TownHalls)) {
-        console.log('MFileLoadDescriptor: town halls are null or undefined');
+        console.log('MGameFileDescriptor: town halls are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Trees)) {
-        console.log('MFileLoadDescriptor: trees are null or undefined');
+        console.log('MGameFileDescriptor: trees are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Workers)) {
-        console.log('MFileLoadDescriptor: workers are null or undefined');
+        console.log('MGameFileDescriptor: workers are null or undefined');
         return;
     }
 
@@ -81,15 +81,16 @@ var MessageTypes = Object.freeze({
     "FILELOAD_ERROR_UNAUTHORIZED":  6,
     "FILELOAD_ACCEPTED":            7,
     "FILESAVE_REQUESTED":           8,
-    "FILESAVE_ERROR_CORRUPTED":     9,
-    "FILESAVE_ERROR_UNAUTHORIZED":  10,
-    "FILESAVE_ERROR_COMPLETED":     11,
-    "CREATION_REQUESTED":           12,
-    "CREATION_ACCEPTED":            13,
-    "CREATION_ABORTED":             14,
-    "CREATION_COMPLETED":           15,
-    "CREATION_REFUSEDRESOURCES":    16,
-    "CREATION_REFUSEDPOPULATION":   17,
-    "CREATION_ERROR":               18,
-    "INFO":                         19
+    "FILESAVE_COMPLETED":           9,
+    "FILESAVE_ERROR_CORRUPTED":     10,
+    "FILESAVE_ERROR_UNAUTHORIZED":  11,
+    "FILESAVE_ERROR_COMPLETED":     12,
+    "CREATION_REQUESTED":           13,
+    "CREATION_ACCEPTED":            14,
+    "CREATION_ABORTED":             15,
+    "CREATION_COMPLETED":           16,
+    "CREATION_REFUSEDRESOURCES":    17,
+    "CREATION_REFUSEDPOPULATION":   18,
+    "CREATION_ERROR":               19,
+    "INFO":                         20
 });
