@@ -112,9 +112,9 @@ namespace Merovingie.Controllers
         {
             IGameDescriptor newGameDescriptor = GameGenerator.GenerateMapFromOptions(gameModel.Workers, gameModel.Farms, gameModel.Resources);
 
-            GameFileManager.SaveGame(newGameDescriptor, "newGame");
+            GameFileManager.SaveGame(newGameDescriptor, gameModel.Name);
 
-            return RedirectToAction("Load");
+            return RedirectToAction("GameListing");
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace Merovingie.Controllers
         {
             GameFileManager.DeleteGame(fileName);
 
-            return RedirectToAction("Load");
+            return RedirectToAction("GameListing");
         }
 
     }
