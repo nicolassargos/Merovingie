@@ -77,210 +77,282 @@ gdjs.NewSceneCode.condition3IsTrue_1 = {val:false};
 gdjs.NewSceneCode.condition4IsTrue_1 = {val:false};
 
 
-gdjs.NewSceneCode.userFunc0x703a90 = function(runtimeScene, objects) {
+gdjs.NewSceneCode.userFunc0x6d5930 = function(runtimeScene, objects) {
 
     function MerovingieWebSocket() {
-        this.scheme = document.location.protocol === "https:" ? "wss" : "ws";
-        this.port = document.location.port ? (":" + document.location.port) : "";
-        const urlParams = new URLSearchParams(window.location.search);
-        this.gameName = urlParams.get('name');
+      this.scheme = document.location.protocol === "https:" ? "wss" : "ws";
+      this.port = document.location.port ? (":" + document.location.port) : "";
+      const urlParams = new URLSearchParams(window.location.search);
+      this.gameName = urlParams.get('name');
 
-        // Variable de connexion qui contient l'adresse du serveur
-        this.connectionUrl = this.scheme + "://" + document.location.hostname + this.port + "/ws";
+      // Variable de connexion qui contient l'adresse du serveur
+      this.connectionUrl = this.scheme + "://" + document.location.hostname + this.port + "/ws";
 
-        // Connecte le websocket au serveur
-        this.socket = new WebSocket(this.connectionUrl);
+      // Connecte le websocket au serveur
+      this.socket = new WebSocket(this.connectionUrl);
 
-        // Ouverture du socket
-        this.socket.onopen = function () {
-            if (!this || this.readyState !== WebSocket.OPEN) {
-                alert("meroSocket is not connected");
-                return;
-            }
+      // Ouverture du socket
+      this.socket.onopen = function () {
+          if (!this || this.readyState !== WebSocket.OPEN) {
+              alert("meroSocket is not connected");
+              return;
+          }
 
-            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, gdjs.meroSocket.gameName);
+          var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, gdjs.meroSocket.gameName);
 
-            if (this.OPEN)
-            {
-                this.send(JSON.stringify(connectMessage));
-            }
-        }
+          if (this.OPEN)
+          {
+              this.send(JSON.stringify(connectMessage));
+          }
+      }
 
-        this.socket.onmessage = function (event) {
-            var messageReceived = JSON.parse(event.data);
-            console.log(messageReceived);
+      this.socket.onmessage = function (event) {
+          var messageReceived = JSON.parse(event.data);
+          console.log(messageReceived);
 
-            if (!messageReceived.Type)
-                console.error("Socket OnMessage: the format of the message is not correct :" + JSON.stringify(messageReceived));
-            else
-            {
-                var message = new MMessage(messageReceived.Type, messageReceived.Message);
-                gdjs.ProcessMessage(message);
-            }
+          if (!messageReceived.Type)
+              console.error("Socket OnMessage: the format of the message is not correct :" + JSON.stringify(messageReceived));
+          else
+          {
+              var message = new MMessage(messageReceived.Type, messageReceived.Message);
+              gdjs.ProcessMessage(message);
+          }
 
-        }
+      }
 
-        this.socket.onclose = function(event) {
-            console.log(JSON.parse(event.data));
-            // this.socket = new WebSocket(this.connectionUrl);
-        }
-    }
+      this.socket.onclose = function(event) {
+          console.log(event);
+          // this.socket = new WebSocket(this.connectionUrl);
+      }
+  }
 
-    // Méthode d'envoi de données
-    MerovingieWebSocket.prototype.send = function(messageType, body) {
+  // Méthode d'envoi de données
+  MerovingieWebSocket.prototype.send = function(messageType, body) {
 
-        if (!messageType) {
-            alert('Message type is undefined of null');
-            return;
-        }
+      if (!messageType) {
+          alert('Message type is undefined of null');
+          return;
+      }
 
-        if (!body) {
-            alert('Body of message is undefined or null');
-        }
+      if (!body) {
+          alert('Body of message is undefined or null');
+      }
 
-        var message = new MMessage(messageType, body);
+      var message = new MMessage(messageType, body);
+      
+      this.socket.send(JSON.stringify(message));
+  }
 
-        this.socket.send(JSON.stringify(message));
-    }
+  gdjs.meroSocket = new MerovingieWebSocket();
+  
 
-    gdjs.meroSocket = new MerovingieWebSocket();
-    
+  gdjs.ProcessMessage = function(messageToInterpret)
+  {
+      console.log(messageToInterpret.message);
 
-    gdjs.ProcessMessage = function(messageToInterpret)
-    {
-        console.log(messageToInterpret.message);
+      var messageBody = '';
 
-        var messageBody = '';
+      if (messageToInterpret.message && messageToInterpret.message.length > 0)
+          messageBody = JSON.parse(messageToInterpret.message);
 
-        if (messageToInterpret.message && messageToInterpret.message.length > 0)
-            messageBody = JSON.parse(messageToInterpret.message);
+      switch(messageToInterpret.type) {
 
-        switch(messageToInterpret.type) {
+          case MessageTypes.GAMECONNECT_OK:
+              // TODO: créer une fonction de chargement de partie
+              // et l'attacher à meroSocket
+              gdjs.meroSocket.send(MessageTypes.FILELOAD_REQUESTED, gdjs.meroSocket.gameName);
+              break;
 
-            case MessageTypes.GAMECONNECT_OK:
-                // TODO: créer une fonction de chargement de partie
-                // et l'attacher à meroSocket
-                gdjs.meroSocket.send(MessageTypes.FILELOAD_REQUESTED, gdjs.meroSocket.gameName);
-                break;
+          case MessageTypes.FILELOAD_ACCEPTED:
+              gdjs.loadData(messageBody);
+              break;
 
-            case MessageTypes.FILELOAD_ACCEPTED:
-                gdjs.loadData(messageBody);
-                break;
+          case MessageTypes.CREATION_REFUSEDPOPULATION:
+              gdjs.displayError("Not enough farms!");
+              break;
 
-            case MessageTypes.CREATION_REFUSEDPOPULATION:
-                gdjs.displayError("Not enough farms!");
-                break;
+          case MessageTypes.CREATION_REFUSEDRESOURCES:
+              gdjs.displayError("Not enough resources!");
+              break;
 
-            case MessageTypes.CREATION_REFUSEDRESOURCES:
-                gdjs.displayError("Not enough resources!");
-                break;
+          case MessageTypes.CREATION_ACCEPTED:
+              gdjs.updateStock(messageBody);
+              break;
 
-            case MessageTypes.CREATION_ACCEPTED:
-                gdjs.updateStock(messageBody);
-                break;
-
-            case MessageTypes.CREATION_COMPLETED:
-                gdjs.createWorker(null, messageBody.Position.x, messageBody.Position.y);
-                break;
-            
-            default: break;
-        }
-    }
+          case MessageTypes.CREATION_COMPLETED:
+              gdjs.createWorker(null, messageBody.Position.x, messageBody.Position.y);
+              break;
+          
+          default: break;
+      }
+  }
 
 
-    // Fonction qui traite de chargement de données
-    gdjs.loadData = function(data) {
-        console.log(data);
-        var gameDescriptor = new MGameFileDescriptor(data);
-        // Tester la nullité et envoyer un message d'erreur au serveur si nécessaire
-        // if (isNullOrUndefined(gameDescriptor)) gdjs.meroSocket.send(new MF)
+  // Fonction qui traite de chargement de données
+  gdjs.loadData = function(data) {
+      console.log(data);
+      var gameDescriptor = new MGameFileDescriptor(data);
+      // Tester la nullité et envoyer un message d'erreur au serveur si nécessaire
+      // if (isNullOrUndefined(gameDescriptor)) gdjs.meroSocket.send(new MF)
 
-        gameDescriptor.carries.forEach((carry) => gdjs.createCarry(carry));
-        gameDescriptor.goldMines.forEach((mine) => gdjs.createGoldMine(mine));
-        gameDescriptor.townHalls.forEach((townHall) => gdjs.createTownHall(townHall));
-        gameDescriptor.workers.forEach((worker) => gdjs.createWorker(worker));
-        gdjs.updateStock(gameDescriptor.resources);
-    }
+      gameDescriptor.carries.forEach((carry) => gdjs.createCarry(carry));
+      gameDescriptor.goldMines.forEach((mine) => gdjs.createGoldMine(mine));
+      gameDescriptor.townHalls.forEach((townHall) => gdjs.createTownHall(townHall));
+      gameDescriptor.workers.forEach((worker) => gdjs.createWorker(worker));
+      gdjs.updateStock(gameDescriptor.resources);
 
-    // Fonction de sauvegarde de données
-    gdjs.saveData = function() {
-        gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED, gdjs.gameName);
-    }
+      // gdjs.GAMELOADED = true;
+      setInterval(this.sendUnitsState(), 500);
+  }
 
-    // Fonction de création d'une Carrière de pierre
-    gdjs.createCarry = function(carry) {
-        var newCarry = runtimeScene.createObject("carry");
-        newCarry.setPosition(carry.Position.x, carry.Position.y);
-        newCarry.setZOrder(1);
-    }
+  // Fonction de sauvegarde de données
+  gdjs.saveData = function() {
+      var carries = [];
+      var trees = [];
+      var goldMines = [];
+      var townHalls = [];
+      var farms = [];
+      var workers = [];
 
-    // Fonction de création d'une mine d'or'
-    gdjs.createGoldMine = function(goldMine) {
-        var newGoldMine = runtimeScene.createObject("mine");
-        newGoldMine.setPosition(goldMine.Position.x, goldMine.Position.y);
-        newGoldMine.setZOrder(1);
-    }
+      runtimeScene.getObjects("carry").forEach((item) => {
+          carries.push( { 
+              Id : item.getUniqueId(), 
+              Name : item.getName(), 
+              Position : { X: item.getX, Y: item.getY }
+          });
+      });
+      runtimeScene.getObjects("tree").forEach((item) => {
+          trees.push( { 
+              Id : item.getUniqueId(), 
+              Name : item.getName(), 
+              Position : { X: item.getX, Y: item.getY }
+          });
+      });
+      runtimeScene.getObjects("goldMine").forEach((item) => {
+        goldMines.push( { 
+              Id : item.getUniqueId(), 
+              Name : item.getName(), 
+              Position : { X: item.getX, Y: item.getY }
+          });
+      });
+      runtimeScene.getObjects("townHall").forEach((item) => {
+        townHalls.push( { 
+              Id : item.getUniqueId(), 
+              Name : item.getName(), 
+              Position : { X: item.getX, Y: item.getY }
+          });
+      });
+      runtimeScene.getObjects("farm").forEach((item) => {
+        farms.push( { 
+              Id : item.getUniqueId(), 
+              Name : item.getName(), 
+              Position : { X: item.getX, Y: item.getY }
+          });
+      });
+      runtimeScene.getObjects("worker").forEach((item) => {
+        workers.push( { 
+              Id : item.getUniqueId(), 
+              Position : { X: item.getX, Y: item.getY }
+          });
+      });
 
-    // Fonction de création d'une mine d'or'
-    gdjs.createTownHall = function(townHall) {
-        var newTownHall = runtimeScene.createObject("townHall");
-        newTownHall.setPosition(townHall.Position.x, townHall.Position.y);
-        newTownHall.setZOrder(1);
-    }
+      var message = { 
+        "gameName": gdjs.meroSocket.gameName, 
+        "carries" : carries,
+        "trees" : trees,
+        "goldMines" : goldMines,
+        "townHalls" : townHalls,
+        "farms" : farms,
+        "workers" : workers
+      }
 
-    // Fonction de création d'un worker
-    gdjs.createWorker = function(worker, x, y) {
-        var newWorker = runtimeScene.createObject("worker");
-        if (!worker || (worker.Position.x === 0 && worker.Position.y === 0))
-        {
-            newWorker.setPosition(x, y);            
-        }
-        else
-        {
-            newWorker.setPosition(worker.Position.x, worker.Position.y);
-        }
-        newWorker.setZOrder(1);
-    }
+      gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED, message);
+  }
 
-    // Fonction de mise à jour du stock
-    gdjs.updateStock = function(stock)
-    {
-        var goldStockLabel = runtimeScene.getObjects("GoldStockLabel");
-        var stoneStockLabel = runtimeScene.getObjects("StoneStockLabel");
-        var woodStockLabel = runtimeScene.getObjects("WoodStockLabel");
+  // Fonction de création d'une Carrière de pierre
+  gdjs.createCarry = function(carry) {
+      var newCarry = runtimeScene.createObject("carry");
+      newCarry.setPosition(carry.Position.x, carry.Position.y);
+      newCarry.setZOrder(1);
+  }
 
-        if (goldStockLabel.length > 0) goldStockLabel[0].setString(stock.Gold);
-        if (stoneStockLabel.length > 0) stoneStockLabel[0].setString(stock.Stone);
-        if (woodStockLabel.length > 0) woodStockLabel[0].setString(stock.Wood);
-    }
+  // Fonction de création d'une mine d'or'
+  gdjs.createGoldMine = function(goldMine) {
+      var newGoldMine = runtimeScene.createObject("mine");
+      newGoldMine.setPosition(goldMine.Position.x, goldMine.Position.y);
+      newGoldMine.setZOrder(1);
+  }
 
-    // Fonction d'affichage d'erreur sur l'interface
-    gdjs.displayError = function(errorMessage)
-    {
-        var errorLabel = runtimeScene.getObjects("ErrorLabel");
-        errorLabel[0].setString(errorMessage);
-        errorLabel[0].hide(false);
-        setTimeout(function() {
-            errorLabel[0].hide(true);
-        }, 2000);
-    }
-    
-    
+  // Fonction de création d'une mine d'or'
+  gdjs.createTownHall = function(townHall) {
+      var newTownHall = runtimeScene.createObject("townHall");
+      newTownHall.setPosition(townHall.Position.x, townHall.Position.y);
+      newTownHall.setZOrder(1);
+  }
+
+  // Fonction de création d'un worker
+  gdjs.createWorker = function(worker, x, y) {
+      var newWorker = runtimeScene.createObject("worker");
+      if (!worker || (worker.Position.x === 0 && worker.Position.y === 0))
+      {
+          newWorker.setPosition(x, y);            
+      }
+      else
+      {
+          newWorker.setPosition(worker.Position.x, worker.Position.y);
+      }
+      newWorker.setZOrder(1);
+  }
+
+  // Fonction de mise à jour du stock
+  gdjs.updateStock = function(stock) {
+      var goldStockLabel = runtimeScene.getObjects("GoldStockLabel");
+      var stoneStockLabel = runtimeScene.getObjects("StoneStockLabel");
+      var woodStockLabel = runtimeScene.getObjects("WoodStockLabel");
+
+      if (goldStockLabel.length > 0) goldStockLabel[0].setString(stock.Gold);
+      if (stoneStockLabel.length > 0) stoneStockLabel[0].setString(stock.Stone);
+      if (woodStockLabel.length > 0) woodStockLabel[0].setString(stock.Wood);
+  }
+
+  // Fonction d'affichage d'erreur sur l'interface
+  gdjs.displayError = function(errorMessage) {
+      var errorLabel = runtimeScene.getObjects("ErrorLabel");
+      errorLabel[0].setString(errorMessage);
+      errorLabel[0].hide(false);
+      setTimeout(function() {
+          errorLabel[0].hide(true);
+      }, 2000);
+  }
+  
+  gdjs.sendUnitsState = function() {
+      var workers = [];
+
+      runtimeScene.getObjects("worker").forEach(function(wk) {
+          var test = { id : wk.getUniqueId(), position : { x: wk.x, y: wk.y }  };
+          workers.push(test);
+          console.log(workers)
+      });
+
+
+      this.meroSocket.send(MessageTypes.CLIENTDATA_UNITSSTATE, workers);
+  }
+  
 
 };
-gdjs.NewSceneCode.eventsList0x702fe0 = function(runtimeScene) {
+gdjs.NewSceneCode.eventsList0x6d4dd0 = function(runtimeScene) {
 
 {
 
 
 var objects = [];
-gdjs.NewSceneCode.userFunc0x703a90(runtimeScene, objects);
+gdjs.NewSceneCode.userFunc0x6d5930(runtimeScene, objects);
 
 }
 
 
-}; //End of gdjs.NewSceneCode.eventsList0x702fe0
-gdjs.NewSceneCode.eventsList0x7044a8 = function(runtimeScene) {
+}; //End of gdjs.NewSceneCode.eventsList0x6d4dd0
+gdjs.NewSceneCode.eventsList0x6d62b8 = function(runtimeScene) {
 
 {
 
@@ -299,7 +371,7 @@ for(var i = 0, k = 0, l = gdjs.NewSceneCode.GDworkerObjects1.length;i<l;++i) {
 gdjs.NewSceneCode.GDworkerObjects1.length = k;}if ( gdjs.NewSceneCode.condition0IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition1IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7358132);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7169252);
 }
 }}
 if (gdjs.NewSceneCode.condition1IsTrue_0.val) {
@@ -312,8 +384,8 @@ if (gdjs.NewSceneCode.condition1IsTrue_0.val) {
 }
 
 
-}; //End of gdjs.NewSceneCode.eventsList0x7044a8
-gdjs.NewSceneCode.eventsList0x704a00 = function(runtimeScene) {
+}; //End of gdjs.NewSceneCode.eventsList0x6d62b8
+gdjs.NewSceneCode.eventsList0x6d6840 = function(runtimeScene) {
 
 {
 
@@ -338,8 +410,8 @@ gdjs.NewSceneCode.GDmessageObjects1.createFrom(runtimeScene.getObjects("message"
 }
 
 
-}; //End of gdjs.NewSceneCode.eventsList0x704a00
-gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDBuildButtonObjects1Objects = Hashtable.newFrom({"BuildButton": gdjs.NewSceneCode.GDBuildButtonObjects1});gdjs.NewSceneCode.userFunc0x705a80 = function(runtimeScene, objects) {
+}; //End of gdjs.NewSceneCode.eventsList0x6d6840
+gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDBuildButtonObjects1Objects = Hashtable.newFrom({"BuildButton": gdjs.NewSceneCode.GDBuildButtonObjects1});gdjs.NewSceneCode.userFunc0x6d7990 = function(runtimeScene, objects) {
 
 var townHall = runtimeScene.getObjects("townHall").find(x => x.getVariables().get("Selected").getAsNumber() === 1);
 var townHallId = townHall.getNameId();
@@ -348,35 +420,35 @@ var messageBody = new MCreationRequestBody(townHallId, "worker", townHall.getX()
 
 gdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody);
 };
-gdjs.NewSceneCode.eventsList0x7057d0 = function(runtimeScene) {
+gdjs.NewSceneCode.eventsList0x6d76d0 = function(runtimeScene) {
 
 {
 
 
 var objects = [];
-gdjs.NewSceneCode.userFunc0x705a80(runtimeScene, objects);
+gdjs.NewSceneCode.userFunc0x6d7990(runtimeScene, objects);
 
 }
 
 
-}; //End of gdjs.NewSceneCode.eventsList0x7057d0
-gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDworkerObjects2Objects = Hashtable.newFrom({"worker": gdjs.NewSceneCode.GDworkerObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDtownHallObjects2Objects = Hashtable.newFrom({"townHall": gdjs.NewSceneCode.GDtownHallObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDworkerObjects2Objects = Hashtable.newFrom({"worker": gdjs.NewSceneCode.GDworkerObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDtownHallObjects2Objects = Hashtable.newFrom({"townHall": gdjs.NewSceneCode.GDtownHallObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDSaveButtonObjects1Objects = Hashtable.newFrom({"SaveButton": gdjs.NewSceneCode.GDSaveButtonObjects1});gdjs.NewSceneCode.userFunc0x707598 = function(runtimeScene) {
+}; //End of gdjs.NewSceneCode.eventsList0x6d76d0
+gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDworkerObjects2Objects = Hashtable.newFrom({"worker": gdjs.NewSceneCode.GDworkerObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDtownHallObjects2Objects = Hashtable.newFrom({"townHall": gdjs.NewSceneCode.GDtownHallObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDworkerObjects2Objects = Hashtable.newFrom({"worker": gdjs.NewSceneCode.GDworkerObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDtownHallObjects2Objects = Hashtable.newFrom({"townHall": gdjs.NewSceneCode.GDtownHallObjects2});gdjs.NewSceneCode.mapOfGDgdjs_46NewSceneCode_46GDSaveButtonObjects1Objects = Hashtable.newFrom({"SaveButton": gdjs.NewSceneCode.GDSaveButtonObjects1});gdjs.NewSceneCode.userFunc0x6d9530 = function(runtimeScene) {
 
 gdjs.saveData();
 
 };
-gdjs.NewSceneCode.eventsList0x707408 = function(runtimeScene) {
+gdjs.NewSceneCode.eventsList0x6d93a0 = function(runtimeScene) {
 
 {
 
 
-gdjs.NewSceneCode.userFunc0x707598(runtimeScene);
+gdjs.NewSceneCode.userFunc0x6d9530(runtimeScene);
 
 }
 
 
-}; //End of gdjs.NewSceneCode.eventsList0x707408
-gdjs.NewSceneCode.eventsList0x705c50 = function(runtimeScene) {
+}; //End of gdjs.NewSceneCode.eventsList0x6d93a0
+gdjs.NewSceneCode.eventsList0x6d7b60 = function(runtimeScene) {
 
 {
 
@@ -399,7 +471,7 @@ for(var i = 0, k = 0, l = gdjs.NewSceneCode.GDworkerObjects2.length;i<l;++i) {
 gdjs.NewSceneCode.GDworkerObjects2.length = k;}if ( gdjs.NewSceneCode.condition1IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition2IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7364412);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7175788);
 }
 }}
 }
@@ -442,7 +514,7 @@ for(var i = 0, k = 0, l = gdjs.NewSceneCode.GDtownHallObjects2.length;i<l;++i) {
 gdjs.NewSceneCode.GDtownHallObjects2.length = k;}if ( gdjs.NewSceneCode.condition1IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition2IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7365556);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7176948);
 }
 }}
 }
@@ -489,7 +561,7 @@ gdjs.NewSceneCode.condition1IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gd
 }if ( gdjs.NewSceneCode.condition1IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition2IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7366852);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7178244);
 }
 }}
 }
@@ -536,7 +608,7 @@ gdjs.NewSceneCode.condition1IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gd
 }if ( gdjs.NewSceneCode.condition1IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition2IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7368396);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7179876);
 }
 }}
 }
@@ -577,19 +649,19 @@ gdjs.NewSceneCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gd
 }if ( gdjs.NewSceneCode.condition0IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition1IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7370004);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7181484);
 }
 }}
 if (gdjs.NewSceneCode.condition1IsTrue_0.val) {
 
 { //Subevents
-gdjs.NewSceneCode.eventsList0x707408(runtimeScene);} //End of subevents
+gdjs.NewSceneCode.eventsList0x6d93a0(runtimeScene);} //End of subevents
 }
 
 }
 
 
-}; //End of gdjs.NewSceneCode.eventsList0x705c50
+}; //End of gdjs.NewSceneCode.eventsList0x6d7b60
 gdjs.NewSceneCode.eventsList0xb2358 = function(runtimeScene) {
 
 {
@@ -620,9 +692,10 @@ gdjs.NewSceneCode.GDworkerObjects1.createFrom(runtimeScene.getObjects("worker"))
 }{for(var i = 0, len = gdjs.NewSceneCode.GDErrorLabelObjects1.length ;i < len;++i) {
     gdjs.NewSceneCode.GDErrorLabelObjects1[i].hide();
 }
+}{gdjs.evtTools.runtimeScene.resetTimer(runtimeScene, "unitsStateTimer");
 }
 { //Subevents
-gdjs.NewSceneCode.eventsList0x702fe0(runtimeScene);} //End of subevents
+gdjs.NewSceneCode.eventsList0x6d4dd0(runtimeScene);} //End of subevents
 }
 
 }
@@ -652,15 +725,11 @@ for(var i = 0, k = 0, l = gdjs.NewSceneCode.GDworkerObjects1.length;i<l;++i) {
 gdjs.NewSceneCode.GDworkerObjects1.length = k;}if ( gdjs.NewSceneCode.condition0IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition1IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7355764);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7167052);
 }
 }}
 if (gdjs.NewSceneCode.condition1IsTrue_0.val) {
-gdjs.NewSceneCode.GDmessageObjects1.createFrom(runtimeScene.getObjects("message"));
-{for(var i = 0, len = gdjs.NewSceneCode.GDmessageObjects1.length ;i < len;++i) {
-    gdjs.NewSceneCode.GDmessageObjects1[i].setString("I'm on my way");
 }
-}}
 
 }
 
@@ -689,7 +758,7 @@ for(var i = 0, k = 0, l = gdjs.NewSceneCode.GDworkerObjects1.length;i<l;++i) {
 gdjs.NewSceneCode.GDworkerObjects1.length = k;}if ( gdjs.NewSceneCode.condition0IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition1IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7356796);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7167884);
 }
 }}
 if (gdjs.NewSceneCode.condition1IsTrue_0.val) {
@@ -718,7 +787,7 @@ gdjs.NewSceneCode.condition0IsTrue_0.val = gdjs.evtTools.input.isMouseButtonRele
 }if (gdjs.NewSceneCode.condition0IsTrue_0.val) {
 
 { //Subevents
-gdjs.NewSceneCode.eventsList0x7044a8(runtimeScene);} //End of subevents
+gdjs.NewSceneCode.eventsList0x6d62b8(runtimeScene);} //End of subevents
 }
 
 }
@@ -737,7 +806,7 @@ gdjs.NewSceneCode.eventsList0x7044a8(runtimeScene);} //End of subevents
 {
 
 { //Subevents
-gdjs.NewSceneCode.eventsList0x704a00(runtimeScene);} //End of subevents
+gdjs.NewSceneCode.eventsList0x6d6840(runtimeScene);} //End of subevents
 }
 
 }
@@ -849,7 +918,7 @@ for(var i = 0, k = 0, l = gdjs.NewSceneCode.GDtownHallObjects1.length;i<l;++i) {
 gdjs.NewSceneCode.GDtownHallObjects1.length = k;}if ( gdjs.NewSceneCode.condition2IsTrue_0.val ) {
 {
 {gdjs.NewSceneCode.conditionTrue_1 = gdjs.NewSceneCode.condition3IsTrue_0;
-gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7363092);
+gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7174436);
 }
 }}
 }
@@ -857,7 +926,7 @@ gdjs.NewSceneCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOn
 if (gdjs.NewSceneCode.condition3IsTrue_0.val) {
 
 { //Subevents
-gdjs.NewSceneCode.eventsList0x7057d0(runtimeScene);} //End of subevents
+gdjs.NewSceneCode.eventsList0x6d76d0(runtimeScene);} //End of subevents
 }
 
 }
@@ -879,7 +948,7 @@ gdjs.NewSceneCode.condition0IsTrue_0.val = gdjs.evtTools.input.isMouseButtonPres
 }if (gdjs.NewSceneCode.condition0IsTrue_0.val) {
 
 { //Subevents
-gdjs.NewSceneCode.eventsList0x705c50(runtimeScene);} //End of subevents
+gdjs.NewSceneCode.eventsList0x6d7b60(runtimeScene);} //End of subevents
 }
 
 }
@@ -929,15 +998,6 @@ gdjs.NewSceneCode.GDSelectedMarkerObjects1.createFrom(runtimeScene.getObjects("S
     gdjs.NewSceneCode.GDSelectedMarkerObjects1[i].putAroundObject((gdjs.NewSceneCode.GDtownHallObjects1.length !== 0 ? gdjs.NewSceneCode.GDtownHallObjects1[0] : null), 0, 0);
 }
 }}
-
-}
-
-
-{
-
-
-{
-}
 
 }
 

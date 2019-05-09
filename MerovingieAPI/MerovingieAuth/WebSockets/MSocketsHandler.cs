@@ -96,6 +96,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED:
                     try
                     {
+                        var data = JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString());
                         GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
                     }
                     catch(Exception ex)
@@ -121,6 +122,17 @@ namespace Merovingie
                     catch (Exception ex)
                     {
                         SendMessage(new MMessageModel(MessageTypes.INFO, "InterpretMessage: message of creation received is incorrectly formatted"));
+                    }
+                    break;
+                // CLIENTDATA_UNITSSTATE
+                case MessageTypes.CLIENTDATA_UNITSSTATE:
+                    try
+                    {
+                        var data = JsonConvert.DeserializeObject<List<MUnitsStateModel>>(messageReceived.Message.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
                     }
                     break;
                 // DEFAULT

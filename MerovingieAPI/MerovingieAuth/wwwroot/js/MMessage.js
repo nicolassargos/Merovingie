@@ -92,5 +92,6 @@ var MessageTypes = Object.freeze({
     "CREATION_REFUSEDRESOURCES":    17,
     "CREATION_REFUSEDPOPULATION":   18,
     "CREATION_ERROR":               19,
-    "INFO":                         20
+    "INFO": 20,
+    "CLIENTDATA_UNITSSTATE": 21
 });

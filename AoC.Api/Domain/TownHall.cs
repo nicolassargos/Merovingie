@@ -23,11 +23,13 @@ namespace AoC.Api.Domain
 
         #region Constructor
         // TODO: initialiser les propriétés
-        public TownHall(string name, int lifepoints, int maxLifePoints, bool attack, SerializableDictionary<ResourcesType, int> resources) :
+        public TownHall(string name, int lifepoints, int maxLifePoints, bool attack, SerializableDictionary<ResourcesType, int> resources,
+            Coordinates? position) :
             base(name, lifepoints, maxLifePoints, attack)
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
             Resources = resources;
+            Position = position.GetValueOrDefault();
         }
 
         public TownHall() : base()

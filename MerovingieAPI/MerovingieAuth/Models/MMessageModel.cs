@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Common.Struct;
 
 namespace Merovingie.Models
 {
@@ -47,7 +48,8 @@ namespace Merovingie.Models
         CREATION_REFUSEDRESOURCES,
         CREATION_REFUSEDPOPULATION,
         CREATION_ERROR,
-        INFO
+        INFO,
+        CLIENTDATA_UNITSSTATE
     }
 
     public class MCreationRequestBodyModel
@@ -67,6 +69,12 @@ namespace Merovingie.Models
         public int gold { get; set; }
         public int stone { get; set; }
         public int wood { get; set; }
+    }
+
+    public class MUnitsStateModel
+    {
+        public int Id { get; set; }
+        public Coordinates Position { get; set; }
     }
 
 }

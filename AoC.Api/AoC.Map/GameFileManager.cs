@@ -57,11 +57,11 @@ namespace AoC.MerovingieFileManager
                 new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
             // Créé le chemin du fichier de sauvegarde
-            string path = GetNewVersionOfFile(fileName);
+            string path = GetFullPath(fileName);
 
             try
             {
-                using (Stream file = FileSystemDI.FileStream.Create(path, FileMode.CreateNew))
+                using (Stream file = FileSystemDI.FileStream.Create(path, FileMode.OpenOrCreate))
                 {
                     writer.Serialize(file, game);
                     file.Close();
