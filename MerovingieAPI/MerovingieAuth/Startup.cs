@@ -87,8 +87,7 @@ namespace MerovingieAuth
             // Websockets Options
             var webSocketsOptions = new WebSocketOptions
             {
-                KeepAliveInterval = TimeSpan.FromSeconds(300),
-                ReceiveBufferSize = 4 * 1024
+                KeepAliveInterval = TimeSpan.FromSeconds(300)
             };
             app.UseWebSockets(webSocketsOptions);
 
@@ -105,7 +104,6 @@ namespace MerovingieAuth
                     {
                         context.Response.StatusCode = 400;
                     }
-
                 }
                 else
                 {

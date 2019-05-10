@@ -14,6 +14,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using AoC.MerovingieFileManager;
 using AoC.Api.EventArgs;
+using System.Data;
+using System.IO;
 
 namespace Merovingie
 {
@@ -22,6 +24,7 @@ namespace Merovingie
         
         private GameDescriptor _gameDescriptor;
         private GameManager _gameManager;
+        private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
         private string _gameName;
         private WebSocket _socket;
 
@@ -39,7 +42,7 @@ namespace Merovingie
         public async Task Listen(HttpContext context, WebSocket socket)
         {
             _socket = socket;
-            var buffer = new byte[6 * 1024];
+            var buffer = new byte[4 * 1024];
 
             if (_socket == null) throw new ArgumentNullException("Socket Listen: socket argument is null");
 
@@ -59,7 +62,15 @@ namespace Merovingie
 
         private void InterpretMessage(byte[] buffer)
         {
-            var messageReceived = GetMessageFromBytes(buffer);
+            MMessageModel messageReceived;
+            try
+            {
+                messageReceived = GetMessageFromBytes(buffer);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             switch (messageReceived.Type)
             {
@@ -93,15 +104,47 @@ namespace Merovingie
                         throw ex;
                     }
                     break;
-                case MessageTypes.FILESAVE_REQUESTED:
+                case MessageTypes.FILESAVE_REQUESTED_FIRSTPART:
                     try
                     {
-                        var data = JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString());
-                        GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
+                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
+                        //var newGameDescriptor = _gameManager.ToGameDescriptor();
+                        //foreach(var item in newGameDescriptor.Carries)
+                        //{
+                        //    item.Id = data.Carries
+                        //}
                     }
                     catch(Exception ex)
                     {
                         throw ex;
+                    }
+                    break;
+                case MessageTypes.FILESAVE_REQUESTED_NEXTPART:
+                    try
+                    {
+                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                    break;
+                case MessageTypes.FILESAVE_REQUESTED_END:
+                    try
+                    {
+                        GameDescriptor gameDescriptor = AssembleFromMultiParts(_partialMessage);
+                        GameFileManager.SaveGame(gameDescriptor, _gameName);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                    finally
+                    {
+                        _partialMessage.Clear();
                     }
                     break;
                 // GAMECOMMAND
@@ -144,6 +187,28 @@ namespace Merovingie
             //return result;
         }
 
+        private GameDescriptor AssembleFromMultiParts(List<GameDescriptor> partialMessage)
+        {
+            var newGameDescriptor = new GameDescriptor();
+            foreach (var part in partialMessage)
+            {
+                if (part.Carries != null && part.Carries.Count > 0)
+                    newGameDescriptor.Carries.AddRange(part.Carries);
+                if (part.Farms != null && part.Farms.Count > 0)
+                    newGameDescriptor.Farms.AddRange(part.Farms);
+                if (part.GoldMines != null && part.GoldMines.Count > 0)
+                    newGameDescriptor.GoldMines.AddRange(part.GoldMines);
+                if (part.TownHalls != null && part.TownHalls.Count > 0)
+                    newGameDescriptor.TownHalls.AddRange(part.TownHalls);
+                if (part.Trees != null && part.Trees.Count > 0)
+                    newGameDescriptor.Trees.AddRange(part.Trees);
+                if (part.Workers != null && part.Workers.Count > 0)
+                    newGameDescriptor.Workers.AddRange(part.Workers);
+            }
+
+            return newGameDescriptor;
+        }
+
         private void SendPopulationChanged(object sender, PopulationChangedEventArgs e)
         {
             var messageBody = JsonConvert.SerializeObject(e.Unit);
@@ -174,10 +239,19 @@ namespace Merovingie
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        private MMessageModel GetMessageFromBytes(ArraySegment<byte> buffer)
+        private MMessageModel GetMessageFromBytes(byte[] buffer)
         {
+            MMessageModel messageObject = null;
+
             var jsonReceived = Encoding.UTF8.GetString(buffer);
-            var messageObject = JsonConvert.DeserializeObject<MMessageModel>(jsonReceived);
+            try
+            {
+                messageObject = JsonConvert.DeserializeObject<MMessageModel>(jsonReceived);
+            }
+            catch
+            {
+
+            }
 
             return messageObject;
         }
