@@ -13,7 +13,7 @@
     "macExecutableFilename": "",
     "orientation": "default",
     "packageName": "com.example.gamename",
-    "projectFile": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
+    "projectFile": "D:\\travail Perso\\Formation .NET\\repos\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
     "scaleMode": "linear",
     "sizeOnStartupMode": "",
     "useExternalSourceFiles": false,
@@ -228,6 +228,33 @@
         "kind": "image",
         "metadata": "",
         "name": "images\\sprites\\gold-mine.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Works/images/townHall.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Works\\images\\townHall.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/townHall.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\townHall.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/farm.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\farm.png",
         "smoothed": true,
         "userAdded": true
       }
@@ -2186,8 +2213,8 @@
                   "timeBetweenFrames": 0.08,
                   "sprites": [
                     {
-                      "hasCustomCollisionMask": true,
-                      "image": "images\\town-hall-1.png",
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\sprites\\townHall.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
@@ -2200,30 +2227,7 @@
                         "x": 0,
                         "y": 0
                       },
-                      "customCollisionMask": [
-                        [
-                          {
-                            "x": 50.5,
-                            "y": 340.5
-                          },
-                          {
-                            "x": 306.5,
-                            "y": 356.5
-                          },
-                          {
-                            "x": 258.5,
-                            "y": 4
-                          },
-                          {
-                            "x": 174.5,
-                            "y": 121.5
-                          },
-                          {
-                            "x": 46.5,
-                            "y": 180.5
-                          }
-                        ]
-                      ]
+                      "customCollisionMask": []
                     }
                   ]
                 }
@@ -2611,6 +2615,44 @@
                           }
                         ]
                       ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "farm",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\sprites\\farm.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
                     }
                   ]
                 }
