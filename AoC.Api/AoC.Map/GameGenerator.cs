@@ -46,7 +46,8 @@ namespace AoC.MerovingieFileManager
             if (gameDescriptor.Workers.Count < workers)
             {
                 gameDescriptor.Workers = new List<Worker>();
-                for (int i = 0; i < gameDescriptor.Workers.Count - workers; i++)
+                var nbWorkersToCreate = workers - gameDescriptor.Workers.Count;
+                for (int i = 0; i < nbWorkersToCreate; i++)
                 {
                     gameDescriptor.Workers.Add(new Worker(i));
                 }

@@ -83,7 +83,10 @@ namespace AoC.MerovingieFileManager
         public static IGameDescriptor ReadGame(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("ReadGame: File name is empty");
-            if (System.IO.Path.GetExtension(fileName) != ".xml") throw new FormatException("ReadGame: File name has no valid extension");
+            if (System.IO.Path.GetExtension(fileName) != GAMEFILE_EXTENSION)
+                fileName += GAMEFILE_EXTENSION;
+
+            //throw new FormatException("ReadGame: File name has no valid extension");
 
             IGameDescriptor game = null;
             string path = GetFullPath(fileName);

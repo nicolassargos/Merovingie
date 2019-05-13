@@ -16,12 +16,13 @@ using AoC.MerovingieFileManager;
 using AoC.Api.EventArgs;
 using System.Data;
 using System.IO;
+using Common.Struct;
 
 namespace Merovingie
 {
     public class MSocketHandler
     {
-        
+
         private GameDescriptor _gameDescriptor;
         private GameManager _gameManager;
         private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
@@ -81,11 +82,9 @@ namespace Merovingie
                         _gameName = messageReceived.Message.ToString();
                         _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
                         // TODO: extraire une méthode initializeGameManager
-                        _gameManager = new GameManager(_gameDescriptor);
-                        _gameManager.ResourcesChanged += SendResourcesChanged;
-                        _gameManager.PopulationChanged += SendPopulationChanged;
+                        
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         throw new ArgumentException("InterpretMessage: message of connection demand received is incorrectly formatted", messageReceived.Message.toString());
                     }
@@ -108,13 +107,8 @@ namespace Merovingie
                     try
                     {
                         _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
-                        //var newGameDescriptor = _gameManager.ToGameDescriptor();
-                        //foreach(var item in newGameDescriptor.Carries)
-                        //{
-                        //    item.Id = data.Carries
-                        //}
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         throw ex;
                     }
@@ -134,8 +128,12 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_END:
                     try
                     {
-                        GameDescriptor gameDescriptor = AssembleFromMultiParts(_partialMessage);
+                        GameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
                         GameFileManager.SaveGame(gameDescriptor, _gameName);
+                        // La partie est correctement initialisée
+                        _gameManager = new GameManager(_gameDescriptor);
+                        _gameManager.ResourcesChanged += SendResourcesChanged;
+                        _gameManager.PopulationChanged += SendPopulationChanged;
                     }
                     catch (Exception ex)
                     {
@@ -154,11 +152,11 @@ namespace Merovingie
                         var data = JsonConvert.DeserializeObject<MCreationRequestBodyModel>(Convert.ToString(messageReceived.Message));
                         _gameManager.CreateWorker(data.creatorId, data.positionX, data.positionY);
                     }
-                    catch(NotEnoughUnitSlotsAvailableException slex)
+                    catch (NotEnoughUnitSlotsAvailableException slex)
                     {
                         SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDPOPULATION, ""));
                     }
-                    catch(NotEnoughResourcesException rex)
+                    catch (NotEnoughResourcesException rex)
                     {
                         SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDRESOURCES, ""));
                     }
@@ -194,21 +192,121 @@ namespace Merovingie
             {
                 if (part.Carries != null && part.Carries.Count > 0)
                     newGameDescriptor.Carries.AddRange(part.Carries);
+
                 if (part.Farms != null && part.Farms.Count > 0)
                     newGameDescriptor.Farms.AddRange(part.Farms);
+
                 if (part.GoldMines != null && part.GoldMines.Count > 0)
                     newGameDescriptor.GoldMines.AddRange(part.GoldMines);
+
                 if (part.TownHalls != null && part.TownHalls.Count > 0)
                     newGameDescriptor.TownHalls.AddRange(part.TownHalls);
+
                 if (part.Trees != null && part.Trees.Count > 0)
                     newGameDescriptor.Trees.AddRange(part.Trees);
+
                 if (part.Workers != null && part.Workers.Count > 0)
                     newGameDescriptor.Workers.AddRange(part.Workers);
+
+                if (part.Resources != null && part.Resources.Count > 0)
+                    foreach (var res in part.Resources)
+                        newGameDescriptor.Resources.Add(res.Key, res.Value);
             }
 
             return newGameDescriptor;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partialMessage"></param>
+        /// <param name="serverGameDescriptor"></param>
+        private GameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
+        {
+            var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
+
+            try
+            {
+                if (assembledGameDescriptor.Carries != null && assembledGameDescriptor.Carries.Count == serverGameDescriptor.Carries.Count)
+                {
+                    for (var i = 0; i < assembledGameDescriptor.Carries.Count; i++)
+                    {
+                        serverGameDescriptor.Carries[i].Id = assembledGameDescriptor.Carries[i].Id;
+                    }
+                }
+
+                if (assembledGameDescriptor.Farms != null && assembledGameDescriptor.Farms.Count == serverGameDescriptor.Farms.Count)
+                {
+                    for (var i = 0; i < assembledGameDescriptor.Farms.Count; i++)
+                    {
+                        serverGameDescriptor.Farms[i].Id = assembledGameDescriptor.Farms[i].Id;
+                    }
+                }
+
+                if (assembledGameDescriptor.GoldMines != null && assembledGameDescriptor.GoldMines.Count == serverGameDescriptor.GoldMines.Count)
+                {
+                    for (var i = 0; i < assembledGameDescriptor.GoldMines.Count; i++)
+                    {
+                        serverGameDescriptor.GoldMines[i].Id = assembledGameDescriptor.GoldMines[i].Id;
+                    }
+                }
+
+                if (assembledGameDescriptor.TownHalls != null && assembledGameDescriptor.TownHalls.Count == serverGameDescriptor.TownHalls.Count)
+                {
+                    for (var i = 0; i < assembledGameDescriptor.TownHalls.Count; i++)
+                    {
+                        serverGameDescriptor.TownHalls[i].Id = assembledGameDescriptor.TownHalls[i].Id;
+                    }
+                }
+
+                if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count >= 0)
+                {
+                    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                    {
+                        if (i >= serverGameDescriptor.Trees.Count)
+                            serverGameDescriptor.Trees.Add(
+                                new Tree(
+                                    "tree",
+                                    new Coordinates
+                                    {
+                                        x = assembledGameDescriptor.Trees[i].Position.x,
+                                        y = assembledGameDescriptor.Trees[i].Position.y,
+                                    }));
+                        serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
+                    }
+                }
+
+                if (assembledGameDescriptor.Workers != null && assembledGameDescriptor.Workers.Count == serverGameDescriptor.Workers.Count)
+                {
+                    for (var i = 0; i < assembledGameDescriptor.Workers.Count; i++)
+                    {
+                        serverGameDescriptor.Workers[i].Id = assembledGameDescriptor.Workers[i].Id;
+                    }
+                }
+
+                if (assembledGameDescriptor.Resources != null && assembledGameDescriptor.Resources.Count == serverGameDescriptor.Resources.Count)
+                {
+                    foreach (var res in assembledGameDescriptor.Resources)
+                    {
+                        serverGameDescriptor.Resources[res.Key] = assembledGameDescriptor.Resources[res.Key];
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return serverGameDescriptor;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SendPopulationChanged(object sender, PopulationChangedEventArgs e)
         {
             var messageBody = JsonConvert.SerializeObject(e.Unit);

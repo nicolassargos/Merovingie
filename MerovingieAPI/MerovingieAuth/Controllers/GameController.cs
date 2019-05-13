@@ -108,13 +108,13 @@ namespace Merovingie.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public RedirectToActionResult Create(GameDescriptorModel gameModel)
+        public IActionResult Create(GameDescriptorModel gameModel)
         {
             IGameDescriptor newGameDescriptor = GameGenerator.GenerateMapFromOptions(gameModel.Workers, gameModel.Farms, gameModel.Resources);
 
             GameFileManager.SaveGame(newGameDescriptor, gameModel.Name);
 
-            return RedirectToAction("GameListing");
+            return Redirect($"/{configuration.GetValue<string>("GameEngine")}?name={gameModel.Name}");
         }
 
         /// <summary>
