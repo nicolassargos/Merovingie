@@ -1,6 +1,7 @@
 ﻿using AoC.Api.EventArgs;
 using AoC.Api.Services;
 using Common.Interfaces;
+using Common.Struct;
 using System;
 using System.Linq;
 
@@ -106,6 +107,15 @@ namespace AoC.Api.Domain.UseCases
             var worker = PopulationList[workerId] as Worker;
 
             if (worker.IsWorking) worker.CancelAllActions();
+        }
+
+
+        public void SetUnitPosition(int id, Coordinates coordinates)
+        {
+            var unit = PopulationList.First(u => u.Id == id);
+            if (unit == null) throw new Exception("SetUnitPosition: unit not found");
+
+            unit.Position = coordinates;
         }
         #endregion
     }

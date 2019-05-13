@@ -94,7 +94,7 @@ namespace AoC.Api.Domain
 
             _generator = new Generator(this);
 
-            Position = new Coordinates { x = 10, y = 10 };
+            Position = new Coordinates { x = 0, y = 0 };
         }
 
         /// <summary>

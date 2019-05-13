@@ -8,7 +8,7 @@ namespace Common.Struct
 {
     public struct Coordinates                  
     {                                          
-        public int x;                          
-        public int y;                          
+        public float x;                          
+        public float y;                          
     }
 }

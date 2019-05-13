@@ -169,7 +169,12 @@ namespace Merovingie
                 case MessageTypes.CLIENTDATA_UNITSSTATE:
                     try
                     {
-                        var data = JsonConvert.DeserializeObject<List<MUnitsStateModel>>(messageReceived.Message.ToString());
+                        List<MUnitsStateModel> data = JsonConvert.DeserializeObject<List<MUnitsStateModel>>(messageReceived.Message.ToString());
+                        foreach(var unit in data)
+                        {
+                            _gameManager.SetUnitPosition(unit.Id, unit.Position);
+                        }
+                        GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
                     }
                     catch (Exception ex)
                     {
