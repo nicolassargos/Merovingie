@@ -266,6 +266,15 @@
         "name": "images\\sprites\\tree.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "tile_205.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "tile_205.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -306,7 +315,7 @@
       "title": "",
       "v": 209,
       "uiSettings": {
-        "grid": false,
+        "grid": true,
         "gridB": 255,
         "gridG": 180,
         "gridHeight": 32,
@@ -314,9 +323,9 @@
         "gridOffsetY": 0,
         "gridR": 158,
         "gridWidth": 32,
-        "snap": false,
+        "snap": true,
         "windowMask": true,
-        "zoomFactor": 0.664
+        "zoomFactor": 0.52
       },
       "objectsGroups": [],
       "variables": [],
@@ -1900,6 +1909,36 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 131,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 130,
+          "x": 888,
+          "y": -2831,
+          "zOrder": 35,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 126,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 125,
+          "x": 3733,
+          "y": -2762,
+          "zOrder": 36,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -2024,7 +2063,16 @@
           "name": "tree",
           "type": "Sprite",
           "updateIfNotVisible": false,
-          "variables": [],
+          "variables": [
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
+            }
+          ],
           "behaviors": [
             {
               "cost": 2,
@@ -2187,6 +2235,14 @@
             {
               "name": "Selected",
               "value": "0"
+            },
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
             }
           ],
           "behaviors": [
@@ -2226,22 +2282,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "height": 50,
-          "name": "wall",
-          "texture": "images\\wall.png",
-          "type": "TiledSpriteObject::TiledSprite",
-          "width": 20,
-          "variables": [],
-          "behaviors": [
-            {
-              "cost": 2,
-              "impassable": true,
-              "name": "PathfindingObstacle",
-              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
             }
           ]
         },
@@ -2477,6 +2517,14 @@
             {
               "name": "targeted",
               "value": ""
+            },
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
             }
           ],
           "behaviors": [
@@ -2523,7 +2571,16 @@
           "name": "mine",
           "type": "Sprite",
           "updateIfNotVisible": false,
-          "variables": [],
+          "variables": [
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
+            }
+          ],
           "behaviors": [
             {
               "cost": 2,
@@ -2582,6 +2639,44 @@
                     {
                       "hasCustomCollisionMask": false,
                       "image": "images\\sprites\\farm.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "rallyPoint",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "tile_205.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
@@ -2701,7 +2796,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\n    function MerovingieWebSocket() {\n        this.scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n        this.port = document.location.port ? (\":\" + document.location.port) : \"\";\n        const urlParams = new URLSearchParams(window.location.search);\n        this.gameName = urlParams.get('name');\n  \n        // Variable de connexion qui contient l'adresse du serveur\n        this.connectionUrl = this.scheme + \"://\" + document.location.hostname + this.port + \"/ws\";\n  \n        // Connecte le websocket au serveur\n        this.socket = new WebSocket(this.connectionUrl);\n  \n        // Ouverture du socket\n        this.socket.onopen = function () {\n            if (!this || this.readyState !== WebSocket.OPEN) {\n                alert(\"meroSocket is not connected\");\n                return;\n            }\n  \n            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, gdjs.meroSocket.gameName);\n  \n            if (this.OPEN)\n            {\n                this.send(JSON.stringify(connectMessage));\n            }\n        }\n  \n        this.socket.onmessage = function (event) {\n            var messageReceived = JSON.parse(event.data);\n            console.log(messageReceived);\n  \n            if (!messageReceived.Type)\n                console.error(\"Socket OnMessage: the format of the message is not correct :\" + JSON.stringify(messageReceived));\n            else\n            {\n                var message = new MMessage(messageReceived.Type, messageReceived.Message);\n                gdjs.ProcessMessage(message);\n            }\n  \n        }\n  \n        this.socket.onclose = function(event) {\n            console.log(event);\n            // this.socket = new WebSocket(this.connectionUrl);\n        }\n    }\n  \n    // Méthode d'envoi de données\n    MerovingieWebSocket.prototype.send = function(messageType, body) {\n  \n        if (!messageType) {\n            alert('Message type is undefined of null');\n            return;\n        }\n  \n        if (!body) {\n            alert('Body of message is undefined or null');\n        }\n  \n      if (typeof(body) === 'string')\n          var message = body;\n      else\n          var message = JSON.stringify(body);\n  \n      for (i = 0; i < message.length ; i += 3000)\n      {\n          if (i+3000 > message.length) var bytes = message.substr(i, message.length);\n          else var bytes = message.substr(i, i+3000);\n  \n          this.socket.send(JSON.stringify(new MMessage(messageType, bytes)));\n      }\n        \n      console.log(this.socket.bufferedAmount);\n    }\n  \n    gdjs.meroSocket = new MerovingieWebSocket();\n    \n  \n    gdjs.ProcessMessage = function(messageToInterpret)\n    {\n        console.log(messageToInterpret.message);\n  \n        var messageBody = '';\n  \n        if (messageToInterpret.message && messageToInterpret.message.length > 0)\n            messageBody = JSON.parse(messageToInterpret.message);\n  \n        switch(messageToInterpret.type) {\n  \n            case MessageTypes.GAMECONNECT_OK:\n                // TODO: créer une fonction de chargement de partie\n                // et l'attacher à meroSocket\n                gdjs.meroSocket.send(MessageTypes.FILELOAD_REQUESTED, gdjs.meroSocket.gameName);\n                break;\n  \n            case MessageTypes.FILELOAD_ACCEPTED:\n                gdjs.loadData(messageBody);\n                gdjs.saveData();\n                setInterval(function() {gdjs.sendUnitsState()}, 2500);\n                break;\n  \n            case MessageTypes.CREATION_REFUSEDPOPULATION:\n                gdjs.displayError(\"Not enough farms!\");\n                break;\n  \n            case MessageTypes.CREATION_REFUSEDRESOURCES:\n                gdjs.displayError(\"Not enough resources!\");\n                break;\n  \n            case MessageTypes.CREATION_ACCEPTED:\n                gdjs.updateStock(messageBody);\n                break;\n  \n            case MessageTypes.CREATION_COMPLETED:\n                gdjs.createWorker(null, messageBody.Position.x, messageBody.Position.y);\n                break;\n            \n            default: break;\n        }\n    }\n  \n    // Fonction qui traite de chargement de données\n    gdjs.loadData = function(data) {\n        console.log(data);\n        var gameDescriptor = new MGameFileDescriptor(data);\n        // Tester la nullité et envoyer un message d'erreur au serveur si nécessaire\n        // if (isNullOrUndefined(gameDescriptor)) gdjs.meroSocket.send(new MF)\n  \n        gameDescriptor.carries.forEach((carry) => gdjs.createCarry(carry));\n        gameDescriptor.goldMines.forEach((mine) => gdjs.createGoldMine(mine));\n        gameDescriptor.farms.forEach((farm) => gdjs.createFarm(farm));\n        gameDescriptor.townHalls.forEach((townHall) => gdjs.createTownHall(townHall));\n        gameDescriptor.workers.forEach((worker) => gdjs.createWorker(worker));\n        gdjs.updateStock(gameDescriptor.resources);\n    }\n  \n    // Fonction de sauvegarde de données\n      gdjs.saveData = function() {\n          var carries = [];\n          var trees = [];\n          var goldMines = [];\n          var townHalls = [];\n          var farms = [];\n          var workers = [];\n  \n          runtimeScene.getObjects(\"carry\").forEach((item) => {\n              carries.push( { \n                  Id : item.getUniqueId(),\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part1 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : carries,\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_FIRSTPART, message_part1);    \n  \n  \n          runtimeScene.getObjects(\"mine\").forEach((item) => {\n              goldMines.push( { \n                      Id : item.getUniqueId(), \n                      Position : { X: item.getX(), Y: item.getY() }\n                  });\n              });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : goldMines,\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n          runtimeScene.getObjects(\"townHall\").forEach((item) => {\n              townHalls.push( { \n                  Id : item.getUniqueId(), \n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : townHalls,\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n          runtimeScene.getObjects(\"farm\").forEach((item) => {\n              farms.push( { \n                  Id : item.getUniqueId(), \n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : farms,\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n          runtimeScene.getObjects(\"worker\").forEach((item) => {\n              workers.push( { \n                  Id : item.getUniqueId(),\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : workers\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n      var treeObjects = runtimeScene.getObjects(\"tree\");\n      var i = 0;\n      for (i=0; i < treeObjects.length; i+=19)\n      {\n          for(j = i; j < i+20 && j <  treeObjects.length; j++)\n          {\n              trees.push( { \n                Id : treeObjects[j].getUniqueId(),\n                Name : treeObjects[j].getName(), \n                Position : { X: treeObjects[j].getX(), Y: treeObjects[j].getY() }\n              });\n          }\n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : trees,\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n          trees=[];\n      };\n  \n      gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_END, \"end\");\n    }\n  \n    // Fonction de création d'une Carrière de pierre\n    gdjs.createCarry = function(carry) {\n        var newCarry = runtimeScene.createObject(\"carry\");\n        newCarry.setPosition(carry.Position.x, carry.Position.y);\n        newCarry.setZOrder(1);\n    }\n  \n      // Fonction de création d'une Ferme\n    gdjs.createFarm = function(farm) {\n        var newFarm = runtimeScene.createObject(\"farm\");\n        newFarm.setPosition(farm.Position.x, farm.Position.y);\n        newFarm.setZOrder(1);\n    }\n  \n    // Fonction de création d'une mine d'or'\n    gdjs.createGoldMine = function(goldMine) {\n        var newGoldMine = runtimeScene.createObject(\"mine\");\n        newGoldMine.setPosition(goldMine.Position.x, goldMine.Position.y);\n        newGoldMine.setZOrder(1);\n    }\n  \n    // Fonction de création d'une mine d'or'\n    gdjs.createTownHall = function(townHall) {\n        var newTownHall = runtimeScene.createObject(\"townHall\");\n        newTownHall.setPosition(townHall.Position.x, townHall.Position.y);\n        newTownHall.setZOrder(1);\n    }\n  \n    // Fonction de création d'un worker\n    gdjs.createWorker = function(worker, x, y) {\n        var newWorker = runtimeScene.createObject(\"worker\");\n        if (!worker || !worker.Position || (worker.Position.x === 0 && worker.Position.y === 0))\n        {\n            var townHall = runtimeScene.getObjects(\"townHall\");\n            if (townHall.length > 0)\n                newWorker.setPosition(townHall[0].getX()+townHall[0].getWidth()+50,  townHall[0].getY()+ townHall[0].getHeight());\n            else\n                newWorker.setPosition(x, y);\n        }\n        else\n        {\n            newWorker.setPosition(worker.Position.x, worker.Position.y);\n        }\n        newWorker.setZOrder(1);\n        gdjs.setNewCoordinatesForUnit(newWorker);\n    }\n  \n    // Fonction de mise à jour du stock\n    gdjs.updateStock = function(stock) {\n        var goldStockLabel = runtimeScene.getObjects(\"GoldStockLabel\");\n        var stoneStockLabel = runtimeScene.getObjects(\"StoneStockLabel\");\n        var woodStockLabel = runtimeScene.getObjects(\"WoodStockLabel\");\n  \n        if (goldStockLabel.length > 0) goldStockLabel[0].setString(stock.Gold);\n        if (stoneStockLabel.length > 0) stoneStockLabel[0].setString(stock.Stone);\n        if (woodStockLabel.length > 0) woodStockLabel[0].setString(stock.Wood);\n    }\n  \n    // Fonction d'affichage d'erreur sur l'interface\n    gdjs.displayError = function(errorMessage) {\n        var errorLabel = runtimeScene.getObjects(\"ErrorLabel\");\n        errorLabel[0].setString(errorMessage);\n        errorLabel[0].hide(false);\n        setTimeout(function() {\n            errorLabel[0].hide(true);\n        }, 2000);\n    }\n    \n    gdjs.sendUnitsState = function() {\n        var workers = [];\n  \n        runtimeScene.getObjects(\"worker\").forEach(function(wk) {\n            var currentWorker = { id : wk.getUniqueId(), position : { x: wk.x, y: wk.y }  };\n            workers.push(currentWorker);\n        });\n  \n    //   console.log(workers);\n        this.meroSocket.send(MessageTypes.CLIENTDATA_UNITSSTATE, workers);\n    }\n\n    gdjs.setNewCoordinatesForUnit = function(unit) {\n\n        if (!typeof(unit) === 'runtimeObject') { console.log(\"wrong type of object\"); return; }\n\n        var units = runtimeScene.getObjects(\"worker\");\n        units.forEach(function(u) {\n            console.log(u.separateFromObjects(units));\n        });\n        units.forEach(function(u) {\n            console.log(u.separateFromObjects(units));\n        }); \n    }\n    \n  ",
+              "inlineCode": "\n    function MerovingieWebSocket() {\n        this.scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n        this.port = document.location.port ? (\":\" + document.location.port) : \"\";\n        const urlParams = new URLSearchParams(window.location.search);\n        this.gameName = urlParams.get('name');\n  \n        // Variable de connexion qui contient l'adresse du serveur\n        this.connectionUrl = this.scheme + \"://\" + document.location.hostname + this.port + \"/ws\";\n  \n        // Connecte le websocket au serveur\n        this.socket = new WebSocket(this.connectionUrl);\n  \n        // Ouverture du socket\n        this.socket.onopen = function () {\n            if (!this || this.readyState !== WebSocket.OPEN) {\n                alert(\"meroSocket is not connected\");\n                return;\n            }\n  \n            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, gdjs.meroSocket.gameName);\n  \n            if (this.OPEN)\n            {\n                this.send(JSON.stringify(connectMessage));\n            }\n        }\n  \n        this.socket.onmessage = function (event) {\n            var messageReceived = JSON.parse(event.data);\n            console.log(messageReceived);\n  \n            if (!messageReceived.Type)\n                console.error(\"Socket OnMessage: the format of the message is not correct :\" + JSON.stringify(messageReceived));\n            else\n            {\n                var message = new MMessage(messageReceived.Type, messageReceived.Message);\n                gdjs.ProcessMessage(message);\n            }\n  \n        }\n  \n        this.socket.onclose = function(event) {\n            console.log(event);\n            // this.socket = new WebSocket(this.connectionUrl);\n        }\n    }\n  \n    // Méthode d'envoi de données\n    MerovingieWebSocket.prototype.send = function(messageType, body) {\n  \n        if (!messageType) {\n            alert('Message type is undefined of null');\n            return;\n        }\n  \n        if (!body) {\n            alert('Body of message is undefined or null');\n        }\n  \n      if (typeof(body) === 'string')\n          var message = body;\n      else\n          var message = JSON.stringify(body);\n  \n      for (i = 0; i < message.length ; i += 3000)\n      {\n          if (i+3000 > message.length) var bytes = message.substr(i, message.length);\n          else var bytes = message.substr(i, i+3000);\n  \n          this.socket.send(JSON.stringify(new MMessage(messageType, bytes)));\n      }\n        \n      console.log(this.socket.bufferedAmount);\n    }\n    \n    gdjs.ProcessMessage = function(messageToInterpret)\n    {\n        console.log(messageToInterpret.message);\n  \n        var messageBody = '';\n  \n        if (messageToInterpret.message && messageToInterpret.message.length > 0)\n            messageBody = JSON.parse(messageToInterpret.message);\n  \n        switch(messageToInterpret.type) {\n  \n            case MessageTypes.GAMECONNECT_OK:\n                // TODO: créer une fonction de chargement de partie\n                // et l'attacher à meroSocket\n                gdjs.meroSocket.send(MessageTypes.FILELOAD_REQUESTED, gdjs.meroSocket.gameName);\n                break;\n  \n            case MessageTypes.FILELOAD_ACCEPTED:\n                gdjs.loadData(messageBody);\n                runtimeScene.getObjects(\"tree\").forEach(function(t) {\n                    gdjs.setRallyPoint(t);\n                });\n                gdjs.saveData();\n                setInterval(function() {gdjs.sendUnitsState()}, 2500);\n                break;\n  \n            case MessageTypes.CREATION_REFUSEDPOPULATION:\n                gdjs.displayError(\"Not enough farms!\");\n                break;\n  \n            case MessageTypes.CREATION_REFUSEDRESOURCES:\n                gdjs.displayError(\"Not enough resources!\");\n                break;\n  \n            case MessageTypes.CREATION_ACCEPTED:\n                gdjs.updateStock(messageBody);\n                break;\n  \n            case MessageTypes.CREATION_COMPLETED:\n                gdjs.createWorker(null, messageBody.Position.x, messageBody.Position.y);\n                break;\n            \n            default: break;\n        }\n    }\n  \n    // Fonction qui traite de chargement de données\n    gdjs.loadData = function(data, callback) {\n        console.log(data);\n        var gameDescriptor = new MGameFileDescriptor(data);\n        // Tester la nullité et envoyer un message d'erreur au serveur si nécessaire\n        // if (isNullOrUndefined(gameDescriptor)) gdjs.meroSocket.send(new MF)\n  \n        gameDescriptor.carries.forEach((carry) => gdjs.createCarry(carry));\n        gameDescriptor.goldMines.forEach((mine) => gdjs.createGoldMine(mine));\n        gameDescriptor.farms.forEach((farm) => gdjs.createFarm(farm));\n        gameDescriptor.townHalls.forEach((townHall) => gdjs.createTownHall(townHall));\n        gameDescriptor.workers.forEach((worker) => gdjs.createWorker(worker));\n        gdjs.updateStock(gameDescriptor.resources);\n\n        if (callback) callback();\n    }\n  \n    // Fonction de sauvegarde de données\n      gdjs.saveData = function() {\n          var carries = [];\n          var trees = [];\n          var goldMines = [];\n          var townHalls = [];\n          var farms = [];\n          var workers = [];\n  \n          runtimeScene.getObjects(\"carry\").forEach((item) => {\n              carries.push( { \n                  Id : item.getUniqueId(),\n                  RallyPoint: { X: item.getVariables()._variables.items.RallyPointX, Y: item.getVariables()._variables.items.RallyPointY },\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part1 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : carries,\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_FIRSTPART, message_part1);    \n  \n  \n          runtimeScene.getObjects(\"mine\").forEach((item) => {\n              goldMines.push( { \n                      Id : item.getUniqueId(),\n                      RallyPoint: { X: item.getVariables()._variables.items.RallyPointX, Y: item.getVariables()._variables.items.RallyPointY },\n                      Position : { X: item.getX(), Y: item.getY() }\n                  });\n              });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : goldMines,\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n          runtimeScene.getObjects(\"townHall\").forEach((item) => {\n              townHalls.push( { \n                  Id : item.getUniqueId(), \n                  RallyPoint: { X: item.getVariables()._variables.items.RallyPointX, Y: item.getVariables()._variables.items.RallyPointY },\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : townHalls,\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n          runtimeScene.getObjects(\"farm\").forEach((item) => {\n              farms.push( { \n                  Id : item.getUniqueId(), \n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : farms,\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n          runtimeScene.getObjects(\"worker\").forEach((item) => {\n              workers.push( { \n                  Id : item.getUniqueId(),\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : workers\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n      var treeObjects = runtimeScene.getObjects(\"tree\");\n      var i = 0;\n      for (i=0; i < treeObjects.length; i+=19)\n      {\n          for(j = i; j < i+20 && j <  treeObjects.length; j++)\n          {\n              trees.push( { \n                Id : treeObjects[j].getUniqueId(),\n                Name : treeObjects[j].getName(),\n                RallyPoint: { X: treeObjects[j].getVariables()._variables.items.RallyPointX, Y: treeObjects[j].getVariables()._variables.items.RallyPointY },\n                Position : { X: treeObjects[j].getX(), Y: treeObjects[j].getY() }\n              });\n          }\n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : trees,\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n          trees=[];\n      };\n  \n      gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_END, \"end\");\n    }\n  \n    // Fonction de création d'une Carrière de pierre\n    gdjs.createCarry = function(carry) {\n        var newCarry = runtimeScene.createObject(\"carry\");\n        newCarry.setPosition(carry.Position.x, carry.Position.y);\n        gdjs.setRallyPoint(newCarry);\n        newCarry.setZOrder(1);\n    }\n  \n      // Fonction de création d'une Ferme\n    gdjs.createFarm = function(farm) {\n        var newFarm = runtimeScene.createObject(\"farm\");\n        newFarm.setPosition(farm.Position.x, farm.Position.y);\n        newFarm.setZOrder(1);\n    }\n  \n    // Fonction de création d'une mine d'or'\n    gdjs.createGoldMine = function(goldMine) {\n        var newGoldMine = runtimeScene.createObject(\"mine\");\n        newGoldMine.setPosition(goldMine.Position.x, goldMine.Position.y);\n        gdjs.setRallyPoint(newGoldMine);\n        newGoldMine.setZOrder(1);\n    }\n  \n    // Fonction de création d'une mine d'or'\n    gdjs.createTownHall = function(townHall) {\n        var newTownHall = runtimeScene.createObject(\"townHall\");\n        newTownHall.setPosition(townHall.Position.x, townHall.Position.y);\n        gdjs.setRallyPoint(newTownHall);\n        newTownHall.setZOrder(1);\n    }\n  \n    // Fonction de création d'un worker\n    gdjs.createWorker = function(worker, x, y) {\n        var newWorker = runtimeScene.createObject(\"worker\");\n        if (!worker || !worker.Position || (worker.Position.x === 0 && worker.Position.y === 0))\n        {\n            var townHall = runtimeScene.getObjects(\"townHall\");\n            if (townHall.length > 0)\n                newWorker.setPosition(townHall[0].getVariables()._variables.items.RallyPointX, townHall[0].getVariables()._variables.items.RallyPointY );\n            else\n                newWorker.setPosition(x, y);\n        }\n        else\n        {\n            newWorker.setPosition(worker.Position.x, worker.Position.y);\n        }\n        newWorker.setZOrder(1);\n        gdjs.setNewCoordinatesForUnit(newWorker);\n    }\n  \n    // Fonction de mise à jour du stock\n    gdjs.updateStock = function(stock) {\n        var goldStockLabel = runtimeScene.getObjects(\"GoldStockLabel\");\n        var stoneStockLabel = runtimeScene.getObjects(\"StoneStockLabel\");\n        var woodStockLabel = runtimeScene.getObjects(\"WoodStockLabel\");\n  \n        if (goldStockLabel.length > 0) goldStockLabel[0].setString(stock.Gold);\n        if (stoneStockLabel.length > 0) stoneStockLabel[0].setString(stock.Stone);\n        if (woodStockLabel.length > 0) woodStockLabel[0].setString(stock.Wood);\n    }\n  \n    // Fonction d'affichage d'erreur sur l'interface\n    gdjs.displayError = function(errorMessage) {\n        var errorLabel = runtimeScene.getObjects(\"ErrorLabel\");\n        errorLabel[0].setString(errorMessage);\n        errorLabel[0].hide(false);\n        setTimeout(function() {\n            errorLabel[0].hide(true);\n        }, 2000);\n    }\n    \n    gdjs.sendUnitsState = function() {\n        var workers = [];\n  \n        runtimeScene.getObjects(\"worker\").forEach(function(wk) {\n            var currentWorker = { id : wk.getUniqueId(), position : { x: wk.x, y: wk.y }  };\n            workers.push(currentWorker);\n        });\n  \n    //   console.log(workers);\n        this.meroSocket.send(MessageTypes.CLIENTDATA_UNITSSTATE, workers);\n    }\n\n    gdjs.setNewCoordinatesForUnit = function(unit) {\n\n        if (!typeof(unit) === 'runtimeObject') { console.log(\"wrong type of object\"); return; }\n\n        var units = runtimeScene.getObjects(\"worker\");\n        units.forEach(function(u) {\n            console.log(u.separateFromObjects(units));\n        });\n        units.forEach(function(u) {\n            console.log(u.separateFromObjects(units));\n        }); \n    }\n\n    gdjs.setRallyPoint = function(object) {\n        if (!typeof(object) === 'runtimeObject') { console.log(\"wrong type of object\"); return; }\n\n        var allObstacleObjects = [];\n        runtimeScene.getObjects(\"worker\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"tree\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"townHall\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"farm\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"mine\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"carry\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n\n        var dummyRallyPoint = runtimeScene.createObject(\"rallyPoint\");\n        var mapCenter = this.getMapCenter();\n        dummyRallyPoint.setPosition(mapCenter.x, mapCenter.y);\n\n        var hitBoxPoints = object.getHitBoxes()[0].vertices;\n        var hitBoxDummys = [];\n        var dist;\n        var closestBoxPoint;\n        for (var i = 0; i < hitBoxPoints.length; i++)\n        {\n            hitBoxDummys.unshift(runtimeScene.createObject(\"rallyPoint\"));\n            hitBoxDummys[0].setPosition(hitBoxPoints[i][0], hitBoxPoints[i][1]);\n            if (!dist || hitBoxDummys[0].getDistanceToObject(dummyRallyPoint) < dist)\n            {\n                dist = hitBoxDummys[0].getDistanceToObject(dummyRallyPoint);\n                closestBoxPoint = { \"x\": this.getObjectCenterX(hitBoxDummys[0]), \"y\": this.getObjectCenterY(hitBoxDummys[0]) };\n            }\n            hitBoxDummys[0].deleteFromScene(runtimeScene);\n        }\n\n        //console.log(closestBoxPoint);\n        //dummyRallyPoint.setPosition(closestBoxPoint.x, closestBoxPoint.y);\n        object.getVariables()._variables.items.RallyPointX = closestBoxPoint.x;\n        object.getVariables()._variables.items.RallyPointY = closestBoxPoint.y;\n\n        //console.log(dummyRallyPoint.separateFromObjects(allObstacleObjects));\n        //dummyRallyPoint.setZOrder(1);\n    }\n\n\n    gdjs.meroSocket = new MerovingieWebSocket();\n\n\n    gdjs.getObjectCenterX = function(object) {\n        return (object.getAABB().max[0] + object.getAABB().min[0]) /2;\n    }\n\n    gdjs.getObjectCenterY = function(object) {\n        return (object.getAABB().max[1] + object.getAABB().min[1]) /2;\n    }\n\n    gdjs.getMapCenter = function() {\n        // Calcule le centre de la map\n        /** @type {gdjs.runtimeObject} */\n        var back = runtimeScene.getObjects(\"Background\")[0];\n\n        return { \"x\": gdjs.getObjectCenterX(back), \"y\": gdjs.getObjectCenterY(back)};\n    }",
               "parameterObjects": "peasant"
             }
           ]

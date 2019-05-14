@@ -112,10 +112,17 @@ namespace AoC.Api.Domain.UseCases
 
         public void SetUnitPosition(int id, Coordinates coordinates)
         {
-            var unit = PopulationList.First(u => u.Id == id);
-            if (unit == null) throw new Exception("SetUnitPosition: unit not found");
+            try
+            {
+                var unit = PopulationList.FirstOrDefault(u => u.Id == id);
+                if (unit == null || unit.Id == 0) throw new Exception("SetUnitPosition: unit not found");
 
-            unit.Position = coordinates;
+                unit.Position = coordinates;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
     }
