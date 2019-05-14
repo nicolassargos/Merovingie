@@ -17,7 +17,7 @@ namespace AoC.Api.Domain
     {
         [XmlIgnoreAttribute]
         public ConcurrentQueue<IProductable> ProductionQueue { get; set; }
-
+        public Coordinates RallyPoint { get; set; }
         private Generator _generator;
 
 

@@ -9,6 +9,7 @@ namespace AoC.Api.Domain
     {
         #region Propriétés
         public int GoldStock { get; set; }
+        public Coordinates RallyPoint { get; set; }
         #endregion
 
 

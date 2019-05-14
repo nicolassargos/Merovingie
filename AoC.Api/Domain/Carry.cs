@@ -13,6 +13,7 @@ namespace AoC.Api.Domain
 
         #region Propriétés
         public int StoneStock { get; set; }
+        public Coordinates RallyPoint { get; set; }
         #endregion
 
 
