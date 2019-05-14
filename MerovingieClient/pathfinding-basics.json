@@ -257,6 +257,15 @@
         "name": "images\\sprites\\farm.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/tree.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\tree.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -307,7 +316,7 @@
         "gridWidth": 32,
         "snap": false,
         "windowMask": true,
-        "zoomFactor": 0.688
+        "zoomFactor": 0.664
       },
       "objectsGroups": [],
       "variables": [],
@@ -2035,7 +2044,7 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": false,
-                      "image": "images\\tree-icon.png",
+                      "image": "images\\sprites\\tree.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
