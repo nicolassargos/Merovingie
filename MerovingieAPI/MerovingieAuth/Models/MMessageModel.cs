@@ -51,6 +51,10 @@ namespace Merovingie.Models
         CREATION_REFUSEDPOPULATION,
         CREATION_ERROR,
         CLIENTDATA_UNITSSTATE,
+        FETCHCARRY_REQUESTED,
+        FETCHCARRY_ACCEPTED,
+        FETCHCARRY_ABORTED,
+        FETCHCARRY_COMPLETED,
         INFO
     }
 
@@ -77,6 +81,12 @@ namespace Merovingie.Models
     {
         public int Id { get; set; }
         public Coordinates Position { get; set; }
+    }
+
+    public class MUnitFetchRequestedModel
+    {
+        public int unitId { get; set; }
+        public int buildingId { get; set; }
     }
 
 }

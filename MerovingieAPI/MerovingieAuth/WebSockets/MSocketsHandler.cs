@@ -181,6 +181,17 @@ namespace Merovingie
                         throw ex;
                     }
                     break;
+                // Premier message pour un fetch (quand l'unité arrive devant la ressource)
+                case MessageTypes.FETCHCARRY_REQUESTED:
+                    try
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    break;
                 // DEFAULT
                 default:
                     SendMessage(new MMessageModel(MessageTypes.INFO, "unknown message type"));

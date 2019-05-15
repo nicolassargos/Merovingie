@@ -4,8 +4,8 @@
 
 function MMessage(type, message) {
 
-    if (!type && type !== 0) console.log('McreationRequestBody: creator is null');
-    if (!message) console.log('McreationRequestBody: productable is null');
+    if (!type && type !== 0) console.error('MMessage: type is null');
+    if (!message) console.error('MMessage: message is null');
 
     this.type = type;
     this.message = message;
@@ -15,8 +15,8 @@ function MMessage(type, message) {
 
 function MCreationRequestBody(creatorId, productableName, x, y) {
 
-    if (!creatorId && creatorId !== 0) console.log('McreationRequestBody: creatorId is null');
-    if (!productableName) console.log('McreationRequestBody: productableName is null');
+    if (!creatorId && creatorId !== 0) console.error('McreationRequestBody: creatorId is null');
+    if (!productableName) console.error('McreationRequestBody: productableName is null');
 
     this.creatorId = creatorId;
     this.productableName = productableName;
@@ -28,34 +28,34 @@ function MCreationRequestBody(creatorId, productableName, x, y) {
 
 function MGameFileDescriptor(gameDescriptor) {
     if (isNullOrUndefined(gameDescriptor.Carries)) {
-        console.log('MGameFileDescriptor: carries are null or undefined');
+        console.error('MGameFileDescriptor: carries are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Farms)) {
-        console.log('MGameFileDescriptor: farms are null or undefined');
+        console.error('MGameFileDescriptor: farms are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.GoldMines)) {
-        console.log('MGameFileDescriptor: gold mines are null or undefined');
+        console.error('MGameFileDescriptor: gold mines are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Resources)
         || isNullOrUndefined(gameDescriptor.Resources.Gold)
         || isNullOrUndefined(gameDescriptor.Resources.Stone)
         || isNullOrUndefined(gameDescriptor.Resources.Wood)) {
-        console.log('MGameFileDescriptor: at least one resource are null or undefined');
+        console.error('MGameFileDescriptor: at least one resource are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.TownHalls)) {
-        console.log('MGameFileDescriptor: town halls are null or undefined');
+        console.error('MGameFileDescriptor: town halls are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Trees)) {
-        console.log('MGameFileDescriptor: trees are null or undefined');
+        console.error('MGameFileDescriptor: trees are null or undefined');
         return;
     }
     if (isNullOrUndefined(gameDescriptor.Workers)) {
-        console.log('MGameFileDescriptor: workers are null or undefined');
+        console.error('MGameFileDescriptor: workers are null or undefined');
         return;
     }
 
@@ -69,6 +69,18 @@ function MGameFileDescriptor(gameDescriptor) {
 
     return this;
 };
+
+
+function MUnitFetchRequestedModel(unitId, creatorId) {
+    if (isNullOrUndefined(unitId) || typeof(unitId) !== 'number') {
+        console.error('MUnitFetchRequestedModel: unitId is null or undefined');
+        return;
+    }
+    if (isNullOrUndefined(creatorId) || typeof (creatorId) !== 'number') {
+        console.error('MUnitFetchRequestedModel: creatorId is null or undefined');
+        return;
+    }
+}
 
 
 var MessageTypes = Object.freeze({
@@ -94,7 +106,10 @@ var MessageTypes = Object.freeze({
     "CREATION_REFUSEDRESOURCES":    19,
     "CREATION_REFUSEDPOPULATION":   20,
     "CREATION_ERROR":               21,
-    "CLIENTDATA_UNITSSTATE":        22,
-    "INFO":                         23
-    
+    "CLIENTDATA_UNITSSTATE": 22,
+    "FETCHCARRY_REQUESTED":         23,
+    "FETCHCARRY_ACCEPTED":24,
+    "FETCHCARRY_ABORTED":25,
+    "FETCHCARRY_COMPLETED":         26,
+    "INFO":                         27
 });
