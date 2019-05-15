@@ -3401,7 +3401,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "\nvar townHall = runtimeScene.getObjects(\"townHall\").find(x => x.getVariables().get(\"Selected\").getAsNumber() === 1);\nvar townHallId = townHall.getNameId();\n\nvar messageBody = new MCreationRequestBody(townHallId, \"worker\", townHall.getX()+townHall.getWidth()+50,  townHall.getY()+ townHall.getHeight());\n\ngdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody);",
+              "inlineCode": "\nvar townHall = runtimeScene.getObjects(\"townHall\").find(x => x.getVariables().get(\"Selected\").getAsNumber() === 1);\nvar townHallId = townHall.getUniqueId();\n\n// var newWorker = runtimeScene.createObject(\"worker\")\n\nvar messageBody = new MCreationRequestBody(townHallId, \"worker\", townHall.getX()+townHall.getWidth()+50,  townHall.getY()+ townHall.getHeight());\n\ngdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody);",
               "parameterObjects": "TownHall"
             }
           ]

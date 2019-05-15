@@ -174,7 +174,7 @@ namespace Merovingie
                         {
                             _gameManager.SetUnitPosition(unit.Id, unit.Position);
                         }
-                        //GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
+                        GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
                     }
                     catch (Exception ex)
                     {

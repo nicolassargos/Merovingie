@@ -115,7 +115,15 @@ namespace AoC.Api.Domain.UseCases
             try
             {
                 var unit = PopulationList.FirstOrDefault(u => u.Id == id);
-                if (unit == null || unit.Id == 0) throw new Exception("SetUnitPosition: unit not found");
+                if (unit == null || unit.Id == 0)
+                {
+                    unit = PopulationList.FirstOrDefault(u => u.Id == 0);
+                    if (unit == null)
+                        throw new Exception("SetUnitPosition: unit not found");
+                    // Cas où il s'agit d'une nouvelle unité qui n'a pas encore d'Id
+                    else
+                        unit.Id = id;
+                }
 
                 unit.Position = coordinates;
             }
