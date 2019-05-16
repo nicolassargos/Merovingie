@@ -8,4 +8,9 @@ namespace AoC.Api.EventArgs
     {
         public SerializableDictionary<ResourcesType, int> CurrentResources;
     }
+
+    public class BuildingResourcesChangedArgs : ResourcesChangedArgs
+    {
+        public int BuildingId { get; set; }
+    }
 }

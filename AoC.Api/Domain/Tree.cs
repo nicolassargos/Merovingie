@@ -25,7 +25,11 @@ namespace AoC.Api.Domain
             WoodStock = stockQty;
         }
 
-        public Tree() { }
+        public Tree()
+            : base()
+        {
+            FetchTimeEllapse = 1000;
+        }
 
         /// <summary>
         /// 

@@ -19,7 +19,8 @@ namespace AoC.Api.Domain
         public Coordinates Position { get; set; }
         public ResourcesType Resource { get; set; }
         public int CollectQty { get; set; }
-        
+        public int FetchTimeEllapse { get; protected set; }
+
 
         protected PassiveBuilding(string name, Coordinates position, ResourcesType resource, int collectQty)
         {

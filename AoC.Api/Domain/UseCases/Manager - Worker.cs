@@ -62,19 +62,24 @@ namespace AoC.Api.Domain.UseCases
         /// </summary>
         /// <param name="worker"></param>
         /// <param name="resource"></param>
-        public void FetchResource(int workerId, PassiveBuilding building)
+        public void FetchResource(int workerId, int buildingId)
         {
+            if (buildingId == 0 || workerId == 0) throw new ArgumentNullException("Manager FetchResource: workerId or buildingId is missing");
+
             // TODO: faire un try/catch pour valider le workerId comme étant un Id de Worker
-            var worker = PopulationList.FirstOrDefault(x => x.Id == workerId) as Worker;
+            var worker = PopulationList.FirstOrDefault(wk => wk.Id == workerId) as Worker;
+            var building = BuildingList.FirstOrDefault(bld => bld.Id == buildingId) as PassiveBuilding;
+
+            if (building == null || worker == null) throw new ArgumentException("Manager FetchResource: workerId or buildingId does not exist");
 
             // Annule la tâche en cours
             CancelTask(workerId);
 
-            // Créé la tâche d'aller chercher des ressources
+            // Créé la tâche de collecter les ressources
             worker.FetchResource(building);
 
             // Ajoute les ressources collectées au stock
-            worker.ResourceFetched += AddResourcesToStock;
+            //worker.ResourceFetched += AddResourcesToStock;
         }
 
 
@@ -104,7 +109,7 @@ namespace AoC.Api.Domain.UseCases
         public void CancelTask(int workerId)
         {
             // TODO: faire un try/catch pour valider le workerId comme étant un Id de Worker
-            var worker = PopulationList[workerId] as Worker;
+            var worker = PopulationList.FirstOrDefault(wk => wk.Id == workerId) as Worker;
 
             if (worker.IsWorking) worker.CancelAllActions();
         }

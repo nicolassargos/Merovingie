@@ -71,15 +71,20 @@ function MGameFileDescriptor(gameDescriptor) {
 };
 
 
-function MUnitFetchRequestedModel(unitId, creatorId) {
+function MUnitFetchRequestedModel(unitId, buildingId) {
     if (isNullOrUndefined(unitId) || typeof(unitId) !== 'number') {
         console.error('MUnitFetchRequestedModel: unitId is null or undefined');
         return;
     }
-    if (isNullOrUndefined(creatorId) || typeof (creatorId) !== 'number') {
-        console.error('MUnitFetchRequestedModel: creatorId is null or undefined');
+    if (isNullOrUndefined(buildingId) || typeof (buildingId) !== 'number') {
+        console.error('MUnitFetchRequestedModel: buildingId is null or undefined');
         return;
     }
+
+    this.unitId = unitId;
+    this.buildingId = buildingId;
+
+    return this;
 }
 
 

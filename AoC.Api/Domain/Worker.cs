@@ -53,15 +53,6 @@ namespace AoC.Api.Domain
             }
         }
 
-        [XmlIgnore]
-        public int FetchTimeEllapse
-        {
-            get
-            {
-                return 3000;
-            }
-        }
-
         #endregion
 
         private static System.Timers.Timer _timer;
@@ -149,12 +140,11 @@ namespace AoC.Api.Domain
             FetchingBuilding = passiveBuilding;
             IsWorking = true;
 
-            // lancer une task de durée infinie 
-            // qui rapporte la resource en question
-            // (3000ms simule le trajet)
-            _timer.Interval = FetchTimeEllapse;
+            // lancer une task de durée finie en boucle
+            // (3000ms simule le temps d'extraction)
+            _timer.Interval = passiveBuilding.FetchTimeEllapse;
             // Attache l'événement à lancer lorsque le ramassage est prêt
-            _timer.Elapsed += DoFetch;
+            _timer.Elapsed += CommitFetch;
 
             _timer.AutoReset = true;
             _timer.Enabled = true;
@@ -166,20 +156,20 @@ namespace AoC.Api.Domain
         /// </summary>
         /// <param name="resource"></param>
         /// <param name="qty"></param>
-        private void DoFetch(Object sender, ElapsedEventArgs e)
+        private void CommitFetch(Object sender, ElapsedEventArgs e)
         {
             // Cas où le worker ramasse la ressource et que son sac est vide
-            if (!IsHoldingResource)
-            {
+            //if (!IsHoldingResource)
+            //{
                 var resourceCollected = FetchingBuilding.Remove(FetchingBuilding.CollectQty);
                 HoldedResources[resourceCollected.Key] =  resourceCollected.Value;
-            }
+            //}
             // Cas où le worker revient à la base, le sac contenant qq chose
-            else
-            {
-                OnResourceFetched(new ResourcesFetchedArgs { ResourcesFetched = HoldedResources });
-                ReleaseResources();
-            }
+            //else
+            //{
+            //    OnResourceFetched(new ResourcesFetchedArgs { ResourcesFetched = HoldedResources });
+            //    ReleaseResources();
+            //}
         }
 
 
@@ -209,7 +199,7 @@ namespace AoC.Api.Domain
         /// </summary>
         public void CancelFetch()
         {
-            _timer.Elapsed -= DoFetch;
+            _timer.Elapsed -= CommitFetch;
             _timer.Dispose();
             _timer = new System.Timers.Timer();
             ResourceFetched = null;

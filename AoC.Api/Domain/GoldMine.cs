@@ -25,7 +25,11 @@ namespace AoC.Api.Domain
             GoldStock = stockQty;
         }
 
-        public GoldMine() { }
+        public GoldMine() 
+            : base()
+        {
+            FetchTimeEllapse = 3000;
+        }
 
         /// <summary>
         /// 

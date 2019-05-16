@@ -29,7 +29,11 @@ namespace AoC.Api.Domain
             StoneStock = stockQty;
         }
 
-        public Carry() : base() { }
+        public Carry() 
+            : base()
+        {
+            FetchTimeEllapse = 3000;
+        }
 
         /// <summary>
         /// Retire de la mine une quantitée collectée par un worker
@@ -57,8 +61,8 @@ namespace AoC.Api.Domain
             if (StoneStock == 0) DestroyBuilding();
 
             // Signale à l'UI que le stock a changé
-            OnCarryStockChanged(new ResourcesChangedArgs {
-                CurrentResources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
+            OnCarryStockChanged(new BuildingResourcesChangedArgs {
+                BuildingId = this.Id , CurrentResources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
 
             // Retourne la ressource associée à la quantité collectée
             return new KeyValuePair<ResourcesType, int>(ResourcesType.Stone, quantityCollected);

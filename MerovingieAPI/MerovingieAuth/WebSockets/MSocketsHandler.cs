@@ -134,6 +134,7 @@ namespace Merovingie
                         _gameManager = new GameManager(_gameDescriptor);
                         _gameManager.ResourcesChanged += SendResourcesChanged;
                         _gameManager.PopulationChanged += SendPopulationChanged;
+                        
                     }
                     catch (Exception ex)
                     {
@@ -185,7 +186,8 @@ namespace Merovingie
                 case MessageTypes.FETCHCARRY_REQUESTED:
                     try
                     {
-
+                        MUnitFetchRequestedModel data = JsonConvert.DeserializeObject<MUnitFetchRequestedModel>(messageReceived.Message);
+                        _gameManager.FetchResource(data.unitId, data.buildingId);
                     }
                     catch (Exception ex)
                     {
@@ -362,9 +364,9 @@ namespace Merovingie
             {
                 messageObject = JsonConvert.DeserializeObject<MMessageModel>(jsonReceived);
             }
-            catch
+            catch (Exception ex)
             {
-
+                throw ex;
             }
 
             return messageObject;

@@ -274,19 +274,19 @@ namespace AoC.Interface
         private void FetchWoodBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some wood...\n");
-            manager.FetchResource(SelectedItemId, game.Trees[0]);
+            //manager.FetchResource(SelectedItemId, game.Trees[0]);
         }
 
         private void FetchStoneBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some stone...\n");
-            manager.FetchResource(SelectedItemId, game.Carries[0]);
+            //manager.FetchResource(SelectedItemId, game.Carries[0]);
         }
 
         private void FetchGoldBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some gold...\n");
-            manager.FetchResource(SelectedItemId, game.GoldMines[0]);
+            //manager.FetchResource(SelectedItemId, game.GoldMines[0]);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
