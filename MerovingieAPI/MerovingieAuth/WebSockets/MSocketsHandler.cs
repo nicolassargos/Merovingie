@@ -31,7 +31,6 @@ namespace Merovingie
 
         public MSocketHandler()
         {
-            _gameManager = new GameManager();
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Merovingie
                         _gameName = messageReceived.Message.ToString();
                         _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
                         // TODO: extraire une méthode initializeGameManager
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -134,6 +133,8 @@ namespace Merovingie
                         _gameManager = new GameManager(_gameDescriptor);
                         _gameManager.ResourcesChanged += SendResourcesChanged;
                         _gameManager.PopulationChanged += SendPopulationChanged;
+                        _gameManager.WorkerCompletedCollect += SendResourceCollected;
+                        _gameManager.WorkerCompletedBringback += SendResourcesReleased;
                     }
                     catch (Exception ex)
                     {
@@ -170,7 +171,7 @@ namespace Merovingie
                     try
                     {
                         List<MUnitsStateModel> data = JsonConvert.DeserializeObject<List<MUnitsStateModel>>(messageReceived.Message.ToString());
-                        foreach(var unit in data)
+                        foreach (var unit in data)
                         {
                             _gameManager.SetUnitPosition(unit.Id, unit.Position);
                         }
@@ -181,6 +182,32 @@ namespace Merovingie
                         throw ex;
                     }
                     break;
+                // Premier message pour un fetch (quand l'unité arrive devant la ressource)
+                case MessageTypes.FETCHWAY_REQUESTED:
+                    try
+                    {
+                        MUnitCollectRequestedModel data = JsonConvert.DeserializeObject<MUnitCollectRequestedModel>(messageReceived.Message);
+                        _gameManager.FetchResource(data.unitId, data.buildingId);
+                        SendMessage(new MMessageModel(MessageTypes.FETCHWAY_ACCEPTED, "accepted"));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    break;
+                case MessageTypes.FETCHBACK_REQUESTED:
+                    try
+                    {
+                        MUnitReleaseRequestedModel data = JsonConvert.DeserializeObject<MUnitReleaseRequestedModel>(messageReceived.Message);
+                        _gameManager.ReleaseUnitResources(data.unitId, data.buildingId);
+                        SendMessage(new MMessageModel(MessageTypes.FETCHBACK_ACCEPTED, "accepted"));
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                    break;
                 // DEFAULT
                 default:
                     SendMessage(new MMessageModel(MessageTypes.INFO, "unknown message type"));
@@ -188,6 +215,35 @@ namespace Merovingie
             }
 
             //return result;
+        }
+
+
+        /// <summary>
+        /// Signale à l'UI qu'un worker vient de libérer ses ressources
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SendResourcesReleased(object sender, ResourcesReleasedArgs e)
+        {
+            var messageBody = JsonConvert.SerializeObject(e);
+
+            MMessageModel messageToSend = new MMessageModel(MessageTypes.FETCHBACK_COMPLETED, messageBody);
+            SendMessage(messageToSend);
+        }
+
+
+        /// <summary>
+        /// Signale à l'UI qu'un worker a fini 
+        /// de collecter des ressources
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SendResourceCollected(object sender, ResourcesFetchedArgs e)
+        {
+            var messageBody = JsonConvert.SerializeObject(e);
+
+            MMessageModel messageToSend = new MMessageModel(MessageTypes.FETCHWAY_COMPLETED, messageBody);
+            SendMessage(messageToSend);
         }
 
         private GameDescriptor AssembleFromMultiParts(List<GameDescriptor> partialMessage)
@@ -322,7 +378,7 @@ namespace Merovingie
 
         private void SendResourcesChanged(object sender, ResourcesChangedArgs e)
         {
-            var messageBody = JsonConvert.SerializeObject(e.CurrentResources);
+            var messageBody = JsonConvert.SerializeObject(e.resources);
 
             MMessageModel messageToSend = new MMessageModel(MessageTypes.CREATION_ACCEPTED, messageBody);
             SendMessage(messageToSend);
@@ -351,9 +407,9 @@ namespace Merovingie
             {
                 messageObject = JsonConvert.DeserializeObject<MMessageModel>(jsonReceived);
             }
-            catch
+            catch (Exception ex)
             {
-
+                throw ex;
             }
 
             return messageObject;

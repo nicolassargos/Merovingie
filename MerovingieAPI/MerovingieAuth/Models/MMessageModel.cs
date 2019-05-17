@@ -51,6 +51,14 @@ namespace Merovingie.Models
         CREATION_REFUSEDPOPULATION,
         CREATION_ERROR,
         CLIENTDATA_UNITSSTATE,
+        FETCHWAY_REQUESTED,
+        FETCHWAY_ACCEPTED,
+        FETCHWAY_ABORTED,
+        FETCHWAY_COMPLETED,
+        FETCHBACK_REQUESTED,
+        FETCHBACK_ACCEPTED,
+        FETCHBACK_ABORTED,
+        FETCHBACK_COMPLETED,
         INFO
     }
 
@@ -79,4 +87,19 @@ namespace Merovingie.Models
         public Coordinates Position { get; set; }
     }
 
+    public class MUnitCollectRequestedModel
+    {
+        public int unitId { get; set; }
+        public int buildingId { get; set; }
+    }
+
+    public class MUnitCollectCompletedModel : MUnitCollectRequestedModel
+    {
+        public MResourcesBodyModel resources { get; set; }
+    }
+
+    public class MUnitReleaseRequestedModel : MUnitCollectRequestedModel
+    {
+        public MResourcesBodyModel resources { get; set; }
+    }
 }

@@ -1,5 +1,7 @@
 ﻿using AoC.Api.EventArgs;
 using AoC.Api.Services;
+using Common.Enums;
+using Common.Helpers;
 using Common.Interfaces;
 using Common.Struct;
 using System;
@@ -9,6 +11,12 @@ namespace AoC.Api.Domain.UseCases
 {
     public partial class GameManager
     {
+        // Evenement déclenché lors de la fin de la collecte de ressources par un worker
+        public event EventHandler<ResourcesFetchedArgs> WorkerCompletedCollect;
+
+        // Evenement déclenché lors de libération des ressources au stock (retour à la base)
+        public event EventHandler<ResourcesReleasedArgs> WorkerCompletedBringback;
+
         // Worker
         #region Worker
 
@@ -62,21 +70,64 @@ namespace AoC.Api.Domain.UseCases
         /// </summary>
         /// <param name="worker"></param>
         /// <param name="resource"></param>
-        public void FetchResource(int workerId, PassiveBuilding building)
+        public void FetchResource(int workerId, int buildingId)
         {
+            if (buildingId == 0 || workerId == 0) throw new ArgumentNullException("Manager FetchResource: workerId or buildingId is missing");
+
             // TODO: faire un try/catch pour valider le workerId comme étant un Id de Worker
-            var worker = PopulationList.FirstOrDefault(x => x.Id == workerId) as Worker;
+            var worker = PopulationList.FirstOrDefault(wk => wk.Id == workerId) as Worker;
+            var building = BuildingList.FirstOrDefault(bld => bld.Id == buildingId) as PassiveBuilding;
+
+            if (building == null || worker == null) throw new ArgumentException("Manager FetchResource: workerId or buildingId does not exist");
 
             // Annule la tâche en cours
             CancelTask(workerId);
 
-            // Créé la tâche d'aller chercher des ressources
+            // Créé la tâche de collecter les ressources
             worker.FetchResource(building);
 
-            // Ajoute les ressources collectées au stock
-            worker.ResourceFetched += AddResourcesToStock;
+            // Capte l'evénement de collecte de ressources par ce worker
+            worker.ResourceCollected += OnWorkerCompletedCollect;
+            // worker.ResourceFetched += AddResourcesToStock;
         }
 
+
+        /// <summary>
+        /// Capte la fin de la collecte de ressources par un worker
+        /// et gère les actions conséquentes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWorkerCompletedCollect(object sender, ResourcesFetchedArgs e)
+        {
+            WorkerCompletedCollect?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Libère les ressources d'un worker et les ajoute au stock
+        /// </summary>
+        /// <param name="unitId"></param>
+        /// <param name="buildingId"></param>
+        /// <returns></returns>
+        public bool ReleaseUnitResources(int unitId, int buildingId)
+        {
+            if (unitId == 0) throw new ArgumentOutOfRangeException("ReleaseResources: unitId is 0");
+            if (buildingId == 0) throw new ArgumentOutOfRangeException("ReleaseResources: buildingId is 0");
+
+            var worker = this.PopulationList.First(unit => unit.Id == unitId) as Worker;
+            if (worker == null) throw new Exception("ReleaseResources: worker could not be found");
+
+            // Ajoute les ressources au stock
+            AddResourcesToStock(worker.HoldedResources);
+
+            // Efface les ressources du stock de l'unité
+            worker.ReleaseResources();
+
+            // Déclenche l'événement signalant la fin de l'opération
+            WorkerCompletedBringback?.Invoke(this, new ResourcesReleasedArgs { unitId = worker.Id, resources = worker.HoldedResources });
+
+            return true;
+        }
 
         /// <summary>
         /// Ajoute un dictionnaire de ressources au stock
@@ -84,15 +135,15 @@ namespace AoC.Api.Domain.UseCases
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddResourcesToStock(object sender, ResourcesFetchedArgs e)
+        private void AddResourcesToStock(SerializableDictionary<ResourcesType, int> resources)
         {
-            if (e.ResourcesFetched != null)
+            if (resources != null)
             {
-                foreach (var resource in e.ResourcesFetched)
+                foreach (var resource in resources)
                 {
-                    Resources[resource.Key] += resource.Value;
+                    this.Resources[resource.Key] += resource.Value;
                 }
-                ResourcesChanged(this, new ResourcesChangedArgs { CurrentResources = Resources });
+                ResourcesChanged(this, new ResourcesChangedArgs { resources = this.Resources });
             }
         }
 
@@ -104,7 +155,7 @@ namespace AoC.Api.Domain.UseCases
         public void CancelTask(int workerId)
         {
             // TODO: faire un try/catch pour valider le workerId comme étant un Id de Worker
-            var worker = PopulationList[workerId] as Worker;
+            var worker = PopulationList.FirstOrDefault(wk => wk.Id == workerId) as Worker;
 
             if (worker.IsWorking) worker.CancelAllActions();
         }
@@ -112,10 +163,25 @@ namespace AoC.Api.Domain.UseCases
 
         public void SetUnitPosition(int id, Coordinates coordinates)
         {
-            var unit = PopulationList.First(u => u.Id == id);
-            if (unit == null) throw new Exception("SetUnitPosition: unit not found");
+            try
+            {
+                var unit = PopulationList.FirstOrDefault(u => u.Id == id);
+                if (unit == null || unit.Id == 0)
+                {
+                    unit = PopulationList.FirstOrDefault(u => u.Id == 0);
+                    if (unit == null)
+                        throw new Exception("SetUnitPosition: unit not found");
+                    // Cas où il s'agit d'une nouvelle unité qui n'a pas encore d'Id
+                    else
+                        unit.Id = id;
+                }
 
-            unit.Position = coordinates;
+                unit.Position = coordinates;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
     }

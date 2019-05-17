@@ -15,11 +15,6 @@ D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Co
 D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CoreCompileInputs.cache
 D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\Common.dll
 D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\Common.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.dll
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.pdb
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CoreCompileInputs.cache
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.dll
-C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.pdb
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csprojAssemblyReference.cache
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\netstandard.dll
@@ -119,6 +114,9 @@ C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\System.Xml.XPath.dl
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\System.Xml.XPath.XDocument.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\bin\Debug\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\sargo\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CopyComplete
+D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CopyComplete
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Common.pdb
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\netstandard.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\System.AppContext.dll
@@ -217,5 +215,7 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\System.Xml.XPath
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\System.Xml.XPath.XDocument.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\bin\Debug\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csprojAssemblyReference.cache
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CoreCompileInputs.cache
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CopyComplete
-D:\travail Perso\Formation .NET\repos\Merovingie\AoC.Api\Common\obj\Debug\AoC.Common.csproj.CopyComplete
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.dll
+C:\Users\sargos.n\Documents\Merovingie\AoC.Api\Common\obj\Debug\Common.pdb

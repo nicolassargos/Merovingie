@@ -46,7 +46,7 @@ namespace AoC.Api.Domain.UseCases
             // correctement la partie depuis un fichier XML
             // this.BuildingList.FirstOrDefault(bld => bld.Id == creatorId);
 
-            var creator = this.BuildingList.OfType<TownHall>().FirstOrDefault();
+            var creator = this.BuildingList.OfType<TownHall>().FirstOrDefault(c => c.Id == creatorId);
 
             try
             {
@@ -70,7 +70,7 @@ namespace AoC.Api.Domain.UseCases
         /// <param name="Worker"></param>
         public void ValidateWorkerCreation(IProductable worker)
         {
-            (worker as Worker).Id = GetNewUnitId();
+            //(worker as Worker).Id = GetNewUnitId();
             AddWorkerToList(worker as Worker);
         }
 

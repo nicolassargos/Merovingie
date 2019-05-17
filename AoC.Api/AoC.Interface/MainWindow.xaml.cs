@@ -42,9 +42,9 @@ namespace AoC.Interface
         {
             Dispatcher.Invoke(() =>
             {
-                StoneStock.Content = e.CurrentResources[ResourcesType.Stone];
-                WoodStock.Content = e.CurrentResources[ResourcesType.Wood];
-                GoldStock.Content = e.CurrentResources[ResourcesType.Gold];
+                StoneStock.Content = e.resources[ResourcesType.Stone];
+                WoodStock.Content = e.resources[ResourcesType.Wood];
+                GoldStock.Content = e.resources[ResourcesType.Gold];
             });
         }
 
@@ -70,7 +70,7 @@ namespace AoC.Interface
         private void OnCarryResourceCollected(object sender, ResourcesChangedArgs e)
         {
             Dispatcher.Invoke(() => {
-                LogBox.Text += e.CurrentResources[ResourcesType.Stone].ToString() + " units have been collected from Carry\n";
+                LogBox.Text += e.resources[ResourcesType.Stone].ToString() + " units have been collected from Carry\n";
             });
         }
 
@@ -274,19 +274,19 @@ namespace AoC.Interface
         private void FetchWoodBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some wood...\n");
-            manager.FetchResource(SelectedItemId, game.Trees[0]);
+            //manager.FetchResource(SelectedItemId, game.Trees[0]);
         }
 
         private void FetchStoneBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some stone...\n");
-            manager.FetchResource(SelectedItemId, game.Carries[0]);
+            //manager.FetchResource(SelectedItemId, game.Carries[0]);
         }
 
         private void FetchGoldBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some gold...\n");
-            manager.FetchResource(SelectedItemId, game.GoldMines[0]);
+            //manager.FetchResource(SelectedItemId, game.GoldMines[0]);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,7 @@ namespace AoC.Api.Domain
     {
         #region Propriétés
         public int WoodStock { get; set; }
+        public Coordinates RallyPoint { get; set; }
         #endregion
 
 
@@ -19,12 +20,15 @@ namespace AoC.Api.Domain
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
         public Tree(String Name, Coordinates position, int stockQty = 100)
-            : base(Name, position, ResourcesType.Wood, 20)
+            : base(Name, position, ResourcesType.Wood, 20, 1000)
         {
             WoodStock = stockQty;
         }
 
-        public Tree() { }
+        public Tree()
+            : base()
+        {
+        }
 
         /// <summary>
         /// 

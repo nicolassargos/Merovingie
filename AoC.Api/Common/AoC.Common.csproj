@@ -55,6 +55,7 @@
     <Compile Include="EventArgs\PopulationChanged.cs" />
     <Compile Include="EventArgs\ResourcesChangedArgs.cs" />
     <Compile Include="EventArgs\ResourcesFetchedArgs.cs" />
+    <Compile Include="EventArgs\ResourcesReleasedArgs.cs" />
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="Exceptions\NotEnoughUnitSlotsAvailableException.cs" />
     <Compile Include="Exceptions\NoWorkerAvailableException.cs" />

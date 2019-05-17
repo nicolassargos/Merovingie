@@ -108,7 +108,7 @@ namespace AoC.Common.Tests
             worker.FetchResource(mine);
 
             //
-            Thread.Sleep(worker.FetchTimeEllapse + 500);
+            Thread.Sleep(mine.FetchTimeEllapse + 500);
             Assert.IsTrue(worker.HoldedResources[ResourcesType.Gold] > 0);
         }
 
@@ -127,9 +127,9 @@ namespace AoC.Common.Tests
             worker.FetchResource(tree);
 
             //
-            Thread.Sleep(worker.FetchTimeEllapse + 500);
+            Thread.Sleep(tree.FetchTimeEllapse + 500);
             Assert.IsTrue(worker.HoldedResources[ResourcesType.Wood] > 0);
-            Thread.Sleep(worker.FetchTimeEllapse + 500);
+            Thread.Sleep(tree.FetchTimeEllapse + 500);
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Wood]);
         }
 
@@ -137,6 +137,7 @@ namespace AoC.Common.Tests
         /// Vérifie que l'événement OnResourceFetched est bien déclenché
         /// en changeant la valeur d'un booléen à true
         /// </summary>
+        [TestMethod]
         public void FetchResource_TriggersEventOnResourceFetched_Ok()
         {
             //
@@ -147,13 +148,13 @@ namespace AoC.Common.Tests
             //
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Stone]);
             // Trigger déclenché
-            worker.ResourceFetched += (obj, args) => isTriggered = true;
+            worker.ResourceCollected += (obj, args) => isTriggered = true;
             worker.FetchResource(carry);
 
             //
-            Thread.Sleep(worker.FetchTimeEllapse + 500);
+            Thread.Sleep(carry.FetchTimeEllapse + 500);
             Assert.IsTrue(worker.HoldedResources[ResourcesType.Stone] > 0);
-            Thread.Sleep(worker.FetchTimeEllapse + 500);
+            Thread.Sleep(carry.FetchTimeEllapse + 500);
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Stone]);
             Assert.IsTrue(isTriggered);
         }

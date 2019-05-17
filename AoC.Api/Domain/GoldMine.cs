@@ -9,6 +9,7 @@ namespace AoC.Api.Domain
     {
         #region Propriétés
         public int GoldStock { get; set; }
+        public Coordinates RallyPoint { get; set; }
         #endregion
 
 
@@ -19,12 +20,15 @@ namespace AoC.Api.Domain
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
         public GoldMine(String Name, Coordinates position, int stockQty = 2000)
-            : base(Name, position, ResourcesType.Gold, 10)
+            : base(Name, position, ResourcesType.Gold, 10, 3000)
         {
             GoldStock = stockQty;
         }
 
-        public GoldMine() { }
+        public GoldMine() 
+            : base()
+        {
+        }
 
         /// <summary>
         /// 
