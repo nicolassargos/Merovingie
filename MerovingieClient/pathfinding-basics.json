@@ -3165,6 +3165,19 @@
                         "MouseY(\"\",0)"
                       ],
                       "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjetTxt"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Activity.Name",
+                        "=",
+                        "\"None\""
+                      ],
+                      "subInstructions": []
                     }
                   ],
                   "events": []
@@ -3363,7 +3376,7 @@
                       "disabled": false,
                       "folded": false,
                       "type": "BuiltinCommonInstructions::JsCode",
-                      "inlineCode": "\n/** @type {gdjs.RuntimeObject} */\nconst worker = objects[0];\n\nworker._variables._variables.items.Activity._children.Name._str = 'None';\n\nvar message = new MUnitCollectRequestedModel(worker.getUniqueId(), worker._variables._variables.items.Activity.DestinationId);\n\ngdjs.meroSocket.send(MessageTypes.FETCHWAY_REQUESTED, message);\nconsole.log('test');",
+                      "inlineCode": "\n/** @type {gdjs.RuntimeObject} */\nconst worker = objects[0];\n\nworker._variables._variables.items.Activity._children.Name._str = 'Fetch_Back';\n\nvar message = new MUnitCollectRequestedModel(worker.getUniqueId(), worker._variables._variables.items.Activity.DestinationId);\n\ngdjs.meroSocket.send(MessageTypes.FETCHWAY_REQUESTED, message);\nconsole.log('test');",
                       "parameterObjects": "worker"
                     }
                   ]
@@ -3900,19 +3913,6 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "worker",
-                    "Selected",
-                    "=",
-                    "1"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "Montre"
                   },
                   "parameters": [
@@ -3957,9 +3957,30 @@
                     ""
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Selected",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
                 }
               ],
-              "events": []
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "",
+                  "parameterObjects": "worker"
+                }
+              ]
             },
             {
               "disabled": false,
