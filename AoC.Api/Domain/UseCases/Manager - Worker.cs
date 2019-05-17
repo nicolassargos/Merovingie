@@ -1,5 +1,7 @@
 ﻿using AoC.Api.EventArgs;
 using AoC.Api.Services;
+using Common.Enums;
+using Common.Helpers;
 using Common.Interfaces;
 using Common.Struct;
 using System;
@@ -9,6 +11,12 @@ namespace AoC.Api.Domain.UseCases
 {
     public partial class GameManager
     {
+        // Evenement déclenché lors de la fin de la collecte de ressources par un worker
+        public event EventHandler<ResourcesFetchedArgs> WorkerCompletedCollect;
+
+        // Evenement déclenché lors de libération des ressources au stock (retour à la base)
+        public event EventHandler<ResourcesReleasedArgs> WorkerCompletedBringback;
+
         // Worker
         #region Worker
 
@@ -78,10 +86,48 @@ namespace AoC.Api.Domain.UseCases
             // Créé la tâche de collecter les ressources
             worker.FetchResource(building);
 
-            // Ajoute les ressources collectées au stock
-            //worker.ResourceFetched += AddResourcesToStock;
+            // Capte l'evénement de collecte de ressources par ce worker
+            worker.ResourceCollected += OnWorkerCompletedCollect;
+            // worker.ResourceFetched += AddResourcesToStock;
         }
 
+
+        /// <summary>
+        /// Capte la fin de la collecte de ressources par un worker
+        /// et gère les actions conséquentes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWorkerCompletedCollect(object sender, ResourcesFetchedArgs e)
+        {
+            WorkerCompletedCollect?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Libère les ressources d'un worker et les ajoute au stock
+        /// </summary>
+        /// <param name="unitId"></param>
+        /// <param name="buildingId"></param>
+        /// <returns></returns>
+        public bool ReleaseUnitResources(int unitId, int buildingId)
+        {
+            if (unitId == 0) throw new ArgumentOutOfRangeException("ReleaseResources: unitId is 0");
+            if (buildingId == 0) throw new ArgumentOutOfRangeException("ReleaseResources: buildingId is 0");
+
+            var worker = this.PopulationList.First(unit => unit.Id == unitId) as Worker;
+            if (worker == null) throw new Exception("ReleaseResources: worker could not be found");
+
+            // Ajoute les ressources au stock
+            AddResourcesToStock(worker.HoldedResources);
+
+            // Efface les ressources du stock de l'unité
+            worker.ReleaseResources();
+
+            // Déclenche l'événement signalant la fin de l'opération
+            WorkerCompletedBringback?.Invoke(this, new ResourcesReleasedArgs { unitId = worker.Id, resources = worker.HoldedResources });
+
+            return true;
+        }
 
         /// <summary>
         /// Ajoute un dictionnaire de ressources au stock
@@ -89,15 +135,15 @@ namespace AoC.Api.Domain.UseCases
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddResourcesToStock(object sender, ResourcesFetchedArgs e)
+        private void AddResourcesToStock(SerializableDictionary<ResourcesType, int> resources)
         {
-            if (e.ResourcesFetched != null)
+            if (resources != null)
             {
-                foreach (var resource in e.ResourcesFetched)
+                foreach (var resource in resources)
                 {
-                    Resources[resource.Key] += resource.Value;
+                    this.Resources[resource.Key] += resource.Value;
                 }
-                ResourcesChanged(this, new ResourcesChangedArgs { CurrentResources = Resources });
+                ResourcesChanged(this, new ResourcesChangedArgs { resources = this.Resources });
             }
         }
 

@@ -23,16 +23,15 @@ namespace AoC.Api.Domain
         /// <param name="Name"></param>
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
-        public Carry(String Name, Coordinates position, int stockQty = 1000)
-            : base(Name, position, ResourcesType.Stone, 20)
+        public Carry(String name, Coordinates position, int stockQty = 1000)
+            : base(name, position, ResourcesType.Gold, 20, 3000)
         {
             StoneStock = stockQty;
         }
 
-        public Carry() 
+        public Carry()
             : base()
         {
-            FetchTimeEllapse = 3000;
         }
 
         /// <summary>
@@ -61,8 +60,8 @@ namespace AoC.Api.Domain
             if (StoneStock == 0) DestroyBuilding();
 
             // Signale à l'UI que le stock a changé
-            OnCarryStockChanged(new BuildingResourcesChangedArgs {
-                BuildingId = this.Id , CurrentResources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
+            OnCarryStockChanged(new ResourcesFetchedArgs {
+                buildingId = this.Id , resources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
 
             // Retourne la ressource associée à la quantité collectée
             return new KeyValuePair<ResourcesType, int>(ResourcesType.Stone, quantityCollected);

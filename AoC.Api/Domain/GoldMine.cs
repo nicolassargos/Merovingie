@@ -20,7 +20,7 @@ namespace AoC.Api.Domain
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
         public GoldMine(String Name, Coordinates position, int stockQty = 2000)
-            : base(Name, position, ResourcesType.Gold, 10)
+            : base(Name, position, ResourcesType.Gold, 10, 3000)
         {
             GoldStock = stockQty;
         }
@@ -28,7 +28,6 @@ namespace AoC.Api.Domain
         public GoldMine() 
             : base()
         {
-            FetchTimeEllapse = 3000;
         }
 
         /// <summary>

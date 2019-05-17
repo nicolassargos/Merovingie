@@ -70,14 +70,14 @@ function MGameFileDescriptor(gameDescriptor) {
     return this;
 };
 
-
-function MUnitFetchRequestedModel(unitId, buildingId) {
+// Modèle contenant l'info lorsqu'un worker vient fetcher des ressources
+function MUnitCollectRequestedModel(unitId, buildingId) {
     if (isNullOrUndefined(unitId) || typeof(unitId) !== 'number') {
-        console.error('MUnitFetchRequestedModel: unitId is null or undefined');
+        console.error('MUnitCollectRequestedModel: unitId is null or undefined');
         return;
     }
     if (isNullOrUndefined(buildingId) || typeof (buildingId) !== 'number') {
-        console.error('MUnitFetchRequestedModel: buildingId is null or undefined');
+        console.error('MUnitCollectRequestedModel: buildingId is null or undefined');
         return;
     }
 
@@ -86,6 +86,47 @@ function MUnitFetchRequestedModel(unitId, buildingId) {
 
     return this;
 }
+
+// Modèle contenant l'info lorsqu'un worker retourne à la base avec des ressources
+function MUnitReleaseRequestedModel(unitId, buildingId) {
+    if (isNullOrUndefined(unitId) || typeof (unitId) !== 'number') {
+        console.error('MUnitReleaseRequestedModel: unitId is null or undefined');
+        return;
+    }
+    if (isNullOrUndefined(buildingId) || typeof (buildingId) !== 'number') {
+        console.error('MUnitReleaseRequestedModel: buildingId is null or undefined');
+        return;
+    }
+
+    this.unitId = unitId;
+    this.buildingId = buildingId;
+
+    return this;
+}
+
+// Modèle représentant des ressources
+//function MResourcesBodyModel(gold, stone, wood) {
+//    if (isNullOrUndefined(gold)) {
+//        console.error('MResourcesBodyModel: gold is null or undefined');
+//        return;
+//    }
+
+//    if (isNullOrUndefined(stone)) {
+//        console.error('MResourcesBodyModel: stone is null or undefined');
+//        return;
+//    }
+
+//    if (isNullOrUndefined(wood)) {
+//        console.error('MResourcesBodyModel: wood is null or undefined');
+//        return;
+//    }
+
+//    this.gold = gold;
+//    this.stone = stone;
+//    this.wood = wood;
+
+//    return this;
+//}
 
 
 var MessageTypes = Object.freeze({
@@ -112,9 +153,13 @@ var MessageTypes = Object.freeze({
     "CREATION_REFUSEDPOPULATION":   20,
     "CREATION_ERROR":               21,
     "CLIENTDATA_UNITSSTATE": 22,
-    "FETCHCARRY_REQUESTED":         23,
-    "FETCHCARRY_ACCEPTED":24,
-    "FETCHCARRY_ABORTED":25,
-    "FETCHCARRY_COMPLETED":         26,
-    "INFO":                         27
+    "FETCHWAY_REQUESTED":         23,
+    "FETCHWAY_ACCEPTED":24,
+    "FETCHWAY_ABORTED":25,
+    "FETCHWAY_COMPLETED": 26,
+    "FETCHBACK_REQUESTED": 27,
+    "FETCHBACK_ACCEPTED": 28,
+    "FETCHBACK_ABORTED": 29,
+    "FETCHBACK_COMPLETED": 30,
+    "INFO":                         31
 });

@@ -22,7 +22,7 @@ namespace AoC.Api.Domain.UseCases
         //TODO: créer la classe des args et changer son nom
         public event EventHandler<MaxPopulationChangedArgs> MaxPopulationReached;
         public event EventHandler<BuildingCreatedEventArgs> BuildingCreated;
-        public event EventHandler<BuildingResourcesChangedArgs> BuildingResourcesChanged;
+        public event EventHandler<ResourcesFetchedArgs> BuildingResourcesChanged;
 
         #endregion
 
@@ -166,16 +166,15 @@ namespace AoC.Api.Domain.UseCases
                 {
                     foreach (var res in productable.Cost)
                     {
-                        Resources[res.Key] -= res.Value;
+                        this.Resources[res.Key] -= res.Value;
                     }
-                    ResourcesChanged(this, new ResourcesChangedArgs { CurrentResources = Resources });
+                    ResourcesChanged(this, new ResourcesChangedArgs { resources = this.Resources });
                 }
             }
             catch (NotEnoughResourcesException ex)
             {
                 throw ex;
             }
-            
         }
 
         #endregion

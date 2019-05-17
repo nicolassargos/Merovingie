@@ -59,6 +59,9 @@ namespace AoC.Api.Domain
 
         private Generator _generator;
 
+        // Evénement déclenché lorsque qu'une resource a été récoltée
+        public event EventHandler<ResourcesFetchedArgs> ResourceCollected;
+
 
         #region Constructor
 
@@ -146,7 +149,7 @@ namespace AoC.Api.Domain
             // Attache l'événement à lancer lorsque le ramassage est prêt
             _timer.Elapsed += CommitFetch;
 
-            _timer.AutoReset = true;
+            _timer.AutoReset = false;
             _timer.Enabled = true;
         }
 
@@ -158,18 +161,14 @@ namespace AoC.Api.Domain
         /// <param name="qty"></param>
         private void CommitFetch(Object sender, ElapsedEventArgs e)
         {
-            // Cas où le worker ramasse la ressource et que son sac est vide
-            //if (!IsHoldingResource)
-            //{
-                var resourceCollected = FetchingBuilding.Remove(FetchingBuilding.CollectQty);
-                HoldedResources[resourceCollected.Key] =  resourceCollected.Value;
-            //}
-            // Cas où le worker revient à la base, le sac contenant qq chose
-            //else
-            //{
-            //    OnResourceFetched(new ResourcesFetchedArgs { ResourcesFetched = HoldedResources });
-            //    ReleaseResources();
-            //}
+            // Retire une quantité de ressources au stock du building
+            var resourceCollected = FetchingBuilding.Remove(FetchingBuilding.CollectQty);
+
+            // Ajoute une quantité au stock du worker
+            HoldedResources[resourceCollected.Key] =  resourceCollected.Value;
+
+            // Emet l'événement d'ajout au stock
+            OnResourceFetched(new ResourcesFetchedArgs { resources = HoldedResources, buildingId = FetchingBuilding.Id, unitId = this.Id });
         }
 
 
@@ -180,7 +179,7 @@ namespace AoC.Api.Domain
         /// <param name="e"></param>
         protected void OnResourceFetched(ResourcesFetchedArgs e)
         {
-            ResourceFetched?.Invoke(this, e);
+            ResourceCollected?.Invoke(this, e);
         }
 
         /// <summary>
@@ -202,7 +201,7 @@ namespace AoC.Api.Domain
             _timer.Elapsed -= CommitFetch;
             _timer.Dispose();
             _timer = new System.Timers.Timer();
-            ResourceFetched = null;
+            ResourceCollected = null;
         }
 
         #endregion
@@ -238,9 +237,5 @@ namespace AoC.Api.Domain
         }
 
         #endregion
-
-
-        // Evénement déclenché lorsque qu'une resource a été récoltée
-        public event EventHandler<ResourcesFetchedArgs> ResourceFetched;
     }
 }

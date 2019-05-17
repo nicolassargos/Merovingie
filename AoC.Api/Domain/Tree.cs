@@ -20,7 +20,7 @@ namespace AoC.Api.Domain
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
         public Tree(String Name, Coordinates position, int stockQty = 100)
-            : base(Name, position, ResourcesType.Wood, 20)
+            : base(Name, position, ResourcesType.Wood, 20, 1000)
         {
             WoodStock = stockQty;
         }
@@ -28,7 +28,6 @@ namespace AoC.Api.Domain
         public Tree()
             : base()
         {
-            FetchTimeEllapse = 1000;
         }
 
         /// <summary>

@@ -148,7 +148,7 @@ namespace AoC.Common.Tests
             //
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Stone]);
             // Trigger déclenché
-            worker.ResourceFetched += (obj, args) => isTriggered = true;
+            worker.ResourceCollected += (obj, args) => isTriggered = true;
             worker.FetchResource(carry);
 
             //

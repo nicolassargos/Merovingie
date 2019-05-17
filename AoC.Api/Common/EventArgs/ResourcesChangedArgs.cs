@@ -6,11 +6,6 @@ namespace AoC.Api.EventArgs
 {
     public class ResourcesChangedArgs
     {
-        public SerializableDictionary<ResourcesType, int> CurrentResources;
-    }
-
-    public class BuildingResourcesChangedArgs : ResourcesChangedArgs
-    {
-        public int BuildingId { get; set; }
+        public SerializableDictionary<ResourcesType, int> resources;
     }
 }
