@@ -25,7 +25,7 @@
     "windowWidth": 1920,
     "windowHeight": 1080,
     "latestCompilationDirectory": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
-    "maxFPS": 60,
+    "maxFPS": 0,
     "minFPS": 10,
     "verticalSync": false,
     "platformSpecificAssets": {},
@@ -1927,8 +1927,8 @@
           "locked": false,
           "name": "tree",
           "width": 130,
-          "x": 864,
-          "y": 192,
+          "x": 6,
+          "y": 237,
           "zOrder": 35,
           "numberProperties": [],
           "stringProperties": [],
@@ -1942,8 +1942,8 @@
           "locked": false,
           "name": "tree",
           "width": 125,
-          "x": 3712,
-          "y": 288,
+          "x": 3960,
+          "y": 620,
           "zOrder": 36,
           "numberProperties": [],
           "stringProperties": [],
@@ -3551,6 +3551,20 @@
                 "Right"
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraX"
+              },
+              "parameters": [
+                "",
+                "<=",
+                "Background.Width() - (SceneWindowWidth() / 2) - 20",
+                "",
+                ""
+              ],
+              "subInstructions": []
             }
           ],
           "actions": [
@@ -3562,7 +3576,7 @@
               "parameters": [
                 "",
                 "+",
-                "10",
+                "20",
                 "",
                 ""
               ],
@@ -3586,6 +3600,20 @@
                 "Left"
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraX"
+              },
+              "parameters": [
+                "",
+                ">=",
+                "(SceneWindowWidth() / 2) + 20",
+                "",
+                ""
+              ],
+              "subInstructions": []
             }
           ],
           "actions": [
@@ -3597,7 +3625,7 @@
               "parameters": [
                 "",
                 "-",
-                "10",
+                "20",
                 "",
                 ""
               ],
@@ -3621,6 +3649,20 @@
                 "Up"
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraY"
+              },
+              "parameters": [
+                "",
+                ">=",
+                "(SceneWindowHeight() / 2) + 20",
+                "",
+                ""
+              ],
+              "subInstructions": []
             }
           ],
           "actions": [
@@ -3632,7 +3674,7 @@
               "parameters": [
                 "",
                 "-",
-                "10",
+                "20",
                 "",
                 ""
               ],
@@ -3656,6 +3698,20 @@
                 "Down"
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraY"
+              },
+              "parameters": [
+                "",
+                "<=",
+                "Background.Height() - (SceneWindowHeight() / 2) + 240",
+                "",
+                ""
+              ],
+              "subInstructions": []
             }
           ],
           "actions": [
@@ -3667,7 +3723,7 @@
               "parameters": [
                 "",
                 "+",
-                "10",
+                "20",
                 "",
                 ""
               ],
