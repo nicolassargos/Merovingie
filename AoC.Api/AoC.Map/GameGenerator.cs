@@ -11,12 +11,12 @@ namespace AoC.MerovingieFileManager
     {
         public static IGameDescriptor GenerateDefaultMap()
         {
-            TownHall townHall = new TownHall("TownHall", 100, 100, false, null, new Coordinates { x = 29, y = 524 });
-            Carry carry = new Carry("Carry1", new Coordinates { x = 1200, y = 200 });
-            Tree tree = new Tree("Tree1", new Coordinates { x = 30, y = 30 });
-            GoldMine mine = new GoldMine("Gold mine1", new Coordinates { x = 442, y = -323 });
-            Farm farm1 = new Farm(0, "Farm1", new Coordinates { x = 10, y = 5 });
-            Farm farm2 = new Farm(1, "Farm2", new Coordinates { x = 20, y = 5 });
+            TownHall townHall = new TownHall("TownHall", 100, 100, false, null, new Coordinates { x = 13, y = 34 });
+            Carry carry = new Carry("Carry1", new Coordinates { x = 1220, y = 620 });
+            //Tree tree = new Tree("Tree1", new Coordinates { x = 30, y = 30 });
+            GoldMine mine = new GoldMine("Gold mine1", new Coordinates { x = 341, y = 1122 });
+            Farm farm1 = new Farm(0, "Farm1", new Coordinates { x = 23, y = 557 });
+            Farm farm2 = new Farm(1, "Farm2", new Coordinates { x = 178, y = 557 });
             Worker worker1 = new Worker(100, false, null, new Coordinates { x = 400, y = 400 });
             Worker worker2 = new Worker(100, false, null, new Coordinates { x = 450, y = 450 });
 
@@ -26,7 +26,7 @@ namespace AoC.MerovingieFileManager
 
             game.TownHalls.Add(townHall);
             game.Carries.Add(carry);
-            game.Trees.Add(tree);
+            //game.Trees.Add(tree);
             game.GoldMines.Add(mine);
             game.Farms.Add(farm1);
             game.Farms.Add(farm2);
