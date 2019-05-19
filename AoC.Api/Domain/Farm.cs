@@ -5,6 +5,7 @@ using Common.Struct;
 
 namespace AoC.Api.Domain
 {
+    // TODO: revoir les cojnstructeurs des Farms
     public class Farm : ActiveBuilding, IProductable
     {
         public int Time { get; set; }
@@ -13,14 +14,15 @@ namespace AoC.Api.Domain
 
         public int PopulationIncrement { get; set; }
 
-        public Farm(string Name, Coordinates Position)
-        : base(Name, 100, 100, false)
+        public Farm(string name, Coordinates position)
+        : base(name, 100, 100, false)
         {
             var farm = GetDefaultItemProperties();
             Cost = farm.Cost;
             PopulationIncrement = farm.PopulationIncrement;
             Resources = farm.Resources;
             Time = farm.Time;
+            this.Position = position;
         }
 
         public Farm(int Id, string Name, Coordinates Position) 
@@ -39,7 +41,7 @@ namespace AoC.Api.Domain
             farm.Cost = new SerializableDictionary<ResourcesType, int> { { ResourcesType.Gold, 200 }, { ResourcesType.Stone, 200 }, { ResourcesType.Wood, 500 } };
             farm.MaxLifePoints = 100;
             farm.LifePoints = farm.MaxLifePoints;
-            farm.Name = "NoName";
+            farm.Name = "Farm";
             farm.PopulationIncrement = 4;
             farm.Resources = new SerializableDictionary<ResourcesType, int>();
             farm.Time = 3000;

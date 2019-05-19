@@ -98,7 +98,6 @@ namespace Merovingie
                     }
                     catch (Exception ex)
                     {
-
                         throw ex;
                     }
                     break;
@@ -120,7 +119,6 @@ namespace Merovingie
                     }
                     catch (Exception ex)
                     {
-
                         throw ex;
                     }
                     break;
@@ -138,7 +136,6 @@ namespace Merovingie
                     }
                     catch (Exception ex)
                     {
-
                         throw ex;
                     }
                     finally
@@ -204,7 +201,6 @@ namespace Merovingie
                     }
                     catch (Exception ex)
                     {
-
                         throw ex;
                     }
                     break;

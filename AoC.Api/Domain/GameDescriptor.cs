@@ -31,6 +31,9 @@ namespace AoC.Api.Domain
 
         public SerializableDictionary<ResourcesType, int> Resources { get; set; }
 
+        [XmlIgnore]
+        public int MaxPopulation { get => this.Farms?.Count * this.Farms[0].PopulationIncrement ?? 0; }
+
         #endregion
 
         public GameDescriptor()

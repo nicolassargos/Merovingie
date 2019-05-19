@@ -13,5 +13,7 @@ namespace AoC.Api.Domain
         List<Farm> Farms { get; set; }
         List<Worker> Workers { get; set; }
         SerializableDictionary<ResourcesType, int> Resources { get; set; }
+        int MaxPopulation { get; }
+
     }
 }

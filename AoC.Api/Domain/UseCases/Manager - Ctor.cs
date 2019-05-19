@@ -39,7 +39,7 @@ namespace AoC.Api.Domain.UseCases
         {
             get
             {
-                return PopulationList.Count();
+                return PopulationList.Sum(x => x.PopulationSlots);
             }
         }
 

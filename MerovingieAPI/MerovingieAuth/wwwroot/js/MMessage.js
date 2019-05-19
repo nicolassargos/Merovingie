@@ -66,6 +66,8 @@ function MGameFileDescriptor(gameDescriptor) {
     this.townHalls = gameDescriptor.TownHalls;
     this.trees = gameDescriptor.Trees;
     this.workers = gameDescriptor.Workers;
+    if (gameDescriptor.MaxPopulation === 0 && gameDescriptor.TownHalls.length > 0) console.error('MGameFileDescriptor: max population parameter is missing.');
+    this.maxPopulation = gameDescriptor.MaxPopulation;
 
     return this;
 };
