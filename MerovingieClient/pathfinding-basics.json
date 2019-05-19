@@ -13,17 +13,17 @@
     "macExecutableFilename": "",
     "orientation": "default",
     "packageName": "com.example.gamename",
-    "projectFile": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
+    "projectFile": "D:\\travail Perso\\Formation .NET\\repos\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
     "scaleMode": "linear",
-    "sizeOnStartupMode": "",
+    "sizeOnStartupMode": "adaptHeight",
     "useExternalSourceFiles": false,
     "version": "1.0.0",
     "winExecutableFilename": "",
     "winExecutableIconFile": "",
     "name": "AoC",
     "author": "Nicolas Sargos",
-    "windowWidth": 1280,
-    "windowHeight": 1024,
+    "windowWidth": 1920,
+    "windowHeight": 1280,
     "latestCompilationDirectory": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
     "maxFPS": 60,
     "minFPS": 10,
@@ -4338,7 +4338,8 @@
               "supplementaryInformation": "",
               "type": "objectList"
             }
-          ]
+          ],
+          "objectGroups": []
         }
       ]
     }
