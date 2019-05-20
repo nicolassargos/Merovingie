@@ -68,6 +68,7 @@ function MGameFileDescriptor(gameDescriptor) {
     this.workers = gameDescriptor.Workers;
     if (gameDescriptor.MaxPopulation === 0 && gameDescriptor.TownHalls.length > 0) console.error('MGameFileDescriptor: max population parameter is missing.');
     this.maxPopulation = gameDescriptor.MaxPopulation;
+    this.actualPopulation = gameDescriptor.ActualPopulation;
 
     return this;
 };

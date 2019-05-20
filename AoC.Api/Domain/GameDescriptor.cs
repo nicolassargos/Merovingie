@@ -33,6 +33,8 @@ namespace AoC.Api.Domain
 
         [XmlIgnore]
         public int MaxPopulation { get => this.Farms?.Count * this.Farms[0].PopulationIncrement ?? 0; }
+        [XmlIgnore]
+        public int ActualPopulation { get => this.Workers?.Count ?? 0; }
 
         #endregion
 
