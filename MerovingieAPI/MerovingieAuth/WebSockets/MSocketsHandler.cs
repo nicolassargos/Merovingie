@@ -87,7 +87,7 @@ namespace Merovingie
                     {
                         throw new ArgumentException("InterpretMessage: message of connection demand received is incorrectly formatted", messageReceived.Message.toString());
                     }
-                    SendMessage(new MMessageModel(MessageTypes.GAMECONNECT_OK, ""));
+                    SendMessage(new MMessageModel(MessageTypes.GAMECONNECT_OK, "{\"status\" : \"ok\"}"));
                     break;
                 // FILELOAD
                 case MessageTypes.FILELOAD_REQUESTED:
@@ -152,15 +152,15 @@ namespace Merovingie
                     }
                     catch (NotEnoughUnitSlotsAvailableException slex)
                     {
-                        SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDPOPULATION, ""));
+                        SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDPOPULATION, "{\"status\" : \"refused\"}"));
                     }
                     catch (NotEnoughResourcesException rex)
                     {
-                        SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDRESOURCES, ""));
+                        SendMessage(new MMessageModel(MessageTypes.CREATION_REFUSEDRESOURCES, "{\"status\" : \"refused\"}"));
                     }
                     catch (Exception ex)
                     {
-                        SendMessage(new MMessageModel(MessageTypes.INFO, "InterpretMessage: message of creation received is incorrectly formatted"));
+                        SendMessage(new MMessageModel(MessageTypes.INFO, "{\"status\" : \"refused\", \"exception\": \"InterpretMessage: message of creation received is incorrectly formatted\"}"));
                     }
                     break;
                 // CLIENTDATA_UNITSSTATE
@@ -179,13 +179,13 @@ namespace Merovingie
                         throw ex;
                     }
                     break;
-                // Premier message pour un fetch (quand l'unité arrive devant la ressource)
+                // Premier message pour un fetch (quand l\"unité arrive devant la ressource)
                 case MessageTypes.FETCHWAY_REQUESTED:
                     try
                     {
                         MUnitCollectRequestedModel data = JsonConvert.DeserializeObject<MUnitCollectRequestedModel>(messageReceived.Message);
                         _gameManager.FetchResource(data.unitId, data.buildingId);
-                        SendMessage(new MMessageModel(MessageTypes.FETCHWAY_ACCEPTED, "accepted"));
+                        SendMessage(new MMessageModel(MessageTypes.FETCHWAY_ACCEPTED, "{\"status\" : \"ok\"}"));
                     }
                     catch (Exception ex)
                     {
@@ -197,7 +197,7 @@ namespace Merovingie
                     {
                         MUnitReleaseRequestedModel data = JsonConvert.DeserializeObject<MUnitReleaseRequestedModel>(messageReceived.Message);
                         _gameManager.ReleaseUnitResources(data.unitId, data.buildingId);
-                        SendMessage(new MMessageModel(MessageTypes.FETCHBACK_ACCEPTED, "accepted"));
+                        SendMessage(new MMessageModel(MessageTypes.FETCHBACK_ACCEPTED, "{\"status\" : \"ok\"}"));
                     }
                     catch (Exception ex)
                     {
@@ -206,7 +206,7 @@ namespace Merovingie
                     break;
                 // DEFAULT
                 default:
-                    SendMessage(new MMessageModel(MessageTypes.INFO, "unknown message type"));
+                    SendMessage(new MMessageModel(MessageTypes.INFO, "{\"status\" : \"refused\", \"exception\":\"unknown message type\"}"));
                     break;
             }
 
