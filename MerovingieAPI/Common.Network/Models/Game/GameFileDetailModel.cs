@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Merovingie.Models
+namespace AoC.Common.Network.Models
 {
     public class GameFileDetailModel
     {

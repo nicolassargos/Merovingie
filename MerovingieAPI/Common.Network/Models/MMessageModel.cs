@@ -1,12 +1,6 @@
-﻿using Common.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Common.Struct;
+﻿using Common.Struct;
 
-namespace Merovingie.Models
+namespace AoC.Common.Network.Models
 {
 
     public class MMessageModel

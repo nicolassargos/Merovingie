@@ -1,22 +1,18 @@
 ﻿using Common.Exceptions;
 using AoC.Api.Domain;
-using Merovingie.Models;
 using AoC.Api.Domain.UseCases;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AoC.MerovingieFileManager;
 using AoC.Api.EventArgs;
-using System.Data;
-using System.IO;
 using Common.Struct;
+using AoC.Common.Network.Models;
 
 namespace Merovingie
 {

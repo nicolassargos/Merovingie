@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using AoC.Api.Domain;
 using AoC.Api.Domain.UseCases;
+using AoC.Common.Network.Models;
 using AoC.MerovingieFileManager;
 using Common.Enums;
 using Common.Helpers;
 using Merovingie.Helpers;
-using Merovingie.Models;
-using Merovingie.Models.Game;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

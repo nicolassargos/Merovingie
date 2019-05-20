@@ -1,7 +1,7 @@
 ﻿using Common.Enums;
 using Common.Helpers;
 
-namespace Merovingie.Models.Game
+namespace AoC.Common.Network.Models
 {
     public class GameDescriptorModel
     {
