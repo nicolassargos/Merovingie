@@ -1,8 +1,9 @@
 ﻿using AoC.Api.EventArgs;
+using AoC.Common.Interfaces;
+using Common.AdvancedDescriptors;
 using Common.Enums;
 using Common.Exceptions;
 using Common.Helpers;
-using Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ using System.Linq;
 
 namespace AoC.Api.Domain.UseCases
 {
-    public partial class GameManager
+    public partial class GameManager : IGameManager
     {
         // Events
         #region Events
@@ -45,8 +46,8 @@ namespace AoC.Api.Domain.UseCases
 
 
         public SerializableDictionary<ResourcesType, int> Resources { get; set; }
-        public List<IUnit> PopulationList;
-        public List<IBuilding> BuildingList;
+        public List<IUnit> PopulationList { get; set; }
+        public List<IBuilding> BuildingList { get; set; }
 
         #endregion
 
@@ -191,22 +192,22 @@ namespace AoC.Api.Domain.UseCases
             try
             {
                 // Carries
-                gameDescriptor.Carries.AddRange(BuildingList.OfType<Carry>());
+                gameDescriptor.Carries.AddRange(BuildingList.OfType<CarryDescriptor>());
 
                 // Trees
-                gameDescriptor.Trees.AddRange(BuildingList.OfType<Tree>());
+                gameDescriptor.Trees.AddRange(BuildingList.OfType<TreeDescriptor>());
 
                 // Gold mines
-                gameDescriptor.GoldMines.AddRange(BuildingList.OfType<GoldMine>());
+                gameDescriptor.GoldMines.AddRange(BuildingList.OfType<GoldMineDescriptor>());
 
                 // Town Hall
-                gameDescriptor.TownHalls.AddRange(BuildingList.OfType<TownHall>());
+                gameDescriptor.TownHalls.AddRange(BuildingList.OfType<TownHallDescriptor>());
 
                 // Farms
-                gameDescriptor.Farms.AddRange(BuildingList.OfType<Farm>());
+                gameDescriptor.Farms.AddRange(BuildingList.OfType<FarmDescriptor>());
 
                 // Workers
-                gameDescriptor.Workers.AddRange(PopulationList.OfType<Worker>());
+                gameDescriptor.Workers.AddRange(PopulationList.OfType<WorkerDescriptor>());
 
                 // Resources
                 foreach (var res in Resources)

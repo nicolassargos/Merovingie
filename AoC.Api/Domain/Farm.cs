@@ -1,6 +1,6 @@
-﻿using Common.Enums;
+﻿using AoC.Common.Interfaces;
+using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
 using Common.Struct;
 
 namespace AoC.Api.Domain
@@ -20,7 +20,7 @@ namespace AoC.Api.Domain
             var farm = GetDefaultItemProperties();
             Cost = farm.Cost;
             PopulationIncrement = farm.PopulationIncrement;
-            Resources = farm.Resources;
+            Stock = farm.Stock;
             Time = farm.Time;
             this.Position = position;
         }
@@ -43,7 +43,7 @@ namespace AoC.Api.Domain
             farm.LifePoints = farm.MaxLifePoints;
             farm.Name = "Farm";
             farm.PopulationIncrement = 4;
-            farm.Resources = new SerializableDictionary<ResourcesType, int>();
+            farm.Stock = new SerializableDictionary<ResourcesType, int>();
             farm.Time = 3000;
 
             return farm;

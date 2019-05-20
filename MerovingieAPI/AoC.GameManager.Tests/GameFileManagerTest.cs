@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using AoC.Api.Domain;
+using AoC.Common.Interfaces;
 
 namespace AoC.MerovingieFileManager.Tests
 {

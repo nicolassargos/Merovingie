@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 using System.Timers;
 using System.Xml.Serialization;
 using AoC.Api.Services;
-
+using AoC.Common.Interfaces;
 
 namespace AoC.Api.Domain
 {

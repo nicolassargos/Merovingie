@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AoC.Api.Services;
 using AoC.Api.Domain;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace AoC.Services.Tests

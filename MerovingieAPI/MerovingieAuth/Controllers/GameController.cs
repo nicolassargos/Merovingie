@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AoC.Api.Domain;
 using AoC.Api.Domain.UseCases;
+using AoC.Common.Interfaces;
 using AoC.Common.Network.Models;
 using AoC.MerovingieFileManager;
 using Common.Enums;

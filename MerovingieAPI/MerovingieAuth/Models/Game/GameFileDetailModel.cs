@@ -1,4 +1,4 @@
-﻿using Common.Dto;
+﻿using Common.Descriptors;
 using System;
 using System.Collections.Generic;
 using System.Linq;

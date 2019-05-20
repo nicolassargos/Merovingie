@@ -13,6 +13,7 @@ using AoC.MerovingieFileManager;
 using AoC.Api.EventArgs;
 using Common.Struct;
 using AoC.Common.Network.Models;
+using Common.AdvancedDescriptors;
 
 namespace Merovingie
 {
@@ -27,6 +28,7 @@ namespace Merovingie
 
         public MSocketHandler()
         {
+
         }
 
         /// <summary>
@@ -318,13 +320,15 @@ namespace Merovingie
                     {
                         if (i >= serverGameDescriptor.Trees.Count)
                             serverGameDescriptor.Trees.Add(
-                                new Tree(
-                                    "tree",
-                                    new Coordinates
+                                new TreeDescriptor()
+                                {
+                                    Name = "tree",
+                                    Position = new Coordinates
                                     {
                                         x = assembledGameDescriptor.Trees[i].Position.x,
                                         y = assembledGameDescriptor.Trees[i].Position.y,
-                                    }));
+                                    }
+                                });
                         serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
                     }
                 }

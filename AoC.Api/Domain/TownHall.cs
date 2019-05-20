@@ -10,14 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using AoC.Api.Services;
+using AoC.Common.Interfaces;
 
 namespace AoC.Api.Domain
 {
     public class TownHall : ActiveBuilding, IBuilding, ICreator
     {
-        [XmlIgnoreAttribute]
         public ConcurrentQueue<IProductable> ProductionQueue { get; set; }
-        public Coordinates RallyPoint { get; set; }
         private Generator _generator;
 
 
@@ -28,7 +27,7 @@ namespace AoC.Api.Domain
             base(name, lifepoints, maxLifePoints, attack)
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
-            Resources = resources;
+            Stock = resources;
             Position = position.GetValueOrDefault();
         }
 

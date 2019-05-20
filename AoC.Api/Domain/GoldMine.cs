@@ -7,12 +7,6 @@ namespace AoC.Api.Domain
 {
     public class GoldMine : PassiveBuilding
     {
-        #region Propriétés
-        public int GoldStock { get; set; }
-        public Coordinates RallyPoint { get; set; }
-        #endregion
-
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -22,7 +16,7 @@ namespace AoC.Api.Domain
         public GoldMine(String Name, Coordinates position, int stockQty = 2000)
             : base(Name, position, ResourcesType.Gold, 10, 3000)
         {
-            GoldStock = stockQty;
+            Stock[ResourcesType.Gold] = stockQty;
         }
 
         public GoldMine() 
@@ -40,9 +34,9 @@ namespace AoC.Api.Domain
             int quantityCollected;
 
             // S'il ne reste pas assez, on récolte ce qu'il reste dans la mine
-            if (GoldStock <= quantityToCollect)
+            if (Stock[ResourcesType.Gold] <= quantityToCollect)
             {
-                quantityCollected = GoldStock;
+                quantityCollected = Stock[ResourcesType.Gold];
             }
             // Sinon, on retire la quantité désirée au stock de la mine
             else
@@ -51,9 +45,9 @@ namespace AoC.Api.Domain
             }
 
             // Retire la quantité collectée au stock
-            GoldStock -= quantityCollected;
+            Stock[ResourcesType.Gold] -= quantityCollected;
             // Si le stock est à 0, on détruit la mine
-            if (GoldStock == 0) DestroyBuilding();
+            if (Stock[ResourcesType.Gold] == 0) DestroyBuilding();
 
             // Retourne la ressource associée à la quantité collectée
             return new KeyValuePair<ResourcesType, int>(ResourcesType.Gold, quantityCollected);

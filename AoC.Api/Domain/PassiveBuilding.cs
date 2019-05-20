@@ -1,18 +1,13 @@
-﻿using Common.Interfaces;
-using Common.Struct;
-using System;
+﻿using Common.Struct;
 using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Enums;
+using Common.Helpers;
+using AoC.Common.Interfaces;
 
 namespace AoC.Api.Domain
 {
 
-
-    public abstract class PassiveBuilding : IBuilding
+    public abstract class PassiveBuilding : IPassiveBuilding
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -20,6 +15,8 @@ namespace AoC.Api.Domain
         public ResourcesType Resource { get; set; }
         public int CollectQty { get; set; }
         public int FetchTimeEllapse { get; set; }
+        public SerializableDictionary<ResourcesType, int> Stock { get; set; }
+        public Coordinates RallyPoint { get; set; }
 
 
         protected PassiveBuilding(string name, Coordinates position, ResourcesType resource, int collectQty, int fetchTime)
@@ -29,6 +26,7 @@ namespace AoC.Api.Domain
             Resource = resource;
             CollectQty = collectQty;
             FetchTimeEllapse = fetchTime;
+            Stock = ResourceHelper.CreateEmptyResourcesDictionary();
         }
 
         public PassiveBuilding() { }

@@ -1,14 +1,10 @@
-﻿using Newtonsoft.Json;
-using AoC.Api.Domain;
-using Common.Enums;
+﻿using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
+using AoC.Common.Interfaces;
+using Common.AdvancedDescriptors;
 
 namespace AoC.Api.Domain
 
@@ -20,19 +16,19 @@ namespace AoC.Api.Domain
         #region Properties
 
         [XmlArrayItem]
-        public List<Carry> Carries { get; set; }
-        public List<Tree> Trees { get; set; }
-        public List<GoldMine> GoldMines { get; set; }
+        public List<CarryDescriptor> Carries { get; set; }
+        public List<TreeDescriptor> Trees { get; set; }
+        public List<GoldMineDescriptor> GoldMines { get; set; }
 
-        public List<TownHall> TownHalls { get; set; }
-        public List<Farm> Farms { get; set; }
+        public List<TownHallDescriptor> TownHalls { get; set; }
+        public List<FarmDescriptor> Farms { get; set; }
 
-        public List<Worker> Workers { get; set; }
+        public List<WorkerDescriptor> Workers { get; set; }
 
         public SerializableDictionary<ResourcesType, int> Resources { get; set; }
 
         [XmlIgnore]
-        public int MaxPopulation { get => this.Farms?.Count * this.Farms[0].PopulationIncrement ?? 0; }
+        public int MaxPopulation { get => this.Farms?.Count * 4 ?? 0; }
         [XmlIgnore]
         public int ActualPopulation { get => this.Workers?.Count ?? 0; }
 
@@ -40,14 +36,14 @@ namespace AoC.Api.Domain
 
         public GameDescriptor()
         {
-            Carries = new List<Carry>();
-            Trees = new List<Tree>();
-            GoldMines = new List<GoldMine>();
+            Carries = new List<CarryDescriptor>();
+            Trees = new List<TreeDescriptor>();
+            GoldMines = new List<GoldMineDescriptor>();
 
-            TownHalls = new List<TownHall>();
-            Farms = new List<Farm>();
+            TownHalls = new List<TownHallDescriptor>();
+            Farms = new List<FarmDescriptor>();
 
-            Workers = new List<Worker>();
+            Workers = new List<WorkerDescriptor>();
 
             Resources = new SerializableDictionary<ResourcesType, int>();
         }

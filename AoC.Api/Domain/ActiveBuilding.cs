@@ -1,17 +1,12 @@
-﻿using Common.Enums;
+﻿using AoC.Common.Interfaces;
+using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
 using Common.Struct;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace AoC.Api.Domain
 {
-    public abstract class ActiveBuilding: IBuilding
+    public abstract class ActiveBuilding : IActiveBuilding
     {
 
         #region Properties
@@ -22,7 +17,8 @@ namespace AoC.Api.Domain
         public int LifePoints { get; set; }
         public int MaxLifePoints { get; set; }
         public bool Attack { get; set; }
-        public SerializableDictionary<ResourcesType, int> Resources { get; set; }
+        public SerializableDictionary<ResourcesType, int> Stock { get; set; }
+        public Coordinates RallyPoint { get; set; }
         #endregion
 
 
@@ -43,7 +39,7 @@ namespace AoC.Api.Domain
             LifePoints = lifepoints;
             MaxLifePoints = maxLifePoints;
             Attack = attack;
-            Resources = new SerializableDictionary<ResourcesType, int>();
+            Stock = new SerializableDictionary<ResourcesType, int>();
         }
 
         public ActiveBuilding() { }

@@ -46,9 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\AdvancedDescriptors\CarryDescriptor.cs" />
+    <Compile Include="Dto\AdvancedDescriptors\FarmDescriptor.cs" />
+    <Compile Include="Dto\AdvancedDescriptors\GoldMineDescriptor.cs" />
+    <Compile Include="Dto\AdvancedDescriptors\TownHallDescriptor.cs" />
+    <Compile Include="Dto\AdvancedDescriptors\TreeDescriptor.cs" />
+    <Compile Include="Dto\BasicDescriptors\ActiveBuildingDescriptor.cs" />
+    <Compile Include="Dto\BasicDescriptors\BuildingDescriptor.cs" />
+    <Compile Include="Dto\BasicDescriptors\UnitDescriptor.cs" />
     <Compile Include="Dto\GameDetailsDto.cs" />
-    <Compile Include="Dto\PassiveBuildingDto.cs" />
-    <Compile Include="Dto\PeonDto.cs" />
+    <Compile Include="Dto\BasicDescriptors\PassiveBuildingDescriptor.cs" />
+    <Compile Include="Dto\AdvancedDescriptors\WorkerDescriptor.cs" />
     <Compile Include="EmailSender.cs" />
     <Compile Include="EventArgs\BuildingCreatedEventArgs.cs" />
     <Compile Include="EventArgs\MaxPopulationChangedArgs.cs" />
@@ -62,10 +70,14 @@
     <Compile Include="Exceptions\TranscriptionToDescriptorException.cs" />
     <Compile Include="Helpers\ResourceConverter.cs" />
     <Compile Include="Helpers\SerializableDictionary.cs" />
+    <Compile Include="Interfaces\IActiveBuilding.cs" />
+    <Compile Include="Interfaces\IGameDescriptor.cs" />
+    <Compile Include="Interfaces\IGameManager.cs" />
     <Compile Include="Interfaces\IBuilding.cs" />
     <Compile Include="Enums\Resources.cs" />
     <Compile Include="Interfaces\ICreator.cs" />
     <Compile Include="Interfaces\IGameItem.cs" />
+    <Compile Include="Interfaces\IPassiveBuilding.cs" />
     <Compile Include="Interfaces\IProductable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IStockable.cs" />

@@ -1,16 +1,13 @@
-﻿using AoC.Api.Domain;
-using AoC.Api.Services;
-using AoC.Api.EventArgs;
+﻿using AoC.Api.EventArgs;
 using Common.Exceptions;
-using Common.Interfaces;
 using Common.Struct;
 using System;
 using System.Linq;
-
+using AoC.Common.Interfaces;
 
 namespace AoC.Api.Domain.UseCases
 {
-    public partial class GameManager
+    public partial class GameManager : IGameManager
     {
         // Town Hall
         #region TownHall
@@ -61,7 +58,7 @@ namespace AoC.Api.Domain.UseCases
                 throw ex;
             }
         }
-        
+
 
 
         /// <summary>
@@ -90,7 +87,7 @@ namespace AoC.Api.Domain.UseCases
                     PopulationChanged(this, new PopulationChangedEventArgs { CurrentPopulation = PopulationList.Sum(x => x.PopulationSlots), Unit = worker });
                 }
             }
-            
+
             catch (NotEnoughUnitSlotsAvailableException)
             {
                 throw;

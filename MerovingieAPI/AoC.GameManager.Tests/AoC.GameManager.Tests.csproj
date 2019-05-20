@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AoC.Api\AoC.Map\AoC.GameManager.csproj" />
+    <ProjectReference Include="..\..\AoC.Api\AoC.Map\AoC.GameFileManager.csproj" />
   </ItemGroup>
 
 </Project>

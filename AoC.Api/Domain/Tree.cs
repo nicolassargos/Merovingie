@@ -7,12 +7,6 @@ namespace AoC.Api.Domain
 {
     public class Tree : PassiveBuilding
     {
-        #region Propriétés
-        public int WoodStock { get; set; }
-        public Coordinates RallyPoint { get; set; }
-        #endregion
-
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -22,7 +16,7 @@ namespace AoC.Api.Domain
         public Tree(String Name, Coordinates position, int stockQty = 100)
             : base(Name, position, ResourcesType.Wood, 20, 1000)
         {
-            WoodStock = stockQty;
+            Stock[ResourcesType.Wood] = stockQty;
         }
 
         public Tree()
@@ -40,9 +34,9 @@ namespace AoC.Api.Domain
             int quantityCollected;
 
             // S'il ne reste pas assez, on récolte ce qu'il reste dans la mine
-            if (WoodStock <= quantityToCollect)
+            if (Stock[ResourcesType.Wood] <= quantityToCollect)
             {
-                quantityCollected = WoodStock;
+                quantityCollected = Stock[ResourcesType.Wood];
             }
             // Sinon, on retire la quantité désirée au stock de la mine
             else
@@ -51,9 +45,9 @@ namespace AoC.Api.Domain
             }
 
             // Retire la quantité collectée au stock
-            WoodStock -= quantityCollected;
+            Stock[ResourcesType.Wood] -= quantityCollected;
             // Si le stock est à 0, on détruit la mine
-            if (WoodStock == 0) DestroyBuilding();
+            if (Stock[ResourcesType.Wood] == 0) DestroyBuilding();
 
             // Retourne la ressource associée à la quantité collectée
             return new KeyValuePair<ResourcesType, int>(ResourcesType.Wood, quantityCollected);

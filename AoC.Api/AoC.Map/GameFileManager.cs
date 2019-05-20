@@ -1,5 +1,6 @@
 ﻿using AoC.Api.Domain;
-using Common.Dto;
+using AoC.Common.Interfaces;
+using Common.Descriptors;
 using System;
 using System.Collections.Generic;
 using System.IO;

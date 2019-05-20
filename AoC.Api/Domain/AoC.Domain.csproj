@@ -46,12 +46,9 @@
   <ItemGroup>
     <Compile Include="ActiveBuilding.cs" />
     <Compile Include="Carry.cs" />
-    <Compile Include="DefenseTower.cs" />
     <Compile Include="Farm.cs" />
     <Compile Include="GameDescriptor.cs" />
     <Compile Include="GoldMine.cs" />
-    <Compile Include="IGameDescriptor.cs" />
-    <Compile Include="MiltaryHall.cs" />
     <Compile Include="PassiveBuilding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TownHall.cs" />
@@ -62,6 +59,10 @@
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MerovingieAPI\Common.Network\AoC.Network.csproj">
+      <Project>{1925AA38-3525-4937-B00A-FB659291D565}</Project>
+      <Name>AoC.Network</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AoC.Api\AoC.Services.csproj">
       <Project>{e41e2d6c-146e-4087-afbc-bbd48acc0fcd}</Project>
       <Name>AoC.Services</Name>
