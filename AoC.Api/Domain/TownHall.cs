@@ -28,7 +28,7 @@ namespace AoC.Api.Domain
             base(name, lifepoints, maxLifePoints, attack)
         {
             ProductionQueue = new ConcurrentQueue<IProductable>();
-            Resources = resources;
+            Stock = resources;
             Position = position.GetValueOrDefault();
         }
 

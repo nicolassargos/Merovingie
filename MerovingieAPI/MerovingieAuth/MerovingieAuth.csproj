@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
     <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -21,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\AoC.Api\AoC.Api\AoC.Services.csproj" />
     <ProjectReference Include="..\..\AoC.Api\AoC.MapGenerator\AoC.Map.csproj" />
-    <ProjectReference Include="..\..\AoC.Api\AoC.Map\AoC.GameManager.csproj" />
+    <ProjectReference Include="..\..\AoC.Api\AoC.Map\AoC.GameFileManager.csproj" />
     <ProjectReference Include="..\..\AoC.Api\Common\AoC.Common.csproj" />
     <ProjectReference Include="..\..\AoC.Api\Domain\AoC.Domain.csproj" />
     <ProjectReference Include="..\Common.Network\Common.Network.csproj" />

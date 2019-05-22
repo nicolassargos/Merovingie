@@ -13,7 +13,7 @@ namespace AoC.MerovingieFileManager
             else
             {
                 // TODO: implémenter les options de création
-                game = new GameDescriptor();
+                game = new GameDescriptor2();
             }
 
 

@@ -113,13 +113,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataLayer\AoC.DataLayer\AoC.DataLayer.csproj">
+      <Project>{844c5e79-ea44-45c0-aeb5-d832d86d49b0}</Project>
+      <Name>AoC.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AoC.Api\AoC.Services.csproj">
       <Project>{E41E2D6C-146E-4087-AFBC-BBD48ACC0FCD}</Project>
       <Name>AoC.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AoC.Map\AoC.GameManager.csproj">
+    <ProjectReference Include="..\AoC.Map\AoC.GameFileManager.csproj">
       <Project>{ccfa74b6-84a2-400d-97e2-de0e25cf281b}</Project>
-      <Name>AoC.GameManager</Name>
+      <Name>AoC.GameFileManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\AoC.Common.csproj">
       <Project>{8b1e1ef0-fb02-4297-b8aa-12ef4c4ca354}</Project>

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CCFA74B6-84A2-400D-97E2-DE0E25CF281B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>AoC.Map</RootNamespace>
-    <AssemblyName>AoC.Map</AssemblyName>
+    <RootNamespace>AoC.GameFileManager</RootNamespace>
+    <AssemblyName>AoC.GameFileManager</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataLayer\AoC.DataLayer\AoC.DataLayer.csproj">
+      <Project>{844c5e79-ea44-45c0-aeb5-d832d86d49b0}</Project>
+      <Name>AoC.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\AoC.Common.csproj">
       <Project>{8b1e1ef0-fb02-4297-b8aa-12ef4c4ca354}</Project>
       <Name>AoC.Common</Name>

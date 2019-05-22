@@ -286,7 +286,7 @@ namespace AoC.Interface
         private void FetchGoldBtn_Click(object sender, RoutedEventArgs e)
         {
             LogBox.Text += new StringBuilder($"Worker {SelectedItemId} go fetch some gold...\n");
-            //manager.FetchResource(SelectedItemId, game.GoldMines[0]);
+            //manager.FetchResource(SelectedItemId, game.PassiveBuildings[0]);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

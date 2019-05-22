@@ -13,15 +13,16 @@ using AoC.MerovingieFileManager;
 using AoC.Api.EventArgs;
 using Common.Struct;
 using AoC.Common.Network.Models;
+using AoC.Domain.TypeExtentions;
 
 namespace Merovingie
 {
     public class MSocketHandler
     {
 
-        private GameDescriptor _gameDescriptor;
+        private GameDescriptor2 _gameDescriptor;
         private GameManager _gameManager;
-        private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
+        private List<GameDescriptor2> _partialMessage = new List<GameDescriptor2>();
         private string _gameName;
         private WebSocket _socket;
 
@@ -87,7 +88,7 @@ namespace Merovingie
                     try
                     {
                         _gameName = messageReceived.Message.ToString();
-                        _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
+                        _gameDescriptor = (GameDescriptor2)GameFileManager.ReadGame(_gameName);
                         var data = JsonConvert.SerializeObject(_gameDescriptor);
                         SendMessage(new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, data));
                     }
@@ -99,7 +100,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_FIRSTPART:
                     try
                     {
-                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
+                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor2>(messageReceived.Message.ToString()));
                     }
                     catch (Exception ex)
                     {
@@ -109,7 +110,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_NEXTPART:
                     try
                     {
-                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
+                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor2>(messageReceived.Message.ToString()));
 
                     }
                     catch (Exception ex)
@@ -120,7 +121,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_END:
                     try
                     {
-                        GameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
+                        GameDescriptor2 gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
                         GameFileManager.SaveGame(gameDescriptor, _gameName);
                         // La partie est correctement initialisée
                         _gameManager = new GameManager(_gameDescriptor);
@@ -237,9 +238,9 @@ namespace Merovingie
             SendMessage(messageToSend);
         }
 
-        private GameDescriptor AssembleFromMultiParts(List<GameDescriptor> partialMessage)
+        private GameDescriptor2 AssembleFromMultiParts(List<GameDescriptor2> partialMessage)
         {
-            var newGameDescriptor = new GameDescriptor();
+            var newGameDescriptor = new GameDescriptor2();
             foreach (var part in partialMessage)
             {
                 if (part.Carries != null && part.Carries.Count > 0)
@@ -248,7 +249,7 @@ namespace Merovingie
                 if (part.Farms != null && part.Farms.Count > 0)
                     newGameDescriptor.Farms.AddRange(part.Farms);
 
-                if (part.GoldMines != null && part.GoldMines.Count > 0)
+                if (part.GoldMines != null && part.GoldMines.Count > 0);
                     newGameDescriptor.GoldMines.AddRange(part.GoldMines);
 
                 if (part.TownHalls != null && part.TownHalls.Count > 0)
@@ -273,7 +274,7 @@ namespace Merovingie
         /// </summary>
         /// <param name="partialMessage"></param>
         /// <param name="serverGameDescriptor"></param>
-        private GameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
+        private GameDescriptor2 InitializeEachGameItem(List<GameDescriptor2> partialMessage, GameDescriptor2 serverGameDescriptor)
         {
             var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
 
@@ -323,8 +324,7 @@ namespace Merovingie
                                     {
                                         x = assembledGameDescriptor.Trees[i].Position.x,
                                         y = assembledGameDescriptor.Trees[i].Position.y,
-                                    }));
-                        serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
+                                    }).ToTreeDescriptor());
                     }
                 }
 

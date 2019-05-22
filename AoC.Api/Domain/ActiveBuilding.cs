@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace AoC.Api.Domain
 {
-    public abstract class ActiveBuilding: IBuilding
+    public class ActiveBuilding: IBuilding
     {
 
         #region Properties
@@ -22,7 +22,7 @@ namespace AoC.Api.Domain
         public int LifePoints { get; set; }
         public int MaxLifePoints { get; set; }
         public bool Attack { get; set; }
-        public SerializableDictionary<ResourcesType, int> Resources { get; set; }
+        public SerializableDictionary<ResourcesType, int> Stock { get; set; }
         #endregion
 
 
@@ -43,7 +43,7 @@ namespace AoC.Api.Domain
             LifePoints = lifepoints;
             MaxLifePoints = maxLifePoints;
             Attack = attack;
-            Resources = new SerializableDictionary<ResourcesType, int>();
+            Stock = new SerializableDictionary<ResourcesType, int>();
         }
 
         public ActiveBuilding() { }

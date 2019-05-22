@@ -3,15 +3,18 @@ using Common.Helpers;
 using AoC.Api.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using AutoMapper;
+using Domain;
 
 namespace AoC.MerovingieFileManager.Tests
 {
     [TestClass]
     public class GameGeneratorTest
     {
-        [TestInitialize]
-        public void Init()
+        [ClassInitialize()]
+        public static void GameGeneratorTestInitialize(TestContext testContext)
         {
+            Mapper.Initialize(cfg => cfg.AddProfile<DomainProfile>());
         }
 
         #region GenerateDefaultMap
@@ -22,7 +25,7 @@ namespace AoC.MerovingieFileManager.Tests
             var gameGenerated = GameGenerator.GenerateDefaultMap();
 
             // Assert no null values
-            Assert.IsTrue(gameGenerated is GameDescriptor);
+            Assert.IsTrue(gameGenerated is GameDescriptor2);
             Assert.IsNotNull(gameGenerated.TownHalls);
             Assert.IsNotNull(gameGenerated.Carries);
             Assert.IsNotNull(gameGenerated.Trees);
@@ -34,7 +37,7 @@ namespace AoC.MerovingieFileManager.Tests
             // Assert are values properly populated
             Assert.IsTrue(gameGenerated.TownHalls.Count == 1);
             Assert.IsTrue(gameGenerated.Carries.Count == 1);
-            Assert.IsTrue(gameGenerated.Trees.Count == 1);
+            Assert.IsTrue(gameGenerated.Trees.Count == 0);
             Assert.IsTrue(gameGenerated.GoldMines.Count == 1);
             Assert.IsTrue(gameGenerated.Farms.Count == 2);
             Assert.IsTrue(gameGenerated.Workers.Count == 2);
@@ -65,7 +68,7 @@ namespace AoC.MerovingieFileManager.Tests
                 });
 
             // Assert no null values
-            Assert.IsTrue(gameGenerated is GameDescriptor);
+            Assert.IsTrue(gameGenerated is GameDescriptor2);
             Assert.IsNotNull(gameGenerated.TownHalls);
             Assert.IsNotNull(gameGenerated.Carries);
             Assert.IsNotNull(gameGenerated.Trees);
@@ -77,10 +80,10 @@ namespace AoC.MerovingieFileManager.Tests
             // Assert are values properly populated
             Assert.IsTrue(gameGenerated.TownHalls.Count == 1);
             Assert.IsTrue(gameGenerated.Carries.Count == 1);
-            Assert.IsTrue(gameGenerated.Trees.Count == 1);
+            Assert.IsTrue(gameGenerated.Trees.Count == 0);
             Assert.IsTrue(gameGenerated.GoldMines.Count == 1);
             Assert.IsTrue(gameGenerated.Farms.Count == 1);
-            Assert.IsTrue(gameGenerated.Workers.Count == 1);
+            Assert.IsTrue(gameGenerated.Workers.Count == 2); // TODO: factoriser le GameGenerator
             Assert.IsTrue(gameGenerated.Resources.Count == 3);
             Assert.IsTrue(gameGenerated.Resources[ResourcesType.Gold] == 5);
             Assert.IsTrue(gameGenerated.Resources[ResourcesType.Stone] == 5);

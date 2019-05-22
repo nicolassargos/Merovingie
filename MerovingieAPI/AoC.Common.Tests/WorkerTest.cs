@@ -6,7 +6,7 @@ using Common.Enums;
 using Common.Struct;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AoC.Common.Tests
+namespace AoC.Domain.Tests
 {
     [TestClass]
     public class WorkerTest
@@ -32,8 +32,8 @@ namespace AoC.Common.Tests
             Assert.IsNotNull(worker.HoldedResources);
             Assert.AreEqual(3, worker.HoldedResources.Count);
             Assert.IsNotNull(worker.Position);
-            Assert.AreEqual(10, worker.Position.x);
-            Assert.AreEqual(10, worker.Position.y);
+            Assert.AreEqual(0, worker.Position.x);
+            Assert.AreEqual(0, worker.Position.y);
         }
 
 
@@ -84,8 +84,8 @@ namespace AoC.Common.Tests
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Stone]);
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Wood]);
 
-            Assert.AreEqual(10, worker.Position.x);
-            Assert.AreEqual(10, worker.Position.y);
+            Assert.AreEqual(0, worker.Position.x);
+            Assert.AreEqual(0, worker.Position.y);
         }
 
         #endregion
@@ -116,7 +116,7 @@ namespace AoC.Common.Tests
         /// Teste si le worker collecte bien du bois puis s'en décharge
         /// </summary>
         [TestMethod]
-        public void FetchResource_ReleasesResource_Ok()
+        public void FetchResource_AddsResources_Ok()
         {
             //
             var worker = new Worker();
@@ -129,8 +129,6 @@ namespace AoC.Common.Tests
             //
             Thread.Sleep(tree.FetchTimeEllapse + 500);
             Assert.IsTrue(worker.HoldedResources[ResourcesType.Wood] > 0);
-            Thread.Sleep(tree.FetchTimeEllapse + 500);
-            Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Wood]);
         }
 
         /// <summary>
@@ -154,9 +152,25 @@ namespace AoC.Common.Tests
             //
             Thread.Sleep(carry.FetchTimeEllapse + 500);
             Assert.IsTrue(worker.HoldedResources[ResourcesType.Stone] > 0);
-            Thread.Sleep(carry.FetchTimeEllapse + 500);
-            Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Stone]);
             Assert.IsTrue(isTriggered);
+        }
+
+
+        /// <summary>
+        /// Teste si le worker se décharge bien du bois qu'il porte
+        /// </summary>
+        [TestMethod]
+        public void ReleaseResource_FreesResources_Ok()
+        {
+            //
+            var worker = new Worker();
+            worker.HoldedResources[ResourcesType.Wood] = 20;
+
+            //
+            worker.ReleaseResources();
+
+            //
+            Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Wood]);
         }
 
         #endregion

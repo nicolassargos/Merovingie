@@ -1,4 +1,6 @@
 ﻿using AoC.Api.Domain;
+using AoC.DataLayer.Descriptors;
+using AoC.Domain.TypeExtentions;
 using Common.Enums;
 using Common.Helpers;
 using Common.Struct;
@@ -22,43 +24,45 @@ namespace AoC.MerovingieFileManager
 
             var Resources = new SerializableDictionary<ResourcesType, int> { { ResourcesType.Gold, 1000 }, { ResourcesType.Stone, 1000 }, { ResourcesType.Wood, 1000 } };
 
-            IGameDescriptor game = new GameDescriptor();
+            var game = new GameDescriptor2();
 
-            game.TownHalls.Add(townHall);
-            game.Carries.Add(carry);
+            game.TownHalls.Add(townHall.ToTownHallDescriptor());
+            game.Carries.Add(carry.ToCarryDescriptor());
             //game.Trees.Add(tree);
-            game.GoldMines.Add(mine);
-            game.Farms.Add(farm1);
-            game.Farms.Add(farm2);
-            game.Workers.Add(worker1);
-            game.Workers.Add(worker2);
+            game.GoldMines.Add(mine.ToGoldMineDescriptor());
+            game.Farms.Add(farm1.ToFarmDescriptor());
+            game.Farms.Add(farm2.ToFarmDescriptor());
+            game.Workers.Add(worker1.ToWorkerDescriptor());
+            game.Workers.Add(worker2.ToWorkerDescriptor());
             game.Resources = Resources;
+            game.MaxPopulation = game.Farms.Count * game.Farms[0].PopulationIncrement;
+            game.ActualPopulation = game.Workers.Count * game.Workers[0].PopulationSlots;
 
-            return game;
+            return (IGameDescriptor)game;
         }
 
         public static IGameDescriptor GenerateMapFromOptions(int workers, int farms, SerializableDictionary<ResourcesType, int> resources)
         {
             var gameDescriptor = GenerateDefaultMap();
 
-            if (resources == null) throw new ArgumentNullException();
+            if (resources == null) throw new ArgumentNullException("GenerateMapFromOptions: resources are null");
 
-            if (gameDescriptor.Workers.Count < workers)
+            if (gameDescriptor.Workers.Count != workers)
             {
-                gameDescriptor.Workers = new List<Worker>();
+                gameDescriptor.Workers = new List<WorkerDescriptor>();
                 var nbWorkersToCreate = workers - gameDescriptor.Workers.Count;
                 for (int i = 0; i < nbWorkersToCreate; i++)
                 {
-                    gameDescriptor.Workers.Add(new Worker(i));
+                    gameDescriptor.Workers.Add(new Worker().ToWorkerDescriptor());
                 }
             }
 
             if (gameDescriptor.Farms.Count != farms)
             {
-                gameDescriptor.Farms = new List<Farm>();
+                gameDescriptor.Farms = new List<FarmDescriptor>();
                 for (int i = 0; i < farms; i++)
                 {
-                    gameDescriptor.Farms.Add(new Farm(i, ($"Farm{i}"), new Coordinates { x = 10, y = 5 }));
+                    gameDescriptor.Farms.Add(new Farm($"Farm{i}", new Coordinates { x = 10, y = 5 }).ToFarmDescriptor());
                 }
             }
 
@@ -66,6 +70,9 @@ namespace AoC.MerovingieFileManager
             {
                 gameDescriptor.Resources[resource.Key] = resource.Value;
             }
+
+            gameDescriptor.MaxPopulation = gameDescriptor.Farms.Count * gameDescriptor.Farms[0].PopulationIncrement;
+            gameDescriptor.ActualPopulation = gameDescriptor.Workers.Count * gameDescriptor.Workers[0].PopulationSlots;
 
             return gameDescriptor;
         }

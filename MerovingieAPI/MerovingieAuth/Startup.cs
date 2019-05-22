@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ using Merovingie;
 using MerovingieAuth.Hubs;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Common;
+using AoC.Api.Domain;
+using AoC.DataLayer.Descriptors;
+using Domain;
 
 namespace MerovingieAuth
 {
@@ -49,8 +53,10 @@ namespace MerovingieAuth
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
-            
-            //services.AddSignalR();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            Mapper.Initialize(cfg => cfg.AddProfile<DomainProfile>());
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

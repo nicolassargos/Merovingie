@@ -12,8 +12,6 @@ namespace AoC.Api.Domain
         public event EventHandler<ResourcesChangedArgs> CarryStockChanged;
 
         #region Propriétés
-        public int StoneStock { get; set; }
-        public Coordinates RallyPoint { get; set; }
         #endregion
 
 
@@ -24,48 +22,48 @@ namespace AoC.Api.Domain
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
         public Carry(String name, Coordinates position, int stockQty = 1000)
-            : base(name, position, ResourcesType.Gold, 20, 3000)
+            : base(name, position, ResourcesType.Stone, 20, 3000)
         {
-            StoneStock = stockQty;
+            Stock[ResourcesType.Stone] = stockQty;
         }
 
         public Carry()
-            : base()
+            : this("Carry", new Coordinates() { x = 0, y = 0 }, 1000)
         {
         }
 
-        /// <summary>
-        /// Retire de la mine une quantitée collectée par un worker
-        /// </summary>
-        /// <param name="quantityToCollect"></param>
-        /// <returns></returns>
-        public override KeyValuePair<ResourcesType, int> Remove(int quantityToCollect)
-        {
-            int quantityCollected;
+        ///// <summary>
+        ///// Retire de la mine une quantitée collectée par un worker
+        ///// </summary>
+        ///// <param name="quantityToCollect"></param>
+        ///// <returns></returns>
+        //public override KeyValuePair<ResourcesType, int> Remove(int quantityToCollect)
+        //{
+        //    int quantityCollected;
 
-            // S'il ne reste pas assez, on récolte ce qu'il reste dans la mine
-            if (StoneStock <= quantityToCollect)
-            {
-                quantityCollected = StoneStock;
-            }
-            // Sinon, on retire la quantité désirée au stock de la mine
-            else
-            {
-                quantityCollected = quantityToCollect;
-            }
+        //    // S'il ne reste pas assez, on récolte ce qu'il reste dans la mine
+        //    if (StoneStock <= quantityToCollect)
+        //    {
+        //        quantityCollected = StoneStock;
+        //    }
+        //    // Sinon, on retire la quantité désirée au stock de la mine
+        //    else
+        //    {
+        //        quantityCollected = quantityToCollect;
+        //    }
 
-            // Retire la quantité collectée au stock
-            StoneStock -= quantityCollected;
-            // Si le stock est à 0, on détruit la mine
-            if (StoneStock == 0) DestroyBuilding();
+        //    // Retire la quantité collectée au stock
+        //    StoneStock -= quantityCollected;
+        //    // Si le stock est à 0, on détruit la mine
+        //    if (StoneStock == 0) DestroyBuilding();
 
-            // Signale à l'UI que le stock a changé
-            OnCarryStockChanged(new ResourcesFetchedArgs {
-                buildingId = this.Id , resources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
+        //    // Signale à l'UI que le stock a changé
+        //    OnCarryStockChanged(new ResourcesFetchedArgs {
+        //        buildingId = this.Id , resources = ResourceHelper.GetResourcesCollected(ResourcesType.Stone, StoneStock)});
 
-            // Retourne la ressource associée à la quantité collectée
-            return new KeyValuePair<ResourcesType, int>(ResourcesType.Stone, quantityCollected);
-        }
+        //    // Retourne la ressource associée à la quantité collectée
+        //    return new KeyValuePair<ResourcesType, int>(ResourcesType.Stone, quantityCollected);
+        //}
 
         /// <summary>
         /// 

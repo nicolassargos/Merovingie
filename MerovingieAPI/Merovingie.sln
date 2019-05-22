@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC.Services", "..\AoC.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC.Interface", "..\AoC.Api\AoC.Interface\AoC.Interface.csproj", "{7B8C719F-D2C9-4B01-B11A-3C5D45E025A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC.GameManager", "..\AoC.Api\AoC.Map\AoC.GameManager.csproj", "{CCFA74B6-84A2-400D-97E2-DE0E25CF281B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC.GameFileManager", "..\AoC.Api\AoC.Map\AoC.GameFileManager.csproj", "{CCFA74B6-84A2-400D-97E2-DE0E25CF281B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC.Map", "..\AoC.Api\AoC.MapGenerator\AoC.Map.csproj", "{F351622A-0742-45A3-A875-4A228BA91268}"
 EndProject
@@ -46,7 +46,6 @@ Global
 		{E41E2D6C-146E-4087-AFBC-BBD48ACC0FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E41E2D6C-146E-4087-AFBC-BBD48ACC0FCD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B8C719F-D2C9-4B01-B11A-3C5D45E025A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B8C719F-D2C9-4B01-B11A-3C5D45E025A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B8C719F-D2C9-4B01-B11A-3C5D45E025A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B8C719F-D2C9-4B01-B11A-3C5D45E025A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCFA74B6-84A2-400D-97E2-DE0E25CF281B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

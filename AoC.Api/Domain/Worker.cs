@@ -8,10 +8,14 @@ using System.Collections.Concurrent;
 using System.Timers;
 using System.Xml.Serialization;
 using AoC.Api.Services;
-
+using System.Collections.Generic;
+using AutoMapper.Configuration.Annotations;
+using AoC.DataLayer.Descriptors;
+using AutoMapper;
 
 namespace AoC.Api.Domain
 {
+    [AutoMap(typeof(WorkerDescriptor))]
     public class Worker : ICreator, IProductable, IUnit
     {
 
@@ -29,6 +33,8 @@ namespace AoC.Api.Domain
             get;
         }
         public SerializableDictionary<ResourcesType, int> HoldedResources { get; set; }
+        public int FetchingBuildingId { get; set; }
+        [Ignore]
         public PassiveBuilding FetchingBuilding { get; set; }
         public int LifePointsMax { get; set; }
         public int LifePoints { get; set; }
@@ -75,7 +81,7 @@ namespace AoC.Api.Domain
             LifePointsMax = 50;
             PopulationSlots = 1;
             IsWorking = false;
-            FetchingBuilding = null;
+            FetchingBuildingId = 0;
 
             ProductionQueue = new ConcurrentQueue<IProductable>();
 
@@ -140,6 +146,7 @@ namespace AoC.Api.Domain
         /// <param name="resource"></param>
         public void FetchResource(PassiveBuilding passiveBuilding)
         {
+            FetchingBuildingId = passiveBuilding.Id;
             FetchingBuilding = passiveBuilding;
             IsWorking = true;
 
@@ -162,7 +169,7 @@ namespace AoC.Api.Domain
         private void CommitFetch(Object sender, ElapsedEventArgs e)
         {
             // Retire une quantité de ressources au stock du building
-            var resourceCollected = FetchingBuilding.Remove(FetchingBuilding.CollectQty);
+            var resourceCollected = FetchingBuilding.Remove(new KeyValuePair<ResourcesType, int>(FetchingBuilding.Resource, FetchingBuilding.CollectQty));
 
             // Ajoute une quantité au stock du worker
             HoldedResources[resourceCollected.Key] =  resourceCollected.Value;

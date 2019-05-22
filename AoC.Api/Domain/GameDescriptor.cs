@@ -15,14 +15,14 @@ namespace AoC.Api.Domain
 {
     [Serializable]
     [XmlRoot]
-    public class GameDescriptor : IGameDescriptor
+    public class GameDescriptor
     {
         #region Properties
 
         [XmlArrayItem]
         public List<Carry> Carries { get; set; }
         public List<Tree> Trees { get; set; }
-        public List<GoldMine> GoldMines { get; set; }
+        public List<PassiveBuilding> PassiveBuildings { get; set; }
 
         public List<TownHall> TownHalls { get; set; }
         public List<Farm> Farms { get; set; }
@@ -43,7 +43,7 @@ namespace AoC.Api.Domain
         {
             Carries = new List<Carry>();
             Trees = new List<Tree>();
-            GoldMines = new List<GoldMine>();
+            PassiveBuildings = new List<PassiveBuilding>();
 
             TownHalls = new List<TownHall>();
             Farms = new List<Farm>();

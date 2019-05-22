@@ -3,6 +3,7 @@ using Common.Enums;
 using Common.Exceptions;
 using Common.Helpers;
 using Common.Interfaces;
+using AoC.Domain.TypeExtentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,14 +29,27 @@ namespace AoC.Api.Domain.UseCases
 
         // Fields
         #region Fields
-
-        public int MaxPopulation { get; private set; }
+        private int _maxPopulation;
         public int QtyOr { get => Resources[ResourcesType.Gold]; }
         public int QtyWood { get => Resources[ResourcesType.Wood]; }
         public int QtyStone { get => Resources[ResourcesType.Stone]; }
 
         // Total Population
-        public int TotalPopulation
+        public int MaxPopulation {
+            get
+            {
+                if (BuildingList.OfType<Farm>()?.Count() > 0)
+                {
+                    return BuildingList.OfType<Farm>().Count() * BuildingList.OfType<Farm>().First().PopulationIncrement;
+                }
+                else
+                    return _maxPopulation;
+            }
+            private set {
+                _maxPopulation = value;
+            }
+        }
+        public int ActualPopulation
         {
             get
             {
@@ -68,24 +82,24 @@ namespace AoC.Api.Domain.UseCases
             BuildingList = new List<IBuilding>();
 
             foreach (var worker in game.Workers)
-                PopulationList.Add(worker);
+                PopulationList.Add(worker.ToWorker());
 
             foreach (var farm in game.Farms)
-                BuildingList.Add(farm);
+                BuildingList.Add(farm.ToFarm());
 
             foreach (var hall in game.TownHalls)
-                BuildingList.Add(hall);
+                BuildingList.Add(hall.ToTownHall());
 
             foreach (var tree in game.Trees)
-                BuildingList.Add(tree);
+                BuildingList.Add(tree.ToTree());
 
             foreach (var mine in game.GoldMines)
-                BuildingList.Add(mine);
+                BuildingList.Add(mine.ToGoldMine());
 
             foreach (var carry in game.Carries)
-                BuildingList.Add(carry);
+                BuildingList.Add(carry.ToCarry());
 
-            MaxPopulation = 4 * game.Farms.Count;
+            MaxPopulation = game.MaxPopulation;
         }
 
         #endregion
@@ -185,32 +199,35 @@ namespace AoC.Api.Domain.UseCases
         /// 
         /// </summary>
         /// <returns></returns>
-        public IGameDescriptor ToGameDescriptor()
+        public GameDescriptor2 ToGameDescriptor()
         {
-            var gameDescriptor = new GameDescriptor();
+            var gameDescriptor = new GameDescriptor2();
             try
             {
                 // Carries
-                gameDescriptor.Carries.AddRange(BuildingList.OfType<Carry>());
+                gameDescriptor.Carries.AddRange(BuildingList.OfType<Carry>().Select(bld => bld.ToCarryDescriptor()));
 
                 // Trees
-                gameDescriptor.Trees.AddRange(BuildingList.OfType<Tree>());
+                gameDescriptor.Trees.AddRange(BuildingList.OfType<Tree>().Select(bld => bld.ToTreeDescriptor()));
 
                 // Gold mines
-                gameDescriptor.GoldMines.AddRange(BuildingList.OfType<GoldMine>());
+                gameDescriptor.GoldMines.AddRange(BuildingList.OfType<GoldMine>().Select(bld => bld.ToGoldMineDescriptor()));
 
                 // Town Hall
-                gameDescriptor.TownHalls.AddRange(BuildingList.OfType<TownHall>());
+                gameDescriptor.TownHalls.AddRange(BuildingList.OfType<TownHall>().Select(bld => bld.ToTownHallDescriptor()));
 
                 // Farms
-                gameDescriptor.Farms.AddRange(BuildingList.OfType<Farm>());
+                gameDescriptor.Farms.AddRange(BuildingList.OfType<Farm>().Select(bld => bld.ToFarmDescriptor()));
 
                 // Workers
-                gameDescriptor.Workers.AddRange(PopulationList.OfType<Worker>());
+                gameDescriptor.Workers.AddRange(PopulationList.OfType<Worker>().Select(bld => bld.ToWorkerDescriptor()));
 
                 // Resources
                 foreach (var res in Resources)
                     gameDescriptor.Resources.Add(res.Key, res.Value);
+
+                gameDescriptor.MaxPopulation = MaxPopulation;
+                gameDescriptor.ActualPopulation = this.ActualPopulation;
                     
             }
             catch (Exception)

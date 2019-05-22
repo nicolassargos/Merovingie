@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\MerovingieAPI\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Extensions.Microsoft.DependencyInjection, Version=0.0.0.0, Culture=neutral, PublicKeyToken=e767ac9c89543656, processorArchitecture=MSIL">
+      <HintPath>..\..\MerovingieAPI\packages\AutoMapper.Extensions.Microsoft.DependencyInjection.6.1.0\lib\netstandard2.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\MerovingieAPI\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\MerovingieAPI\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -47,21 +56,32 @@
     <Compile Include="ActiveBuilding.cs" />
     <Compile Include="Carry.cs" />
     <Compile Include="DefenseTower.cs" />
+    <Compile Include="DomainProfile.cs" />
     <Compile Include="Farm.cs" />
     <Compile Include="GameDescriptor.cs" />
     <Compile Include="GoldMine.cs" />
-    <Compile Include="IGameDescriptor.cs" />
     <Compile Include="MiltaryHall.cs" />
     <Compile Include="PassiveBuilding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TownHall.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="TypeExtentions\FarmMapper.cs" />
+    <Compile Include="TypeExtentions\PassiveBuildingMapper.cs" />
+    <Compile Include="TypeExtentions\TreeMapper.cs" />
+    <Compile Include="TypeExtentions\GoldMineMapper.cs" />
+    <Compile Include="TypeExtentions\TownHallMapper.cs" />
+    <Compile Include="TypeExtentions\CarryMapper.cs" />
+    <Compile Include="TypeExtentions\WorkerMapper.cs" />
     <Compile Include="UseCases\Manager - Ctor.cs" />
     <Compile Include="UseCases\Manager - TownHall.cs" />
     <Compile Include="UseCases\Manager - Worker.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataLayer\AoC.DataLayer\AoC.DataLayer.csproj">
+      <Project>{844C5E79-EA44-45C0-AEB5-D832D86D49B0}</Project>
+      <Name>AoC.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AoC.Api\AoC.Services.csproj">
       <Project>{e41e2d6c-146e-4087-afbc-bbd48acc0fcd}</Project>
       <Name>AoC.Services</Name>
@@ -75,8 +95,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TypeExtentions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

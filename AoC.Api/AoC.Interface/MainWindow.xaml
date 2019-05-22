@@ -29,7 +29,7 @@
         <Label Content="Wood:" HorizontalAlignment="Left" Margin="326,10,0,0" VerticalAlignment="Top" Width="46" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Label x:Name="MaxPopulation" Content="{Binding MaxPopulation, Mode=OneWay}" HorizontalAlignment="Left" Height="26" Margin="114,10,0,0" VerticalAlignment="Top" Width="32" Grid.Column="1">
         </Label>
-        <Label x:Name="TotalPopulationCount" Content="{Binding TotalPopulation, Mode=OneWay}" HorizontalAlignment="Left" Height="26" Margin="82,10,0,0" VerticalAlignment="Top" Width="24" Grid.Column="1"/>
+        <Label x:Name="TotalPopulationCount" Content="{Binding ActualPopulation, Mode=OneWay}" HorizontalAlignment="Left" Height="26" Margin="82,10,0,0" VerticalAlignment="Top" Width="24" Grid.Column="1"/>
         <Label HorizontalAlignment="Left" Height="26" Margin="102,10,0,0" VerticalAlignment="Top" Width="16" Content="/" Grid.Column="1"/>
         <Label x:Name="StoneStock" Content="{Binding QtyStone, Mode=OneWay}" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="38" Grid.Column="1"/>
         <Label x:Name="GoldStock" Content="{Binding QtyOr, Mode=OneWay}" HorizontalAlignment="Left" Margin="284,10,0,0" VerticalAlignment="Top" Width="42" Grid.Column="1"/>

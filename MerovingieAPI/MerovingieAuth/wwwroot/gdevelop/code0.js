@@ -293,7 +293,7 @@ gdjs.NewSceneCode.userFunc0x665848 = function(runtimeScene) {
         // if (isNullOrUndefined(gameDescriptor)) gdjs.meroSocket.send(new MF)
   
         gameDescriptor.carries.forEach((carry) => gdjs.createCarry(carry));
-        gameDescriptor.goldMines.forEach((mine) => gdjs.createGoldMine(mine));
+        gameDescriptor.goldMines.forEach((mine) => gdjs.createPassiveBuilding(mine));
         gameDescriptor.farms.forEach((farm) => gdjs.createFarm(farm));
         gameDescriptor.townHalls.forEach((townHall) => gdjs.createTownHall(townHall));
         gameDescriptor.workers.forEach((worker) => gdjs.createWorker(worker));
@@ -465,11 +465,11 @@ gdjs.NewSceneCode.userFunc0x665848 = function(runtimeScene) {
     }
   
     // Fonction de création d'une mine d'or'
-    gdjs.createGoldMine = function(goldMine) {
-        var newGoldMine = runtimeScene.createObject("mine");
-        newGoldMine.setPosition(goldMine.Position.x, goldMine.Position.y);
-        gdjs.setRallyPoint(newGoldMine);
-        newGoldMine.setZOrder(1);
+    gdjs.createPassiveBuilding = function(goldMine) {
+        var newPassiveBuilding = runtimeScene.createObject("mine");
+        newPassiveBuilding.setPosition(goldMine.Position.x, goldMine.Position.y);
+        gdjs.setRallyPoint(newPassiveBuilding);
+        newPassiveBuilding.setZOrder(1);
     }
   
     // Fonction de création d'une mine d'or'
