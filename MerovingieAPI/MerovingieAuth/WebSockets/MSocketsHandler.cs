@@ -74,21 +74,20 @@ namespace Merovingie
                 case MessageTypes.GAMECONNECT_DEMAND:
                     try
                     {
-                        _gameName = messageReceived.Message.ToString();
-                        _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
+                        SendMessage(new MMessageModel(MessageTypes.GAMECONNECT_OK, "{\"status\" : \"ok\"}"));
                         // TODO: extraire une méthode initializeGameManager
-
                     }
                     catch (Exception ex)
                     {
                         throw new ArgumentException("InterpretMessage: message of connection demand received is incorrectly formatted", messageReceived.Message.toString());
                     }
-                    SendMessage(new MMessageModel(MessageTypes.GAMECONNECT_OK, "{\"status\" : \"ok\"}"));
                     break;
                 // FILELOAD
                 case MessageTypes.FILELOAD_REQUESTED:
                     try
                     {
+                        _gameName = messageReceived.Message.ToString();
+                        _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
                         var data = JsonConvert.SerializeObject(_gameDescriptor);
                         SendMessage(new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, data));
                     }
