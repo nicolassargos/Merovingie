@@ -1,8 +1,7 @@
 ﻿using Common.Enums;
 using Common.Helpers;
-using System.Collections.Generic;
 
-namespace AoC.Api.EventArgs
+namespace AoC.Api.Domain.EventArgs
 {
     public class ResourcesChangedArgs
     {

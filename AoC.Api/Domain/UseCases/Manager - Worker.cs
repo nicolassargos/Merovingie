@@ -1,4 +1,4 @@
-﻿using AoC.Api.EventArgs;
+﻿using AoC.Api.Domain.EventArgs;
 using AoC.Api.Services;
 using Common.Enums;
 using Common.Helpers;

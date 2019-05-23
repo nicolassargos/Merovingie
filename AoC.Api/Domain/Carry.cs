@@ -1,9 +1,7 @@
-﻿using AoC.Api.EventArgs;
+﻿using AoC.Api.Domain.EventArgs;
 using Common.Enums;
 using Common.Struct;
-using Common.Helpers;
 using System;
-using System.Collections.Generic;
 
 namespace AoC.Api.Domain
 {

@@ -1,6 +1,6 @@
 ﻿using AoC.Api.Domain;
 using AoC.Api.Services;
-using AoC.Api.EventArgs;
+using AoC.Api.Domain.EventArgs;
 using Common.Exceptions;
 using Common.Interfaces;
 using Common.Struct;

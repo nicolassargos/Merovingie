@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AoC.Api.EventArgs
+﻿namespace AoC.Api.Domain.EventArgs
 {
     public class MaxPopulationChangedArgs
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Enums;
 using Common.Helpers;
-using AoC.Api.EventArgs;
+using AoC.Api.Domain.EventArgs;
 
 namespace AoC.Api.Domain
 {

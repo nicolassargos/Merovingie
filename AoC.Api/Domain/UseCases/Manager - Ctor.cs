@@ -1,5 +1,4 @@
-﻿using AoC.Api.EventArgs;
-using Common.Enums;
+﻿using Common.Enums;
 using Common.Exceptions;
 using Common.Helpers;
 using Common.Interfaces;
@@ -8,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using AoC.Api.Domain.EventArgs;
 
 namespace AoC.Api.Domain.UseCases
 {

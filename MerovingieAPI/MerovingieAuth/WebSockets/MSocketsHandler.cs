@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AoC.MerovingieFileManager;
-using AoC.Api.EventArgs;
+using AoC.Api.Domain.EventArgs;
 using Common.Struct;
 using AoC.Common.Network.Models;
 using AoC.Domain.TypeExtentions;
