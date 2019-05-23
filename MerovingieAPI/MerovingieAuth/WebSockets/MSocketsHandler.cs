@@ -14,6 +14,9 @@ using AoC.Api.Domain.EventArgs;
 using Common.Struct;
 using AoC.Common.Network.Models;
 using AoC.Domain.TypeExtentions;
+using AoC.Common.Interfaces;
+using AoC.Common.Descriptors;
+using AoC.DataLayer;
 
 namespace Merovingie
 {
@@ -121,7 +124,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_END:
                     try
                     {
-                        GameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
+                        IGameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
                         GameFileManager.SaveGame(gameDescriptor, _gameName);
                         // La partie est correctement initialisée
                         _gameManager = new GameManager(_gameDescriptor);
@@ -238,7 +241,7 @@ namespace Merovingie
             SendMessage(messageToSend);
         }
 
-        private GameDescriptor AssembleFromMultiParts(List<GameDescriptor> partialMessage)
+        private IGameDescriptor AssembleFromMultiParts(List<GameDescriptor> partialMessage)
         {
             var newGameDescriptor = new GameDescriptor();
             foreach (var part in partialMessage)
@@ -274,7 +277,7 @@ namespace Merovingie
         /// </summary>
         /// <param name="partialMessage"></param>
         /// <param name="serverGameDescriptor"></param>
-        private GameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
+        private IGameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
         {
             var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
 

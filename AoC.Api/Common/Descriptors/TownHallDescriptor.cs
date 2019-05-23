@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
+using AoC.Common.Interfaces;
 using Common.Struct;
 
-namespace AoC.DataLayer.Descriptors
+namespace AoC.Common.Descriptors
 {
     public class TownHallDescriptor : ActiveBuildingDescriptor
     {

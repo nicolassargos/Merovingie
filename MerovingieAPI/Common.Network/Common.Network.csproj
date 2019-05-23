@@ -44,12 +44,17 @@
     <Compile Include="Models\Game\GameDescriptorModel.cs" />
     <Compile Include="Models\Game\GameFileDetailModel.cs" />
     <Compile Include="Models\MMessageModel.cs" />
+    <Compile Include="NetworkGameDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AoC.Api\Common\AoC.Common.csproj">
       <Project>{8b1e1ef0-fb02-4297-b8aa-12ef4c4ca354}</Project>
       <Name>AoC.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLayer\AoC.DataLayer\AoC.DataLayer.csproj">
+      <Project>{844C5E79-EA44-45C0-AEB5-D832D86D49B0}</Project>
+      <Name>AoC.DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

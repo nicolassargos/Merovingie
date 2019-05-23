@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AoC.Api.Domain;
-using AoC.DataLayer.Descriptors;
+using AoC.Common.Descriptors;
 using AutoMapper;
 
 namespace AoC.Domain.TypeExtentions

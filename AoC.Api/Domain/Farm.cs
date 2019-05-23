@@ -1,6 +1,6 @@
 ﻿using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
+using AoC.Common.Interfaces;
 using Common.Struct;
 
 namespace AoC.Api.Domain

@@ -1,10 +1,10 @@
 ﻿using Common.Enums;
 using Common.Helpers;
-using AoC.Api.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using AutoMapper;
 using Domain;
+using AoC.Common.Descriptors;
 
 namespace AoC.MerovingieFileManager.Tests
 {

@@ -7,7 +7,7 @@ using Common.Enums;
 using Common.Helpers;
 using Common.Struct;
 
-namespace AoC.DataLayer.Descriptors
+namespace AoC.Common.Descriptors
 {
     public class GoldMineDescriptor : PassiveBuildingDescriptor
     {

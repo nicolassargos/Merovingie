@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using AoC.Common.Interfaces;
 using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
 using Common.Struct;
 
-namespace AoC.DataLayer.Descriptors
+namespace AoC.Common.Descriptors
 {
     public class WorkerDescriptor
     {

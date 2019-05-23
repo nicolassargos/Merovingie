@@ -1,8 +1,8 @@
-﻿using Common.Interfaces;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using AoC.Common.Interfaces;
 
 namespace AoC.Api.Services
 {

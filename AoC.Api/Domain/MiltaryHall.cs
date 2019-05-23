@@ -1,14 +1,4 @@
-﻿using Common.Enums;
-using Common.Helpers;
-using Common.Interfaces;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AoC.Api.Domain
+﻿namespace AoC.Api.Domain
 {
     public class MiltaryHall //: ICreator, IProductable
     {

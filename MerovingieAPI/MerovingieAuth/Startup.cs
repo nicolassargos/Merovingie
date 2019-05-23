@@ -19,7 +19,7 @@ using MerovingieAuth.Hubs;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Common;
 using AoC.Api.Domain;
-using AoC.DataLayer.Descriptors;
+using AoC.Common.Descriptors;
 using Domain;
 
 namespace MerovingieAuth

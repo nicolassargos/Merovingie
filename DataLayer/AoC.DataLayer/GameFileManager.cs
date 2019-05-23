@@ -1,4 +1,6 @@
 ﻿using AoC.Api.Domain;
+using AoC.Common.Descriptors;
+using AoC.Common.Interfaces;
 using Common.Dto;
 using System;
 using System.Collections.Generic;
@@ -43,7 +45,7 @@ namespace AoC.DataLayer
         /// </summary>
         /// <param name="game"></param>
         /// <param name="fileName"></param>
-        public static string SaveGame(GameDescriptor game, string fileName)
+        public static string SaveGame(IGameDescriptor game, string fileName)
         {
             if (game == null) throw new ArgumentNullException("SaveGame: GameDescriptor cannot be null");
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("SaveGame: File name cannot be null");

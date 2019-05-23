@@ -1,7 +1,6 @@
 ﻿using AoC.Api.Domain.EventArgs;
 using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
 using Common.Struct;
 using System;
 using System.Collections.Concurrent;
@@ -10,8 +9,9 @@ using System.Xml.Serialization;
 using AoC.Api.Services;
 using System.Collections.Generic;
 using AutoMapper.Configuration.Annotations;
-using AoC.DataLayer.Descriptors;
+using AoC.Common.Descriptors;
 using AutoMapper;
+using AoC.Common.Interfaces;
 
 namespace AoC.Api.Domain
 {

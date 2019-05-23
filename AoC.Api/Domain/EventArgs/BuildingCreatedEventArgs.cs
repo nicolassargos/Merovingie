@@ -1,4 +1,4 @@
-﻿using Common.Interfaces;
+﻿using AoC.Common.Interfaces;
 
 namespace AoC.Api.Domain.EventArgs
 {

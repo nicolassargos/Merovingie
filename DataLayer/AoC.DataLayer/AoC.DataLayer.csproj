@@ -44,17 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\GameDescriptor.cs" />
-    <Compile Include="Descriptors\ActiveBuildingDescriptor.cs" />
-    <Compile Include="Descriptors\CarryDescriptor.cs" />
-    <Compile Include="Descriptors\PassiveBuildingDescriptor.cs" />
-    <Compile Include="Descriptors\TownHallDescriptor.cs" />
-    <Compile Include="Descriptors\GoldMineDescriptor.cs" />
-    <Compile Include="Descriptors\FarmDescriptor.cs" />
-    <Compile Include="Descriptors\TreeDescriptor.cs" />
-    <Compile Include="Descriptors\WorkerDescriptor.cs" />
     <Compile Include="GameFileManager.cs" />
-    <Compile Include="IGameDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +55,9 @@
       <Project>{8B1E1EF0-FB02-4297-B8AA-12EF4C4CA354}</Project>
       <Name>AoC.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

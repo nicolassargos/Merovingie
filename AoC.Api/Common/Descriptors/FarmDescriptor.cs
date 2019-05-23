@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Common.Enums;
 using Common.Helpers;
 
-namespace AoC.DataLayer.Descriptors
+namespace AoC.Common.Descriptors
 {
     public class FarmDescriptor : ActiveBuildingDescriptor
     {

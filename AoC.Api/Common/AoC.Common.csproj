@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Descriptors\ActiveBuildingDescriptor.cs" />
+    <Compile Include="Descriptors\CarryDescriptor.cs" />
+    <Compile Include="Descriptors\FarmDescriptor.cs" />
+    <Compile Include="Descriptors\GameDescriptor.cs" />
+    <Compile Include="Descriptors\GoldMineDescriptor.cs" />
+    <Compile Include="Descriptors\PassiveBuildingDescriptor.cs" />
+    <Compile Include="Descriptors\TownHallDescriptor.cs" />
+    <Compile Include="Descriptors\TreeDescriptor.cs" />
+    <Compile Include="Descriptors\WorkerDescriptor.cs" />
     <Compile Include="Dto\GameDetailsDto.cs" />
     <Compile Include="Dto\PassiveBuildingDto.cs" />
     <Compile Include="Dto\PeonDto.cs" />
@@ -56,6 +65,7 @@
     <Compile Include="Exceptions\TranscriptionToDescriptorException.cs" />
     <Compile Include="Helpers\ResourceConverter.cs" />
     <Compile Include="Helpers\SerializableDictionary.cs" />
+    <Compile Include="Interfaces\IGameDescriptor.cs" />
     <Compile Include="Interfaces\IBuilding.cs" />
     <Compile Include="Enums\Resources.cs" />
     <Compile Include="Interfaces\ICreator.cs" />

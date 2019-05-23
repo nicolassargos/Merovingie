@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Struct;
 
-namespace AoC.Common.Interfaces
+namespace AoC.Common.Descriptors
 {
-    public interface IGameItem
+    public class TreeDescriptor : PassiveBuildingDescriptor
     {
-        int Id { get; set; }
     }
 }

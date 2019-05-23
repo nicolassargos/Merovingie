@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Struct;
 
-namespace AoC.DataLayer.Descriptors
+namespace AoC.Common.Interfaces.Descriptors
 {
-    public class TreeDescriptor : PassiveBuildingDescriptor
+    public interface ITreeDescriptor : IPassiveBuildingDescriptor
     {
     }
 }

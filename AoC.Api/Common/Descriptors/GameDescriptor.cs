@@ -1,9 +1,10 @@
-﻿using AoC.DataLayer.Descriptors;
+﻿using AoC.Common.Descriptors;
+using AoC.Common.Interfaces;
 using Common.Enums;
 using Common.Helpers;
 using System.Collections.Generic;
 
-namespace AoC.Api.Domain
+namespace AoC.Common.Descriptors
 {
     public class GameDescriptor : IGameDescriptor
     {

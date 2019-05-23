@@ -1,11 +1,10 @@
 ﻿using AoC.Api.Domain.EventArgs;
-using AoC.Api.Services;
 using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
-using Common.Struct;
+using AoC.Common.Interfaces;
 using System;
 using System.Linq;
+using Common.Struct;
 
 namespace AoC.Api.Domain.UseCases
 {
@@ -34,7 +33,7 @@ namespace AoC.Api.Domain.UseCases
                 // Annule les tâches courantes
                 CancelTask(unitId);
 
-                var farm = new Farm("NewFarm", new Common.Struct.Coordinates { x = 0, y = 0 });
+                var farm = new Farm("NewFarm", new Coordinates { x = 0, y = 0 });
                 RemoveResourcesFromStock(farm);
                 worker.LaunchProduction(farm, ValidateFarmCreation);
                 return true;

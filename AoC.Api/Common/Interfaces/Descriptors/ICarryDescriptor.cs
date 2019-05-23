@@ -7,9 +7,9 @@ using Common.Enums;
 using Common.Helpers;
 using Common.Struct;
 
-namespace AoC.DataLayer.Descriptors
+namespace AoC.Common.Interfaces.Descriptors
 {
-    public class CarryDescriptor : PassiveBuildingDescriptor
+    public interface ICarryDescriptor : IPassiveBuildingDescriptor
     {
     }
 }

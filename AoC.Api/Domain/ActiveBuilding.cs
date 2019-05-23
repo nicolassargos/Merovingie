@@ -1,6 +1,6 @@
 ﻿using Common.Enums;
 using Common.Helpers;
-using Common.Interfaces;
+using AoC.Common.Interfaces;
 using Common.Struct;
 using System;
 using System.Collections.Generic;

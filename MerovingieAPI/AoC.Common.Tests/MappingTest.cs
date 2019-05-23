@@ -8,7 +8,7 @@ using AoC.Api.Domain;
 using AoC.Domain.TypeExtentions;
 using Common.Enums;
 using Domain.TypeExtentions;
-using AoC.DataLayer.Descriptors;
+using AoC.Common.Descriptors;
 using Common.Helpers;
 
 namespace AoC.Domain.Tests
