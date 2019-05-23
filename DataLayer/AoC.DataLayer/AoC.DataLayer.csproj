@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\GameDescriptor2.cs" />
+    <Compile Include="Contracts\GameDescriptor.cs" />
     <Compile Include="Descriptors\ActiveBuildingDescriptor.cs" />
     <Compile Include="Descriptors\CarryDescriptor.cs" />
     <Compile Include="Descriptors\PassiveBuildingDescriptor.cs" />

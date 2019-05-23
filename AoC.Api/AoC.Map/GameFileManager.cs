@@ -54,7 +54,7 @@ namespace AoC.MerovingieFileManager
 
             // Initialise le Serializer
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor2));
+                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
             // Créé le chemin du fichier de sauvegarde
             string path = GetFullPath(fileName);
@@ -96,7 +96,7 @@ namespace AoC.MerovingieFileManager
             if (!FileSystemDI.File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
 
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor2));
+                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
             try
             {

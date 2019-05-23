@@ -199,9 +199,9 @@ namespace AoC.Api.Domain.UseCases
         /// 
         /// </summary>
         /// <returns></returns>
-        public GameDescriptor2 ToGameDescriptor()
+        public GameDescriptor ToGameDescriptor()
         {
-            var gameDescriptor = new GameDescriptor2();
+            var gameDescriptor = new GameDescriptor();
             try
             {
                 // Carries

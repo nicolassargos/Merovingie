@@ -24,7 +24,7 @@ namespace AoC.MerovingieFileManager
 
             var Resources = new SerializableDictionary<ResourcesType, int> { { ResourcesType.Gold, 1000 }, { ResourcesType.Stone, 1000 }, { ResourcesType.Wood, 1000 } };
 
-            var game = new GameDescriptor2();
+            var game = new GameDescriptor();
 
             game.TownHalls.Add(townHall.ToTownHallDescriptor());
             game.Carries.Add(carry.ToCarryDescriptor());

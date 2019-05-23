@@ -31,7 +31,7 @@ namespace AoC.MerovingieFileManager.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void SaveGame_ThrowArgumentNullException_IfFilenameIsNull()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = null;
 
             GameFileManager.SaveGame(gameDescriptor, fileName);
@@ -41,7 +41,7 @@ namespace AoC.MerovingieFileManager.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void SaveGame_ThrowArgumentNullException_IfFilenameIsEmpty()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "";
 
             GameFileManager.SaveGame(gameDescriptor, fileName);
@@ -51,7 +51,7 @@ namespace AoC.MerovingieFileManager.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void SaveGame_ThrowArgumentNullException_IfFilenameIsWhiteSpaces()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "   ";
 
             GameFileManager.SaveGame(gameDescriptor, fileName);
@@ -61,7 +61,7 @@ namespace AoC.MerovingieFileManager.Tests
         [TestMethod]
         public void SaveGame_CreatesFile_IfFilenameDoesntExists()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "qsdfghjklm123456789";
 
             var mockFileSystem = new MockFileSystem();
@@ -125,7 +125,7 @@ namespace AoC.MerovingieFileManager.Tests
         [TestMethod]
         public void ReadGame_ThrowFormatException_IfFilenameIsNotXML()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "qsdfghjklm123456789.xml";
 
             var mockFileSystem = new MockFileSystem();
@@ -145,7 +145,7 @@ namespace AoC.MerovingieFileManager.Tests
         [TestMethod]
         public void ReadGame_ThrowFormatException_IfFilenameIsMissingExtension()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "qsdfghjklm123456789.xml";
 
             var mockFileSystem = new MockFileSystem();
@@ -165,7 +165,7 @@ namespace AoC.MerovingieFileManager.Tests
         [TestMethod]
         public void ReadGame_ThrowFileNotFoundException_IfFileDoesntExist()
         {
-            IGameDescriptor gameDescriptor = new GameDescriptor2();
+            IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "qsdfghjklm123456789.xml";
 
             var mockFileSystem = new MockFileSystem();

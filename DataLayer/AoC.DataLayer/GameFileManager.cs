@@ -43,7 +43,7 @@ namespace AoC.DataLayer
         /// </summary>
         /// <param name="game"></param>
         /// <param name="fileName"></param>
-        public static string SaveGame(GameDescriptor2 game, string fileName)
+        public static string SaveGame(GameDescriptor game, string fileName)
         {
             if (game == null) throw new ArgumentNullException("SaveGame: GameDescriptor cannot be null");
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("SaveGame: File name cannot be null");
@@ -57,7 +57,7 @@ namespace AoC.DataLayer
 
             // Initialise le Serializer
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor2));
+                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
             // Créé le chemin du fichier de sauvegarde
             string path = GetFullPath(fileName);
@@ -85,7 +85,7 @@ namespace AoC.DataLayer
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static GameDescriptor2 ReadGame(string fileName)
+        public static GameDescriptor ReadGame(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("ReadGame: File name is empty");
             if (System.IO.Path.GetExtension(fileName) != GAMEFILE_EXTENSION)
@@ -93,19 +93,19 @@ namespace AoC.DataLayer
 
             //throw new FormatException("ReadGame: File name has no valid extension");
 
-            GameDescriptor2 game = null;
+            GameDescriptor game = null;
             string path = GetFullPath(fileName);
 
             if (!FileSystemDI.File.Exists(path)) throw new FileNotFoundException($"ReadGame: file {path} not found");
 
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor2));
+                new System.Xml.Serialization.XmlSerializer(typeof(GameDescriptor));
 
             try
             {
                 using (var fileStream = new FileStream(path, FileMode.Open))
                 {
-                    game = (GameDescriptor2)writer.Deserialize(fileStream);
+                    game = (GameDescriptor)writer.Deserialize(fileStream);
                 }
             }
             catch (Exception ex)

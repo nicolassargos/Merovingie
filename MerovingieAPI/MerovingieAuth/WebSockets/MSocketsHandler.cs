@@ -20,9 +20,9 @@ namespace Merovingie
     public class MSocketHandler
     {
 
-        private GameDescriptor2 _gameDescriptor;
+        private GameDescriptor _gameDescriptor;
         private GameManager _gameManager;
-        private List<GameDescriptor2> _partialMessage = new List<GameDescriptor2>();
+        private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
         private string _gameName;
         private WebSocket _socket;
 
@@ -88,7 +88,7 @@ namespace Merovingie
                     try
                     {
                         _gameName = messageReceived.Message.ToString();
-                        _gameDescriptor = (GameDescriptor2)GameFileManager.ReadGame(_gameName);
+                        _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
                         var data = JsonConvert.SerializeObject(_gameDescriptor);
                         SendMessage(new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, data));
                     }
@@ -100,7 +100,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_FIRSTPART:
                     try
                     {
-                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor2>(messageReceived.Message.ToString()));
+                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
                     }
                     catch (Exception ex)
                     {
@@ -110,7 +110,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_NEXTPART:
                     try
                     {
-                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor2>(messageReceived.Message.ToString()));
+                        _partialMessage.Add(JsonConvert.DeserializeObject<GameDescriptor>(messageReceived.Message.ToString()));
 
                     }
                     catch (Exception ex)
@@ -121,7 +121,7 @@ namespace Merovingie
                 case MessageTypes.FILESAVE_REQUESTED_END:
                     try
                     {
-                        GameDescriptor2 gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
+                        GameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
                         GameFileManager.SaveGame(gameDescriptor, _gameName);
                         // La partie est correctement initialisée
                         _gameManager = new GameManager(_gameDescriptor);
@@ -238,9 +238,9 @@ namespace Merovingie
             SendMessage(messageToSend);
         }
 
-        private GameDescriptor2 AssembleFromMultiParts(List<GameDescriptor2> partialMessage)
+        private GameDescriptor AssembleFromMultiParts(List<GameDescriptor> partialMessage)
         {
-            var newGameDescriptor = new GameDescriptor2();
+            var newGameDescriptor = new GameDescriptor();
             foreach (var part in partialMessage)
             {
                 if (part.Carries != null && part.Carries.Count > 0)
@@ -274,7 +274,7 @@ namespace Merovingie
         /// </summary>
         /// <param name="partialMessage"></param>
         /// <param name="serverGameDescriptor"></param>
-        private GameDescriptor2 InitializeEachGameItem(List<GameDescriptor2> partialMessage, GameDescriptor2 serverGameDescriptor)
+        private GameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
         {
             var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AoC.Api.Domain
 {
-    public class GameDescriptor2 : IGameDescriptor
+    public class GameDescriptor : IGameDescriptor
     {
         public List<CarryDescriptor> Carries { get; set; }
         public List<TreeDescriptor> Trees { get; set; }
@@ -16,10 +16,10 @@ namespace AoC.Api.Domain
         public SerializableDictionary<ResourcesType, int> Resources { get; set; }
         public int MaxPopulation { get; set; }
         public int ActualPopulation { get; set; }
-        public GameDescriptor2() : this(0, 0)
+        public GameDescriptor() : this(0, 0)
         { }
 
-        public GameDescriptor2(int Max, int Actual)
+        public GameDescriptor(int Max, int Actual)
         {
             Carries = new List<CarryDescriptor>();
             Trees = new List<TreeDescriptor>();

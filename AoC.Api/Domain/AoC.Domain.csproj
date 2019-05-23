@@ -58,7 +58,6 @@
     <Compile Include="DefenseTower.cs" />
     <Compile Include="DomainProfile.cs" />
     <Compile Include="Farm.cs" />
-    <Compile Include="GameDescriptor.cs" />
     <Compile Include="GoldMine.cs" />
     <Compile Include="MiltaryHall.cs" />
     <Compile Include="PassiveBuilding.cs" />

@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Models\Game\GameDescriptorModel.cs" />
     <Compile Include="Models\Game\GameFileDetailModel.cs" />
     <Compile Include="Models\MMessageModel.cs" />

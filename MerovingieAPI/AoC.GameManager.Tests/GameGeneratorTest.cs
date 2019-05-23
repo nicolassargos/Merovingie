@@ -25,7 +25,7 @@ namespace AoC.MerovingieFileManager.Tests
             var gameGenerated = GameGenerator.GenerateDefaultMap();
 
             // Assert no null values
-            Assert.IsTrue(gameGenerated is GameDescriptor2);
+            Assert.IsTrue(gameGenerated is GameDescriptor);
             Assert.IsNotNull(gameGenerated.TownHalls);
             Assert.IsNotNull(gameGenerated.Carries);
             Assert.IsNotNull(gameGenerated.Trees);
@@ -68,7 +68,7 @@ namespace AoC.MerovingieFileManager.Tests
                 });
 
             // Assert no null values
-            Assert.IsTrue(gameGenerated is GameDescriptor2);
+            Assert.IsTrue(gameGenerated is GameDescriptor);
             Assert.IsNotNull(gameGenerated.TownHalls);
             Assert.IsNotNull(gameGenerated.Carries);
             Assert.IsNotNull(gameGenerated.Trees);
