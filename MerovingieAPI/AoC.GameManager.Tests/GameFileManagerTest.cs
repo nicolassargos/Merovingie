@@ -126,46 +126,6 @@ namespace AoC.MerovingieFileManager.Tests
         /// 
         /// </summary>
         [TestMethod]
-        public void ReadGame_ThrowFormatException_IfFilenameIsNotXML()
-        {
-            IGameDescriptor gameDescriptor = new GameDescriptor();
-            string fileName = "qsdfghjklm123456789.xml";
-
-            var mockFileSystem = new MockFileSystem();
-            GameFileManager.FileSystemDI = mockFileSystem;
-
-            //
-            string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
-
-            Assert.ThrowsException<FormatException>(() => GameFileManager.ReadGame("qsdfghjklm123456789.vcx"));
-
-            CleanDirectory(newFilePath);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [TestMethod]
-        public void ReadGame_ThrowFormatException_IfFilenameIsMissingExtension()
-        {
-            IGameDescriptor gameDescriptor = new GameDescriptor();
-            string fileName = "qsdfghjklm123456789.xml";
-
-            var mockFileSystem = new MockFileSystem();
-            GameFileManager.FileSystemDI = mockFileSystem;
-
-            //
-            string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
-
-            Assert.ThrowsException<FormatException>(() => GameFileManager.ReadGame("qsdfghjklm123456789"));
-
-            CleanDirectory(newFilePath);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [TestMethod]
         public void ReadGame_ThrowFileNotFoundException_IfFileDoesntExist()
         {
             IGameDescriptor gameDescriptor = new GameDescriptor();

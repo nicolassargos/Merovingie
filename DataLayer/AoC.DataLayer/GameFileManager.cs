@@ -93,8 +93,6 @@ namespace AoC.DataLayer
             if (System.IO.Path.GetExtension(fileName) != GAMEFILE_EXTENSION)
                 fileName += GAMEFILE_EXTENSION;
 
-            //throw new FormatException("ReadGame: File name has no valid extension");
-
             GameDescriptor game = null;
             string path = GetFullPath(fileName);
 

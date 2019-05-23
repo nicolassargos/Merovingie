@@ -83,7 +83,7 @@ namespace AoC.MerovingieFileManager.Tests
             Assert.IsTrue(gameGenerated.Trees.Count == 0);
             Assert.IsTrue(gameGenerated.GoldMines.Count == 1);
             Assert.IsTrue(gameGenerated.Farms.Count == 1);
-            Assert.IsTrue(gameGenerated.Workers.Count == 2); // TODO: factoriser le GameGenerator
+            Assert.IsTrue(gameGenerated.Workers.Count == 1); // TODO: factoriser le GameGenerator
             Assert.IsTrue(gameGenerated.Resources.Count == 3);
             Assert.IsTrue(gameGenerated.Resources[ResourcesType.Gold] == 5);
             Assert.IsTrue(gameGenerated.Resources[ResourcesType.Stone] == 5);
