@@ -30,9 +30,20 @@ namespace AoC.Api.Domain
         {
             this.Id = Id;
             Name = "Name" + Id.ToString();
+            Attack = false;
+            Cost = new SerializableDictionary<ResourcesType, int> { { ResourcesType.Gold, 200 }, { ResourcesType.Stone, 200 }, { ResourcesType.Wood, 500 } };
+            MaxLifePoints = 100;
+            LifePoints = MaxLifePoints;
+            PopulationIncrement = 4;
+            Stock = new SerializableDictionary<ResourcesType, int>();
+            Time = 3000;
         }
 
-        public Farm() { }
+        public Farm()
+            : base()
+        {
+
+        }
 
         private Farm GetDefaultItemProperties()
         {

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\..\AoC.Api\Common\AoC.Common.csproj">
       <Project>{8b1e1ef0-fb02-4297-b8aa-12ef4c4ca354}</Project>
       <Name>AoC.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AoC.Api\Domain\AoC.Domain.csproj">
+      <Project>{6A833CE9-BC0D-4E45-83FB-1BCD12B8B9B7}</Project>
+      <Name>AoC.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DataLayer\AoC.DataLayer\AoC.DataLayer.csproj">
       <Project>{844C5E79-EA44-45C0-AEB5-D832D86D49B0}</Project>

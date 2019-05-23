@@ -66,8 +66,6 @@ namespace AoC.DataLayer
 
             try
             {
-                //FileSystemDI.File.OpenWrite(path).Close();
-
                 using (Stream file = FileSystemDI.FileStream.Create(path, FileMode.Create))
                 {
                     writer.Serialize(file, game);
