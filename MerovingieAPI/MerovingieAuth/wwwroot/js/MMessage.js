@@ -164,5 +164,6 @@ var MessageTypes = Object.freeze({
     "FETCHBACK_ACCEPTED": 28,
     "FETCHBACK_ABORTED": 29,
     "FETCHBACK_COMPLETED": 30,
-    "INFO":                         31
+    "INFO": 31,
+    "INFO_UPDATESTOCK": 32
 });

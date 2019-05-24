@@ -50,4 +50,10 @@
     <Folder Include="wwwroot\pages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

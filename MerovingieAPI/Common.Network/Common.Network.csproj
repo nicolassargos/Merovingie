@@ -47,6 +47,7 @@
     <Compile Include="Models\Game\GameFileDetailModel.cs" />
     <Compile Include="Models\MMessageModel.cs" />
     <Compile Include="NetworkGameDispatcher.cs" />
+    <Compile Include="NotificationEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

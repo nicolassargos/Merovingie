@@ -53,7 +53,8 @@ namespace AoC.Common.Network.Models
         FETCHBACK_ACCEPTED,
         FETCHBACK_ABORTED,
         FETCHBACK_COMPLETED,
-        INFO
+        INFO,
+        INFO_UPDATESTOCK
     }
 
     public class MCreationRequestBodyModel

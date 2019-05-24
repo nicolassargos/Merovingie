@@ -21,6 +21,7 @@ using Common;
 using AoC.Api.Domain;
 using AoC.Common.Descriptors;
 using Domain;
+using Common.Network;
 
 namespace MerovingieAuth
 {
@@ -28,10 +29,12 @@ namespace MerovingieAuth
     {
         public IConfiguration Configuration { get; }
         private MSocketHandler msocketHandler;
+        private NetworkGameDispatcher gameDispatcher;
 
         public Startup(IConfiguration configuration)
         {
-            msocketHandler = new MSocketHandler();
+            gameDispatcher = new NetworkGameDispatcher();
+            msocketHandler = new MSocketHandler(gameDispatcher);
             Configuration = configuration;
         }
 
@@ -53,6 +56,9 @@ namespace MerovingieAuth
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<INetworkGameDispatcher, NetworkGameDispatcher>();
+
+            
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             Mapper.Initialize(cfg => cfg.AddProfile<DomainProfile>());
@@ -86,7 +92,7 @@ namespace MerovingieAuth
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            
             // Websockets Options
             var webSocketsOptions = new WebSocketOptions
             {

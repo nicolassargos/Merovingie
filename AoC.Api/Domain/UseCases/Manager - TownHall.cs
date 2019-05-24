@@ -85,7 +85,7 @@ namespace AoC.Api.Domain.UseCases
                 if (CheckFreeSlotInPopulation(worker))
                 {
                     PopulationList.Add(worker);
-                    PopulationChanged(this, new PopulationChangedEventArgs { CurrentPopulation = PopulationList.Sum(x => x.PopulationSlots), Unit = worker });
+                    PopulationChanged(this, new PopulationChangedEventArgs { ActualPopulation = PopulationList.Sum(x => x.PopulationSlots), Unit = worker });
                 }
             }
             

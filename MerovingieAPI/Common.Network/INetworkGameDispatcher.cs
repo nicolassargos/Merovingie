@@ -10,5 +10,6 @@ namespace Common.Network
     public interface INetworkGameDispatcher
     {
         MMessageModel ProcessMessage(MMessageModel message);
+        event EventHandler<NotificationEventArgs> NotificationPopedUp;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace AoC.Api.Domain.EventArgs
 {
-    public class PopulationChangedEventArgs
+    public class PopulationChangedEventArgs : System.EventArgs
     {
-        public int CurrentPopulation { get; set; }
+        public int ActualPopulation { get; set; }
         public IUnit Unit { get; set; }
     }
 }

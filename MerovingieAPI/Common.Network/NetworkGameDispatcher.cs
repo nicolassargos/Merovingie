@@ -28,23 +28,23 @@ namespace Common.Network
         #endregion
 
         #region Events
-        public event EventHandler<PopulationChangedEventArgs> PopulationChanged;
-        public event EventHandler<ResourcesChangedArgs> ResourcesChanged;
-        public event EventHandler<MaxPopulationChangedArgs> MaxPopulationChanged;
-        //TODO: créer la classe des args et changer son nom
-        public event EventHandler<MaxPopulationChangedArgs> MaxPopulationReached;
-        public event EventHandler<BuildingCreatedEventArgs> BuildingCreated;
-        public event EventHandler<ResourcesFetchedArgs> BuildingResourcesChanged;
-        // Evenement déclenché lors de la fin de la collecte de ressources par un worker
-        public event EventHandler<ResourcesFetchedArgs> WorkerCompletedCollect;
+        public event EventHandler<NotificationEventArgs> NotificationPopedUp;
+        //public event EventHandler<ResourcesChangedArgs> ResourcesChanged;
+        //public event EventHandler<MaxPopulationChangedArgs> MaxPopulationChanged;
+        ////TODO: créer la classe des args et changer son nom
+        //public event EventHandler<MaxPopulationChangedArgs> MaxPopulationReached;
+        //public event EventHandler<BuildingCreatedEventArgs> BuildingCreated;
+        //public event EventHandler<ResourcesFetchedArgs> BuildingResourcesChanged;
+        //// Evenement déclenché lors de la fin de la collecte de ressources par un worker
+        //public event EventHandler<ResourcesFetchedArgs> WorkerCompletedCollect;
 
-        // Evenement déclenché lors de libération des ressources au stock (retour à la base)
-        public event EventHandler<ResourcesReleasedArgs> WorkerCompletedBringback;
+        //// Evenement déclenché lors de libération des ressources au stock (retour à la base)
+        //public event EventHandler<ResourcesReleasedArgs> WorkerCompletedBringback;
         #endregion
 
 
         /// <summary>
-        /// Interprète un message reçu
+        /// Interprète un message reçu : point d'entrée de la classe
         /// </summary>
         /// <param name="message"></param>
         public MMessageModel ProcessMessage(MMessageModel messageReceived)
@@ -107,6 +107,56 @@ namespace Common.Network
             return messageReturned;
         }
 
+
+        #region GameInitialization
+        /// <summary>
+        /// Process la demande de chargement de fichier
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private MMessageModel ProcessFileLoadRequest(dynamic fileName)
+        {
+            MMessageModel returnedResult = null;
+            try
+            {
+                _gameName = fileName.ToString();
+                _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
+                var gameData = JsonConvert.SerializeObject(_gameDescriptor);
+                returnedResult = new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, gameData);
+            }
+            catch (Exception ex)
+            {
+                if (ex is FileNotFoundException || ex is ArgumentNullException)
+                {
+                    returnedResult = new MMessageModel(MessageTypes.FILELOAD_ERROR_NOTFOUND, $"{{\"status\" : \"error : {ex.Message}\"}}");
+                }
+                else
+                    returnedResult = new MMessageModel(MessageTypes.FILELOAD_ERROR_CORRUPTED, $"{{\"status\" : \"error : {ex.Message}\"}}");
+            }
+            return returnedResult;
+        }
+
+        /// <summary>
+        /// Process la demande connexion au serveur
+        /// </summary>
+        /// <returns></returns>
+        private MMessageModel ProcessConnectionRequest()
+        {
+            MMessageModel returnedResult = null;
+            try
+            {
+                returnedResult = new MMessageModel(MessageTypes.GAMECONNECT_OK, "{\"status\" : \"ok\"}");
+            }
+            catch (Exception ex)
+            {
+                returnedResult = new MMessageModel(MessageTypes.GAMECONNECT_ERROR, $"{{\"status\" : \"{ex.Message}\"}}");
+            }
+            return returnedResult;
+        }
+        #endregion
+
+
+        #region Fetching
         /// <summary>
         /// Initialise la demande transfert des ressources 
         /// d'une entité à un bâtiment
@@ -129,8 +179,6 @@ namespace Common.Network
             return returnedResult;
         }
 
-
-
         /// <summary>
         /// Initialise la demande requête de collecte de ressources
         /// </summary>
@@ -151,12 +199,12 @@ namespace Common.Network
             }
             return returnedResult;
         }
-
+        #endregion
 
 
         #region Creation
         /// <summary>
-        /// 
+        /// Process la création d'un worker
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
@@ -167,6 +215,7 @@ namespace Common.Network
             {
                 var data = JsonConvert.DeserializeObject<MCreationRequestBodyModel>(Convert.ToString(message));
                 _gameManager.CreateWorker(data.creatorId, data.positionX, data.positionY);
+                returnedResult = new MMessageModel(MessageTypes.CREATION_ACCEPTED, $"{{\"status\" : \"ok\"}}");
             }
             catch (NotEnoughUnitSlotsAvailableException slex)
             {
@@ -233,7 +282,6 @@ namespace Common.Network
             }
             return returnedResult;
         }
-
 
         // TODO: ne le faire que lorsque la partie vient d'être créée
         /// <summary>
@@ -322,7 +370,7 @@ namespace Common.Network
         }
 
         /// <summary>
-        /// 
+        /// Compile une liste GameDescriptor partiels
         /// </summary>
         /// <param name="partialMessage"></param>
         /// <returns></returns>
@@ -384,6 +432,7 @@ namespace Common.Network
         #endregion
 
 
+        #region Triggered Events
         /// <summary>
         /// Attach callback methods to game manager events
         /// </summary>
@@ -395,75 +444,74 @@ namespace Common.Network
             _gameManager.WorkerCompletedBringback += NotifyClientResourcesReleased;
         }
 
-        // Emet l'event de notification de changement de ressources
+        /// <summary>
+        /// Emet l'event de notification de changement de ressources
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NotifyClientResourcesChanged(object sender, ResourcesChangedArgs e)
         {
-            ResourcesChanged?.Invoke(sender, e);
+            var args = BuildNotificationEventArgs(MessageTypes.INFO_UPDATESTOCK, e);
+            NotifyClient(args);
         }
 
-        // Emet l'event de notification de changement de ressources
+        /// <summary>
+        /// Emet l'event de notification de changement de ressources
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NotifyClientPopulationChanged(object sender, PopulationChangedEventArgs e)
         {
-            PopulationChanged?.Invoke(sender, e);
+            var args = BuildNotificationEventArgs(MessageTypes.CREATION_COMPLETED, e);
+            NotifyClient(args);
         }
 
-        // Emet l'event de notification de changement de ressources
+        /// <summary>
+        /// Emet l'event de notification de changement de ressources
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NotifyClientResourceCollected(object sender, ResourcesFetchedArgs e)
         {
-            WorkerCompletedCollect?.Invoke(sender, e);
+            var args = BuildNotificationEventArgs(MessageTypes.FETCHWAY_COMPLETED, e);
+            NotifyClient(args);
         }
 
-        // Emet l'event de notification de changement de ressources
+        /// <summary>
+        /// Emet l'event de notification de changement de ressources
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NotifyClientResourcesReleased(object sender, ResourcesReleasedArgs e)
         {
-            WorkerCompletedBringback?.Invoke(sender, e);
-        }
-
-
-
-        /// <summary>
-        /// Process la demande de chargement de fichier
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        private MMessageModel ProcessFileLoadRequest(dynamic fileName)
-        {
-            MMessageModel returnedResult = null;
-            try
-            {
-                _gameName = fileName.Message.ToString();
-                _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
-                var gameData = JsonConvert.SerializeObject(_gameDescriptor);
-                returnedResult = new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, gameData);
-            }
-            catch (Exception ex)
-            {
-                if (ex is FileNotFoundException || ex is ArgumentNullException)
-                {
-                    returnedResult = new MMessageModel(MessageTypes.FILELOAD_ERROR_NOTFOUND, $"{{\"status\" : \"error : {ex.Message}\"}}");
-                }
-                else
-                    returnedResult = new MMessageModel(MessageTypes.FILELOAD_ERROR_CORRUPTED, $"{{\"status\" : \"error : {ex.Message}\"}}");
-            }
-            return returnedResult;
+            var args = BuildNotificationEventArgs(MessageTypes.FETCHBACK_COMPLETED, e);
+            NotifyClient(args);
         }
 
         /// <summary>
-        /// Process la demande connexion au serveur
+        /// Méthode qui prend construit les arguments de notification
         /// </summary>
+        /// <param name="mt"></param>
+        /// <param name="e"></param>
         /// <returns></returns>
-        private MMessageModel ProcessConnectionRequest()
+        private NotificationEventArgs BuildNotificationEventArgs(MessageTypes mt, EventArgs e)
         {
-            MMessageModel returnedResult = null;
-            try
-            {
-                returnedResult = new MMessageModel(MessageTypes.GAMECONNECT_OK, "{\"status\" : \"ok\"}");
-            }
-            catch (Exception ex)
-            {
-                returnedResult = new MMessageModel(MessageTypes.GAMECONNECT_ERROR, $"{{\"status\" : \"{ex.Message}\"}}");
-            }
-            return returnedResult;
+            MMessageModel message = new MMessageModel(mt, e);
+            NotificationEventArgs args = new NotificationEventArgs() { Message = message };
+            return args;
         }
+
+        /// <summary>
+        /// Emet l'événement de notification au Client
+        /// </summary>
+        /// <param name="e"></param>
+        private void NotifyClient(NotificationEventArgs e)
+        {
+            // Transforme en Json l'objet envoyé
+            e.Message.Message = JsonConvert.SerializeObject(e.Message.Message);
+            // Emet l'événement
+            NotificationPopedUp?.Invoke(this, e);
+        }
+        #endregion
     }
 }
