@@ -125,7 +125,15 @@ namespace Merovingie.Controllers
         [Authorize]
         public RedirectToActionResult Delete(string fileName)
         {
-            GameFileManager.DeleteGame(fileName);
+            try
+            {
+                GameFileManager.DeleteGame(fileName);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            
 
             return RedirectToAction("GameListing");
         }

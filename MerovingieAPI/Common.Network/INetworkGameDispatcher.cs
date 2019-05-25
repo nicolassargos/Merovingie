@@ -11,5 +11,7 @@ namespace Common.Network
     {
         MMessageModel ProcessMessage(MMessageModel message);
         event EventHandler<NotificationEventArgs> NotificationPopedUp;
+
+        void Initialize();
     }
 }

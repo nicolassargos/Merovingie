@@ -29,12 +29,17 @@ namespace Merovingie
         private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
         private string _gameName;
         private WebSocket _socket;
-        private readonly INetworkGameDispatcher _networkGameDispatcher;
+        private INetworkGameDispatcher _networkGameDispatcher;
 
         public MSocketHandler(INetworkGameDispatcher networkGameDispatcher)
         {
             _networkGameDispatcher = networkGameDispatcher;
             _networkGameDispatcher.NotificationPopedUp += OnNotification;
+        }
+
+        private void InitializeNetworkDispatcher()
+        {
+            _networkGameDispatcher.Initialize();
         }
 
         /// <summary>
@@ -62,6 +67,7 @@ namespace Merovingie
             }
 
             await _socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            InitializeNetworkDispatcher();
         }
 
         /// <summary>

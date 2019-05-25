@@ -87,7 +87,7 @@ namespace Common.Network
 
             // SAVE DATA UNITSSTATE
                 case MessageTypes.CLIENTDATA_UNITSSTATE:
-                    messageReturned = ProcessSaveUnitState(messageContent);
+                     messageReturned = ProcessSaveUnitState(messageContent);
                     break;
 
             // COLLECT RESOURCES REQUESTED
@@ -425,7 +425,7 @@ namespace Common.Network
             }
             catch (Exception ex)
             {
-                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{\"status\" : \"refused : {ex.Message}\"}}");
+                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{'status' : 'refused : {ex.Message}'}}");
             }
             return returnedResult;
         }
@@ -511,6 +511,14 @@ namespace Common.Network
             e.Message.Message = JsonConvert.SerializeObject(e.Message.Message);
             // Emet l'événement
             NotificationPopedUp?.Invoke(this, e);
+        }
+
+        // Réinitialise le NetworkDispatcher en cas de déconnexion
+        public void Initialize()
+        {
+            _gameManager = new GameManager();
+            _gameName = string.Empty;
+            _partialMessage = new List<GameDescriptor>();
         }
         #endregion
     }
