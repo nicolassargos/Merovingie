@@ -17,14 +17,15 @@ namespace AoC.Api.Domain
         /// <param name="Name"></param>
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
-        public Tree(String Name, Coordinates position, int stockQty = 100)
+        public Tree(int Id, String Name, Coordinates position, int stockQty = 100)
             : base(Name, position, ResourcesType.Wood, 20, 1000)
         {
+            this.Id = Id;
             Stock[ResourcesType.Wood] = stockQty;
         }
 
         public Tree()
-            : this("Tree", new Coordinates() { x =0, y =0 }, 100)
+            : this(0, "Tree", new Coordinates() { x =0, y =0 }, 100)
         {
         }
 

@@ -18,14 +18,15 @@ namespace AoC.Api.Domain
         /// <param name="Name"></param>
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
-        public GoldMine(String Name, Coordinates position, int stockQty = 2000)
+        public GoldMine(int Id, String Name, Coordinates position, int stockQty = 2000)
             : base(Name, position, ResourcesType.Gold, 10, stockQty)
         {
+            this.Id = Id;
             Stock[ResourcesType.Gold] = stockQty;
         }
 
         public GoldMine()
-            : this("GoldMine", new Coordinates() { x=0, y=0 }, 2000)
+            : this(0, "GoldMine", new Coordinates() { x=0, y=0 }, 2000)
         {
         }
 

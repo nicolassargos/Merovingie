@@ -101,7 +101,7 @@ namespace AoC.Domain.Tests
         {
             //
             var worker = new Worker();
-            var mine = new GoldMine("mine", new Coordinates { x = 10, y = 10 }, 2000);
+            var mine = new GoldMine(0, "mine", new Coordinates { x = 10, y = 10 }, 2000);
 
             //
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Gold]);
@@ -120,7 +120,7 @@ namespace AoC.Domain.Tests
         {
             //
             var worker = new Worker();
-            var tree = new Tree("tree", new Coordinates { x = 10, y = 10 }, 100);
+            var tree = new Tree(0, "tree", new Coordinates { x = 10, y = 10 }, 100);
 
             //
             Assert.AreEqual(0, worker.HoldedResources[ResourcesType.Wood]);
@@ -140,7 +140,7 @@ namespace AoC.Domain.Tests
         {
             //
             var worker = new Worker();
-            var carry = new Carry("tree", new Coordinates { x = 10, y = 10 }, 2000);
+            var carry = new Carry(0, "tree", new Coordinates { x = 10, y = 10 }, 2000);
             bool isTriggered = false;
 
             //

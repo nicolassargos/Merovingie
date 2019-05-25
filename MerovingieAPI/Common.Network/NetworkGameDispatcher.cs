@@ -82,26 +82,30 @@ namespace Common.Network
 
             // CREATION REQUEST - WORKER
                 case MessageTypes.CREATION_REQUESTED:
+                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessCreationWorkerRequest(messageContent);
                     break;
 
             // SAVE DATA UNITSSTATE
                 case MessageTypes.CLIENTDATA_UNITSSTATE:
-                     messageReturned = ProcessSaveUnitState(messageContent);
+                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
+                    messageReturned = ProcessSaveUnitState(messageContent);
                     break;
 
             // COLLECT RESOURCES REQUESTED
                 case MessageTypes.FETCHWAY_REQUESTED:
+                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessFetchRequested(messageContent);
                     break;
 
             // RELEASE RESOURCES REQUESTED
                 case MessageTypes.FETCHBACK_REQUESTED:
+                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessReleaseResourcesRequested(messageContent);
                     break;
             // DEFAULT
                 default:
-                    messageReturned = new MMessageModel(MessageTypes.INFO, "{\"status\" : \"refused\", \"exception\":\"unknown message type\"}");
+                    messageReturned = new MMessageModel(MessageTypes.INFO, "{\"status\" : \"error : unknown message type\"}");
                     break;
             }
             return messageReturned;
@@ -149,7 +153,7 @@ namespace Common.Network
             }
             catch (Exception ex)
             {
-                returnedResult = new MMessageModel(MessageTypes.GAMECONNECT_ERROR, $"{{\"status\" : \"{ex.Message}\"}}");
+                returnedResult = new MMessageModel(MessageTypes.GAMECONNECT_ERROR, $"{{\"status\" : \"error : {ex.Message}\"}}");
             }
             return returnedResult;
         }
@@ -227,7 +231,7 @@ namespace Common.Network
             }
             catch (Exception ex)
             {
-                returnedResult = new MMessageModel(MessageTypes.CREATION_ERROR, "{\"status\" : \"refused\", \"exception\": \"InterpretMessage: message of creation received is incorrectly formatted\"}");
+                returnedResult = new MMessageModel(MessageTypes.CREATION_ERROR, $"{{\"status\" : \"error : ProcessCreationWorkerRequest: message of creation received is incorrectly formatted ({ex.Message})\"}}");
             }
             return returnedResult;
         }
@@ -249,14 +253,13 @@ namespace Common.Network
             }
             catch (Exception ex)
             {
-                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{\"status\" : \"{ex.Message}\"}}");
+                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{\"status\" : \"error : {ex.Message}\"}}");
             }
             return returnedResult;
         }
 
         /// <summary>
         /// Process l'initialisation d'un nouveau GameDescriptor,
-        /// 
         /// et l'enregistrement du fichier
         /// </summary>
         /// <param name="dynamic"></param>
@@ -274,7 +277,7 @@ namespace Common.Network
             }
             catch (Exception ex)
             {
-                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{\"status\" : \"{ex.Message}\"}}");
+                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{\"status\" : \"error : {ex.Message}\"}}");
             }
             finally
             {
@@ -330,18 +333,35 @@ namespace Common.Network
 
                 if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count >= 0)
                 {
-                    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                    // Si c'est le premier chargement de la partie nouvellement créée, créer la liste des arbres
+                    if (serverGameDescriptor.Trees.Count == 0)
                     {
-                        if (i >= serverGameDescriptor.Trees.Count)
-                            serverGameDescriptor.Trees.Add(
-                                new Tree(
-                                    "tree",
-                                    new Coordinates
-                                    {
-                                        x = assembledGameDescriptor.Trees[i].Position.x,
-                                        y = assembledGameDescriptor.Trees[i].Position.y,
-                                    }).ToTreeDescriptor());
+                        for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                        {
+                                serverGameDescriptor.Trees.Add(
+                                    new Tree(
+                                        assembledGameDescriptor.Trees[i].Id,
+                                        "tree",
+                                        new Coordinates
+                                        {
+                                            x = assembledGameDescriptor.Trees[i].Position.x,
+                                            y = assembledGameDescriptor.Trees[i].Position.y,
+                                        }).ToTreeDescriptor());
+                        }
                     }
+                    // Si c'est le chargement d'une partie précédement créée
+                    else if (serverGameDescriptor.Trees.Count == assembledGameDescriptor.Trees.Count)
+                    {
+                        for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                        {
+                            serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                    
                 }
 
                 if (assembledGameDescriptor.Workers != null && assembledGameDescriptor.Workers.Count == serverGameDescriptor.Workers.Count)
@@ -425,7 +445,7 @@ namespace Common.Network
             }
             catch (Exception ex)
             {
-                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{'status' : 'refused : {ex.Message}'}}");
+                returnedResult = new MMessageModel(MessageTypes.FILESAVE_ERROR_CORRUPTED, $"{{\"status\" : \"error : {ex.Message}\"}}");
             }
             return returnedResult;
         }

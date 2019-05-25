@@ -71,7 +71,7 @@ namespace AoC.Api.Domain.UseCases
         /// <param name="resource"></param>
         public void FetchResource(int workerId, int buildingId)
         {
-            if (buildingId == 0 || workerId == 0) throw new ArgumentNullException("Manager FetchResource: workerId or buildingId is missing");
+            if (buildingId == 0 || workerId == 0) throw new ArgumentNullException($"Manager FetchResource: workerId = {workerId} or buildingId = {buildingId} is missing");
 
             // TODO: faire un try/catch pour valider le workerId comme étant un Id de Worker
             var worker = PopulationList.FirstOrDefault(wk => wk.Id == workerId) as Worker;

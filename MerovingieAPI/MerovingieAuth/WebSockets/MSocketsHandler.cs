@@ -24,10 +24,6 @@ namespace Merovingie
     public class MSocketHandler
     {
 
-        private GameDescriptor _gameDescriptor;
-        private GameManager _gameManager;
-        private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
-        private string _gameName;
         private WebSocket _socket;
         private INetworkGameDispatcher _networkGameDispatcher;
 

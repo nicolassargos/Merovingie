@@ -19,14 +19,15 @@ namespace AoC.Api.Domain
         /// <param name="Name"></param>
         /// <param name="position"></param>
         /// <param name="Quantity"></param>
-        public Carry(String name, Coordinates position, int stockQty = 1000)
+        public Carry(int Id, String name, Coordinates position, int stockQty = 1000)
             : base(name, position, ResourcesType.Stone, 20, 3000)
         {
+            this.Id = Id;
             Stock[ResourcesType.Stone] = stockQty;
         }
 
         public Carry()
-            : this("Carry", new Coordinates() { x = 0, y = 0 }, 1000)
+            : this(0, "Carry", new Coordinates() { x = 0, y = 0 }, 1000)
         {
         }
 

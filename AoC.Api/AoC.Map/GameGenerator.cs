@@ -15,9 +15,9 @@ namespace AoC.MerovingieFileManager
         public static IGameDescriptor GenerateDefaultMap()
         {
             TownHall townHall = new TownHall("TownHall", 100, 100, false, null, new Coordinates { x = 13, y = 34 });
-            Carry carry = new Carry("Carry1", new Coordinates { x = 1220, y = 620 });
+            Carry carry = new Carry(0, "Carry1", new Coordinates { x = 1220, y = 620 });
             //Tree tree = new Tree("Tree1", new Coordinates { x = 30, y = 30 });
-            GoldMine mine = new GoldMine("Gold mine1", new Coordinates { x = 341, y = 1122 });
+            GoldMine mine = new GoldMine(0, "Gold mine1", new Coordinates { x = 1301, y = 82 });
             Farm farm1 = new Farm(0, "Farm1", new Coordinates { x = 23, y = 557 });
             Farm farm2 = new Farm(1, "Farm2", new Coordinates { x = 178, y = 557 });
             Worker worker1 = new Worker(100, false, null, new Coordinates { x = 400, y = 400 });

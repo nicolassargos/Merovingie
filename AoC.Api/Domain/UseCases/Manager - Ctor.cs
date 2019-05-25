@@ -35,6 +35,18 @@ namespace AoC.Api.Domain.UseCases
         public int QtyWood { get => Resources[ResourcesType.Wood]; }
         public int QtyStone { get => Resources[ResourcesType.Stone]; }
 
+        public bool IsGameManagerCorrectlyInitialized {
+            get
+            {
+                if (BuildingList.Where(bld => bld.Id == 0).Count() > 0)
+                    return false;
+                if (PopulationList.Where(pop => pop.Id == 0).Count() > 0)
+                    return false;
+
+                return true;
+            }
+        }
+
         // Total Population
         public int MaxPopulation {
             get
