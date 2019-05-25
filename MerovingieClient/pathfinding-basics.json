@@ -13,7 +13,7 @@
     "macExecutableFilename": "",
     "orientation": "default",
     "packageName": "com.example.gamename",
-    "projectFile": "C:\\Users\\sargos.n\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
+    "projectFile": "D:\\travail Perso\\Formation .NET\\repos\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
     "scaleMode": "linear",
     "sizeOnStartupMode": "",
     "useExternalSourceFiles": false,
@@ -24,7 +24,7 @@
     "author": "Nicolas Sargos",
     "windowWidth": 1920,
     "windowHeight": 1080,
-    "latestCompilationDirectory": "C:\\Users\\sargos.n\\Desktop\\MerovingieSave\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
+    "latestCompilationDirectory": "D:\\travail Perso\\Formation .NET\\repos\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
     "maxFPS": 0,
     "minFPS": 10,
     "verticalSync": false,
@@ -819,7 +819,7 @@
         "gridWidth": 20,
         "snap": false,
         "windowMask": true,
-        "zoomFactor": 0.568
+        "zoomFactor": 1
       },
       "objectsGroups": [],
       "variables": [],
@@ -1521,14 +1521,14 @@
         },
         {
           "angle": 0,
-          "customSize": false,
-          "height": 0,
+          "customSize": true,
+          "height": 100,
           "layer": "",
           "locked": false,
           "name": "tree",
-          "width": 0,
-          "x": 787,
-          "y": 128,
+          "width": 100,
+          "x": 771,
+          "y": 107,
           "zOrder": 43,
           "numberProperties": [],
           "stringProperties": [],
@@ -3816,7 +3816,7 @@
                   "timeBetweenFrames": 0.08,
                   "sprites": [
                     {
-                      "hasCustomCollisionMask": true,
+                      "hasCustomCollisionMask": false,
                       "image": "images\\sprites\\tree.png",
                       "points": [],
                       "originPoint": {
@@ -3830,30 +3830,7 @@
                         "x": 0,
                         "y": 0
                       },
-                      "customCollisionMask": [
-                        [
-                          {
-                            "x": 185,
-                            "y": 75
-                          },
-                          {
-                            "x": 210,
-                            "y": 171
-                          },
-                          {
-                            "x": 111,
-                            "y": 221
-                          },
-                          {
-                            "x": 39,
-                            "y": 168
-                          },
-                          {
-                            "x": 64,
-                            "y": 74
-                          }
-                        ]
-                      ]
+                      "customCollisionMask": []
                     }
                   ]
                 }
