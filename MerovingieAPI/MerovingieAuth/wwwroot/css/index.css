@@ -1,0 +1,29 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    height : 100%;
+    background-color: black;
+}
+
+
+.title-medieval {
+    font-family: 'MedievalSharp', cursive;
+}
+
+
+.form-control, .btn {
+    border-radius: 0 !important;
+}
+
+/******** INDEX *************/
+#index_title {
+    color: dimgray;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 200px;
+}
+
+#navCollapsed {
+    color: white;
+}

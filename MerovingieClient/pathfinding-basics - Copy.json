@@ -1,0 +1,4393 @@
+{
+  "firstLayout": "",
+  "gdVersion": {
+    "build": 98,
+    "major": 4,
+    "minor": 0,
+    "revision": 0
+  },
+  "properties": {
+    "adMobAppId": "",
+    "folderProject": false,
+    "linuxExecutableFilename": "",
+    "macExecutableFilename": "",
+    "orientation": "default",
+    "packageName": "com.example.gamename",
+    "projectFile": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieClient\\pathfinding-basics.json",
+    "scaleMode": "linear",
+    "sizeOnStartupMode": "adaptHeight",
+    "useExternalSourceFiles": false,
+    "version": "1.0.0",
+    "winExecutableFilename": "",
+    "winExecutableIconFile": "",
+    "name": "AoC",
+    "author": "Nicolas Sargos",
+    "windowWidth": 1920,
+    "windowHeight": 1280,
+    "latestCompilationDirectory": "C:\\Users\\sargo\\Documents\\Merovingie\\MerovingieAPI\\MerovingieAuth\\wwwroot\\gdevelop",
+    "maxFPS": 60,
+    "minFPS": 10,
+    "verticalSync": false,
+    "platformSpecificAssets": {},
+    "loadingScreen": {
+      "showGDevelopSplash": true
+    },
+    "extensions": [
+      {
+        "name": "BuiltinObject"
+      },
+      {
+        "name": "BuiltinAudio"
+      },
+      {
+        "name": "BuiltinVariables"
+      },
+      {
+        "name": "BuiltinTime"
+      },
+      {
+        "name": "BuiltinMouse"
+      },
+      {
+        "name": "BuiltinKeyboard"
+      },
+      {
+        "name": "BuiltinJoystick"
+      },
+      {
+        "name": "BuiltinCamera"
+      },
+      {
+        "name": "BuiltinWindow"
+      },
+      {
+        "name": "BuiltinFile"
+      },
+      {
+        "name": "BuiltinNetwork"
+      },
+      {
+        "name": "BuiltinScene"
+      },
+      {
+        "name": "BuiltinAdvanced"
+      },
+      {
+        "name": "Sprite"
+      },
+      {
+        "name": "BuiltinCommonInstructions"
+      },
+      {
+        "name": "BuiltinCommonConversions"
+      },
+      {
+        "name": "BuiltinStringInstructions"
+      },
+      {
+        "name": "BuiltinMathematicalTools"
+      },
+      {
+        "name": "BuiltinExternalLayouts"
+      }
+    ],
+    "platforms": [
+      {
+        "name": "GDevelop JS platform"
+      }
+    ],
+    "currentPlatform": "GDevelop JS platform"
+  },
+  "resources": {
+    "resources": [
+      {
+        "alwaysLoaded": false,
+        "file": "manBlue_stand.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "manBlue_stand.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/tree-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\tree-icon.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "NewObject-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "NewObject-1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/wall.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\wall.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "NewObject-1-0.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "NewObject-1-0.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "file": "sounds/peasant-onclick01.mp3",
+        "kind": "audio",
+        "metadata": "",
+        "name": "sounds\\peasant-onclick01.mp3",
+        "userAdded": false
+      },
+      {
+        "file": "sounds/townhall-onclick01.mp3",
+        "kind": "audio",
+        "metadata": "",
+        "name": "sounds\\townhall-onclick01.mp3",
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/wooden-board-1-3.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\wooden-board-1-3.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/Map.jpg",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\Map.jpg",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/town-hall-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\town-hall-1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/icons/gold-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\icons\\gold-icon.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/icons/stone-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\icons\\stone-icon.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/icons/wood-icon.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\icons\\wood-icon.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/stone-carry.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\stone-carry.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/gold-mine.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\gold-mine.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Works/images/townHall.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Works\\images\\townHall.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/townHall.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\townHall.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/farm.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\farm.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/sprites/tree.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\sprites\\tree.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "tile_205.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "tile_205.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "images/UI/UIBackground.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "images\\UI\\UIBackground.png",
+        "smoothed": true,
+        "userAdded": false
+      }
+    ],
+    "resourceFolders": []
+  },
+  "objects": [],
+  "objectsGroups": [],
+  "variables": [
+    {
+      "name": "ResourcesStock",
+      "children": [
+        {
+          "name": "GoldStock",
+          "value": "0"
+        },
+        {
+          "name": "StoneStock",
+          "value": "0"
+        },
+        {
+          "name": "WoodStock",
+          "value": "0"
+        }
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "b": 209,
+      "disableInputWhenNotFocused": true,
+      "mangledName": "NewScene",
+      "name": "NewScene",
+      "oglFOV": 90,
+      "oglZFar": 500,
+      "oglZNear": 1,
+      "r": 209,
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "v": 209,
+      "uiSettings": {
+        "grid": false,
+        "gridB": 255,
+        "gridG": 180,
+        "gridHeight": 32,
+        "gridOffsetX": 0,
+        "gridOffsetY": 0,
+        "gridR": 158,
+        "gridWidth": 32,
+        "snap": false,
+        "windowMask": true,
+        "zoomFactor": 0.472
+      },
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 133,
+          "layer": "",
+          "locked": false,
+          "name": "NewObject2",
+          "width": 148,
+          "x": 288,
+          "y": 3680,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 2464,
+          "y": 2016,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2272,
+          "y": 2144,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 2336,
+          "y": 3872,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1728,
+          "y": 3744,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1184,
+          "y": 3712,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2016,
+          "y": 1440,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1472,
+          "y": 2272,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1280,
+          "y": 2048,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 189,
+          "y": 3131,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2272,
+          "y": 2304,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1056,
+          "y": 2560,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1344,
+          "y": 2240,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 864,
+          "y": 3904,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1184,
+          "y": 2688,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2272,
+          "y": 3232,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2560,
+          "y": 3232,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1184,
+          "y": 2848,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1728,
+          "y": 3456,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2208,
+          "y": 3040,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 192,
+          "y": 2912,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 2432,
+          "y": 3776,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2432,
+          "y": 2272,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 864,
+          "y": 2336,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1184,
+          "y": 1920,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1792,
+          "y": 3264,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 704,
+          "y": 2912,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 1952,
+          "y": 2080,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 384,
+          "y": 3136,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 608,
+          "y": 3072,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1696,
+          "y": 3584,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 2816,
+          "y": 1952,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1376,
+          "y": 1696,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 800,
+          "y": 3808,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 96,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 96,
+          "x": 96,
+          "y": 3136,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 800,
+          "y": 2848,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1248,
+          "y": 2592,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1184,
+          "y": 2496,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1856,
+          "y": 2880,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 992,
+          "y": 3488,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1824,
+          "y": 3648,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 992,
+          "y": 3264,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2176,
+          "y": 3744,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1536,
+          "y": 3552,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 608,
+          "y": 3200,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2464,
+          "y": 3296,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2304,
+          "y": 1984,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1984,
+          "y": 2624,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2176,
+          "y": 3488,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1696,
+          "y": 3168,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1632,
+          "y": 3424,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 96,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 96,
+          "x": 128,
+          "y": 3200,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 896,
+          "y": 3392,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1024,
+          "y": 3392,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 1312,
+          "y": 1888,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2496,
+          "y": 3616,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2176,
+          "y": 2240,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1248,
+          "y": 1664,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1216,
+          "y": 2208,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2080,
+          "y": 3104,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2304,
+          "y": 3712,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2336,
+          "y": 3328,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1024,
+          "y": 2816,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1056,
+          "y": 2944,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1920,
+          "y": 2464,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 896,
+          "y": 2848,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 480,
+          "y": 3200,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 960,
+          "y": 2496,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 132,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 132,
+          "x": 1472,
+          "y": 3424,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1792,
+          "y": 1728,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2464,
+          "y": 1568,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1088,
+          "y": 1728,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 2560,
+          "y": 2304,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 2880,
+          "y": 1856,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 3840,
+          "y": 1440,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 2688,
+          "y": 2016,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 1888,
+          "y": 1472,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 768,
+          "y": 2752,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2688,
+          "y": 1856,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 960,
+          "y": 2688,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2624,
+          "y": 1696,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1952,
+          "y": 2240,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 142,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 142,
+          "x": 2400,
+          "y": 3584,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1536,
+          "y": 3040,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2112,
+          "y": 2368,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 137,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 137,
+          "x": 480,
+          "y": 3040,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2368,
+          "y": 3168,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1760,
+          "y": 2816,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 162,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 162,
+          "x": 2048,
+          "y": 2944,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 2016,
+          "y": 2272,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 1184,
+          "y": 2976,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 127,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 127,
+          "x": 608,
+          "y": 2944,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 4096,
+          "layer": "",
+          "locked": true,
+          "name": "Background",
+          "width": 4096,
+          "x": 0,
+          "y": 0,
+          "zOrder": 0,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "ItemBoardLabel",
+          "width": 0,
+          "x": 896,
+          "y": 3968,
+          "zOrder": 20,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "SelectedMarker",
+          "width": 0,
+          "x": 1184,
+          "y": 3200,
+          "zOrder": 23,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "message",
+          "width": 0,
+          "x": 512,
+          "y": 3104,
+          "zOrder": 24,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 100,
+          "layer": "ButtonPanel layer",
+          "locked": false,
+          "name": "BuildButton",
+          "width": 100,
+          "x": 1696,
+          "y": 3872,
+          "zOrder": 26,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 32,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "GoldStockLabel",
+          "width": 96,
+          "x": 64,
+          "y": 3904,
+          "zOrder": 28,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": [
+            {
+              "name": "Variable",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "StoneStockLabel",
+          "width": 96,
+          "x": 64,
+          "y": 3968,
+          "zOrder": 29,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "WoodStockLabel",
+          "width": 96,
+          "x": 64,
+          "y": 4032,
+          "zOrder": 30,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "GoldStockIcon",
+          "width": 64,
+          "x": 192,
+          "y": 3904,
+          "zOrder": 31,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "StoneStockIcon",
+          "width": 64,
+          "x": 192,
+          "y": 3968,
+          "zOrder": 32,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "WoodStockIcon",
+          "width": 64,
+          "x": 192,
+          "y": 4032,
+          "zOrder": 33,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "Panel layer",
+          "locked": false,
+          "name": "ErrorLabel",
+          "width": 544,
+          "x": 704,
+          "y": 3808,
+          "zOrder": 34,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 131,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 130,
+          "x": 864,
+          "y": 192,
+          "zOrder": 35,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 126,
+          "layer": "",
+          "locked": false,
+          "name": "tree",
+          "width": 125,
+          "x": 3712,
+          "y": 256,
+          "zOrder": 36,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Panel layer",
+          "locked": true,
+          "name": "UIPanel",
+          "width": 0,
+          "x": 0,
+          "y": 3806,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Test layer",
+          "locked": false,
+          "name": "UIPanel",
+          "width": 0,
+          "x": 0,
+          "y": 992,
+          "zOrder": 100,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "objects": [
+        {
+          "name": "worker",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "Selected",
+              "value": "0"
+            },
+            {
+              "name": "Activity",
+              "children": [
+                {
+                  "name": "DestinationId",
+                  "value": "0"
+                },
+                {
+                  "name": "DestinationX",
+                  "value": "0"
+                },
+                {
+                  "name": "DestinationY",
+                  "value": "0"
+                },
+                {
+                  "name": "FetchableEntity",
+                  "children": [
+                    {
+                      "name": "Id",
+                      "value": "0"
+                    },
+                    {
+                      "name": "X",
+                      "value": "0"
+                    },
+                    {
+                      "name": "Y",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "name": "Name",
+                  "value": "\"None\""
+                },
+                {
+                  "name": "StoreHouse",
+                  "children": [
+                    {
+                      "name": "Id",
+                      "value": "0"
+                    },
+                    {
+                      "name": "X",
+                      "value": "0"
+                    },
+                    {
+                      "name": "Y",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "HoldedResources",
+              "children": [
+                {
+                  "name": "Gold",
+                  "value": "0"
+                },
+                {
+                  "name": "Stone",
+                  "value": "0"
+                },
+                {
+                  "name": "Wood",
+                  "value": "0"
+                }
+              ]
+            }
+          ],
+          "behaviors": [
+            {
+              "acceleration": 1000,
+              "allowDiagonals": true,
+              "angleOffset": 0,
+              "angularMaxSpeed": 300,
+              "cellHeight": 10,
+              "cellWidth": 10,
+              "extraBorder": 0,
+              "maxSpeed": 200,
+              "name": "Pathfinding",
+              "rotateObject": true,
+              "type": "PathfindingBehavior::PathfindingBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "manBlue_stand.png",
+                      "points": [
+                        {
+                          "name": "Point",
+                          "x": 16,
+                          "y": 22
+                        }
+                      ],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "message",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "Waiting for destination",
+          "font": "",
+          "characterSize": 20,
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 0
+          }
+        },
+        {
+          "bold": false,
+          "italic": false,
+          "name": "message2",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "Click/touch an empty area to set destination, use left mouse button to drag obstacles",
+          "font": "",
+          "characterSize": 20,
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 0
+          }
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "ItemBoardLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "Worker",
+          "font": "",
+          "characterSize": 60,
+          "color": {
+            "b": 13,
+            "g": 13,
+            "r": 153
+          }
+        },
+        {
+          "name": "tree",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
+            },
+            {
+              "name": "Stock",
+              "value": "0"
+            }
+          ],
+          "behaviors": [
+            {
+              "cost": 2,
+              "impassable": true,
+              "name": "PathfindingObstacle",
+              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "images\\sprites\\tree.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 185,
+                            "y": 75
+                          },
+                          {
+                            "x": 210,
+                            "y": 171
+                          },
+                          {
+                            "x": 111,
+                            "y": 221
+                          },
+                          {
+                            "x": 39,
+                            "y": 168
+                          },
+                          {
+                            "x": 64,
+                            "y": 74
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Background",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\Map.jpg",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "UIPanel",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [
+            {
+              "bottomEdgeAnchor": 2,
+              "leftEdgeAnchor": 0,
+              "name": "Anchor",
+              "relativeToOriginalWindowSize": true,
+              "rightEdgeAnchor": 0,
+              "topEdgeAnchor": 0,
+              "type": "AnchorBehavior::AnchorBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "wooden-board",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\UI\\UIBackground.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SelectedMarker",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "NewObject",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "NewObject-1.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 16,
+                        "y": 16
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "townHall",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "Selected",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
+            }
+          ],
+          "behaviors": [
+            {
+              "cost": 2,
+              "impassable": true,
+              "name": "PathfindingObstacle",
+              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "town-hall",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "images\\sprites\\townHall.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 75.5,
+                            "y": 82
+                          },
+                          {
+                            "x": 275.5,
+                            "y": 85
+                          },
+                          {
+                            "x": 286.5,
+                            "y": 296
+                          },
+                          {
+                            "x": 42.5,
+                            "y": 323
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "BuildButton",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "NewObject",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "NewObject-1-0.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "GoldStockLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "goldStock",
+          "font": "",
+          "characterSize": 20,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "StoneStockLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "stoneStock",
+          "font": "",
+          "characterSize": 20,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "WoodStockLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "woodStock",
+          "font": "",
+          "characterSize": 20,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "name": "GoldStockIcon",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\icons\\gold-icon.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "StoneStockIcon",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\icons\\stone-icon.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "WoodStockIcon",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\icons\\wood-icon.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bold": true,
+          "italic": false,
+          "name": "ErrorLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "Text",
+          "font": "",
+          "characterSize": 40,
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 255
+          }
+        },
+        {
+          "name": "carry",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "targeted",
+              "value": ""
+            },
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
+            },
+            {
+              "name": "Stock",
+              "value": "0"
+            }
+          ],
+          "behaviors": [
+            {
+              "cost": 2,
+              "impassable": true,
+              "name": "PathfindingObstacle",
+              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\sprites\\stone-carry.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "mine",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "RallyPointX",
+              "value": "0"
+            },
+            {
+              "name": "RallyPointY",
+              "value": "0"
+            },
+            {
+              "name": "Stock",
+              "value": "0"
+            }
+          ],
+          "behaviors": [
+            {
+              "cost": 2,
+              "impassable": true,
+              "name": "PathfindingObstacle",
+              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\sprites\\gold-mine.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "farm",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "images\\sprites\\farm.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "rallyPoint",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "tile_205.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bold": false,
+          "italic": false,
+          "name": "buildingResourceLabel",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "",
+          "font": "",
+          "characterSize": 20,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        }
+      ],
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "ItemBoardLabel"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "SelectedMarker"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ChangePlan"
+              },
+              "parameters": [
+                "worker",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "BuildButton"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "ErrorLabel"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"unitsStateTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ShowLayer"
+              },
+              "parameters": [
+                "",
+                "\"Panel layer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "\n    function MerovingieWebSocket() {\n        this.scheme = document.location.protocol === \"https:\" ? \"wss\" : \"ws\";\n        this.port = document.location.port ? (\":\" + document.location.port) : \"\";\n        const urlParams = new URLSearchParams(window.location.search);\n        this.gameName = urlParams.get('name');\n  \n        // Variable de connexion qui contient l'adresse du serveur\n        this.connectionUrl = this.scheme + \"://\" + document.location.hostname + this.port + \"/ws\";\n  \n        // Connecte le websocket au serveur\n        this.socket = new WebSocket(this.connectionUrl);\n  \n        // Ouverture du socket\n        this.socket.onopen = function () {\n            if (!this || this.readyState !== WebSocket.OPEN) {\n                alert(\"meroSocket is not connected\");\n                return;\n            }\n  \n            var connectMessage = new MMessage(MessageTypes.GAMECONNECT_DEMAND, gdjs.meroSocket.gameName);\n  \n            if (this.OPEN)\n            {\n                try {\n                    this.send(JSON.stringify(connectMessage));\n                }\n                catch (err){\n                    console.error('Socket error on opening: \\n');\n                    console.error(err);\n                }\n            }\n        }\n  \n        this.socket.onmessage = function (event) {\n            var messageReceived = JSON.parse(event.data);\n            console.log(messageReceived);\n  \n            if (!messageReceived.Type)\n                console.error(\"Socket OnMessage: the format of the message is not correct :\" + JSON.stringify(messageReceived));\n            else\n            {\n                var message = new MMessage(messageReceived.Type, messageReceived.Message);\n                gdjs.ProcessMessage(message);\n            }\n        }\n  \n        this.socket.onclose = function(event) {\n            console.log(event);\n        }\n    }\n  \n    // Méthode d'envoi de données\n    MerovingieWebSocket.prototype.send = function(messageType, body) {\n  \n        if (!messageType) {\n            alert('Message type is undefined of null');\n            return;\n        }\n  \n        if (!body) {\n            alert('Body of message is undefined or null');\n        }\n  \n      if (typeof(body) === 'string')\n          var message = body;\n      else\n          var message = JSON.stringify(body);\n  \n      for (i = 0; i < message.length ; i += 3000)\n      {\n        if (i+3000 > message.length) var bytes = message.substr(i, message.length);\n        else var bytes = message.substr(i, i+3000);\n        \n        try {\n            console.log('Sending message to server: \\n');\n            console.log(messageType);\n            console.log(bytes);\n            console.log('\\n');\n            this.socket.send(JSON.stringify(new MMessage(messageType, bytes)));\n        }\n        catch (err) {\n            console.error('Socket error on opening: \\n');\n            console.error(err);\n        }\n      }\n        \n    //   console.log(this.socket.bufferedAmount);\n    }\n    \n    gdjs.ProcessMessage = function(messageToInterpret)\n    {\n        console.log(messageToInterpret.message);\n  \n        var messageBody = '';\n  \n        if (messageToInterpret.message && messageToInterpret.message.length > 0) {\n            try {\n                console.log('Sending message to server: \\n');\n                console.log(messageToInterpret.message);\n                console.log('\\n');\n                messageBody = JSON.parse(messageToInterpret.message);\n            }\n            catch (err) {\n                console.error('Socket error on opening: \\n');\n                console.error(err);\n            }\n        }\n  \n        switch(messageToInterpret.type) {\n  \n            case MessageTypes.GAMECONNECT_OK:\n                // TODO: créer une fonction de chargement de partie\n                // et l'attacher à meroSocket\n                gdjs.meroSocket.send(MessageTypes.FILELOAD_REQUESTED, gdjs.meroSocket.gameName);\n                break;\n  \n            case MessageTypes.FILELOAD_ACCEPTED:\n                gdjs.loadData(messageBody);\n                runtimeScene.getObjects(\"tree\").forEach(function(t) {\n                    gdjs.setRallyPoint(t);\n                });\n                gdjs.saveData();\n                setInterval(function() {gdjs.sendUnitsState()}, 2500);\n                break;\n  \n            case MessageTypes.CREATION_REFUSEDPOPULATION:\n                gdjs.displayError(\"Not enough farms!\");\n                break;\n  \n            case MessageTypes.CREATION_REFUSEDRESOURCES:\n                gdjs.displayError(\"Not enough resources!\");\n                break;\n  \n            case MessageTypes.CREATION_ACCEPTED:\n                gdjs.updateStock(messageBody);\n                break;\n  \n            case MessageTypes.CREATION_COMPLETED:\n                gdjs.createWorker(null, messageBody.Position.x, messageBody.Position.y);\n                break;\n\n            case MessageTypes.FETCHWAY_COMPLETED:\n                var unit = gdjs.fetchCompleted(messageBody);\n                gdjs.sendUnitToBringResources(unit);\n                break;\n\n            case MessageTypes.FETCHBACK_COMPLETED:\n                var unit = gdjs.releaseCompleted(messageBody);\n                gdjs.sendUnitToFetchResources(unit);\n                break;\n            \n            default: break;\n        }\n    }\n  \n    // Fonction qui traite de chargement de données\n    gdjs.loadData = function(data, callback) {\n        console.log(data);\n        var gameDescriptor = new MGameFileDescriptor(data);\n        // Tester la nullité et envoyer un message d'erreur au serveur si nécessaire\n        // if (isNullOrUndefined(gameDescriptor)) gdjs.meroSocket.send(new MF)\n  \n        gameDescriptor.carries.forEach((carry) => gdjs.createCarry(carry));\n        gameDescriptor.goldMines.forEach((mine) => gdjs.createGoldMine(mine));\n        gameDescriptor.farms.forEach((farm) => gdjs.createFarm(farm));\n        gameDescriptor.townHalls.forEach((townHall) => gdjs.createTownHall(townHall));\n        gameDescriptor.workers.forEach((worker) => gdjs.createWorker(worker));\n        gdjs.updateStock(gameDescriptor.resources);\n\n        if (callback) callback();\n    }\n  \n    // Fonction de sauvegarde de données\n      gdjs.saveData = function() {\n          var carries = [];\n          var trees = [];\n          var goldMines = [];\n          var townHalls = [];\n          var farms = [];\n          var workers = [];\n  \n          runtimeScene.getObjects(\"carry\").forEach((item) => {\n              carries.push( { \n                  Id : item.getUniqueId(),\n                  RallyPoint: { X: item.getVariables()._variables.items.RallyPointX, Y: item.getVariables()._variables.items.RallyPointY },\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part1 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : carries,\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_FIRSTPART, message_part1);    \n  \n  \n          runtimeScene.getObjects(\"mine\").forEach((item) => {\n              goldMines.push( { \n                      Id : item.getUniqueId(),\n                      RallyPoint: { X: item.getVariables()._variables.items.RallyPointX, Y: item.getVariables()._variables.items.RallyPointY },\n                      Position : { X: item.getX(), Y: item.getY() }\n                  });\n              });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : goldMines,\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n          runtimeScene.getObjects(\"townHall\").forEach((item) => {\n              townHalls.push( { \n                  Id : item.getUniqueId(), \n                  RallyPoint: { X: item.getVariables()._variables.items.RallyPointX, Y: item.getVariables()._variables.items.RallyPointY },\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : townHalls,\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n          runtimeScene.getObjects(\"farm\").forEach((item) => {\n              farms.push( { \n                  Id : item.getUniqueId(), \n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : farms,\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n          runtimeScene.getObjects(\"worker\").forEach((item) => {\n              workers.push( { \n                  Id : item.getUniqueId(),\n                  Position : { X: item.getX(), Y: item.getY() }\n              });\n          });\n  \n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : [],\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : workers\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n  \n  \n      var treeObjects = runtimeScene.getObjects(\"tree\");\n      var i = 0;\n      for (i=0; i < treeObjects.length; i+=19)\n      {\n          for(j = i; j < i+20 && j <  treeObjects.length; j++)\n          {\n              trees.push( { \n                Id : treeObjects[j].getUniqueId(),\n                Name : treeObjects[j].getName(),\n                RallyPoint: { X: treeObjects[j].getVariables()._variables.items.RallyPointX, Y: treeObjects[j].getVariables()._variables.items.RallyPointY },\n                Position : { X: treeObjects[j].getX(), Y: treeObjects[j].getY() }\n              });\n          }\n          var message_part2 = { \n              \"gameName\": gdjs.meroSocket.gameName, \n              \"carries\" : [],\n              \"trees\" : trees,\n              \"goldMines\" : [],\n              \"townHalls\" : [],\n              \"farms\" : [],\n              \"workers\" : []\n          }\n  \n          gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_NEXTPART, message_part2);\n          trees=[];\n      };\n  \n      gdjs.meroSocket.send(MessageTypes.FILESAVE_REQUESTED_END, \"end\");\n    }\n  \n    // Fonction de création d'une Carrière de pierre\n    gdjs.createCarry = function(carry) {\n        var newCarry = runtimeScene.createObject(\"carry\");\n        newCarry.setPosition(carry.Position.x, carry.Position.y);\n        newCarry._variables._variables.items.Stock._value = carry.StoneStock;\n        gdjs.setRallyPoint(newCarry);\n        newCarry.setZOrder(1);\n    }\n  \n      // Fonction de création d'une Ferme\n    gdjs.createFarm = function(farm) {\n        var newFarm = runtimeScene.createObject(\"farm\");\n        newFarm.setPosition(farm.Position.x, farm.Position.y);\n        newFarm.setZOrder(1);\n    }\n  \n    // Fonction de création d'une mine d'or'\n    gdjs.createGoldMine = function(goldMine) {\n        var newGoldMine = runtimeScene.createObject(\"mine\");\n        newGoldMine.setPosition(goldMine.Position.x, goldMine.Position.y);\n        gdjs.setRallyPoint(newGoldMine);\n        newGoldMine.setZOrder(1);\n    }\n  \n    // Fonction de création d'une mine d'or'\n    gdjs.createTownHall = function(townHall) {\n        var newTownHall = runtimeScene.createObject(\"townHall\");\n        newTownHall.setPosition(townHall.Position.x, townHall.Position.y);\n        gdjs.setRallyPoint(newTownHall);\n        newTownHall.setZOrder(1);\n    }\n  \n    // Fonction de création d'un worker\n    gdjs.createWorker = function(worker, x, y) {\n        var newWorker = runtimeScene.createObject(\"worker\");\n        if (!worker || !worker.Position || (worker.Position.x === 0 && worker.Position.y === 0))\n        {\n            var townHall = runtimeScene.getObjects(\"townHall\");\n            if (townHall.length > 0)\n                newWorker.setPosition(townHall[0].getVariables()._variables.items.RallyPointX, townHall[0].getVariables()._variables.items.RallyPointY );\n            else\n                newWorker.setPosition(x, y);\n        }\n        else\n        {\n            newWorker.setPosition(worker.Position.x, worker.Position.y);\n        }\n        newWorker.setZOrder(10);\n        gdjs.setNewCoordinatesForUnit(newWorker);\n    }\n  \n    // Fonction de mise à jour du stock\n    gdjs.updateStock = function(stock) {\n        var goldStockLabel = runtimeScene.getObjects(\"GoldStockLabel\");\n        var stoneStockLabel = runtimeScene.getObjects(\"StoneStockLabel\");\n        var woodStockLabel = runtimeScene.getObjects(\"WoodStockLabel\");\n  \n        if (goldStockLabel.length > 0) goldStockLabel[0].setString(stock.Gold);\n        if (stoneStockLabel.length > 0) stoneStockLabel[0].setString(stock.Stone);\n        if (woodStockLabel.length > 0) woodStockLabel[0].setString(stock.Wood);\n    }\n  \n    // Fonction d'affichage d'erreur sur l'interface\n    gdjs.displayError = function(errorMessage) {\n        var errorLabel = runtimeScene.getObjects(\"ErrorLabel\");\n        errorLabel[0].setString(errorMessage);\n        errorLabel[0].hide(false);\n        setTimeout(function() {\n            errorLabel[0].hide(true);\n        }, 2000);\n    }\n    \n    gdjs.sendUnitsState = function() {\n        var workers = [];\n  \n        runtimeScene.getObjects(\"worker\").forEach(function(wk) {\n            var currentWorker = { id : wk.getUniqueId(), position : { x: wk.x, y: wk.y }  };\n            workers.push(currentWorker);\n        });\n  \n    //   console.log(workers);\n        this.meroSocket.send(MessageTypes.CLIENTDATA_UNITSSTATE, workers);\n    }\n\n    gdjs.setNewCoordinatesForUnit = function(unit) {\n\n        if (!typeof(unit) === 'runtimeObject') { console.log(\"wrong type of object\"); return; }\n\n        var units = runtimeScene.getObjects(\"worker\");\n        units.forEach(function(u) {\n            console.log(u.separateFromObjects(units));\n        });\n        units.forEach(function(u) {\n            console.log(u.separateFromObjects(units));\n        }); \n    }\n\n    gdjs.setRallyPoint = function(object) {\n        if (!typeof(object) === 'runtimeObject') { console.log(\"wrong type of object\"); return; }\n\n        var allObstacleObjects = [];\n        runtimeScene.getObjects(\"worker\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"tree\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"townHall\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"farm\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"mine\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n        runtimeScene.getObjects(\"carry\").forEach(function(x) {\n            allObstacleObjects.push(x);\n        });\n\n        var dummyRallyPoint = runtimeScene.createObject(\"rallyPoint\");\n        var mapCenter = this.getMapCenter();\n        dummyRallyPoint.setPosition(mapCenter.x, mapCenter.y);\n\n        var hitBoxPoints = object.getHitBoxes()[0].vertices;\n        var hitBoxDummys = [];\n        var dist;\n        var closestBoxPoint;\n        for (var i = 0; i < hitBoxPoints.length; i++)\n        {\n            hitBoxDummys.unshift(runtimeScene.createObject(\"rallyPoint\"));\n            hitBoxDummys[0].setPosition(hitBoxPoints[i][0], hitBoxPoints[i][1]);\n            if (!dist || hitBoxDummys[0].getDistanceToObject(dummyRallyPoint) < dist)\n            {\n                dist = hitBoxDummys[0].getDistanceToObject(dummyRallyPoint);\n                closestBoxPoint = { \"x\": this.getObjectCenterX(hitBoxDummys[0]), \"y\": this.getObjectCenterY(hitBoxDummys[0]) };\n            }\n            hitBoxDummys[0].deleteFromScene(runtimeScene);\n        }\n\n        //console.log(closestBoxPoint);\n        //dummyRallyPoint.setPosition(closestBoxPoint.x, closestBoxPoint.y);\n        object.getVariables()._variables.items.RallyPointX = Math.floor(closestBoxPoint.x);\n        object.getVariables()._variables.items.RallyPointY = Math.floor(closestBoxPoint.y);\n\n        //console.log(dummyRallyPoint.separateFromObjects(allObstacleObjects));\n        //dummyRallyPoint.setZOrder(1);\n    }\n\n\n    gdjs.meroSocket = new MerovingieWebSocket();\n\n\n    gdjs.getObjectCenterX = function(object) {\n        return (object.getAABB().max[0] + object.getAABB().min[0]) /2;\n    }\n\n    gdjs.getObjectCenterY = function(object) {\n        return (object.getAABB().max[1] + object.getAABB().min[1]) /2;\n    }\n\n    gdjs.getMapCenter = function() {\n        // Calcule le centre de la map\n        /** @type {gdjs.runtimeObject} */\n        var back = runtimeScene.getObjects(\"Background\")[0];\n\n        return { \"x\": gdjs.getObjectCenterX(back), \"y\": gdjs.getObjectCenterY(back)};\n    }\n\n    gdjs.launchFetchActivity = function(unit, building) {\n\n        if (!unit || !building) console.error('launchFetchActivity: args are null');\n\n        this.setupFetchActivity(unit, building);\n        this.sendUnitToFetchResources(unit);\n    }\n\n    // Initialise les données pour lancer une activité de récolte\n    gdjs.setupFetchActivity = function(unit, building)\n    {\n        const unitActivity = unit._variables._variables.items.Activity;\n\n        // Initialise les infos du \"batiment\" dont on va extraire les ressources\n        unitActivity._children.FetchableEntity._children.X._value = building._variables._variables.items.RallyPointX;\n        unitActivity._children.FetchableEntity._children.Y._value = building._variables._variables.items.RallyPointY;\n        unitActivity._children.FetchableEntity._children.Id._value = building.getUniqueId();\n\n        // Initialise les infos du batiment où l'on va rapporter les ressources\n        // TODO: améliorer la détection des rallypoint pour enlever le \"+ 30\"\n        const townHall = runtimeScene.getObjects(\"townHall\")[0];\n        unitActivity._children.StoreHouse._children.X._value = townHall._variables._variables.items.RallyPointX + 30;\n        unitActivity._children.StoreHouse._children.Y._value = townHall._variables._variables.items.RallyPointY;\n        unitActivity._children.StoreHouse._children.Id._value = townHall.getUniqueId();\n    }\n\n\n\n    // Envoie la commande au PathFindingBehavior \n    // de faire bouger l'unité vers sa destination\n    gdjs.sendUnitToDestination = function(unitParam, activityName)\n    {\n        /** @type {gdjs.RuntimeObject} */\n        const unit = unitParam;\n        const unitActivity = unit._variables._variables.items.Activity;\n\n        // Ordonne à l'unité d'aller de se déplacer vers sa destination\n        unit.getBehavior(\"Pathfinding\").moveTo(runtimeScene, unitActivity.DestinationX, unitActivity.DestinationY);\n\n        // Si un chemin a été trouvé, signale le fait \n        // d'aller chercher des ressources comme activité courante\n        if (unit.getBehavior(\"Pathfinding\")._pathFound === true && activityName && typeof activityName === 'string')\n        {\n            unitActivity._children.Name._str = activityName;\n        }\n    }\n\n    // Envoie une unité chercher des ressources\n    gdjs.sendUnitToFetchResources = function(unitParam)\n    {\n        /** @type {gdjs.RuntimeObject} */\n        const unit = unitParam;\n        const unitActivity = unit._variables._variables.items.Activity;\n\n        // Copie les infos du batiment d'extraction comme nouvelle destination\n        unitActivity.DestinationX = unitActivity._children.FetchableEntity._children.X._value;\n        unitActivity.DestinationY = unitActivity._children.FetchableEntity._children.Y._value;\n        unitActivity.DestinationId = unitActivity._children.FetchableEntity._children.Id._value;\n\n        // Ordonne à l'unité d'aller de se déplacer \n        // vers le batiment de stockage\n        this.sendUnitToDestination(unit, 'Fetch_Way');\n\n        return unit;\n    }\n\n    // Envoie une unité rapporter ses ressources au batiment de stockage\n    gdjs.sendUnitToBringResources = function(unitParam)\n    {\n        /** @type {gdjs.RuntimeObject} */\n        const unit = unitParam;\n        const unitActivity = unit._variables._variables.items.Activity;\n\n        // Copie les infos du batiment de stockage comme nouvelle destination\n        unitActivity.DestinationX = unitActivity._children.StoreHouse._children.X._value;\n        unitActivity.DestinationY = unitActivity._children.StoreHouse._children.Y._value;\n        unitActivity.DestinationId = unitActivity._children.StoreHouse._children.Id._value;\n\n        // Ordonne à l'unité d'aller de se déplacer \n        // vers le batiment d'extraction\n        this.sendUnitToDestination(unit, 'Fetch_Back');\n\n        return unit;\n    }\n\n    //\n    gdjs.fetchCompleted = function(message) {\n        console.log('fetch completed: ' + JSON.stringify(message));\n\n        if (!message.unitId || !message.buildingId || !message.resources || !(message.resources.Gold >= 0) || !(message.resources.Stone >= 0) || !(message.resources.Wood >= 0))\n        {\n            console.error('fetch completed: message wrong format');\n        }\n\n        // Récupères les entités confirmées par la collecte (pour l'instatnt, les workers uniquement)\n        var unit = runtimeScene.getObjects(\"worker\").find(unt => unt.getUniqueId() === message.unitId);\n        if (!unit) {\n            console.error('fetch completed: unit can not be found (' + unitId + ')');\n        }\n\n        var building;\n        var resources = [\"tree\", \"carry\", \"mine\"];\n        for (var i = 0; i < resources.length && !building; i++)\n        {\n            building = runtimeScene.getObjects(resources[i]).find(unt => unt.getUniqueId() === message.buildingId);\n        }\n        if (!building) {\n            console.error('fetch completed: building can not be found (' + buildingId + ')');            \n        }\n\n        unit.hide(false);\n        if (message.resources.Gold > 0)\n        {\n\n        }\n        if (message.resources.Wood > 0)\n        {\n\n        }\n        if (message.resources.Stone > 0)\n        {\n            unit._variables._variables.items.HoldedResources._children.Stone._value += message.resources.Stone;\n            // TODO: vérifier que a quantité restante est suffisante\n            // si non, appeler l'api pour mettre à jour le stock et revérifier\n            // si toujours non, alors afficher une erreur\n            building._variables._variables.items.Stock._value -= message.resources.Stone;\n        }\n\n        unit._variables._variables.items.Activity._children.Name._str = 'None';\n\n        return unit;\n    }\n\n    gdjs.releaseCompleted = function (message)\n    {\n        console.log('release completed: ' + JSON.stringify(message));\n\n        if (!message.unitId || !message.resources || !(message.resources.Gold >= 0) || !(message.resources.Stone >= 0) || !(message.resources.Wood >= 0))\n        {\n            console.error('fetch completed: message wrong format');\n        }\n\n        // Récupère les entités confirmées par la collecte (pour l'instant, les workers uniquement)\n        var unit = runtimeScene.getObjects(\"worker\").find(unt => unt.getUniqueId() === message.unitId);\n        if (!unit) {\n            console.error('release completed: unit can not be found (' + unitId + ')');\n        }\n\n        unit._variables._variables.items.Activity._children.Name._str = 'None';\n\n        return unit;\n    }",
+              "parameterObjects": "peasant"
+            }
+          ]
+        },
+        {
+          "colorB": 228,
+          "colorG": 176,
+          "colorR": 74,
+          "creationTime": 0,
+          "disabled": false,
+          "folded": false,
+          "name": "Worker moves",
+          "source": "",
+          "type": "BuiltinCommonInstructions::Group",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "If player speed is > 0 so it is moving, set text \"I'm on my way\"",
+              "comment2": ""
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PathfindingBehavior::Speed"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Pathfinding",
+                    ">",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "If player speed is 0 so it is not moving, set text \"Waiting for destination\"",
+              "comment2": ""
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PathfindingBehavior::Speed"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Pathfinding",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "message",
+                    "=",
+                    "\"Waiting for destination\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "If left mouse button is down or touch held, set player to move to the position of the mouse.",
+              "comment2": ""
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MouseButtonReleased"
+                  },
+                  "parameters": [
+                    "",
+                    "Right"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Selected",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "SourisSurObjet"
+                      },
+                      "parameters": [
+                        "tree",
+                        "",
+                        "yes",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "SourisSurObjet"
+                      },
+                      "parameters": [
+                        "townHall",
+                        "",
+                        "",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "SourisSurObjet"
+                      },
+                      "parameters": [
+                        "mine",
+                        "",
+                        "",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "SourisSurObjet"
+                      },
+                      "parameters": [
+                        "carry",
+                        "",
+                        "",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "SourisSurObjet"
+                      },
+                      "parameters": [
+                        "farm",
+                        "",
+                        "",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": [],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PathfindingBehavior::SetDestination"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Pathfinding",
+                        "",
+                        "MouseX(\"\",0)",
+                        "MouseY(\"\",0)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjetTxt"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Activity.Name",
+                        "=",
+                        "\"None\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SourisSurObjet"
+                      },
+                      "parameters": [
+                        "carry",
+                        "",
+                        "",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Selected",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": [],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "carry",
+                        "targeted",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::JsCode",
+                      "inlineCode": "\nvar currentWorker = objects[0];\nvar carry = runtimeScene.getObjects(\"carry\").find(x => x._variables._variables.items.targeted._value === 1);\n\ngdjs.launchFetchActivity(currentWorker, carry);\n\n// nettoie\ncarry._variables._variables.items.targeted._value = 0;",
+                      "parameterObjects": "worker"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "If left mouse button is released and no path is found, set text \"I can't go there\"",
+              "comment2": ""
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "PathfindingBehavior::PathFound"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Pathfinding"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "TextObject::String"
+                      },
+                      "parameters": [
+                        "message",
+                        "=",
+                        "\"I can't go there\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PathfindingBehavior::DestinationReached"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Pathfinding"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjetTxt"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Activity.Name",
+                        "=",
+                        "\"Fetch_Way\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": [],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Cache"
+                      },
+                      "parameters": [
+                        "SelectedMarker"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Selected",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Cache"
+                      },
+                      "parameters": [
+                        "worker"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::JsCode",
+                      "inlineCode": "\n/** @type {gdjs.RuntimeObject} */\nconst worker = objects[0];\n\n// worker._variables._variables.items.Activity._children.Name._str = 'None';\n\nvar message = new MUnitCollectRequestedModel(worker.getUniqueId(), worker._variables._variables.items.Activity.DestinationId);\n\ngdjs.meroSocket.send(MessageTypes.FETCHWAY_REQUESTED, message);",
+                      "parameterObjects": "worker"
+                    }
+                  ]
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjetTxt"
+                      },
+                      "parameters": [
+                        "worker",
+                        "Activity.Name",
+                        "=",
+                        "\"Fetch_Back\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": [],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::JsCode",
+                      "inlineCode": "\n/** @type {gdjs.RuntimeObject} */\nconst worker = objects[0];\n\nconst message = new MUnitReleaseRequestedModel(worker.getUniqueId(), worker._variables._variables.items.Activity.DestinationId);\n\ngdjs.meroSocket.send(MessageTypes.FETCHBACK_REQUESTED, message);",
+                      "parameterObjects": "worker"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "set position of text to be at the player",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreXY"
+              },
+              "parameters": [
+                "message",
+                "=",
+                "worker.X() + 25",
+                "=",
+                "worker.Y() - 20"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Keyboard commands to scroll camera",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "Right"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraX"
+              },
+              "parameters": [
+                "",
+                "+",
+                "10",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "Left"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraX"
+              },
+              "parameters": [
+                "",
+                "-",
+                "10",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "Up"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraY"
+              },
+              "parameters": [
+                "",
+                "-",
+                "10",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "Down"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CameraY"
+              },
+              "parameters": [
+                "",
+                "+",
+                "10",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SourisBouton"
+              },
+              "parameters": [
+                "",
+                "Left"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "SourisSurObjet"
+              },
+              "parameters": [
+                "BuildButton",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "townHall",
+                "Selected",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "\nvar townHall = runtimeScene.getObjects(\"townHall\").find(x => x.getVariables().get(\"Selected\").getAsNumber() === 1);\nvar townHallId = townHall.getUniqueId();\n\nvar messageBody = new MCreationRequestBody(townHallId, \"worker\", townHall.getX()+townHall.getWidth()+50,  townHall.getY()+ townHall.getHeight());\n\ngdjs.meroSocket.send(MessageTypes.CREATION_REQUESTED, messageBody);",
+              "parameterObjects": "TownHall"
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "If a unit is clicked, select it",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SourisBouton"
+              },
+              "parameters": [
+                "player",
+                "Left"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Selected",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Selected",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "SelectedMarker"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "ItemBoardLabel"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "townHall",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "townHall",
+                    "Selected",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "townHall",
+                    "Selected",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "SelectedMarker"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "ItemBoardLabel"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "BuildButton"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Selected",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "",
+                    "yes",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "SelectedMarker",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "ItemBoardLabel",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "ItemBoardLabel",
+                    "=",
+                    "\"Peasant\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "sounds\\peasant-onclick01.mp3",
+                    "no",
+                    "50",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "worker",
+                    "Selected",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "",
+                  "parameterObjects": "worker"
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "townHall",
+                    "Selected",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "townHall",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "townHall",
+                    "Selected",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "SelectedMarker",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "ItemBoardLabel",
+                    "=",
+                    "\"Town Hall\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "ItemBoardLabel",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "BuildButton",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "sounds\\townhall-onclick01.mp3",
+                    "no",
+                    "50",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "carry",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "\n\nvar carry = objects[0];\nvar newLabel = runtimeScene.createObject(\"buildingResourceLabel\");\nnewLabel.setLayer(\"Panel layer\");\nnewLabel.setZOrder(1);\nnewLabel.setString(carry._variables._variables.items.Stock._value);\nsetTimeout( function() {\n    newLabel.deleteFromScene(runtimeScene);\n}, 3000);",
+                  "parameterObjects": "carry"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "worker",
+                "Selected",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreAutour"
+              },
+              "parameters": [
+                "SelectedMarker",
+                "worker",
+                "0",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "townHall",
+                "Selected",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreAutour"
+              },
+              "parameters": [
+                "SelectedMarker",
+                "townHall",
+                "0",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "layers": [
+        {
+          "name": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        },
+        {
+          "name": "Panel layer",
+          "visibility": true,
+          "cameras": [],
+          "effects": []
+        },
+        {
+          "name": "ButtonPanel layer",
+          "visibility": true,
+          "cameras": [],
+          "effects": []
+        },
+        {
+          "name": "Test layer",
+          "visibility": true,
+          "cameras": [],
+          "effects": []
+        }
+      ],
+      "behaviorsSharedData": [
+        {
+          "name": "Anchor",
+          "type": "AnchorBehavior::AnchorBehavior"
+        },
+        {
+          "name": "Pathfinding",
+          "type": "PathfindingBehavior::PathfindingBehavior"
+        },
+        {
+          "name": "PathfindingObstacle",
+          "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+        }
+      ]
+    }
+  ],
+  "externalEvents": [],
+  "eventsFunctionsExtensions": [
+    {
+      "description": "",
+      "extensionNamespace": "",
+      "fullName": "",
+      "name": "NewEventsFunctionsExtension",
+      "version": "",
+      "eventsFunctions": [
+        {
+          "description": "",
+          "fullName": "",
+          "functionType": "Action",
+          "name": "Function",
+          "sentence": "",
+          "events": [],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "",
+              "name": "",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        }
+      ]
+    }
+  ],
+  "externalLayouts": [],
+  "externalSourceFiles": []
+}

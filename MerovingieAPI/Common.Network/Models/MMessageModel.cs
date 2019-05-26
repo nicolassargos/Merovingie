@@ -13,11 +13,6 @@ namespace AoC.Common.Network.Models
             Type = type;
             Message = message;
         }
-
-        public string toString()
-        {
-            return Message;
-        }
     }
 
     public enum MessageTypes
@@ -57,6 +52,9 @@ namespace AoC.Common.Network.Models
         INFO_UPDATESTOCK
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MCreationRequestBodyModel
     {
         public int creatorId { get; set; }
@@ -65,10 +63,16 @@ namespace AoC.Common.Network.Models
         public int positionY { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MCreationAcceptedBodyModel : MResourcesBodyModel
     {
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MResourcesBodyModel
     {
         public int gold { get; set; }
@@ -76,23 +80,35 @@ namespace AoC.Common.Network.Models
         public int wood { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MUnitsStateModel
     {
         public int Id { get; set; }
         public Coordinates Position { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MUnitCollectRequestedModel
     {
         public int unitId { get; set; }
         public int buildingId { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MUnitCollectCompletedModel : MUnitCollectRequestedModel
     {
         public MResourcesBodyModel resources { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class MUnitReleaseRequestedModel : MUnitCollectRequestedModel
     {
         public MResourcesBodyModel resources { get; set; }

@@ -333,35 +333,51 @@ namespace Common.Network
 
                 if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count >= 0)
                 {
+                    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                    {
+                        if (i >= serverGameDescriptor.Trees.Count)
+                            serverGameDescriptor.Trees.Add(
+                                new Tree(
+                                    0,
+                                    "tree",
+                                    new Coordinates
+                                    {
+                                        x = assembledGameDescriptor.Trees[i].Position.x,
+                                        y = assembledGameDescriptor.Trees[i].Position.y,
+                                    }).ToTreeDescriptor());
+                    }
+
+
+
                     // Si c'est le premier chargement de la partie nouvellement créée, créer la liste des arbres
-                    if (serverGameDescriptor.Trees.Count == 0)
-                    {
-                        for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
-                        {
-                                serverGameDescriptor.Trees.Add(
-                                    new Tree(
-                                        assembledGameDescriptor.Trees[i].Id,
-                                        "tree",
-                                        new Coordinates
-                                        {
-                                            x = assembledGameDescriptor.Trees[i].Position.x,
-                                            y = assembledGameDescriptor.Trees[i].Position.y,
-                                        }).ToTreeDescriptor());
-                        }
-                    }
-                    // Si c'est le chargement d'une partie précédement créée
-                    else if (serverGameDescriptor.Trees.Count == assembledGameDescriptor.Trees.Count)
-                    {
-                        for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
-                        {
-                            serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception();
-                    }
-                    
+                    //if (serverGameDescriptor.Trees.Count == 0)
+                    //{
+                    //    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                    //    {
+                    //            serverGameDescriptor.Trees.Add(
+                    //                new Tree(
+                    //                    assembledGameDescriptor.Trees[i].Id,
+                    //                    "tree",
+                    //                    new Coordinates
+                    //                    {
+                    //                        x = assembledGameDescriptor.Trees[i].Position.x,
+                    //                        y = assembledGameDescriptor.Trees[i].Position.y,
+                    //                    }).ToTreeDescriptor());
+                    //    }
+                    //}
+                    //// Si c'est le chargement d'une partie précédement créée
+                    //else if (serverGameDescriptor.Trees.Count == assembledGameDescriptor.Trees.Count)
+                    //{
+                    //    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+                    //    {
+                    //        serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    throw new Exception();
+                    //}
+
                 }
 
                 if (assembledGameDescriptor.Workers != null && assembledGameDescriptor.Workers.Count == serverGameDescriptor.Workers.Count)

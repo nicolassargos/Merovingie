@@ -6,53 +6,49 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-
-@if (SignInManager.IsSignedIn(User))
-{
-    <h1>Web Sockets Tests</h1>
-    <span id="stateLabel">Ready</span>
-    <div id="connectionForm">
-        <label for="connectionUrl">Websocket connection URL:</label>
-        <input id="connectionUrl" name="connectionUrl" type="text" />
-        <button id="connectButton" type="submit">Connect</button>
-
-        <label for="sendMessage">Enter your message:</label>
-        <input id="sendMessage" name="sendMessage" type="text" />
-        <button id="sendButton" type="submit">Send</button>
-        <button id="closeButton" disabled>Close Socket</button>
-    </div>
-
-    <div>
-        <button type="button" id="loadbutton">
-            Load Game
-        </button>
-    </div>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>From</th>
-                <th>To</th>
-                <th>Data</th>
-            </tr>
-        </thead>
-        <tbody id="commsLog"></tbody>
-    </table>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-else
-{
-    <div class="jumbotron">
-        <h1 class="display-4"></h1>
-        <p class="lead">This is a simple text about promoting the game</p>
-        <hr class="my-4">
-        <p>Here are details about the game experience</p>
-        <p class="lead">
-            Not registered yet? It's free and takes a few seconds:
-            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-warning">Register</a>
-        </p>
-        <p class="lead">
-            Already have an account? Log in to load or create a new game:
-            <a asp-area="Identity" class="btn btn-primary btn-lg" asp-page="/Account/Login">Login</a>
-        </p>
+
+
+
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-12">
+
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+            <div class="form-group">
+                <a asp-controller="Game" asp-action="GameListing" class="btn btn-primary btn-lg navbar-brand title-medieval" alt="Merovingie">My games</a>
+                </div>
+                <div class="form-group">
+                <a asp-controller="Game" asp-action="Create" class="btn btn-primary btn-lg navbar-brand title-medieval" alt="Merovingie">New game</a>
+            </div>
+            }
+            else
+            {
+                <audio onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 3100)">
+                    <source src="~/audio/king_of_pain_i_am_the__HD.wav" />
+                </audio>
+                <audio autoplay>
+                    <source src="~/audio/music_intro_main_the__HD.wav" />
+                </audio>
+                <a id="index_title" class="fadeInDown animated text-center" data-toggle="collapse" href="#navCollapsed" role="button" aria-expanded="false" aria-controls="navCollapsed">
+                    <img src="~/images/Merovingie_title.png" />
+                </a>
+                <div class="collapse col-6 mx-auto" id="navCollapsed">
+                    <div class="form-group  text-center">
+                        <small><label for="register_button" class="text-center">Not registered yet? It's free and takes a few seconds:</label></small>
+                        <a id="register_button" asp-area="Identity" asp-page="/Account/Register" class="form-control btn btn-lg btn-warning title-medieval">Register</a>
+                    </div>
+                    <div class="form-group text-center">
+                        <small><label for="login_button">Already have an account? Log in to load or create a new game:</label></small>
+                        <a id="login_button" asp-area="Identity" class="form-control btn btn-primary btn-lg title-medieval" asp-page="/Account/Login">Login</a>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-}
+</div>
