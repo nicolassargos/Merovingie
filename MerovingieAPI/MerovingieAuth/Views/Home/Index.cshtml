@@ -7,7 +7,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
 }
 
 
@@ -15,20 +15,26 @@
 
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-12">
 
 
-            @if (SignInManager.IsSignedIn(User))
-            {
-            <div class="form-group">
-                <a asp-controller="Game" asp-action="GameListing" class="btn btn-primary btn-lg navbar-brand title-medieval" alt="Merovingie">My games</a>
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <audio autoplay>
+                <source src="~/audio/login_doors_op__HD.wav" />
+            </audio>
+            <div class="col-8">
+                <div class="form-group">
+                    <a asp-controller="Game" asp-action="GameListing" class="btn btn-primary btn-lg navbar-brand title-medieval form-control p-5" style="font-size: 6rem;line-height: 0.7;">My games</a>
                 </div>
                 <div class="form-group">
-                <a asp-controller="Game" asp-action="Create" class="btn btn-primary btn-lg navbar-brand title-medieval" alt="Merovingie">New game</a>
+                    <a asp-controller="Game" asp-action="Create" class="btn btn-primary btn-lg navbar-brand title-medieval  form-control p-5" style="font-size: 6rem;line-height: 0.7;">New game</a>
+                </div>
             </div>
-            }
-            else
-            {
+        }
+        else
+        {
+            <div class="col-12">
                 <audio onloadeddata="var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, 3100)">
                     <source src="~/audio/king_of_pain_i_am_the__HD.wav" />
                 </audio>
@@ -48,7 +54,8 @@
                         <a id="login_button" asp-area="Identity" class="form-control btn btn-primary btn-lg title-medieval" asp-page="/Account/Login">Login</a>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
+
     </div>
 </div>
