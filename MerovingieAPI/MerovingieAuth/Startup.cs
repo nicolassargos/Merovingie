@@ -56,15 +56,14 @@ namespace MerovingieAuth
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
-            //services.AddTransient<INetworkGameDispatcher, NetworkGameDispatcher>();
-
-            
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             Mapper.Initialize(cfg => cfg.AddProfile<DomainProfile>());
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +91,14 @@ namespace MerovingieAuth
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<GameHub>("/chatHub");
+            });
+
+
+
             // Websockets Options
             var webSocketsOptions = new WebSocketOptions
             {

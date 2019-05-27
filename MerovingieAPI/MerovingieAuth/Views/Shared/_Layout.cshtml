@@ -3,6 +3,10 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +17,7 @@
     <environment include="Development">
         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/chat.css" rel="stylesheet" />
         <link href="~/css/animate.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -57,8 +62,33 @@
     <audio autoplay loop="loop" id="audio_background">
         <source src="~/audio/music_intro_main_the__HD.wav" />
     </audio>
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container-fluid body-content">
+        <div class="row h-100">
+            <div class="col-lg-3 h-100">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <input id="userName" type="hidden" value="@currentUser.FirstName" />
+                    <div class="row h-100">
+                        <div class="col-lg-12 h-100">
+                            <div style="border: 1px solid white;" class="h-100">
+                                <section id="messages_container">
+                                    <ul id="messages_list"></ul>
+                                </section>
+                                <section class="input-group input-group-lg">
+                                    <input type="text" id="messageInput" class="form-control" placeholder="Type your message here..." />
+                                    <span class="input-group-btn">
+                                        <input type="button" id="sendButton" value="Send Message" class="btn btn-default" />
+                                    </span>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-9">
+                @RenderBody()
+            </div>
+        </div>
         <hr />
         <footer>
             <p>&copy; 2019 - MerovingieAuth</p>
@@ -66,14 +96,16 @@
     </div>
 
     <script>
-            var audio = document.getElementById("audio_background");
-            audio.volume = 0.2;
+        var audio = document.getElementById("audio_background");
+        audio.volume = 0.2;
     </script>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/chat.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
