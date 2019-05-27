@@ -13,6 +13,7 @@
     <environment include="Development">
         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/animate.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -53,7 +54,9 @@
     </nav>
 
     <partial name="_CookieConsentPartial" />
-
+    <audio autoplay loop="loop" id="audio_background">
+        <source src="~/audio/music_intro_main_the__HD.wav" />
+    </audio>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -61,6 +64,11 @@
             <p>&copy; 2019 - MerovingieAuth</p>
         </footer>
     </div>
+
+    <script>
+            var audio = document.getElementById("audio_background");
+            audio.volume = 0.2;
+    </script>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

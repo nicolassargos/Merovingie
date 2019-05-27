@@ -4,6 +4,8 @@ body {
     padding-bottom: 20px;
     z-index: 0;
     background-color: black;
+    background-image: url(../images/castle-wall.jpg);
+    background-repeat:no-repeat;
     color: white;
 }
 
@@ -30,7 +32,10 @@ nav {
 
 h1.title-medieval {
     font-size: 70px;
-    color: #0088ff;
+    color: #0d588c;
+    -webkit-text-fill-color: #0d588c; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #e8c83c;
 }
 
 h2.title-medieval {
@@ -38,16 +43,35 @@ h2.title-medieval {
     color: #0088ff;
 }
 
+input.form-control {
+    background-color: #3b3d3e;
+    border-color: #ffcc00;
+    color: #bdbdbd;
+}
 
-/***** OVERRIDE BOOTSTRAP */
-
-.form-control, .btn {
-    border-radius: 0 !important;
+/********************************/
+/**** Images *****/
+.resource-icon-64 {
+    max-width: 64px;
+    max-height: 64px;
 }
 
 
 
+/***** OVERRIDE BOOTSTRAP */
+.form-control, .btn {
+    border-radius: 0 !important;
+}
 
+.btn-primary {
+    background-color: #264465;
+    border-color:#ffcc00;
+}
+
+.btn-primary:hover {
+        background-color: #33577d;
+        border-color: #0062cc;
+}
 
 
 

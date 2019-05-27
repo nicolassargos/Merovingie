@@ -17,6 +17,21 @@ body {
     border-radius: 0 !important;
 }
 
+.btn-primary {
+    background-color: #264465;
+    border-color: #ffcc00;
+}
+
+.btn-primary:hover {
+    background-color: #33577d;
+    border-color: #0062cc;
+}
+
+input.form-control {
+    background-color: #3b3d3e;
+    border-color: #ffcc00;
+}
+
 /******** INDEX *************/
 #index_title {
     color: dimgray;

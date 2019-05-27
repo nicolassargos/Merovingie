@@ -4,59 +4,137 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>*@
-
-    <h1 class="title-medieval">Create a new game</h1>
-    <hr />
-    <div class="row">
-        <div class="col">
-            <form asp-action="Create" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <h2>Resources</h2>
-                <div class="form-row">
-                    @foreach (var resource in Model.Resources)
-                    {
-                        <div class="col">
-                            <div class="form-group mb-2">
-                                @Html.LabelFor(m => m.Resources[resource.Key])
-                                @Html.TextBoxFor(m => m.Resources[resource.Key], new { @class = "form-control" })
+    <audio autoplay>
+        <source src="~/audio/create_game_bell_rin__HD.wav"  />
+    </audio>
+<h1 class="title-medieval">Create a new game</h1>
+<hr />
+<div class="row">
+    <div class="col-lg-12">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h2>Resources</h2>
+            <section class="row">
+                @foreach (var resource in Model.Resources)
+                {
+                    <div class="col-lg-4">
+                        <div class="form mb-2 text-center">
+                            <div class="form-group">
+                                <img src="~/images/icons/@resource.Key.ToString().ToLower()-icon.png" class="resource-icon-64" style="opacity:0" />
+                                <label asp-for="@resource.Key" class="">@resource.Key.ToString()</label>
                             </div>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-btn">
+                                    <input type="button" id="@resource.Key.ToString().ToLower()-increment" class="btn btn-primary"
+                                           onclick="increment_100('@resource.Key.ToString()-input')" value="+" style="width:100px; font-size: 2rem; font-weight:400" />
+                                </span>
+
+                                <input type="text" asp-for="@Model.Resources[resource.Key]" id="@resource.Key.ToString()-input" value="@resource.Value" class="form-control text-center" style="font-size: 2.5rem; font-weight:600" />
+
+                                <span class="input-group-btn">
+                                    <input type="button" id="@resource.Key.ToString().ToLower()-decrement" class="btn btn-primary"
+                                           onclick="decrement_100('@resource.Key.ToString()-input')" value="-" style="width:100px;font-size: 2rem; font-weight:400" />
+                                </span>
+                            </div>
+
                         </div>
-                    }
-                </div>
-                <h2>Workers</h2>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Workers)
-                    @Html.TextBoxFor(m => m.Workers, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Farms)
-                    @Html.TextBoxFor(m => m.Farms, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Name)
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary btn-lg pull-right" />
-                </div>
-            </form>
-        </div>
-    </div>
+                    </div>
+                }
+            </section>
+            <hr />
+            <h2>Misc</h2>
+            <section class="row">
+                <div class="col-lg-6">
+                    <div class="form mb-2 text-center">
+                        <div class="form-group">
+                            <img src="~/images/icons/population-icon.png" class="resource-icon-64" style="opacity:0" />
+                        </div>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-btn">
+                                <input type="button" id="worker-increment" class="btn btn-primary"
+                                       onclick="increment('worker-input')" value="+" style="width:100px; font-size: 2rem; font-weight:400" />
+                            </span>
 
-    <div>
-        <a asp-action="GameListing" asp-controller="Game">Back to List</a>
-    </div>
+                            <input type="text" id="worker-input" asp-for="@Model.Workers" value="@Model.Workers" class="form-control text-center" style="font-size: 2.5rem; font-weight:600" />
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                            <span class="input-group-btn">
+                                <input type="button" id="worker-decrement" class="btn btn-primary"
+                                       onclick="decrement('worker-input')" value="-" style="width:100px;font-size: 2rem; font-weight:400" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form mb-2 text-center">
+                        <div class="form-group">
+                            <img src="~/images/icons/farm-icon.png" class="resource-icon-64" style="opacity:0" />
+                        </div>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-btn">
+                                <input type="button" id="farm-increment" class="btn btn-primary"
+                                       onclick="increment('farm-input')" value="+" style="width:100px; font-size: 2rem; font-weight:400" />
+                            </span>
+
+                            <input type="text" id="farm-input" asp-for="@Model.Farms" value="@Model.Farms" class="form-control text-center" style="font-size: 2.5rem; font-weight:600" />
+
+                            <span class="input-group-btn">
+                                <input type="button" id="farm-decrement" class="btn btn-primary"
+                                       onclick="decrement('farm-input')" value="-" style="width:100px;font-size: 2rem; font-weight:400" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr />
+            <section class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="input-group input-group-lg">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "enter the name of your game here..." })
+                        <span class="input-group-btn">
+                            <input type="submit" value="Create" class="btn btn-primary " />
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="GameListing" asp-controller="Game">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    var increment = function (id) {
+        let oldValue = $('#' + id).val();
+        $('#' + id).val(parseFloat(oldValue) + 1);
     }
-@*</body>
-</html>*@
+
+    var decrement = function (id) {
+        let oldValue = $('#' + id).val();
+        if (oldValue > 1) $('#' + id).val(parseFloat(oldValue) - 1);
+    }
+
+    var increment_100 = function (id) {
+        let oldValue = $('#' + id).val();
+        $('#' + id).val(parseFloat(oldValue) + 100);
+    }
+
+    var decrement_100 = function (id) {
+        let oldValue = $('#' + id).val();
+        if (oldValue > 100) $('#' + id).val(parseFloat(oldValue) - 100);
+        }
+
+    $(document).ready(function () {
+        var $icons = $('.resource-icon-64');
+        $.each($icons, function (i, val) {
+            $(this).delay(i * 100).queue(function (next) {
+                $(this).css('opacity', '100').toggleClass('bounceIn');
+                next();
+            });
+        });
+    });
+</script>
