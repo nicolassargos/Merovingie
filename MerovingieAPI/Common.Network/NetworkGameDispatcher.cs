@@ -14,6 +14,7 @@ using AoC.DataLayer;
 using AoC.Domain.TypeExtentions;
 using Common.Exceptions;
 using Common.Struct;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace Common.Network
@@ -25,6 +26,13 @@ namespace Common.Network
         private GameManager _gameManager;
         private List<GameDescriptor> _partialMessage = new List<GameDescriptor>();
         private string _gameName;
+        private IConfiguration configuration;
+        private IGameFileManager gameFileManager;
+
+        public NetworkGameDispatcher(IConfiguration Config)
+        {
+            this.gameFileManager = new AzureGameFileManager(Config);
+        }
         #endregion
 
         #region Events
@@ -124,7 +132,7 @@ namespace Common.Network
             try
             {
                 _gameName = fileName.ToString();
-                _gameDescriptor = (GameDescriptor)GameFileManagerStatic.ReadGame(_gameName);
+                _gameDescriptor = (GameDescriptor)gameFileManager.ReadGame(_gameName);
                 var gameData = JsonConvert.SerializeObject(_gameDescriptor);
                 returnedResult = new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, gameData);
             }
@@ -270,7 +278,7 @@ namespace Common.Network
             try
             {
                 IGameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
-                GameFileManagerStatic.SaveGame(gameDescriptor, _gameName);
+                gameFileManager.SaveGame(gameDescriptor, _gameName);
                 // La partie est correctement initialisée
                 _gameManager = new GameManager(_gameDescriptor);
                 AttachNotificationsToGameManager();
@@ -457,7 +465,7 @@ namespace Common.Network
                 {
                     _gameManager.SetUnitPosition(unit.Id, unit.Position);
                 }
-                GameFileManagerStatic.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
+                gameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
             }
             catch (Exception ex)
             {

@@ -33,7 +33,7 @@ namespace MerovingieAuth
 
         public Startup(IConfiguration configuration)
         {
-            gameDispatcher = new NetworkGameDispatcher();
+            gameDispatcher = new NetworkGameDispatcher(configuration);
             msocketHandler = new MSocketHandler(gameDispatcher);
             Configuration = configuration;
         }
