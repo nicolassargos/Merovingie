@@ -340,7 +340,7 @@ namespace Common.Network
                         if (i >= serverGameDescriptor.Trees.Count)
                             serverGameDescriptor.Trees.Add(
                                 new Tree(
-                                    1000,
+                                    assembledGameDescriptor.Trees[i].Id,
                                     "tree",
                                     new Coordinates
                                     {
