@@ -286,6 +286,8 @@ namespace Common.Network
             return returnedResult;
         }
 
+
+        // TODO: Exporter la méthode vers une autre classe
         // TODO: ne le faire que lorsque la partie vient d'être créée
         /// <summary>
         /// Prend en paramètre les gameDescriptor partiels envoyés par le client
@@ -338,7 +340,7 @@ namespace Common.Network
                         if (i >= serverGameDescriptor.Trees.Count)
                             serverGameDescriptor.Trees.Add(
                                 new Tree(
-                                    0,
+                                    1000,
                                     "tree",
                                     new Coordinates
                                     {
