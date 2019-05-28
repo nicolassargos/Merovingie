@@ -30,6 +30,7 @@ pdb
 *.log
 *.sql
 *.sqlite
+*\.vs\*
 
 # OS generated files #
 ######################
