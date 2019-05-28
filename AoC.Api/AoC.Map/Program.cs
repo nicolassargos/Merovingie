@@ -20,7 +20,7 @@ namespace AoC.MerovingieFileManager
             }
 
 
-            GameFileManager.SaveGame(game, "game1");
+            GameFileManagerStatic.SaveGame(game, "game1");
         }
     }
 

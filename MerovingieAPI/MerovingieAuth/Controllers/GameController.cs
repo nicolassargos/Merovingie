@@ -35,7 +35,7 @@ namespace Merovingie.Controllers
             uiMessages = new UIMessages();
 
             // Lit le fichier
-            game = GameFileManager.ReadGame(fileName);
+            game = GameFileManagerStatic.ReadGame(fileName);
 
             manager = new GameManager(game);
 
@@ -50,7 +50,7 @@ namespace Merovingie.Controllers
         [HttpGet]
         public IActionResult GameListing()
         {
-            var filesDetected = GameFileManager.GetGameFiles();
+            var filesDetected = GameFileManagerStatic.GetGameFiles();
 
             IList<GameFileDetailModel> gameFiles = new List<GameFileDetailModel>();
             foreach (var item in filesDetected)
@@ -112,7 +112,7 @@ namespace Merovingie.Controllers
         {
             IGameDescriptor newGameDescriptor = GameGenerator.GenerateMapFromOptions(gameModel.Workers, gameModel.Farms, gameModel.Resources);
 
-            GameFileManager.SaveGame(newGameDescriptor, gameModel.Name);
+            GameFileManagerStatic.SaveGame(newGameDescriptor, gameModel.Name);
 
             return Redirect($"/{configuration.GetValue<string>("GameEngine")}?name={gameModel.Name}");
         }
@@ -127,7 +127,7 @@ namespace Merovingie.Controllers
         {
             try
             {
-                GameFileManager.DeleteGame(fileName);
+                GameFileManagerStatic.DeleteGame(fileName);
             }
             catch (System.Exception ex)
             {

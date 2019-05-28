@@ -1,0 +1,93 @@
+{
+  "id": "/subscriptions/dddc622c-4484-4f28-8077-782677e11f39/resourceGroups/Merovingie/providers/Microsoft.Resources/deployments/WebApp-c937cfbe-89f7",
+  "name": "WebApp-c937cfbe-89f7",
+  "properties": {
+    "templateHash": "13881805458273279357",
+    "parameters": {
+      "subscriptionId": {
+        "type": "String",
+        "value": "dddc622c-4484-4f28-8077-782677e11f39"
+      },
+      "name": {
+        "type": "String",
+        "value": "Merovingie"
+      },
+      "location": {
+        "type": "String",
+        "value": "West Europe"
+      },
+      "hostingEnvironment": {
+        "type": "String",
+        "value": ""
+      },
+      "hostingPlanName": {
+        "type": "String",
+        "value": "QnAMakerHackaton"
+      },
+      "serverFarmResourceGroup": {
+        "type": "String",
+        "value": "LuisHackatonProjectGroup"
+      },
+      "alwaysOn": {
+        "type": "Bool",
+        "value": true
+      },
+      "currentStack": {
+        "type": "String",
+        "value": "dotnetcore"
+      }
+    },
+    "mode": "Incremental",
+    "debugSetting": {
+      "detailLevel": "None"
+    },
+    "provisioningState": "Running",
+    "timestamp": "2019-05-28T13:08:45.5897328Z",
+    "duration": "PT0.584175S",
+    "correlationId": "6d70e249-286b-4968-89c6-4943e39d7d9c",
+    "providers": [
+      {
+        "namespace": "Microsoft.Web",
+        "resourceTypes": [
+          {
+            "resourceType": "sites",
+            "locations": [
+              "westeurope"
+            ]
+          }
+        ]
+      },
+      {
+        "namespace": "microsoft.insights",
+        "resourceTypes": [
+          {
+            "resourceType": "components",
+            "locations": [
+              "westeurope"
+            ]
+          }
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/dddc622c-4484-4f28-8077-782677e11f39/resourceGroups/Merovingie/providers/microsoft.insights/components/MerovingieAppInsight",
+            "resourceType": "microsoft.insights/components",
+            "resourceName": "MerovingieAppInsight"
+          },
+          {
+            "id": "/subscriptions/dddc622c-4484-4f28-8077-782677e11f39/resourceGroups/Merovingie/providers/microsoft.insights/components/MerovingieAppInsight",
+            "resourceType": "microsoft.insights/components",
+            "resourceName": "MerovingieAppInsight",
+            "apiVersion": "2015-05-01"
+          }
+        ],
+        "id": "/subscriptions/dddc622c-4484-4f28-8077-782677e11f39/resourceGroups/Merovingie/providers/Microsoft.Web/sites/Merovingie",
+        "resourceType": "Microsoft.Web/sites",
+        "resourceName": "Merovingie"
+      }
+    ]
+  }
+}

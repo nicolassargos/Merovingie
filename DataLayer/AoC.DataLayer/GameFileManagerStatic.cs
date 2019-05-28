@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace AoC.DataLayer
 {
-    public static class GameFileManager
+    public static class GameFileManagerStatic
     {
         const string FOLDER_NAME = "MerovingieGames";
         const string GAMEFILE_EXTENSION = ".xml";

@@ -20,3 +20,9 @@ C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.Ma
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csproj.CoreCompileInputs.cache
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.dll
 C:\Users\sargos.n\Documents\Merovingie\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.pdb
+C:\Users\sargos.n\Desktop\MerovingieSave\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.dll
+C:\Users\sargos.n\Desktop\MerovingieSave\AoC.Api\AoC.MapGenerator\bin\Debug\AoC.MapGenerator.pdb
+C:\Users\sargos.n\Desktop\MerovingieSave\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csproj.CoreCompileInputs.cache
+C:\Users\sargos.n\Desktop\MerovingieSave\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.dll
+C:\Users\sargos.n\Desktop\MerovingieSave\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.MapGenerator.pdb
+C:\Users\sargos.n\Desktop\MerovingieSave\AoC.Api\AoC.MapGenerator\obj\Debug\AoC.Map.csprojAssemblyReference.cache

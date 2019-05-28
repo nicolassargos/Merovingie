@@ -27,7 +27,7 @@ namespace AoC.MerovingieFileManager.Tests
             IGameDescriptor gameDescriptor = null;
             string fileName = "newGame";
 
-            GameFileManager.SaveGame(gameDescriptor, fileName);
+            GameFileManagerStatic.SaveGame(gameDescriptor, fileName);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace AoC.MerovingieFileManager.Tests
             IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = null;
 
-            GameFileManager.SaveGame(gameDescriptor, fileName);
+            GameFileManagerStatic.SaveGame(gameDescriptor, fileName);
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace AoC.MerovingieFileManager.Tests
             IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "";
 
-            GameFileManager.SaveGame(gameDescriptor, fileName);
+            GameFileManagerStatic.SaveGame(gameDescriptor, fileName);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace AoC.MerovingieFileManager.Tests
             IGameDescriptor gameDescriptor = new GameDescriptor();
             string fileName = "   ";
 
-            GameFileManager.SaveGame(gameDescriptor, fileName);
+            GameFileManagerStatic.SaveGame(gameDescriptor, fileName);
         }
 
 
@@ -68,16 +68,16 @@ namespace AoC.MerovingieFileManager.Tests
             string fileName = "qsdfghjklm123456789";
 
             var mockFileSystem = new MockFileSystem();
-            GameFileManager.FileSystemDI = mockFileSystem;
+            GameFileManagerStatic.FileSystemDI = mockFileSystem;
             var mockInputFile = new MockFileData("line1\nline2\nline3");
 
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, fileName), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, fileName), mockInputFile);
 
-            int nbFileOccurences_beforeSave = GameFileManager.GetNumberOfFileIterations(fileName);
+            int nbFileOccurences_beforeSave = GameFileManagerStatic.GetNumberOfFileIterations(fileName);
 
-            string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
+            string newFilePath = GameFileManagerStatic.SaveGame(gameDescriptor, fileName);
 
-            int nbFileOccurences_afterSave = GameFileManager.GetNumberOfFileIterations(fileName);
+            int nbFileOccurences_afterSave = GameFileManagerStatic.GetNumberOfFileIterations(fileName);
 
             Assert.AreEqual(nbFileOccurences_beforeSave + 1, nbFileOccurences_afterSave);
 
@@ -95,7 +95,7 @@ namespace AoC.MerovingieFileManager.Tests
         {
             string fileName = null;
 
-            GameFileManager.ReadGame(fileName);
+            GameFileManagerStatic.ReadGame(fileName);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace AoC.MerovingieFileManager.Tests
         {
             string fileName = "";
 
-            GameFileManager.ReadGame(fileName);
+            GameFileManagerStatic.ReadGame(fileName);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace AoC.MerovingieFileManager.Tests
         {
             string fileName = "     ";
 
-            GameFileManager.ReadGame(fileName);
+            GameFileManagerStatic.ReadGame(fileName);
         }
 
         /// <summary>
@@ -132,13 +132,13 @@ namespace AoC.MerovingieFileManager.Tests
             string fileName = "qsdfghjklm123456789.xml";
 
             var mockFileSystem = new MockFileSystem();
-            GameFileManager.FileSystemDI = mockFileSystem;
+            GameFileManagerStatic.FileSystemDI = mockFileSystem;
 
             // Renvoie ~/qsdfghjklm123456789.xml
             //string newFilePath = GameFileManager.SaveGame(gameDescriptor, fileName);
 
             // Vérifie le fichier de nom ~/qsdfghjklm123456789
-            Assert.ThrowsException<FileNotFoundException>(() => GameFileManager.ReadGame(fileName));
+            Assert.ThrowsException<FileNotFoundException>(() => GameFileManagerStatic.ReadGame(fileName));
         }
 
         #endregion
@@ -153,13 +153,13 @@ namespace AoC.MerovingieFileManager.Tests
 
             var mockInputFile = new MockFileData("line1\nline2\nline3");
 
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in1.xml"), mockInputFile);
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in2.xml"), mockInputFile);
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in3.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, "in1.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, "in2.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, "in3.xml"), mockInputFile);
 
-            GameFileManager.FileSystemDI = mockFileSystem;
+            GameFileManagerStatic.FileSystemDI = mockFileSystem;
 
-            var fileInfo = GameFileManager.GetFiles("*.xml");
+            var fileInfo = GameFileManagerStatic.GetFiles("*.xml");
 
             Assert.IsNotNull(fileInfo);
             Assert.AreEqual(3, fileInfo.Length);
@@ -177,12 +177,12 @@ namespace AoC.MerovingieFileManager.Tests
 
             var mockInputFile = new MockFileData("line1\nline2\nline3");
 
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in1.xml"), mockInputFile);
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in2.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, "in1.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, "in2.xml"), mockInputFile);
 
-            GameFileManager.FileSystemDI = mockFileSystem;
+            GameFileManagerStatic.FileSystemDI = mockFileSystem;
 
-            var gameDetails = GameFileManager.GetGameFiles().ToList();
+            var gameDetails = GameFileManagerStatic.GetGameFiles().ToList();
 
             Assert.IsNotNull(gameDetails);
             Assert.AreEqual(2, gameDetails.Count);
@@ -201,7 +201,7 @@ namespace AoC.MerovingieFileManager.Tests
         {
             string fileName = null;
 
-            GameFileManager.DeleteGame(fileName);
+            GameFileManagerStatic.DeleteGame(fileName);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace AoC.MerovingieFileManager.Tests
         {
             string fileName = "opiuytreza";
 
-            GameFileManager.DeleteGame(fileName);
+            GameFileManagerStatic.DeleteGame(fileName);
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace AoC.MerovingieFileManager.Tests
         {
             string fileName = "opiuytreza.xml";
 
-            GameFileManager.DeleteGame(fileName);
+            GameFileManagerStatic.DeleteGame(fileName);
         }
 
         /// <summary>
@@ -237,15 +237,15 @@ namespace AoC.MerovingieFileManager.Tests
             string fileName = "in1.xml";
 
             var mockFileSystem = new MockFileSystem();
-            GameFileManager.FileSystemDI = mockFileSystem;
+            GameFileManagerStatic.FileSystemDI = mockFileSystem;
             var mockInputFile = new MockFileData("line1\nline2\nline3");
 
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, fileName), mockInputFile);
-            mockFileSystem.AddFile(Path.Combine(GameFileManager.GameFolder, "in2.xml"), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, fileName), mockInputFile);
+            mockFileSystem.AddFile(Path.Combine(GameFileManagerStatic.GameFolder, "in2.xml"), mockInputFile);
 
-            GameFileManager.DeleteGame(fileName);
+            GameFileManagerStatic.DeleteGame(fileName);
 
-            var gameDetails = GameFileManager.GetGameFiles().ToList();
+            var gameDetails = GameFileManagerStatic.GetGameFiles().ToList();
 
             Assert.IsNotNull(gameDetails);
             Assert.AreEqual(1, gameDetails.Count);

@@ -124,7 +124,7 @@ namespace Common.Network
             try
             {
                 _gameName = fileName.ToString();
-                _gameDescriptor = (GameDescriptor)GameFileManager.ReadGame(_gameName);
+                _gameDescriptor = (GameDescriptor)GameFileManagerStatic.ReadGame(_gameName);
                 var gameData = JsonConvert.SerializeObject(_gameDescriptor);
                 returnedResult = new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, gameData);
             }
@@ -270,7 +270,7 @@ namespace Common.Network
             try
             {
                 IGameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
-                GameFileManager.SaveGame(gameDescriptor, _gameName);
+                GameFileManagerStatic.SaveGame(gameDescriptor, _gameName);
                 // La partie est correctement initialisée
                 _gameManager = new GameManager(_gameDescriptor);
                 AttachNotificationsToGameManager();
@@ -457,7 +457,7 @@ namespace Common.Network
                 {
                     _gameManager.SetUnitPosition(unit.Id, unit.Position);
                 }
-                GameFileManager.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
+                GameFileManagerStatic.SaveGame(_gameManager.ToGameDescriptor(), _gameName);
             }
             catch (Exception ex)
             {
