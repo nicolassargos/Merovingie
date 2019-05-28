@@ -1,0 +1,17 @@
+﻿#messages_container {
+    height: calc(100% - 66px);
+}
+
+#messages_list {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0 0 0;
+}
+
+#messages_list > li {
+    margin: 0 0 10px 15px;
+}
+
+.chat-username-label {
+    font-size: 1.8rem;
+}
