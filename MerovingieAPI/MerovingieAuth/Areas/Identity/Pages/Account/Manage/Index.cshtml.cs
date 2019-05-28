@@ -50,12 +50,22 @@ namespace MerovingieAuth.Areas.Identity.Pages.Account.Manage
             public string LastName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Nickname")]
+            public string ChatNickName { get; set; }
+
+            [Required]
             [EmailAddress]
             public string Email { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Text chat color")]
+            public string ChatTextColor { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -76,8 +86,10 @@ namespace MerovingieAuth.Areas.Identity.Pages.Account.Manage
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                ChatNickName = user.ChatNickName,
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                ChatTextColor = user.ChatTextColor
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -117,6 +129,16 @@ namespace MerovingieAuth.Areas.Identity.Pages.Account.Manage
             if (Input.LastName != user.LastName)
             {
                 user.LastName = Input.LastName;
+            }
+
+            if (Input.ChatNickName != user.ChatNickName)
+            {
+                user.ChatNickName = Input.ChatNickName;
+            }
+            
+            if (Input.ChatTextColor != user.ChatTextColor)
+            {
+                user.ChatTextColor = Input.ChatTextColor;
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

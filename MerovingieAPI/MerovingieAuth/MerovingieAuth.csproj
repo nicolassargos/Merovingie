@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\lib\.gitignore" />
+    <Content Remove="wwwroot\lib\.npmignore" />
+    <Content Remove="wwwroot\lib\gulpfile.js" />
+    <Content Remove="wwwroot\lib\index.html" />
+    <Content Remove="wwwroot\lib\LICENSE" />
+    <Content Remove="wwwroot\lib\package.json" />
+    <Content Remove="wwwroot\lib\README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\data-service.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\MMessage.js" />
   </ItemGroup>

@@ -53,8 +53,13 @@ input.form-control {
     background-color: #3b3d3e;
     border-color: #ffcc00;
     color: #bdbdbd;
+    box-shadow: inset 0 0 25px 3px black;
 }
 
+.form-control[disabled] {
+    background-color: #5b5b5b;
+    color: #7d7d7d;
+}
 /********************************/
 /**** Images *****/
 .resource-icon-64 {

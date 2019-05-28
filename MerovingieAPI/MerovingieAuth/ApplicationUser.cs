@@ -10,5 +10,7 @@ namespace MerovingieAuth
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ChatTextColor { get; set; }
+        public string ChatNickName { get; set; }
     }
 }

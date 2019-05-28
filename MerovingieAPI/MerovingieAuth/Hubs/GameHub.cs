@@ -13,9 +13,9 @@ namespace MerovingieAuth.Hubs
     {
 
 
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string user, string userColor, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.All.SendAsync("ReceiveMessage", user, userColor, message);
         }
 
         /// <summary>
@@ -27,6 +27,5 @@ namespace MerovingieAuth.Hubs
             Clients.All.SendAsync("Player is connected");
             return base.OnConnectedAsync();
         }
-
     }
 }

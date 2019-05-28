@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-lg-12">
         <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <h2>Resources</h2>
             <section class="row">
                 @foreach (var resource in Model.Resources)

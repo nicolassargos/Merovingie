@@ -2,27 +2,29 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 var userList = [{name: '', color: ''}];
+var currentUserName = document.getElementById("userChatNickName").value;
+var currentUserColor = document.getElementById("userColor").value;
 
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
 
-connection.on("ReceiveMessage", function (user, message) {
+connection.on("ReceiveMessage", function (user, userColor, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
     // new user sent a message
     if (userList.findIndex(x => x.name === user) === -1)
-        userList.push({ name: user, color: chooseRandomColor() });
+        userList.push({ name: user, color: userColor });
 
     var li = document.createElement("li");
     document.getElementById("messages_list").appendChild(li);
 
     var spanUser = document.createElement("span");
     spanUser.classList.add("chat-username-label");
-    spanUser.style.color = userList.find(x => x.name === user).color;
+    spanUser.style.color = userColor;
     spanUser.textContent = user;
     li.appendChild(spanUser);
 
-    var spanSeparator = document.createElement("span");
+    var spanSeparator = document.createElement("span"); 
     spanSeparator.classList.add("chat-message-separator");
     spanSeparator.textContent = " : ";
     li.appendChild(spanSeparator);
@@ -53,9 +55,8 @@ document.getElementById("messageInput").addEventListener("keyup", function (even
 });
 
 var sendMessage = function () {
-    var user = document.getElementById("userName").value;
     var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message)
+    connection.invoke("SendMessage", currentUserName, currentUserColor, message)
         .catch(function (err) {
             return console.error(err.toString());
         })

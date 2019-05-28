@@ -50,12 +50,18 @@ namespace MerovingieAuth.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Nickname")]
+            public string ChatNickName { get; set; }
+            
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -79,6 +85,7 @@ namespace MerovingieAuth.Areas.Identity.Pages.Account
                 var user = new ApplicationUser {
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
+                    ChatNickName = Input.ChatNickName,
                     UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

@@ -3,19 +3,20 @@
 @{
     ViewData["Title"] = "Profile";
 }
-    
+
 <h1 class="title-medieval mt-5">@ViewData["Title"]</h1>
-@*<partial name="_StatusMessage" model="Model.StatusMessage" />*@
-@Html.Partial("_StatusMessage", Model.StatusMessage)
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+@*@Html.Partial("_StatusMessage", Model.StatusMessage)*@
+<form id="profile-form" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Information</h2>
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
             </div>
-            <div class="form-group">
+            <section class="form-group">
                 <label asp-for="Input.Email"></label>
                 @if (Model.IsEmailConfirmed)
                 {
@@ -30,8 +31,8 @@
                     @*<button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>*@
                 }
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </section>
+            <section class="form-group">
                 <div class="form-group">
                     <label asp-for="Input.FirstName"></label>
                     <input asp-for="Input.FirstName" class="form-control" />
@@ -43,12 +44,76 @@
                 <label asp-for="Input.PhoneNumber"></label>
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default btn-primary btn-lg pull-right">Save</button>
-        </form>
+            </section>
+        </div>
+        <div class="col-md-6">
+            <h2>Chat</h2>
+            <section class="form-group">
+                <div class="form-group">
+                    <input hidden type="text" asp-for="Input.ChatTextColor" />
+                    <label>Color of your nickname : </label>
+                    <div class="color-picker form-control">
+                    </div>
+                </div>
+            </section>
+            <section class="form-group">
+                <div class="form-group">
+                    <label>Nickname : </label>
+                    <input type="text" asp-for="Input.ChatNickName" class="form-control" />
+                </div>
+            </section>
+        </div>
     </div>
-</div>
+    <button type="submit" id="submit_button" class="btn btn-default btn-primary btn-lg pull-left mt-5">Save</button>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+<link href="~/lib/pickr-master/dist/pickr.min.css" rel="stylesheet" />
+<script src="~/lib/pickr-master/dist/pickr.min.js"></script>
+
+<script>
+    const pickr = new Pickr({
+        el: '.color-picker',
+        comparison: false,
+        adjustableNumbers: true,
+        components: {
+
+            // color preview
+            preview: true,
+
+            // enables opacity slider
+            opacity: false,
+
+            // enables HUE slider
+            hue: true,     // Hue slider
+
+            // shows/hides controls
+            output: {
+                hex: true,
+                rgba: true,
+                hsla: true,
+                hsva: true,
+                cmyk: true,
+                input: true,
+                save: true   // Save button
+            },
+
+        interaction: {
+            hex: true,
+            rgba: true,
+            hsva: true,
+            input: true
+        }
+        },
+        default: "@Model.Input.ChatTextColor"
+    });
+
+    document.getElementById("submit_button").addEventListener('mouseover', function (event) {
+        document.getElementsByName("Input.ChatTextColor")[0].value = document.getElementsByClassName('pcr-button')[0].style.color;
+    });
+
+
+
+</script>

@@ -68,6 +68,8 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <input id="userName" type="hidden" value="@currentUser.FirstName" />
+                    <input id="userChatNickName" type="hidden" value="@currentUser.ChatNickName" />
+                    <input id="userColor" type="hidden" value="@currentUser.ChatTextColor" />
                     <div class="row h-100">
                         <div class="col-lg-12 h-100">
                             <div style="border: 1px solid white;" class="h-100">
