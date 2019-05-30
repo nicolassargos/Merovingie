@@ -31,15 +31,15 @@
                     <tr>
                         <td>
                             <div class="btn-group upscale-hover" role="group" style="width:100%">
-                                <a asp-action="Load" asp-controller="Game" asp-route-gamePathToLoad="@item.name" method="get" class="btn btn-primary m-anim-top-container" style="width:80%">
+                                <a asp-action="Load" asp-controller="Game" asp-route-gamePathToLoad="@item.name" method="get" class="btn btn-gold m-anim-top-container" style="width:80%">
                                     <section class="m-anim-text">
                                         <span class="m-anim-label">@item.name</span>
                                         <small>@item.creationDate</small>
                                         <small><i>@item.path</i></small>
                                     </section>
-                                    <span class="h2 m-anim-hovertext">Jouer!</span>
+                                    @*<span class="h2 m-anim-hovertext">Jouer!</span>*@
                                 </a>
-                                @Html.ActionLink("Delete", "Delete", new { fileName = item.name }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Delete", "Delete", new { fileName = item.name }, new { @class = "btn btn-lg btn-danger" })
                             </div>
                         </td>
                     </tr>

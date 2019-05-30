@@ -18,13 +18,43 @@ body {
 }
 
 .btn-primary {
-    background-color: #264465;
-    border-color: #ffcc00;
+    background-color: transparent;
+    border-image-source: url(../images/buttons/Button_wood_01.png);
+    border-image-slice: calc(80 / 184 * 100%) calc(80 / 480 * 100%);
+    border-image-width: 80 80;
 }
 
+    .btn-primary:hover {
+        background-color: transparent;
+    }
+
+    .btn-primary:active {
+        background-color: transparent;
+    }
+    .btn-primary:not(:disabled):not(.disabled):active {
+        background-color: transparent;
+        border-color:transparent;
+    }
+
+        .btn-primary:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none;
+        }
+
+        .form-control.btn-primary:focus {
+            box-shadow: none;
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+
+    .menu-item {
+        font-size: 6rem;
+        line-height: 0.1rem;
+        border-width: 3rem;
+    }
+
 .btn-primary:hover {
-    background-color: #33577d;
-    border-color: #0062cc;
+
 }
 
 input.form-control {

@@ -56,6 +56,7 @@ document.getElementById("messageInput").addEventListener("keyup", function (even
 
 var sendMessage = function () {
     var message = document.getElementById("messageInput").value;
+    if (!message) return;
     connection.invoke("SendMessage", currentUserName, currentUserColor, message)
         .catch(function (err) {
             return console.error(err.toString());

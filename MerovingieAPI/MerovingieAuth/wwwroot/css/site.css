@@ -78,14 +78,126 @@ input.form-control {
     border-radius: 0 !important;
 }
 
+
+
+
+
 .btn-primary {
-    background-color: #264465;
-    border-color:#ffcc00;
+    font-family: 'MedievalSharp', cursive;
+    background-color: transparent;
+    border: none;
+    background-image: url(../images/buttons/Button_wood_01.png);
+    background-clip: border-box;
+    background-repeat: round;
+    background-size: auto;
 }
 
-.btn-primary:hover {
-        background-color: #33577d;
-        border-color: #0062cc;
+    .btn-primary:hover {
+        color: #fff;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .btn-primary:active {
+        background-color: transparent;
+        background-image: url(../images/buttons/Button_wood_01.png);
+        transform: translateY(0.1rem);
+    }
+
+.btn:focus, .btn:active:focus {
+    outline: none;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+        .btn-primary:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none;
+        }
+
+.form-control.btn-primary:focus {
+    box-shadow: none;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+
+
+
+
+
+
+.btn-gold {
+    border-image-source: url(../images/buttons/Button_primary_01.png);
+    border-image-slice: calc(80 / 184 * 100%) calc(80 / 480 * 100%);
+    border-image-width: 80 80;
+    border-image-outset: 20px;
+    background-color: #1d1d1d;
+    margin: 20px;
+    color: antiquewhite;
+}
+
+    .btn-gold:hover {
+        color: antiquewhite;
+    }
+
+
+
+
+.btn-silver {
+    border-image-source: url(../images/buttons/Button_border_01.png);
+    border-image-slice: calc(64 / 124 * 100%) calc(80 / 168 * 100%);
+    border-image-width: 32 40;
+    background-color: #1d1d1d;
+    color: antiquewhite;
+}
+
+    .btn-silver:hover {
+        color: antiquewhite;
+    }
+
+
+
+
+
+
+
+
+.btn-secondary {
+    color: #ec971f;
+    background-color: #1e2440;
+    border-image-source: url(../images/buttons/Button_border_01.png);
+    border-image-slice: calc(32 / 100 * 100%) calc(32 / 120 * 100%);
+    border-image-width: 32 32;
+    box-shadow: inset 0 0 16px 20px black;
+}
+
+    .btn-secondary:hover {
+        background-color: transparent;
+    }
+
+    .btn-secondary:active {
+        background-color: transparent;
+    }
+
+    .btn-secondary:not(:disabled):not(.disabled):active {
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+        .btn-secondary:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none;
+        }
+
+.form-control.btn-secondary:focus {
+    box-shadow: none;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 
@@ -345,7 +457,7 @@ input.form-control {
     padding-top: 3rem !important;
 }
 
-.pr-4,
+.pr-4,btn
 .px-4 {
     padding-right: 3rem !important;
 }
@@ -398,21 +510,20 @@ input.form-control {
 
 .m-anim-top-container {
     position: relative;
-    min-height: 3em;
-    font-size: 2rem;
+    min-height: 7rem;
+    font-size: 3rem;
     z-index: 10;
 }
 
     .m-anim-top-container > .m-anim-text {
         position: relative;
         font-size: 1em;
-        top: 1em;
-        animation: anim-top-text-out 0.2s forwards ease;
-        -webkit-animation: anim-top-text-out 0.2s forwards ease;
+        /*animation: anim-top-text-out 0.2s forwards ease;
+        -webkit-animation: anim-top-text-out 0.2s forwards ease;*/
     }
 
         .m-anim-top-container > .m-anim-text > .m-anim-label {
-            line-height: 0;
+            /*line-height: 0;*/
             font-size: 1em;
             font-weight: 500;
             display: inherit;
@@ -427,25 +538,26 @@ input.form-control {
         position: relative;
         visibility: hidden;
         top: 4.8em;
-        animation: anim-top-hovertext-out 0.2s forwards ease-out 0.1s;
-        -webkit-animation: anim-top-hovertext-out 0.2s forwards ease-out 0.1s;
+        /*animation: anim-top-hovertext-out 0.2s forwards ease-out 0.1s;
+        -webkit-animation: anim-top-hovertext-out 0.2s forwards ease-out 0.1s;*/
     }
 
     .m-anim-top-container:hover > .m-anim-text {
-        animation: anim-top-text-in 0.2s forwards ease;
-        -webkit-animation: anim-top-text-in 0.2s forwards ease;
+        /*animation: anim-top-text-in 0.2s forwards ease;
+        -webkit-animation: anim-top-text-in 0.2s forwards ease;*/
     }
 
     .m-anim-top-container:hover > .m-anim-hovertext {
         visibility: visible;
-        animation: anim-top-hovertext-in 0.2s forwards ease-out 0.1s;
-        -webkit-animation: anim-top-hovertext-in 0.2s forwards ease-out 0.1s;
+        /*animation: anim-top-hovertext-in 0.2s forwards ease-out 0.1s;
+        -webkit-animation: anim-top-hovertext-in 0.2s forwards ease-out 0.1s;*/
     }
 
 @keyframes anim-top-text-in {
     0% {
         top: 1em;
         z-index: 11;
+        opacity: 100;
     }
 
     8% {
@@ -459,6 +571,7 @@ input.form-control {
     100% {
         top: -2em;
         z-index: -1;
+        opacity: 0;
     }
 }
 
