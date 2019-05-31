@@ -90,25 +90,25 @@ namespace Common.Network
 
             // CREATION REQUEST - WORKER
                 case MessageTypes.CREATION_REQUESTED:
-                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
+                    //if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessCreationWorkerRequest(messageContent);
                     break;
 
             // SAVE DATA UNITSSTATE
                 case MessageTypes.CLIENTDATA_UNITSSTATE:
-                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
+                    //if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessSaveUnitState(messageContent);
                     break;
 
             // COLLECT RESOURCES REQUESTED
                 case MessageTypes.FETCHWAY_REQUESTED:
-                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
+                    //if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessFetchRequested(messageContent);
                     break;
 
             // RELEASE RESOURCES REQUESTED
                 case MessageTypes.FETCHBACK_REQUESTED:
-                    if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
+                    //if (!_gameManager.IsGameManagerCorrectlyInitialized) break;
                     messageReturned = ProcessReleaseResourcesRequested(messageContent);
                     break;
             // DEFAULT
@@ -341,7 +341,7 @@ namespace Common.Network
                     }
                 }
 
-                if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count >= 0)
+                if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count > serverGameDescriptor.Trees.Count)
                 {
                     for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
                     {
@@ -356,37 +356,6 @@ namespace Common.Network
                                         y = assembledGameDescriptor.Trees[i].Position.y,
                                     }).ToTreeDescriptor());
                     }
-
-
-
-                    // Si c'est le premier chargement de la partie nouvellement créée, créer la liste des arbres
-                    //if (serverGameDescriptor.Trees.Count == 0)
-                    //{
-                    //    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
-                    //    {
-                    //            serverGameDescriptor.Trees.Add(
-                    //                new Tree(
-                    //                    assembledGameDescriptor.Trees[i].Id,
-                    //                    "tree",
-                    //                    new Coordinates
-                    //                    {
-                    //                        x = assembledGameDescriptor.Trees[i].Position.x,
-                    //                        y = assembledGameDescriptor.Trees[i].Position.y,
-                    //                    }).ToTreeDescriptor());
-                    //    }
-                    //}
-                    //// Si c'est le chargement d'une partie précédement créée
-                    //else if (serverGameDescriptor.Trees.Count == assembledGameDescriptor.Trees.Count)
-                    //{
-                    //    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
-                    //    {
-                    //        serverGameDescriptor.Trees[i].Id = assembledGameDescriptor.Trees[i].Id;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    throw new Exception();
-                    //}
 
                 }
 
