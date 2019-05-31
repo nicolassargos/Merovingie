@@ -113,8 +113,10 @@ namespace Merovingie.Controllers
         public IActionResult Create(GameDescriptorModel gameModel)
         {
             IGameDescriptor newGameDescriptor = GameGenerator.GenerateMapFromOptions(gameModel.Workers, gameModel.Farms, gameModel.Resources);
+            // permet d'initialiser les ID
+            GameManager gameManager = new GameManager(newGameDescriptor);
 
-            gameFileManager.SaveGame(newGameDescriptor, gameModel.Name);
+            gameFileManager.SaveGame(gameManager.ToGameDescriptor(), gameModel.Name);
 
             return Redirect($"/{configuration.GetValue<string>("GameEngine")}?name={gameModel.Name}");
         }

@@ -133,6 +133,8 @@ namespace Common.Network
             {
                 _gameName = fileName.ToString();
                 _gameDescriptor = (GameDescriptor)gameFileManager.ReadGame(_gameName);
+                _gameManager = new GameManager(_gameDescriptor);
+                AttachNotificationsToGameManager();
                 var gameData = JsonConvert.SerializeObject(_gameDescriptor);
                 returnedResult = new MMessageModel(MessageTypes.FILELOAD_ACCEPTED, gameData);
             }
@@ -277,11 +279,11 @@ namespace Common.Network
             MMessageModel returnedResult = null;
             try
             {
-                IGameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
+                //IGameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
+                IGameDescriptor gameDescriptor = AssembleFromMultiParts(_partialMessage);
                 gameFileManager.SaveGame(gameDescriptor, _gameName);
                 // La partie est correctement initialisée
-                _gameManager = new GameManager(_gameDescriptor);
-                AttachNotificationsToGameManager();
+                //_gameManager = new GameManager(_gameDescriptor);
             }
             catch (Exception ex)
             {
@@ -303,86 +305,86 @@ namespace Common.Network
         /// </summary>
         /// <param name="partialMessage"></param>
         /// <param name="serverGameDescriptor"></param>
-        private IGameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
-        {
-            var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
+        //private IGameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
+        //{
+        //    var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
 
-            try
-            {
-                if (assembledGameDescriptor.Carries != null && assembledGameDescriptor.Carries.Count == serverGameDescriptor.Carries.Count)
-                {
-                    for (var i = 0; i < assembledGameDescriptor.Carries.Count; i++)
-                    {
-                        serverGameDescriptor.Carries[i].Id = assembledGameDescriptor.Carries[i].Id;
-                    }
-                }
+        //    try
+        //    {
+        //        if (assembledGameDescriptor.Carries != null && assembledGameDescriptor.Carries.Count == serverGameDescriptor.Carries.Count)
+        //        {
+        //            for (var i = 0; i < assembledGameDescriptor.Carries.Count; i++)
+        //            {
+        //                serverGameDescriptor.Carries[i].Id = assembledGameDescriptor.Carries[i].Id;
+        //            }
+        //        }
 
-                if (assembledGameDescriptor.Farms != null && assembledGameDescriptor.Farms.Count == serverGameDescriptor.Farms.Count)
-                {
-                    for (var i = 0; i < assembledGameDescriptor.Farms.Count; i++)
-                    {
-                        serverGameDescriptor.Farms[i].Id = assembledGameDescriptor.Farms[i].Id;
-                    }
-                }
+        //        if (assembledGameDescriptor.Farms != null && assembledGameDescriptor.Farms.Count == serverGameDescriptor.Farms.Count)
+        //        {
+        //            for (var i = 0; i < assembledGameDescriptor.Farms.Count; i++)
+        //            {
+        //                serverGameDescriptor.Farms[i].Id = assembledGameDescriptor.Farms[i].Id;
+        //            }
+        //        }
 
-                if (assembledGameDescriptor.GoldMines != null && assembledGameDescriptor.GoldMines.Count == serverGameDescriptor.GoldMines.Count)
-                {
-                    for (var i = 0; i < assembledGameDescriptor.GoldMines.Count; i++)
-                    {
-                        serverGameDescriptor.GoldMines[i].Id = assembledGameDescriptor.GoldMines[i].Id;
-                    }
-                }
+        //        if (assembledGameDescriptor.GoldMines != null && assembledGameDescriptor.GoldMines.Count == serverGameDescriptor.GoldMines.Count)
+        //        {
+        //            for (var i = 0; i < assembledGameDescriptor.GoldMines.Count; i++)
+        //            {
+        //                serverGameDescriptor.GoldMines[i].Id = assembledGameDescriptor.GoldMines[i].Id;
+        //            }
+        //        }
 
-                if (assembledGameDescriptor.TownHalls != null && assembledGameDescriptor.TownHalls.Count == serverGameDescriptor.TownHalls.Count)
-                {
-                    for (var i = 0; i < assembledGameDescriptor.TownHalls.Count; i++)
-                    {
-                        serverGameDescriptor.TownHalls[i].Id = assembledGameDescriptor.TownHalls[i].Id;
-                    }
-                }
+        //        if (assembledGameDescriptor.TownHalls != null && assembledGameDescriptor.TownHalls.Count == serverGameDescriptor.TownHalls.Count)
+        //        {
+        //            for (var i = 0; i < assembledGameDescriptor.TownHalls.Count; i++)
+        //            {
+        //                serverGameDescriptor.TownHalls[i].Id = assembledGameDescriptor.TownHalls[i].Id;
+        //            }
+        //        }
 
-                if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count > serverGameDescriptor.Trees.Count)
-                {
-                    for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
-                    {
-                        if (i >= serverGameDescriptor.Trees.Count)
-                            serverGameDescriptor.Trees.Add(
-                                new Tree(
-                                    assembledGameDescriptor.Trees[i].Id,
-                                    "tree",
-                                    new Coordinates
-                                    {
-                                        x = assembledGameDescriptor.Trees[i].Position.x,
-                                        y = assembledGameDescriptor.Trees[i].Position.y,
-                                    }).ToTreeDescriptor());
-                    }
+        //        if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count > serverGameDescriptor.Trees.Count)
+        //        {
+        //            for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
+        //            {
+        //                if (i >= serverGameDescriptor.Trees.Count)
+        //                    serverGameDescriptor.Trees.Add(
+        //                        new Tree(
+        //                            assembledGameDescriptor.Trees[i].Id,
+        //                            "tree",
+        //                            new Coordinates
+        //                            {
+        //                                x = assembledGameDescriptor.Trees[i].Position.x,
+        //                                y = assembledGameDescriptor.Trees[i].Position.y,
+        //                            }).ToTreeDescriptor());
+        //            }
 
-                }
+        //        }
 
-                if (assembledGameDescriptor.Workers != null && assembledGameDescriptor.Workers.Count == serverGameDescriptor.Workers.Count)
-                {
-                    for (var i = 0; i < assembledGameDescriptor.Workers.Count; i++)
-                    {
-                        serverGameDescriptor.Workers[i].Id = assembledGameDescriptor.Workers[i].Id;
-                    }
-                }
+        //        if (assembledGameDescriptor.Workers != null && assembledGameDescriptor.Workers.Count == serverGameDescriptor.Workers.Count)
+        //        {
+        //            for (var i = 0; i < assembledGameDescriptor.Workers.Count; i++)
+        //            {
+        //                serverGameDescriptor.Workers[i].Id = assembledGameDescriptor.Workers[i].Id;
+        //            }
+        //        }
 
-                if (assembledGameDescriptor.Resources != null && assembledGameDescriptor.Resources.Count == serverGameDescriptor.Resources.Count)
-                {
-                    foreach (var res in assembledGameDescriptor.Resources)
-                    {
-                        serverGameDescriptor.Resources[res.Key] = assembledGameDescriptor.Resources[res.Key];
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+        //        if (assembledGameDescriptor.Resources != null && assembledGameDescriptor.Resources.Count == serverGameDescriptor.Resources.Count)
+        //        {
+        //            foreach (var res in assembledGameDescriptor.Resources)
+        //            {
+        //                serverGameDescriptor.Resources[res.Key] = assembledGameDescriptor.Resources[res.Key];
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
+        //        throw ex;
+        //    }
 
-            return serverGameDescriptor;
-        }
+        //    return serverGameDescriptor;
+        //}
 
         /// <summary>
         /// Compile une liste GameDescriptor partiels

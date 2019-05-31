@@ -31,21 +31,32 @@ namespace AoC.Api.Domain.UseCases
         // Fields
         #region Fields
         private int _maxPopulation;
+        public int nbItems
+        {
+            get
+            {
+                int _nbItems = 1;
+                _nbItems += this.BuildingList.Count;
+                _nbItems += this.PopulationList.Count;
+
+                return _nbItems;
+            }
+        }
         public int QtyOr { get => Resources[ResourcesType.Gold]; }
         public int QtyWood { get => Resources[ResourcesType.Wood]; }
         public int QtyStone { get => Resources[ResourcesType.Stone]; }
 
-        public bool IsGameManagerCorrectlyInitialized {
-            get
-            {
-                if (BuildingList.Where(bld => bld.Id == 0).Count() > 0)
-                    return false;
-                if (PopulationList.Where(pop => pop.Id == 0).Count() > 0)
-                    return false;
+        //public bool IsGameManagerCorrectlyInitialized {
+        //    get
+        //    {
+        //        if (BuildingList.Where(bld => bld.Id == 0).Count() > 0)
+        //            return false;
+        //        if (PopulationList.Where(pop => pop.Id == 0).Count() > 0)
+        //            return false;
 
-                return true;
-            }
-        }
+        //        return true;
+        //    }
+        //}
 
         // Total Population
         public int MaxPopulation {
@@ -95,22 +106,41 @@ namespace AoC.Api.Domain.UseCases
             BuildingList = new List<IBuilding>();
 
             foreach (var worker in game.Workers)
+            {
+                if (worker.Id == 0) worker.Id = CreateId();
                 PopulationList.Add(worker.ToWorker());
+            }
 
             foreach (var farm in game.Farms)
+            {
+                if (farm.Id == 0) farm.Id = CreateId();
                 BuildingList.Add(farm.ToFarm());
 
+            }
+
             foreach (var hall in game.TownHalls)
+            {
+                if (hall.Id == 0) hall.Id = CreateId();
                 BuildingList.Add(hall.ToTownHall());
+            }
 
             foreach (var tree in game.Trees)
+            {
+                if (tree.Id == 0) tree.Id = CreateId();
                 BuildingList.Add(tree.ToTree());
+            }
 
             foreach (var mine in game.GoldMines)
+            {
+                if (mine.Id == 0) mine.Id = CreateId();
                 BuildingList.Add(mine.ToGoldMine());
+            }
 
             foreach (var carry in game.Carries)
+            {
+                if (carry.Id == 0) carry.Id = CreateId();
                 BuildingList.Add(carry.ToCarry());
+            }
 
             MaxPopulation = game.MaxPopulation;
         }
@@ -172,10 +202,9 @@ namespace AoC.Api.Domain.UseCases
         /// Attribue un nouvel Id à une unité nouvellement créée
         /// </summary>
         /// <returns></returns>
-        private int GetNewUnitId()
+        private int CreateId()
         {
-            if (PopulationList.Count == 0) return 0;
-            return PopulationList.Max(x => x.Id) + 1;
+            return nbItems;
         }
 
 

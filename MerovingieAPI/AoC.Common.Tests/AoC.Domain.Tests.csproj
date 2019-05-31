@@ -66,6 +66,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AoC.Api\AoC.Map\AoC.GameFileManager.csproj">
+      <Project>{CCFA74B6-84A2-400D-97E2-DE0E25CF281B}</Project>
+      <Name>AoC.GameFileManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\AoC.Api\Common\AoC.Common.csproj">
       <Project>{8b1e1ef0-fb02-4297-b8aa-12ef4c4ca354}</Project>
       <Name>AoC.Common</Name>
