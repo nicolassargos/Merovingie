@@ -138,7 +138,6 @@ namespace Merovingie.Controllers
                 throw ex;
             }
             
-
             return RedirectToAction("GameListing");
         }
 

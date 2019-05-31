@@ -199,7 +199,7 @@ namespace AoC.Api.Domain.UseCases
 
 
         /// <summary>
-        /// Attribue un nouvel Id à une unité nouvellement créée
+        /// Attribue un nouvel Id à une entité nouvellement créée
         /// </summary>
         /// <returns></returns>
         private int CreateId()

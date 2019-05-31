@@ -68,7 +68,7 @@ namespace AoC.Api.Domain.UseCases
         /// <param name="Worker"></param>
         public void ValidateWorkerCreation(IProductable worker)
         {
-            //(worker as Worker).Id = GetNewUnitId();
+            (worker as Worker).Id = CreateId();
             AddWorkerToList(worker as Worker);
         }
 

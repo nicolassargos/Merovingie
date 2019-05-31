@@ -279,11 +279,8 @@ namespace Common.Network
             MMessageModel returnedResult = null;
             try
             {
-                //IGameDescriptor gameDescriptor = InitializeEachGameItem(_partialMessage, _gameDescriptor);
                 IGameDescriptor gameDescriptor = AssembleFromMultiParts(_partialMessage);
                 gameFileManager.SaveGame(gameDescriptor, _gameName);
-                // La partie est correctement initialisée
-                //_gameManager = new GameManager(_gameDescriptor);
             }
             catch (Exception ex)
             {
