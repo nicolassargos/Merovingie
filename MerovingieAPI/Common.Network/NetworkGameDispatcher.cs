@@ -28,6 +28,7 @@ namespace Common.Network
         private string _gameName;
         private IConfiguration configuration;
         private IGameFileManager gameFileManager;
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public NetworkGameDispatcher(IConfiguration Config)
         {
@@ -185,6 +186,7 @@ namespace Common.Network
                 MUnitReleaseRequestedModel data = JsonConvert.DeserializeObject<MUnitReleaseRequestedModel>(messageContent);
                 _gameManager.ReleaseUnitResources(data.unitId, data.buildingId);
                 returnedResult = new MMessageModel(MessageTypes.FETCHBACK_ACCEPTED, "{\"status\" : \"ok\"}");
+                logger.Debug($"NetworkDispatcher => ProcessReleaseResourcesRequested: buildingId: {data.buildingId} , unitId: {data.unitId} , ressources: {data.resources?.ToString()}");
             }
             catch (Exception ex)
             {
@@ -206,6 +208,7 @@ namespace Common.Network
                 MUnitCollectRequestedModel data = JsonConvert.DeserializeObject<MUnitCollectRequestedModel>(messageContent);
                 _gameManager.FetchResource(data.unitId, data.buildingId);
                 returnedResult = new MMessageModel(MessageTypes.FETCHWAY_ACCEPTED, "{\"status\" : \"ok\"}");
+                logger.Debug($"NetworkDispatcher => ProcessFetchRequested: buildingId: {data.buildingId} , unitId: {data.unitId}");
             }
             catch (Exception ex)
             {
@@ -293,95 +296,6 @@ namespace Common.Network
             return returnedResult;
         }
 
-
-        // TODO: Exporter la méthode vers une autre classe
-        // TODO: ne le faire que lorsque la partie vient d'être créée
-        /// <summary>
-        /// Prend en paramètre les gameDescriptor partiels envoyés par le client
-        /// et les assemble en un seul, puis recopie les ID de chacun des éléments du jeu
-        /// </summary>
-        /// <param name="partialMessage"></param>
-        /// <param name="serverGameDescriptor"></param>
-        //private IGameDescriptor InitializeEachGameItem(List<GameDescriptor> partialMessage, GameDescriptor serverGameDescriptor)
-        //{
-        //    var assembledGameDescriptor = AssembleFromMultiParts(partialMessage);
-
-        //    try
-        //    {
-        //        if (assembledGameDescriptor.Carries != null && assembledGameDescriptor.Carries.Count == serverGameDescriptor.Carries.Count)
-        //        {
-        //            for (var i = 0; i < assembledGameDescriptor.Carries.Count; i++)
-        //            {
-        //                serverGameDescriptor.Carries[i].Id = assembledGameDescriptor.Carries[i].Id;
-        //            }
-        //        }
-
-        //        if (assembledGameDescriptor.Farms != null && assembledGameDescriptor.Farms.Count == serverGameDescriptor.Farms.Count)
-        //        {
-        //            for (var i = 0; i < assembledGameDescriptor.Farms.Count; i++)
-        //            {
-        //                serverGameDescriptor.Farms[i].Id = assembledGameDescriptor.Farms[i].Id;
-        //            }
-        //        }
-
-        //        if (assembledGameDescriptor.GoldMines != null && assembledGameDescriptor.GoldMines.Count == serverGameDescriptor.GoldMines.Count)
-        //        {
-        //            for (var i = 0; i < assembledGameDescriptor.GoldMines.Count; i++)
-        //            {
-        //                serverGameDescriptor.GoldMines[i].Id = assembledGameDescriptor.GoldMines[i].Id;
-        //            }
-        //        }
-
-        //        if (assembledGameDescriptor.TownHalls != null && assembledGameDescriptor.TownHalls.Count == serverGameDescriptor.TownHalls.Count)
-        //        {
-        //            for (var i = 0; i < assembledGameDescriptor.TownHalls.Count; i++)
-        //            {
-        //                serverGameDescriptor.TownHalls[i].Id = assembledGameDescriptor.TownHalls[i].Id;
-        //            }
-        //        }
-
-        //        if (assembledGameDescriptor.Trees != null && assembledGameDescriptor.Trees.Count > serverGameDescriptor.Trees.Count)
-        //        {
-        //            for (var i = 0; i < assembledGameDescriptor.Trees.Count; i++)
-        //            {
-        //                if (i >= serverGameDescriptor.Trees.Count)
-        //                    serverGameDescriptor.Trees.Add(
-        //                        new Tree(
-        //                            assembledGameDescriptor.Trees[i].Id,
-        //                            "tree",
-        //                            new Coordinates
-        //                            {
-        //                                x = assembledGameDescriptor.Trees[i].Position.x,
-        //                                y = assembledGameDescriptor.Trees[i].Position.y,
-        //                            }).ToTreeDescriptor());
-        //            }
-
-        //        }
-
-        //        if (assembledGameDescriptor.Workers != null && assembledGameDescriptor.Workers.Count == serverGameDescriptor.Workers.Count)
-        //        {
-        //            for (var i = 0; i < assembledGameDescriptor.Workers.Count; i++)
-        //            {
-        //                serverGameDescriptor.Workers[i].Id = assembledGameDescriptor.Workers[i].Id;
-        //            }
-        //        }
-
-        //        if (assembledGameDescriptor.Resources != null && assembledGameDescriptor.Resources.Count == serverGameDescriptor.Resources.Count)
-        //        {
-        //            foreach (var res in assembledGameDescriptor.Resources)
-        //            {
-        //                serverGameDescriptor.Resources[res.Key] = assembledGameDescriptor.Resources[res.Key];
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw ex;
-        //    }
-
-        //    return serverGameDescriptor;
-        //}
 
         /// <summary>
         /// Compile une liste GameDescriptor partiels
@@ -488,6 +402,7 @@ namespace Common.Network
         private void NotifyClientResourceCollected(object sender, ResourcesFetchedArgs e)
         {
             var args = BuildNotificationEventArgs(MessageTypes.FETCHWAY_COMPLETED, e);
+            logger.Debug($"NetworkDispatcher => NotifyClientResourceCollected: buildingId: {e.buildingId} , unitId: {e.unitId}");
             NotifyClient(args);
         }
 
@@ -499,6 +414,7 @@ namespace Common.Network
         private void NotifyClientResourcesReleased(object sender, ResourcesReleasedArgs e)
         {
             var args = BuildNotificationEventArgs(MessageTypes.FETCHBACK_COMPLETED, e);
+            logger.Debug($"NetworkDispatcher => NotifyClientResourcesReleased: resources: {e.resources.ToString()} , unitId: {e.unitId}");
             NotifyClient(args);
         }
 

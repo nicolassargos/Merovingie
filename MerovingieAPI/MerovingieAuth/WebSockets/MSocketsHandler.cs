@@ -18,6 +18,7 @@ using AoC.Common.Interfaces;
 using AoC.Common.Descriptors;
 using AoC.DataLayer;
 using Common.Network;
+using Microsoft.Extensions.Logging;
 
 namespace Merovingie
 {
@@ -26,6 +27,8 @@ namespace Merovingie
 
         private WebSocket _socket;
         private INetworkGameDispatcher _networkGameDispatcher;
+        
+
 
         public MSocketHandler(INetworkGameDispatcher networkGameDispatcher)
         {
@@ -70,14 +73,14 @@ namespace Merovingie
         /// 
         /// </summary>
         /// <param name="buffer"></param>
-        private void InterpretMessage(byte[] buffer)
+        private async void InterpretMessage(byte[] buffer)
         {
             MMessageModel messageReceived = null;
             try
             {
                 messageReceived = GetMessageFromBytes(buffer);
                 var messageBack = _networkGameDispatcher.ProcessMessage(messageReceived);
-                if (messageBack != null) SendMessage(messageBack);
+                if (messageBack != null) await SendMessage(messageBack);
             }
             catch (Exception ex)
             {
@@ -85,9 +88,9 @@ namespace Merovingie
             }
         }
 
-        private void OnNotification(object sender, NotificationEventArgs e)
+        private async void OnNotification(object sender, NotificationEventArgs e)
         {
-            SendMessage(e.Message);
+            await SendMessage(e.Message);
         }
 
         /// <summary>
@@ -98,7 +101,6 @@ namespace Merovingie
         public async Task SendMessage(MMessageModel messageToSend)
         {
             var sentObject = SetBytesFromMessage(messageToSend);
-
             await _socket.SendAsync(new ArraySegment<byte>(sentObject, 0, sentObject.Length), 0,
                     true, CancellationToken.None);
         }

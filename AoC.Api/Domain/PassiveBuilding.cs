@@ -68,9 +68,9 @@ namespace AoC.Api.Domain
             }
 
             // Retire la quantité collectée au stock
-            Stock[ResourcesType.Stone] -= collectedQuantity;
+            Stock[resourcesToCollect.Key] -= collectedQuantity;
             // Si le stock est à 0, on détruit la mine
-            if (Stock[ResourcesType.Stone] == 0) DestroyBuilding();
+            if (Stock[resourcesToCollect.Key] == 0) DestroyBuilding();
 
             // Signale à l'UI que le stock a changé
             OnBuildingStockChanged(new ResourcesFetchedArgs
