@@ -11,11 +11,18 @@ namespace MerovingieAuth.Hubs
 {
     public class GameHub : Hub
     {
-
+        
+        List<ChatMessage> _conversations = new List<ChatMessage>();
 
         public async Task SendMessage(string user, string userColor, string message)
         {
+            _conversations.Add(new ChatMessage { UserName = user, UserColor = userColor, Message = message });
             await Clients.All.SendAsync("ReceiveMessage", user, userColor, message);
+        }
+
+        public async Task GetConversations()
+        {
+            await Clients.Caller.SendAsync("DisplayConversation", _conversations);
         }
 
         /// <summary>

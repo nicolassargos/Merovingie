@@ -33,11 +33,15 @@ connection.on("ReceiveMessage", function (user, userColor, message) {
     spanMessage.classList.add("chat-message-label");
     spanMessage.textContent = msg;
     li.appendChild(spanMessage);
+});
 
+connection.on("DisplayConversation", function (conversations) {
+    console.log(conversations);
 });
 
 connection.start().then(function () {
     document.getElementById("sendButton").disabled = false;
+    connection.invoke("GetConversations");
 }).catch(function (err) {
     return console.error(err.toString());
 });

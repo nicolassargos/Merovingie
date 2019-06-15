@@ -18,5 +18,7 @@ namespace MerovingieAuth.Data
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<ChatMessage> Messages { get; set; }
     }
 }

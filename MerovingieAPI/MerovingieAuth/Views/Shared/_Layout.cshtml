@@ -70,6 +70,12 @@
     <audio autoplay loop="loop" id="audio_background">
         <source src="~/audio/music_intro_main_the__HD.wav" />
     </audio>
+    <audio autoplay>
+        <source src="~/audio/drawbrid__HD.wav" />
+    </audio>
+    <audio id="sound_boum">
+        <source src="~/audio/boum__LE__HD.wav"  />
+    </audio>
     <div class="container-fluid body-content">
         <div class="row h-100">
             <div class="col-lg-3 h-100">
@@ -80,7 +86,7 @@
                     <input id="userColor" type="hidden" value="@currentUser.ChatTextColor" />
                     <div class="row h-100">
                         <div class="col-lg-12 h-100">
-                            <div style="border: 1px solid white;" class="h-100">
+                            <div class="h-100 chat-container">
                                 <section id="messages_container">
                                     <ul id="messages_list"></ul>
                                 </section>
@@ -108,6 +114,12 @@
     <script>
         var audio = document.getElementById("audio_background");
         audio.volume = 0.2;
+
+        setTimeout(function () {
+            document.getElementById("sound_boum").play();
+
+        }, 3500);
+
     </script>
 
     <environment include="Development">
@@ -119,18 +131,18 @@
     </environment>
     <environment exclude="Development">
         @*<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.js" asp-append-version="true"></script>*@
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.js" asp-append-version="true"></script>*@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

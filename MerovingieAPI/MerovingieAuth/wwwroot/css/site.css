@@ -10,6 +10,7 @@ body {
     background-color: black;
     background-image: url(../images/castle-wall.jpg);
     background-repeat: no-repeat;
+    background-size: contain;
     color: white;
     height: 100%;
 }

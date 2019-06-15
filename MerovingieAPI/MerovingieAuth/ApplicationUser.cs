@@ -12,5 +12,7 @@ namespace MerovingieAuth
         public string LastName { get; set; }
         public string ChatTextColor { get; set; }
         public string ChatNickName { get; set; }
+
+        public virtual ICollection<ChatMessage> Messages { get; set; }
     }
 }
