@@ -30,7 +30,7 @@ namespace Merovingie
         public MSocketHandler(INetworkGameDispatcher networkGameDispatcher)
         {
             _networkGameDispatcher = networkGameDispatcher;
-            _networkGameDispatcher.NotificationPopedUp += OnNotification;
+            _networkGameDispatcher.NotificationPopedUp += new EventHandler<NotificationEventArgs>(async (s,e) => await OnNotification(s, e));
         }
 
         private void InitializeNetworkDispatcher()
@@ -55,7 +55,7 @@ namespace Merovingie
 
             while (!result.CloseStatus.HasValue)
             {
-                InterpretMessage(buffer);
+                await InterpretMessage(buffer);
 
                 Array.Clear(buffer, 0, buffer.Length);
 
@@ -70,24 +70,18 @@ namespace Merovingie
         /// 
         /// </summary>
         /// <param name="buffer"></param>
-        private void InterpretMessage(byte[] buffer)
+        private async Task InterpretMessage(byte[] buffer)
         {
             MMessageModel messageReceived = null;
-            try
-            {
+
                 messageReceived = GetMessageFromBytes(buffer);
                 var messageBack = _networkGameDispatcher.ProcessMessage(messageReceived);
-                if (messageBack != null) SendMessage(messageBack);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                if (messageBack != null) await SendMessage(messageBack);
         }
 
-        private void OnNotification(object sender, NotificationEventArgs e)
+        private async Task OnNotification(object sender, NotificationEventArgs e)
         {
-            SendMessage(e.Message);
+            await SendMessage(e.Message);
         }
 
         /// <summary>

@@ -23,10 +23,10 @@ namespace Merovingie.Controllers
         private readonly IConfiguration configuration;
         private readonly IGameFileManager gameFileManager;
 
-        public GameController(IConfiguration configuration)
+        public GameController(IConfiguration configuration, IGameFileManager fileManager)
         {
             this.configuration = configuration;
-            gameFileManager = new AzureGameFileManager(configuration);
+            gameFileManager = fileManager;
         }
 
 
@@ -115,6 +115,9 @@ namespace Merovingie.Controllers
             IGameDescriptor newGameDescriptor = GameGenerator.GenerateMapFromOptions(gameModel.Workers, gameModel.Farms, gameModel.Resources);
 
             gameFileManager.SaveGame(newGameDescriptor, gameModel.Name);
+
+            // Azure
+            // gameFileManager.SaveGame(newGameDescriptor, gameModel.Name);
 
             return Redirect($"/{configuration.GetValue<string>("GameEngine")}?name={gameModel.Name}");
         }

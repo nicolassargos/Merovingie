@@ -29,9 +29,10 @@ namespace Common.Network
         private IConfiguration configuration;
         private IGameFileManager gameFileManager;
 
-        public NetworkGameDispatcher(IConfiguration Config)
+        public NetworkGameDispatcher(IConfiguration Config, IGameFileManager fileManager)
         {
-            this.gameFileManager = new AzureGameFileManager(Config);
+            this.gameFileManager = fileManager;
+                // new AzureGameFileManager(Config);
         }
         #endregion
 

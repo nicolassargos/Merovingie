@@ -58,7 +58,6 @@
     <Compile Include="Dto\GameDetailsDto.cs" />
     <Compile Include="Dto\PassiveBuildingDto.cs" />
     <Compile Include="Dto\PeonDto.cs" />
-    <Compile Include="EmailSender.cs" />
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="Exceptions\NotEnoughUnitSlotsAvailableException.cs" />
     <Compile Include="Exceptions\NoWorkerAvailableException.cs" />

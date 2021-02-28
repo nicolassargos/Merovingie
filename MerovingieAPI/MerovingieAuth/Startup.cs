@@ -22,6 +22,8 @@ using AoC.Api.Domain;
 using AoC.Common.Descriptors;
 using Domain;
 using Common.Network;
+using AoC.DataLayer;
+using AoC.MerovingieFileManager;
 
 namespace MerovingieAuth
 {
@@ -33,7 +35,8 @@ namespace MerovingieAuth
 
         public Startup(IConfiguration configuration)
         {
-            gameDispatcher = new NetworkGameDispatcher(configuration);
+            // TODO: DI pour NetworkGameDispatcher
+            gameDispatcher = new NetworkGameDispatcher(configuration, new GameFileManager());
             msocketHandler = new MSocketHandler(gameDispatcher);
             Configuration = configuration;
         }
@@ -51,11 +54,13 @@ namespace MerovingieAuth
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")
+                    ).EnableSensitiveDataLogging().EnableSensitiveDataLogging());
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<IGameFileManager, GameFileManager>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             Mapper.Initialize(cfg => cfg.AddProfile<DomainProfile>());

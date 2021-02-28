@@ -41,3 +41,10 @@ pdb
 .Trashes
 ehthumbs.db
 Thumbs.db
+/.vs
+/MerovingieAPI/.vs/Merovingie
+/MerovingieAPI/packages/Castle.Core.4.4.0
+/MerovingieAPI/packages/MSTest.TestFramework.1.4.0
+/MerovingieAPI/packages/Newtonsoft.Json.12.0.2
+/MerovingieAPI/packages/System.Buffers.4.5.0
+/MerovingieAPI/packages
